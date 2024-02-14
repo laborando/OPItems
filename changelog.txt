@@ -1,0 +1,34 @@
+Hidden File: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/files/4669814
+
+Vor Release:
+PLugin.yml Version?
+Startup MEssage Version?
+Discord Webhool Messages Version?
+Changelog Updated?
+
+Plan:
+
+Ofen2Go
+Holo display
+fake player
+rocket to the moon 
+
+BUGS: Portal2Go in Private Pocket Dimension
+
+
+In Work:
+
+
+
+
+DONE:
+
+Added Cmd's:
+ - /opitems version | Displays the current Version and Changelog of OPItems
+ - /opitems delete_all_pocket_worlds | Deletes the pocket worlds
+
+Changes:
+ - Added Lores to some of the Items
+ - Added TNT-Blocks Activated Message to the TNT-Detonator
+ - Fixed Typos
+ - Updated Celutis to v0.5
