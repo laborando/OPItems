@@ -1,4 +1,4 @@
-package guis;
+package o_guis;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

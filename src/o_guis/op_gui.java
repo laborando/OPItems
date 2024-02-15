@@ -1,5 +1,5 @@
 
-package guis;
+package o_guis;
 
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.Inventory;
