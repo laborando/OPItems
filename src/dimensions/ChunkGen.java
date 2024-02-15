@@ -6,6 +6,7 @@ import org.bukkit.*;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -23,7 +24,14 @@ public class ChunkGen extends ChunkGenerator
 
     @Override
     public List<BlockPopulator> getDefaultPopulators(World world) {
-        return Arrays.asList(new TreePop());
+
+        if(!Main.priDimPerformMode){
+            return Arrays.asList(new NormalPop());
+        }else{
+            return new ArrayList<BlockPopulator>();
+        }
+
+
     }
 
     public ChunkGenerator.ChunkData generateChunkData(final World world, final Random random, final int chunkX, final int chunkZ, final ChunkGenerator.BiomeGrid biome) {

@@ -1,7 +1,6 @@
 
 package cel20.op;
 
-import java.util.Random;
 import java.util.logging.Logger;
 import java.io.File;
 
@@ -17,7 +16,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.block.Block;
-import guis.Gui_handler;
+import o_guis.Gui_handler;
 import org.bukkit.command.CommandSender;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -89,7 +88,9 @@ public class Main extends JavaPlugin implements Listener
     private String data_save_play_dim;
     public static int tntbowamount;
     public static String opitems_version = "Not Innited";
-    
+
+    public static boolean priDimPerformMode=false;
+
     static {
         Main.ore_gen_chance_private_dim = 100;
         Main.config_anti_explo_helmet_lvl = 75;
@@ -236,6 +237,9 @@ public class Main extends JavaPlugin implements Listener
         config.addDefault("EnablePortal2Go", (Object)true);
         config.addDefault("EnableSkullImitator", (Object)true);
 
+        //PRIVATE POCKET DIMESION
+        //PrivatePocketDimensionPerformanceModeActivated
+        config.addDefault("PrivatePocketDimensionPerformanceModeActivated", (Object)false);
 
         //AUTOITEMSREMOVE
         config.addDefault("EnableAutomaticPeriodicItemsRemove", (Object)false);
@@ -383,7 +387,10 @@ public class Main extends JavaPlugin implements Listener
             RecipeAdder.addRecipe35(plugin);
             this.getServer().getPluginManager().registerEvents((Listener)new SkullImitator(), (Plugin)this);
         }
-        
+        //PrivatePocketDimensionPerformanceModeActivated
+        if (config.getBoolean("PrivatePocketDimensionPerformanceModeActivated")) {
+            priDimPerformMode=true;
+        }
         Main.ore_gen_chance_private_dim = config.getInt("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock");
         Main.isprivatedimenableled = config.getBoolean("PrivatePocketDimensionEnabled");
         Main.config_anti_explo_helmet_lvl = config.getInt("AntiExplosionHelmetAntiExploEnchLevel");
@@ -763,11 +770,7 @@ public class Main extends JavaPlugin implements Listener
     }
     
     private static int randomrange(final int min, final int max) {
-        if (min >= max) {
-            throw new IllegalArgumentException("max must be greater than min!");
-        }
-        final Random r = new Random();
-        return r.nextInt(max - min + 1) + min;
+        return (int) celutis.celutis.randomRangeDouble(min, max);
     }
     public static void executeUpdate(CommandSender sender) {
     	
@@ -790,6 +793,10 @@ public class Main extends JavaPlugin implements Listener
 
     public static Main getInstance() {
         return instance;
+    }
+
+    public boolean isOnPrivatePocketPerformMode(){
+        return priDimPerformMode;
     }
     
 }

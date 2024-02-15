@@ -1,13 +1,14 @@
 Hidden File: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/files/4669814
 
 Vor Release:
-PLugin.yml Version?
-Startup MEssage Version?
-Discord Webhool Messages Version?
+Plugin.yml Version?
+Startup Message Version?
+Discord Webhook Messages Version?
 Changelog Updated?
 
 Plan:
 
+Landminen
 Ofen2Go
 Holo display
 fake player
@@ -19,16 +20,18 @@ BUGS: Portal2Go in Private Pocket Dimension
 In Work:
  - Getting GitHub to Work
 
-
-
 DONE:
 
 Added Cmd's:
  - /opitems version | Displays the current Version and Changelog of OPItems
- - /opitems delete_all_pocket_worlds | Deletes the pocket worlds
+ - /opitems delete_all_pocket_worlds | Deletes the pocket worlds currently loaded
+
+Added Configs:
+ - PrivatePocketDimensionPerformanceModeActivated | Activates Performance Mode for The Private Pocket Dimension
 
 Changes:
  - Added Lores to some of the Items
  - Added TNT-Blocks Activated Message to the TNT-Detonator
  - Fixed Typos
  - Updated Celutis to v0.5
+ - Added a bit of Flavor to the Private Pocket Dimension

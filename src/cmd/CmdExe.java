@@ -1,7 +1,6 @@
 package cmd;
 
 import java.io.File;
-import java.security.spec.KeySpec;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
@@ -17,9 +16,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import cel20.op.Main;
-import cel20.op.Updater;
 import events.mega_sponge;
-import guis.op_gui;
+import o_guis.op_gui;
 import items.RecipeAdder;
 import items.cursed_sword;
 import items.fake_player;
@@ -276,7 +274,6 @@ public class CmdExe implements CommandExecutor{
                     sender.sendMessage(ChatColor.RED + "Confirm deletion? -> /opitems delete_pocket_world confirm");
                     sender.sendMessage(ChatColor.RED + "This deletes all worlds that contain 'pocket-world-' in their name!");
                 }else{
-                    Player p = (Player) sender;
                     for (World world : Bukkit.getWorlds()) {
                         if(world.getName().contains("pocket-world-")){
                             World worldtodelete = world;

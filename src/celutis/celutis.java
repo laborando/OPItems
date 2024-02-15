@@ -185,5 +185,23 @@ public class celutis
         }
         return( path.delete() );
     }
+
+    public static boolean hasAtLeastOneFaceWithoutBlock(Block b){
+        if (b.getRelative(BlockFace.EAST).getType()==Material.AIR){
+            return true;
+        }
+        if (b.getRelative(BlockFace.WEST).getType()==Material.AIR){
+            return true;
+        }
+        if (b.getRelative(BlockFace.NORTH).getType()==Material.AIR){
+            return true;
+        }
+        if (b.getRelative(BlockFace.SOUTH).getType()==Material.AIR){
+            return true;
+        }
+        return false;
+    }
+
     
 }
+
