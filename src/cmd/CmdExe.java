@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
+import items.*;
 import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,10 +19,6 @@ import org.bukkit.plugin.Plugin;
 import cel20.op.Main;
 import events.mega_sponge;
 import o_guis.op_gui;
-import items.RecipeAdder;
-import items.cursed_sword;
-import items.fake_player;
-import items.give_items;
 import manage.Items;
 
 import static celutis.celutis.deleteDirectory;
@@ -29,11 +26,11 @@ import static celutis.celutis.deleteDirectory;
 public class CmdExe implements CommandExecutor{
 
 	public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
-    	String arg = null;
-    	try {
-    	arg = args[0];
-        }catch (ArrayIndexOutOfBoundsException e) {
-        	arg = "";
+        String arg = null;
+        try {
+            arg = args[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            arg = "";
         }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
@@ -91,7 +88,7 @@ public class CmdExe implements CommandExecutor{
                 if (arg.equalsIgnoreCase("remove")) {
                     final Items items = new Items();
                     Bukkit.broadcastMessage(new StringBuilder().append(ChatColor.BOLD).append(ChatColor.RED).append("All Items will be removed in 10 sec.!").toString());
-                    Bukkit.getScheduler().runTaskLater((Plugin)Main.getPluginInstance(), () -> items.removeItems(), 200L);
+                    Bukkit.getScheduler().runTaskLater((Plugin) Main.getPluginInstance(), () -> items.removeItems(), 200L);
                 }
                 if (arg.equalsIgnoreCase("player_heap")) {
                     final Items items = new Items();
@@ -101,13 +98,12 @@ public class CmdExe implements CommandExecutor{
                     final Items items = new Items();
                     items.removeItems();
                 }
-                
-            }
-            else {
+
+            } else {
                 sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
             }
-            
-            
+
+
         }
         if (label.equalsIgnoreCase("opitemshelp")) {
             if (sender.isOp()) {
@@ -118,21 +114,19 @@ public class CmdExe implements CommandExecutor{
                 sender.sendMessage(ChatColor.GOLD + "/opitems gui | opens the GUI of OPItems");
                 sender.sendMessage(ChatColor.GOLD + "/opitems help | displays this message");
                 sender.sendMessage(ChatColor.GOLD + "/opitemsversion | displays the current Version and Changelog");
-            }
-            else {
+            } else {
                 sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
             }
         }
         if (label.equalsIgnoreCase("updateopitems")) {
             if (sender.isOp()) {
                 sender.sendMessage(ChatColor.GOLD + "Trying to Update OPItems");
-               
-				
-				Main.executeUpdate(sender);
-				
-                
-            }
-            else {
+
+
+                Main.executeUpdate(sender);
+
+
+            } else {
                 sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
             }
         }
@@ -144,14 +138,12 @@ public class CmdExe implements CommandExecutor{
             if (arg.equalsIgnoreCase("give")) {
                 if (sender.isOp()) {
                     if (sender instanceof Player) {
-                        final Player p = (Player)sender;
+                        final Player p = (Player) sender;
                         give_items.giveItems(p);
-                    }
-                    else {
+                    } else {
                         sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("This Command cannot be executed in the console").toString());
                     }
-                }
-                else {
+                } else {
                     sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("YOU DON'T HAVE THE PERMISSION TO PERFORM THIS COMMAND").toString());
                 }
             }
@@ -160,102 +152,97 @@ public class CmdExe implements CommandExecutor{
                 if (sender.isOp()) {
                     manage.AutoItems.cancelAutomatedItemRemoval();
                     sender.sendMessage(ChatColor.GOLD + "Automated Item Removal Cancelled!");
-                }else{
+                } else {
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
                 }
-            }
-            else if (arg.equalsIgnoreCase("skull")) {
+            } else if (arg.equalsIgnoreCase("skull")) {
                 String arg2 = null;
                 try {
                     arg2 = args[1];
-                }catch (ArrayIndexOutOfBoundsException e) {
+                } catch (ArrayIndexOutOfBoundsException e) {
                     arg2 = "";
                 }
                 if (!(sender.isOp())) {
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
-                }else if(!(sender instanceof Player)){
+                } else if (!(sender instanceof Player)) {
                     sender.sendMessage(ChatColor.GOLD + "This command cannot be executed in the console!");
-                }else if(arg2 == "" | arg2 == null){
+                } else if (arg2 == "" | arg2 == null) {
                     sender.sendMessage(ChatColor.RED + "Usage: /opitems skull <player_name>");
-                }else{
+                } else {
                     Player p = (Player) sender;
                     p.getInventory().addItem(celutis.celutis.getSkullbyName(arg2));
                     sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
                 }
 
 
-            }
-            else if (arg.equalsIgnoreCase("playerspawntest")) {
+            } else if (arg.equalsIgnoreCase("playerspawntest")) {
                 if (sender instanceof Player) {
                     if (sender.isOp() && sender instanceof Player) {
-                        final Player p = (Player)sender;
+                        final Player p = (Player) sender;
                         final String angst = "temp";
                         try {
                             fake_player fp = new fake_player((WorldServer) p.getWorld(), new GameProfile(UUID.randomUUID(), "test"), p.getLocation());
                             fp.spawn();
-                        }
-                        catch (Error e) {
+                        } catch (Error e) {
                             e.printStackTrace();
                         }
-                    }
-                    else {
+                    } else {
                         sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("You don't have the permission to perform this command!").toString());
                     }
-                }
-                else {
+                } else {
                     sender.sendMessage(ChatColor.DARK_RED + "This Command cannot be executed in the console");
                 }
-            }
-            else if (arg.equalsIgnoreCase("gui")) {
+            } else if (arg.equalsIgnoreCase("gui")) {
                 if (sender instanceof Player) {
                     if (sender.isOp()) {
-                        op_gui.openOpitemsGui((Player)sender);
-                    }
-                    else {
+                        op_gui.openOpitemsGui((Player) sender);
+                    } else {
                         sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("You don't have the permission to perform this command!").toString());
                     }
-                }
-                else {
+                } else {
                     sender.sendMessage(ChatColor.DARK_RED + "This Command cannot be executed in the console");
                 }
-            }
-            else if (arg.equalsIgnoreCase("help")) {
-                ((Player)sender).chat("/opitemshelp");
-            }else if (arg.equalsIgnoreCase("version")) {
-                ((Player)sender).chat("/opitemsversion");
-            }
-            else if (arg.equalsIgnoreCase("update")) {
+            } else if (arg.equalsIgnoreCase("help")) {
+                ((Player) sender).chat("/opitemshelp");
+            } else if (arg.equalsIgnoreCase("version")) {
+                ((Player) sender).chat("/opitemsversion");
+            } else if (arg.equalsIgnoreCase("update")) {
                 if (sender.isOp()) {
                     sender.sendMessage(ChatColor.GOLD + "Trying to Update OPItems");
                     Main.executeUpdate(sender);
-                }
-                else {
+                } else {
                     sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
                 }
-            }
-            else if (arg.equalsIgnoreCase("super_sponge")) {
+            } else if (arg.equalsIgnoreCase("super_sponge")) {
                 if (sender instanceof Player) {
                     if (sender.isOp()) {
-                        final Player p = (Player)sender;
+                        final Player p = (Player) sender;
                         final Block block = p.getLocation().getBlock();
                         mega_sponge.run_sponge(block);
+                    } else {
+                        sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                     }
-                    else {
-                        sender.sendMessage(ChatColor.RED + "You don't have ther Permission to perform this command!");
-                    }
-                }
-                else {
+                } else {
                     sender.sendMessage(ChatColor.RED + "This Command cannot be executed in the Console!");
                 }
-            }
-            else if (arg.equalsIgnoreCase("reset_cursed_sword_list")) {
+            } else if (arg.equalsIgnoreCase("reset_cursed_sword_list")) {
                 if (sender.isOp()) {
                     cursed_sword.resetList();
+                }else{
+                    sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                 }
-            }
-            else if (arg.equalsIgnoreCase("display_sword_list")) {
+            } else if (arg.equalsIgnoreCase("display_sword_list")) {
                 if (sender.isOp()) {
                     cursed_sword.sendMsgList(sender);
+                }else{
+                sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
+            }
+            } else if (arg.equalsIgnoreCase("reset_landmines")) {
+                if (sender.isOp()) {
+                    landmine.reset();
+                    sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
+                }else{
+                    sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                 }
             }
 
@@ -265,17 +252,17 @@ public class CmdExe implements CommandExecutor{
                 String arg2 = null;
                 try {
                     arg2 = args[1];
-                }catch (ArrayIndexOutOfBoundsException e) {
+                } catch (ArrayIndexOutOfBoundsException e) {
                     arg2 = "";
                 }
                 if (!(sender.isOp())) {
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
-                }else if(!(arg2.contains("confirm"))){
+                } else if (!(arg2.contains("confirm"))) {
                     sender.sendMessage(ChatColor.RED + "Confirm deletion? -> /opitems delete_pocket_world confirm");
                     sender.sendMessage(ChatColor.RED + "This deletes all worlds that contain 'pocket-world-' in their name!");
-                }else{
+                } else {
                     for (World world : Bukkit.getWorlds()) {
-                        if(world.getName().contains("pocket-world-")){
+                        if (world.getName().contains("pocket-world-")) {
                             World worldtodelete = world;
                             File folder = worldtodelete.getWorldFolder();
                             Bukkit.getServer().unloadWorld(worldtodelete, false);
@@ -286,7 +273,27 @@ public class CmdExe implements CommandExecutor{
                 }
 
 
+            } else if (arg.equalsIgnoreCase("unload_world")) {
+                String arg2 = null;
+                try {
+                    arg2 = args[1];
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    arg2 = "";
+                }
+                if (!(sender.isOp())) {
+                    sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
+                } else {
+                    Bukkit.getServer().unloadWorld(arg2, false);
+                    sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
+                }
             }
+
+
+
+
+
+
+
 
 
         //RECIPIES

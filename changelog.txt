@@ -8,26 +8,33 @@ Changelog Updated?
 
 Plan:
 
-Landminen
+
 Ofen2Go
 Holo display
 fake player
 rocket to the moon 
-
+Landminen
 BUGS: Portal2Go in Private Pocket Dimension
 
+IN  WORK:
+Private Pocket Dimensions are now really unloading when quitting
 
-In Work:
- - Getting GitHub to Work
+!!Entschärfer!!!
 
 DONE:
+
+Added Items
+ - Landmine | Explodes when stepped on!
 
 Added Cmd's:
  - /opitems version | Displays the current Version and Changelog of OPItems
  - /opitems delete_all_pocket_worlds | Deletes the pocket worlds currently loaded
+ - /opitems reset_landmines | Resets the List of Landmines in the World
 
 Added Configs:
  - PrivatePocketDimensionPerformanceModeActivated | Activates Performance Mode for The Private Pocket Dimension
+ - EnableLandminePerformanceMode | Activates Performance Mode for the Landmines Feature
+ - EnableLandmine
 
 Changes:
  - Added Lores to some of the Items
@@ -35,3 +42,6 @@ Changes:
  - Fixed Typos
  - Updated Celutis to v0.5
  - Added a bit of Flavor to the Private Pocket Dimension
+ - Added NoPermissionError Message to /opitems <~cursed sword> commands
+
+Fixes:

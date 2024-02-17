@@ -28,7 +28,7 @@ public class ChunkGen extends ChunkGenerator
         if(!Main.priDimPerformMode){
             return Arrays.asList(new NormalPop());
         }else{
-            return new ArrayList<BlockPopulator>();
+            return new ArrayList<>();
         }
 
 

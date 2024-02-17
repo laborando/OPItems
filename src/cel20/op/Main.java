@@ -28,7 +28,6 @@ import events.bootevent;
 import events.armorevent;
 import events.nofall;
 import events.flystick;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.EventHandler;
@@ -71,7 +70,7 @@ public class Main extends JavaPlugin implements Listener
 	public static final String ANSI_PURPLE = "\u001B[35m";
 	public static final String ANSI_CYAN = "\u001B[36m";
 	public static final String ANSI_WHITE = "\u001B[37m";
-    
+    public static boolean landminePerfModeEnabeled=false;
     public HashMap<String, Long> cooldown_wand_boom;
     public HashMap<String, Long> Launcher_Cooldown;
     private static final String HEADER = "This is the main configuration file for OPItems\nSome options may impact gameplay and could lead to Lag and Server Crashes, so use\nwith caution and make sure you know what each option does before configuring.\n\n\n You can Reset the Settings by Deleting the Config.yml File and Restarting your Server.\n\n";
@@ -111,7 +110,6 @@ public class Main extends JavaPlugin implements Listener
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerLoginEvent e) {
-        final Player p = e.getPlayer();
         final FileConfiguration config = this.getConfig();
         final String UUIDSERVER = config.getString("UUIDinternal");
         final String Message = "A Player joined v1.9.4! Online Players: " + (Bukkit.getOnlinePlayers().size() + 1) + " Ver: " + Bukkit.getVersion() + ". "+ "  OPItems-Server-UUID: " + UUIDSERVER;
@@ -126,9 +124,12 @@ public class Main extends JavaPlugin implements Listener
     }
     
     public void onEnable() {
-
+        Main.p = (Plugin)this;
         instance = this;
-        
+
+        Bukkit.getLogger().info("[OPItems] OPItems is loading...");
+
+        landmine.load();
         cursed_sword.loadData(this.data_save_cursed_sword = this.getDataFolder() + "/op_cursed_sword_data");
         WandOfHome.loadData(this.data_save_homes = this.getDataFolder() + "/wand_of_home_data");
         DimensionWand.loadData(this.data_save_play_dim = this.getDataFolder() + "/farm_dim_play_data");
@@ -158,7 +159,7 @@ public class Main extends JavaPlugin implements Listener
         test9 = randomrange(0, 1500240);
         test10 = randomrange(0, 1500240);
         test11 = randomrange(0, 1500240);
-        final String rndnum2 = new StringBuilder().append(test).append(test2).append(test3).append(test4).append(test5).append(test6).append(test7).append(test8).append(test9).append(test10).append(test11).toString();
+        final String rndnum2 = String.valueOf(test) + test2 + test3 + test4 + test5 + test6 + test7 + test8 + test9 + test10 + test11;
         test = randomrange(0, 1500240);
         test2 = randomrange(0, 1500240);
         test3 = randomrange(0, 1500240);
@@ -170,81 +171,83 @@ public class Main extends JavaPlugin implements Listener
         test9 = randomrange(0, 1500240);
         test10 = randomrange(0, 1500240);
         test11 = randomrange(0, 1500240);
-        final String rndnum3 = new StringBuilder().append(test).append(test2).append(test3).append(test4).append(test5).append(test6).append(test7).append(test8).append(test9).append(test10).append(test11).toString();
-        final String rndnumfinal = String.valueOf(rndnum3) + rndnum2 + rndnum;
+        final String rndnum3 = String.valueOf(test) + test2 + test3 + test4 + test5 + test6 + test7 + test8 + test9 + test10 + test11;
+        final String rndnumfinal = rndnum3 + rndnum2 + rndnum;
         final Main plugin = this;
         
-        Bukkit.getPluginManager().registerEvents((Listener)this, (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new flystick(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new nofall(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new armorevent(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new bootevent(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new leggingevent(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new super_sponge_start_logic(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new tntlayer(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new DimensionWand(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new Gui_handler(), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new TntBow(), (Plugin)this);
+        Bukkit.getPluginManager().registerEvents(this, this);
+        this.getServer().getPluginManager().registerEvents(new flystick(), this);
+        this.getServer().getPluginManager().registerEvents(new nofall(), this);
+        this.getServer().getPluginManager().registerEvents(new armorevent(), this);
+        this.getServer().getPluginManager().registerEvents(new bootevent(), this);
+        this.getServer().getPluginManager().registerEvents(new leggingevent(), this);
+        this.getServer().getPluginManager().registerEvents(new super_sponge_start_logic(), this);
+        this.getServer().getPluginManager().registerEvents(new tntlayer(), this);
+        this.getServer().getPluginManager().registerEvents(new DimensionWand(), this);
+        this.getServer().getPluginManager().registerEvents(new Gui_handler(), this);
+        this.getServer().getPluginManager().registerEvents(new TntBow(), this);
         
         //Bukkit.getLogger().info("[OPItems]Registered Events");
         final FileConfiguration config = this.getConfig();
         config.options().header("This is the main configuration file for OPItems\nSome options may impact gameplay and could lead to Lag and Server Crashes, so use\nwith cautio and make sure you know what each option does before configuring.\n\n\n You can Reset the Settings by Deleting the Config.yml File and Restarting your Server.\n\n");
-        config.addDefault("wand_of_(massive)_boom_cooldown_MiliSeconds", (Object)1000);
-        config.addDefault("launcher_cooldown_MiliSeconds", (Object)4000);
-        config.addDefault("Wand_of_Boom_Explosion_Strenght", (Object)10);
-        config.addDefault("Wand_of_Massive_Boom_Explosion_Strenght", (Object)20);
-        config.addDefault("CraftedKnockyTheStickKnockbackEnchantmentLevel", (Object)10);
-        config.addDefault("CraftedBlockySwordDamageAllEnchantmentLevel", (Object)17);
-        config.addDefault("CraftedTheAntiDamageProtectionEnchantmentLevel", (Object)75);
-        config.addDefault("CraftedPickyPickDigSpeedEnchantmentLevel", (Object)1200);
-        config.addDefault("CraftedPickyPickLootBonusBlocksEnchantmentLevel", (Object)5);
-        config.addDefault("AllowBommer", (Object)true);
-        config.addDefault("AllowEndsword", (Object)true);
-        config.addDefault("AllowBlitzer", (Object)true);
-        config.addDefault("AllowCrafter", (Object)true);
-        config.addDefault("AllowBlazer", (Object)true);
-        config.addDefault("AllowBower", (Object)true);
-        config.addDefault("AllowPigCannon", (Object)true);
-        config.addDefault("AllowFlyFeather", (Object)true);
-        config.addDefault("AllowAntiFall", (Object)true);
-        config.addDefault("AllowCraftOtherItems", (Object)true);
-        config.addDefault("AllowHookofVelectory", (Object)true);
-        config.addDefault("AllowCraftNightVisor", (Object)true);
-        config.addDefault("AllowCraftWaterHelmet", (Object)true);
-        config.addDefault("AllowCraftLaucher", (Object)true);
-        config.addDefault("AllowCraftFireShoes", (Object)true);
-        config.addDefault("AllowCraftWandOfBoom", (Object)true);
-        config.addDefault("AllowCraftWandOfMassiveBoom", (Object)true);
-        config.addDefault("AllowCraftWandOfInvisiblity", (Object)true);
-        config.addDefault("AllowCraftSpeedLeggings", (Object)true);
-        config.addDefault("AllowCraftSuperSponge", (Object)true);
-        config.addDefault("AllowCrafLavaSponge", (Object)true);
-        config.addDefault("AllowCraftEnderpealer", (Object)true);
-        config.addDefault("UUIDinternal", (Object)String.valueOf(rndnumfinal));
-        config.addDefault("AllowCraftTNTDetonator", (Object)true);
-        config.addDefault("AllowCraftCursedSword", (Object)true);
-        config.addDefault("CursedSwordEnabled", (Object)true);
-        config.addDefault("PrivatePocketDimensionEnabled", (Object)true);
-        config.addDefault("AllowCraftPrivatePocketDimension", (Object)true);
-        config.addDefault("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock", (Object)50);
-        config.addDefault("AllowCraftAntiExplosionHelmet", (Object)true);
-        config.addDefault("AntiExplosionHelmetAntiExploEnchLevel", (Object)75);
-        config.addDefault("AllowCraftandActivatedWandofHome", (Object)true);
-        config.addDefault("AllowCraftTNTBow", (Object)true);
-        config.addDefault("TNTBowTNTAmount", (Object)50);
-        config.addDefault("ActivateWandofBlocks", (Object)true);
-        config.addDefault("AllowCraftWandofBlocks", (Object)true);
-        config.addDefault("EnablePortal2Go", (Object)true);
-        config.addDefault("EnableSkullImitator", (Object)true);
+        config.addDefault("wand_of_(massive)_boom_cooldown_MiliSeconds", 1000);
+        config.addDefault("launcher_cooldown_MiliSeconds", 4000);
+        config.addDefault("Wand_of_Boom_Explosion_Strenght", 10);
+        config.addDefault("Wand_of_Massive_Boom_Explosion_Strenght", 20);
+        config.addDefault("CraftedKnockyTheStickKnockbackEnchantmentLevel", 10);
+        config.addDefault("CraftedBlockySwordDamageAllEnchantmentLevel", 17);
+        config.addDefault("CraftedTheAntiDamageProtectionEnchantmentLevel", 75);
+        config.addDefault("CraftedPickyPickDigSpeedEnchantmentLevel", 1200);
+        config.addDefault("CraftedPickyPickLootBonusBlocksEnchantmentLevel", 5);
+        config.addDefault("AllowBommer", true);
+        config.addDefault("AllowEndsword", true);
+        config.addDefault("AllowBlitzer", true);
+        config.addDefault("AllowCrafter", true);
+        config.addDefault("AllowBlazer", true);
+        config.addDefault("AllowBower", true);
+        config.addDefault("AllowPigCannon", true);
+        config.addDefault("AllowFlyFeather", true);
+        config.addDefault("AllowAntiFall", true);
+        config.addDefault("AllowCraftOtherItems", true);
+        config.addDefault("AllowHookofVelectory", true);
+        config.addDefault("AllowCraftNightVisor", true);
+        config.addDefault("AllowCraftWaterHelmet", true);
+        config.addDefault("AllowCraftLaucher", true);
+        config.addDefault("AllowCraftFireShoes", true);
+        config.addDefault("AllowCraftWandOfBoom", true);
+        config.addDefault("AllowCraftWandOfMassiveBoom", true);
+        config.addDefault("AllowCraftWandOfInvisiblity", true);
+        config.addDefault("AllowCraftSpeedLeggings", true);
+        config.addDefault("AllowCraftSuperSponge", true);
+        config.addDefault("AllowCrafLavaSponge", true);
+        config.addDefault("AllowCraftEnderpealer", true);
+        config.addDefault("UUIDinternal", rndnumfinal);
+        config.addDefault("AllowCraftTNTDetonator", true);
+        config.addDefault("AllowCraftCursedSword", true);
+        config.addDefault("CursedSwordEnabled", true);
+        config.addDefault("PrivatePocketDimensionEnabled", true);
+        config.addDefault("AllowCraftPrivatePocketDimension", true);
+        config.addDefault("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock", 50);
+        config.addDefault("AllowCraftAntiExplosionHelmet", true);
+        config.addDefault("AntiExplosionHelmetAntiExploEnchLevel", 75);
+        config.addDefault("AllowCraftandActivatedWandofHome", true);
+        config.addDefault("AllowCraftTNTBow", true);
+        config.addDefault("TNTBowTNTAmount", 50);
+        config.addDefault("ActivateWandofBlocks", true);
+        config.addDefault("AllowCraftWandofBlocks", true);
+        config.addDefault("EnablePortal2Go", true);
+        config.addDefault("EnableSkullImitator", true);
+        config.addDefault("EnableLandmine", true);
+        config.addDefault("EnableLandminePerformanceMode", false);
 
         //PRIVATE POCKET DIMESION
         //PrivatePocketDimensionPerformanceModeActivated
-        config.addDefault("PrivatePocketDimensionPerformanceModeActivated", (Object)false);
+        config.addDefault("PrivatePocketDimensionPerformanceModeActivated", false);
 
         //AUTOITEMSREMOVE
-        config.addDefault("EnableAutomaticPeriodicItemsRemove", (Object)false);
-        config.addDefault("AutomaticPeriodicItemsRemoveWarningDurationSecs", (Object)60);
-        config.addDefault("AutomaticPeriodicItemsRemovePeriodeInMinutes", (Object)30);
+        config.addDefault("EnableAutomaticPeriodicItemsRemove", false);
+        config.addDefault("AutomaticPeriodicItemsRemoveWarningDurationSecs", 60);
+        config.addDefault("AutomaticPeriodicItemsRemovePeriodeInMinutes", 30);
 
 
 
@@ -263,12 +266,12 @@ public class Main extends JavaPlugin implements Listener
 
         //ActivateWandofBlocks
         if (config.getBoolean("ActivateWandofBlocks")) {
-        	this.getServer().getPluginManager().registerEvents((Listener)new WandOfBlocks(), (Plugin)this);
+        	this.getServer().getPluginManager().registerEvents(new WandOfBlocks(), this);
         }
         
         
         if (config.getBoolean("CursedSwordEnabled")) {
-            this.getServer().getPluginManager().registerEvents((Listener)new cursed_sword(), (Plugin)this);
+            this.getServer().getPluginManager().registerEvents(new cursed_sword(), this);
         }
         if (config.getBoolean("AllowCraftOtherItems")) {
             RecipeAdder.addRecipe1(plugin, config.getInt("CraftedKnockyTheStickKnockbackEnchantmentLevel"));
@@ -316,7 +319,7 @@ public class Main extends JavaPlugin implements Listener
         }
         if (config.getBoolean("AllowHookofVelectory")) {
             RecipeAdder.addRecipe15(plugin);
-            this.getServer().getPluginManager().registerEvents((Listener)new hookofvelectory(), (Plugin)this);
+            this.getServer().getPluginManager().registerEvents(new hookofvelectory(), this);
         }
         if (config.getBoolean("AllowCraftNightVisor")) {
             RecipeAdder.addRecipe16(plugin);
@@ -366,7 +369,7 @@ public class Main extends JavaPlugin implements Listener
 //AllowCraftandActivatedWandofHome
         if (config.getBoolean("AllowCraftandActivatedWandofHome")) {
             RecipeAdder.addRecipe31(plugin);
-            this.getServer().getPluginManager().registerEvents((Listener)new WandOfHome(), (Plugin)this);
+            this.getServer().getPluginManager().registerEvents(new WandOfHome(), this);
         }
 //AllowCraftTNTBow        
         if (config.getBoolean("AllowCraftTNTBow")) {
@@ -379,23 +382,33 @@ public class Main extends JavaPlugin implements Listener
         //EnablePortal2Go
         if (config.getBoolean("EnablePortal2Go")) {
             RecipeAdder.addRecipe34(plugin);
-            this.getServer().getPluginManager().registerEvents((Listener)new portal2go(), (Plugin)this);
+            this.getServer().getPluginManager().registerEvents(new portal2go(), this);
         }
 
         //config.addDefault("EnableCraftSkullImitator", (Object)true);
         if (config.getBoolean("EnableSkullImitator")) {
             RecipeAdder.addRecipe35(plugin);
-            this.getServer().getPluginManager().registerEvents((Listener)new SkullImitator(), (Plugin)this);
+            this.getServer().getPluginManager().registerEvents(new SkullImitator(), this);
         }
         //PrivatePocketDimensionPerformanceModeActivated
         if (config.getBoolean("PrivatePocketDimensionPerformanceModeActivated")) {
             priDimPerformMode=true;
         }
+        //EnableLandmine
+        if (config.getBoolean("EnableSkullImitator")) {
+            RecipeAdder.addRecipe36(plugin);
+            this.getServer().getPluginManager().registerEvents((Listener)new landmine(), (Plugin)this);
+        }
+        //EnableLandminePerformanceMode
+        if (config.getBoolean("EnableLandminePerformanceMode")) {
+            landminePerfModeEnabeled=true;
+        }
+
         Main.ore_gen_chance_private_dim = config.getInt("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock");
         Main.isprivatedimenableled = config.getBoolean("PrivatePocketDimensionEnabled");
         Main.config_anti_explo_helmet_lvl = config.getInt("AntiExplosionHelmetAntiExploEnchLevel");
         Main.tntbowamount = config.getInt("TNTBowTNTAmount");
-        Main.p = (Plugin)this;
+
 
         try {
             Bukkit.getLogger().info("[OPItems]Looking for Updates");
@@ -425,70 +438,43 @@ public class Main extends JavaPlugin implements Listener
                 Main.update_type = updater.getLatestType();
             }
 
-        }catch (java.lang.IllegalStateException ignored){
+        }catch (java.lang.IllegalStateException ignored){}
 
-        }
-        //Bukkit.getLogger().info("[OPItems] Loded all enabled Recepies");
-        
         this.getCommand("opitems").setExecutor(new CmdExe());
         this.getCommand("items").setExecutor(new CmdExe());
         this.getCommand("opitemsversion").setExecutor(new CmdExe());
         this.getCommand("opitemshelp").setExecutor(new CmdExe());
         
-        this.getCommand("opitems").setTabCompleter((TabCompleter) new TabComp());
-        this.getCommand("items").setTabCompleter((TabCompleter) new TabComp());
-        //Bukkit.getLogger().info("[OPItems] TabCompleter Registered");
+        this.getCommand("opitems").setTabCompleter(new TabComp());
+        this.getCommand("items").setTabCompleter(new TabComp());
         
         cursed_sword.loadData(this.data_save_cursed_sword = this.getDataFolder() + "/op_cursed_sword_data");
         WandOfHome.loadData(this.data_save_homes = this.getDataFolder() + "/wand_of_home_data");
         DimensionWand.loadData(this.data_save_play_dim = this.getDataFolder() + "/farm_dim_play_data");
         
-        
-        //Bukkit.getLogger().info("Loaded List<Entity> for Cursed Sword | File: /plugins/OPItems/op_cursed_sword_data");
-        
-        
-        
-        Bukkit.getLogger().info("[OPItems]Succesfully Enabled");
+        Bukkit.getLogger().info("[OPItems]Successfully Enabled");
         Bukkit.getLogger().info("");
-        /*
-        Bukkit.getLogger().info("|----------------------------|");
-        Bukkit.getLogger().info("|      Celutis by Cel20      |");
-        Bukkit.getLogger().info("|----------------------------|");
-        Bukkit.getLogger().info("");
-        Bukkit.getLogger().info("|----------------------------|");
-        Bukkit.getLogger().info("|  CelsDCWebHookintigration  |");
-        Bukkit.getLogger().info("|             by             |");
-        Bukkit.getLogger().info("|            cel20           |");
-        Bukkit.getLogger().info("|----------------------------|");
-        Bukkit.getLogger().info("");
-        */
+
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|     OPItems 1.9.4 (Skull)   |");
+        Bukkit.getLogger().info("|     OPItems 1.9.5 (Skull)   |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
         Bukkit.getLogger().info("");
-        opitems_version = "1.9.4";
-        
-        /*
-        Bukkit.getLogger().info("OPITEMS PREVIEW BUILD!");
-        Bukkit.getLogger().info("You will get an Update informing message upon the 1.10 Update!");
-        Bukkit.getLogger().info("Please report Bugs/not Balanced Items on my Discord!");
-        Bukkit.getLogger().info("");
-        Bukkit.getLogger().warning("THIS IS AN PREVIEW/ALPHA VERSION OF OPITEMS!");
-        Bukkit.getLogger().info("This Version is still registered as 1.10, so Bukkit/other Plugins may give you the false Version");
-        */
+        opitems_version = "1.9.5";
         
 
     }
     
     public void onDisable() {
-        Bukkit.getLogger().warning("Disabling... Saving Data...");
+        Bukkit.getLogger().warning("[OPItems] Disabling... Saving Data...");
         cursed_sword.saveData(this.data_save_cursed_sword);
         //Bukkit.getLogger().info("Saved List<Entity> for Cursed Sword | File: /plugins/OPItems/op_cursed_sword_data");
         WandOfHome.saveData(this.data_save_homes);
         //Bukkit.getLogger().info("Saved HashMap<String, Location> for Wand of Home | File: /plugins/OPItems/wand_of_home_data");
         DimensionWand.saveData(this.data_save_play_dim);
+
+        landmine.save();
         
         RecipeAdder.removeRecipe();
         //Bukkit.getLogger().warning("Recipes removed...");
@@ -533,7 +519,7 @@ public class Main extends JavaPlugin implements Listener
               p.teleport(tp);
             } 
           } else {
-            p.sendMessage(ChatColor.DARK_RED + "The Block you are clicking, has to be on the same Hight as you.");
+            p.sendMessage(ChatColor.DARK_RED + "The Block you are clicking, has to be on the same Height as you.");
           }  
       } 
       
@@ -561,7 +547,7 @@ public class Main extends JavaPlugin implements Listener
         item.containsEnchantment(Enchantment.SOUL_SPEED)) {
         double cooldownTime = this.config.getDouble("launcher_cooldown_MiliSeconds");
         if (this.Launcher_Cooldown.containsKey(p.getName())) {
-          double secondsLeft = (((Long)this.Launcher_Cooldown.get(p.getName())).longValue() / 1000L) + cooldownTime / 1000.0D - (System.currentTimeMillis() / 1000L);
+          double secondsLeft = ((double) this.Launcher_Cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
           if (secondsLeft > 0.0D) {
             p.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "You cant use this Item for another " + secondsLeft + " seconds!");
             return;
@@ -573,7 +559,7 @@ public class Main extends JavaPlugin implements Listener
         
         //0.0D, loctemp123412347860.getY() + 50.0D, 0.0D
         player.setVelocity(vec);
-        this.Launcher_Cooldown.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
+        this.Launcher_Cooldown.put(p.getName(), System.currentTimeMillis());
       } 
       if (a == Material.BLAZE_ROD && 
         item.containsEnchantment(Enchantment.FIRE_ASPECT))
@@ -588,7 +574,7 @@ public class Main extends JavaPlugin implements Listener
       if (a == Material.ARROW && 
         item.containsEnchantment(Enchantment.FROST_WALKER))
         if (this.config.getBoolean("AllowBower")) {
-          Arrow f = (Arrow)e.getPlayer().launchProjectile(Arrow.class);
+          Arrow f = e.getPlayer().launchProjectile(Arrow.class);
           f.setFireTicks(1000000);
           f.setVelocity(f.getVelocity().multiply(5));
           f.setShotFromCrossbow(true);
@@ -631,7 +617,7 @@ public class Main extends JavaPlugin implements Listener
         item.containsEnchantment(Enchantment.CHANNELING)) {
         double cooldownTime = this.config.getDouble("wand_of_(massive)_boom_cooldown_MiliSeconds");
         if (this.cooldown_wand_boom.containsKey(p.getName())) {
-          double secondsLeft = (((Long)this.cooldown_wand_boom.get(p.getName())).longValue() / 1000L) + cooldownTime / 1000.0D - (System.currentTimeMillis() / 1000L);
+          double secondsLeft = ((double) this.cooldown_wand_boom.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
           if (secondsLeft > 0.0D) {
             p.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "You cant use this Item for another " + secondsLeft + " seconds!");
             return;
@@ -655,7 +641,7 @@ public class Main extends JavaPlugin implements Listener
         item.containsEnchantment(Enchantment.LUCK)) {
         double cooldownTime = this.config.getDouble("wand_of_(massive)_boom_cooldown_MiliSeconds");
         if (this.cooldown_wand_boom.containsKey(p.getName())) {
-          double secondsLeft = (((Long)this.cooldown_wand_boom.get(p.getName())).longValue() / 1000L) + cooldownTime / 1000.0D - (System.currentTimeMillis() / 1000L);
+          double secondsLeft = ((double) this.cooldown_wand_boom.get(p.getName()).longValue() / 1000L) + cooldownTime / 1000.0D - (System.currentTimeMillis() / 1000L);
           if (secondsLeft > 0.0D) {
             p.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "You cant use this Item for another " + secondsLeft + " seconds!");
             return;
@@ -760,7 +746,7 @@ public class Main extends JavaPlugin implements Listener
 
     
     
-    
+
     public static Plugin getPluginInstance() {
         return Main.p;
     }
@@ -785,8 +771,8 @@ public class Main extends JavaPlugin implements Listener
             sender.sendMessage(ChatColor.GOLD + "OPItems is running the newest Version");
         }
         else {
-            sender.sendMessage(new StringBuilder().append(ChatColor.RED).append(ChatColor.BOLD).append("UPDATE FAILED:").toString());
-            sender.sendMessage(new StringBuilder().append(ChatColor.RED).append(ChatColor.BOLD).append("OPItems Failed to Update. Error:").toString());
+            sender.sendMessage(String.valueOf(ChatColor.RED) + ChatColor.BOLD + "UPDATE FAILED:");
+            sender.sendMessage(String.valueOf(ChatColor.RED) + ChatColor.BOLD + "OPItems Failed to Update. Error:");
             sender.sendMessage(updater.getResult().toString());
         }
     }

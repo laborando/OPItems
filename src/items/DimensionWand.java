@@ -21,6 +21,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.bukkit.Bukkit;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.io.BukkitObjectInputStream;
@@ -68,30 +69,26 @@ static List<String> players_in_customw;
     	}
     	
     }
-    
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final WorldLoadEvent e) {
+
+    }
+
 	@EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerPreLoginEvent e) {
 		final String wn = "pocket-world-" + e.getUniqueId();
 		Bukkit.getLogger().info(wn);
-		World world = Bukkit.getWorld(wn);
-		
 		if(players_in_customw.contains(e.getUniqueId().toString())) {
 		new WorldCreator(wn).createWorld();
-		world = Bukkit.getWorld(wn);
+            World world = Bukkit.getWorld(wn);
         if (world == null) {
         	String message = ChatColor.RED + "" + ChatColor.BOLD + "The World is still loading!\n"
                     + "Try Joining in ~7 seconds\n"
                     + "Debug: World: " + wn + " Timestamp: " + System.currentTimeMillis();
-        	e.disallow(null,message);
-        	
-        	/*new BukkitRunnable() {
-                @Override
-                public void run() {
-                		if(Bukkit.getWorld(wn) == null) {
-                			e.disallow(null, ChatColor.RED + "" + ChatColor.BOLD + "The World you're spawning in is not loaded yet! /n t");
-                		}
-                    }
-            }.runTaskLater(Main.getPluginInstance(), 60); */
+        	e.disallow(PlayerPreLoginEvent.Result.KICK_OTHER,message);
+
+            Bukkit.getServer().getWorlds().add(world);
         }
 		}
         	
@@ -109,8 +106,9 @@ static List<String> players_in_customw;
             if (world != null) {
             	for(Chunk c : world.getLoadedChunks()){
             		c.unload(true);
-            	};
+            	}
             	Bukkit.getLogger().info("Pocket World for " + e.getPlayer().getName() + " unloaded.");
+                Bukkit.unloadWorld(wn, true);
             }else {
             	
             }
@@ -121,7 +119,6 @@ static List<String> players_in_customw;
 				ee.printStackTrace();
 			}
         }
-        
 	
 	
     @EventHandler(priority = EventPriority.HIGH)
@@ -152,7 +149,9 @@ static List<String> players_in_customw;
 
                 final WorldCreator worldCreator2 = new WorldCreator(wn);
 
-                worldCreator2.generator((ChunkGenerator)new ChunkGen());
+                worldCreator2.generator(new ChunkGen());
+
+
 
                 Bukkit.createWorld(worldCreator2);
 
