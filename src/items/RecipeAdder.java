@@ -709,4 +709,25 @@ public class RecipeAdder
         shapedRecipe.setIngredient('a', Material.BAMBOO);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
+    public static void addRecipe36(final Main pluginint) {
+        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_36");
+        RecipeAdder.map.put(36, key);
+        final ItemStack itemStack = new ItemStack(Material.HEAVY_WEIGHTED_PRESSURE_PLATE, 4);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Landmine");
+        itemMeta.addEnchant(Enchantment.SILK_TOUCH, 75, true);
+        itemMeta.addEnchant(Enchantment.THORNS, 75, true);
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RED + " - Place on the ground to set up");
+        lore.add(ChatColor.RED + " - Explodes when destroyed or stepped on");
+        lore.add(ChatColor.RED + " - Players have to diffuse it to safely destroy it");
+        itemMeta.setLore(lore);
+        itemStack.setItemMeta(itemMeta);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape(new String[] { "aba", "bab", "aba" });
+        shapedRecipe.setIngredient('b', Material.HEAVY_WEIGHTED_PRESSURE_PLATE);
+        shapedRecipe.setIngredient('a', Material.TNT);
+        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+    }
 }

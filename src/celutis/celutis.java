@@ -155,8 +155,7 @@ public class celutis
                 Color.PURPLE, }));
         int size = colors.size();
         Random ran = new Random();
-        Color cr = colors.get(ran.nextInt(size));
-        return cr;
+        return colors.get(ran.nextInt(size));
     }
 
     public static ItemStack getSkullbyName(String name) {
@@ -173,14 +172,13 @@ public class celutis
     }
     public static boolean deleteDirectory(File path) {
         if( path.exists() ) {
-            File files[] = path.listFiles();
-            for(int i=0; i<files.length; i++) {
-                if(files[i].isDirectory()) {
-                    deleteDirectory(files[i]);
+            File[] files = path.listFiles();
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    deleteDirectory(file);
+                } else {
+                    file.delete();
                 }
-                else {
-                    files[i].delete();
-                } //end else
             }
         }
         return( path.delete() );

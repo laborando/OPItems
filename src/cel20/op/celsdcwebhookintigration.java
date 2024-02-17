@@ -12,16 +12,12 @@ import java.net.URL;
 
 public class celsdcwebhookintigration
 {
-    private String version;
     private static boolean mc_plugin;
     
     static {
         celsdcwebhookintigration.mc_plugin = true;
     }
-    
-    public celsdcwebhookintigration() {
-        this.version = "1.3 MC";
-    }
+
 
 
     public static void sendMessage(final String message) {
@@ -192,6 +188,6 @@ public class celsdcwebhookintigration
     
     
     public String getVersion() {
-        return this.version;
+        return "1.3MC";
     }
 }
