@@ -730,4 +730,25 @@ public class RecipeAdder
         shapedRecipe.setIngredient('a', Material.TNT);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
+    public static void addRecipe37(final Main pluginint) {
+        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_37");
+        RecipeAdder.map.put(37, key);
+        final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Defuser");
+        itemMeta.addEnchant(Enchantment.SWEEPING_EDGE, 75, true);
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RED + " - Click on a landmine to diffuse");
+        itemMeta.setLore(lore);
+        itemStack.setItemMeta(itemMeta);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape(new String[] { "aba", "xcx", "xcx" });
+        shapedRecipe.setIngredient('b', Material.HEAVY_WEIGHTED_PRESSURE_PLATE);
+        shapedRecipe.setIngredient('a', Material.NETHERITE_INGOT);
+        shapedRecipe.setIngredient('x', Material.AIR);
+        shapedRecipe.setIngredient('c', Material.BLAZE_ROD);
+
+        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+    }
 }

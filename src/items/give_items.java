@@ -13,15 +13,15 @@ public class give_items
 {
     public static void giveItems(final Player player) {
 
-
-        player.sendMessage(ChatColor.GREEN + "Operation started");
-        player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Due to the Way this Cmd works, this command will be discontiniued.");
+        player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Due to the Way this Cmd works, this command will be discontinued.");
         player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recipes for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
-        return;
-        
-        //PLACEHOLDER
-        
-        /*
+        player.sendMessage("");
+        player.sendMessage(ChatColor.GOLD + "You can get some of the older Items by using the deprecated Method /opitems give old");
+        player.sendMessage("");
+    }
+    public static void giveItemsOld(final Player player){
+
+
         final ItemStack nv = new ItemStack(Material.IRON_HELMET, 1);
         final ItemMeta iM = nv.getItemMeta();
         iM.setDisplayName(ChatColor.BOLD + "Night Visor");
@@ -218,16 +218,16 @@ public class give_items
         chestplate.setItemMeta(chestplatem);
         player.getInventory().addItem(new ItemStack[] { chestplate });
         
-        /*
+
         itemMeta.setDisplayName(ChatColor.BOLD + "Cursed Sword");
         itemMeta.addEnchant(Enchantment.OXYGEN, 75, true);
         itemMeta.addEnchant(Enchantment.ARROW_INFINITE, 75, true);
         itemMeta.addEnchant(Enchantment.DURABILITY, 255, true);
         itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 75, true);
         itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
-        */
+
         
-        /*
+
         chestplatem.removeEnchant(Enchantment.PROTECTION_EXPLOSIONS);
         chestplate.setType(Material.NETHERITE_SWORD);
         chestplatem.setDisplayName(ChatColor.BOLD + "Cursed Sword");
@@ -238,6 +238,6 @@ public class give_items
         chestplatem.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         chestplate.setItemMeta(chestplatem);
         player.getInventory().addItem(new ItemStack[] { chestplate });
-        */
+
     }
 }

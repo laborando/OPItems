@@ -32,6 +32,12 @@ public class CmdExe implements CommandExecutor{
         } catch (ArrayIndexOutOfBoundsException e) {
             arg = "";
         }
+        String arg2 = null;
+        try {
+            arg2 = args[1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            arg2 = "";
+        }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
             sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.4(a)");
@@ -137,9 +143,20 @@ public class CmdExe implements CommandExecutor{
             }
             if (arg.equalsIgnoreCase("give")) {
                 if (sender.isOp()) {
+
                     if (sender instanceof Player) {
+
+
                         final Player p = (Player) sender;
-                        give_items.giveItems(p);
+
+                        if (arg2.equalsIgnoreCase("old")) {
+                            give_items.giveItemsOld(p);
+                        }else{
+                            give_items.giveItems(p);
+                        }
+
+
+
                     } else {
                         sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("This Command cannot be executed in the console").toString());
                     }
@@ -156,7 +173,7 @@ public class CmdExe implements CommandExecutor{
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
                 }
             } else if (arg.equalsIgnoreCase("skull")) {
-                String arg2 = null;
+                arg2 = null;
                 try {
                     arg2 = args[1];
                 } catch (ArrayIndexOutOfBoundsException e) {
@@ -249,12 +266,7 @@ public class CmdExe implements CommandExecutor{
             //DELETE WORLD
 
             else if (arg.equalsIgnoreCase("delete_all_pocket_worlds")) {
-                String arg2 = null;
-                try {
-                    arg2 = args[1];
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    arg2 = "";
-                }
+
                 if (!(sender.isOp())) {
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
                 } else if (!(arg2.contains("confirm"))) {
@@ -274,7 +286,7 @@ public class CmdExe implements CommandExecutor{
 
 
             } else if (arg.equalsIgnoreCase("unload_world")) {
-                String arg2 = null;
+                arg2 = null;
                 try {
                     arg2 = args[1];
                 } catch (ArrayIndexOutOfBoundsException e) {
@@ -306,9 +318,6 @@ public class CmdExe implements CommandExecutor{
             	}
             	}else if (arg.equalsIgnoreCase("remove_recipes_all")) {
                 	if (sender.isOp()) {
-                		
-                		
-                		
                     	sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
                     	}
                     	}
