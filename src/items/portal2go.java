@@ -44,17 +44,20 @@ public class portal2go implements Listener {
 
                 if (e.getAction() == Action.RIGHT_CLICK_AIR) {
 
-                    boolean isNether = p.getLocation().getWorld().getName().contains("_nether");
-                    String cWorldString = p.getLocation().getWorld().getName();
+                    try {
+                        boolean isNether = p.getLocation().getWorld().getName().contains("_nether");
+                        String cWorldString = p.getLocation().getWorld().getName();
 
-                    if (isNether) {
-                        String worldResult = cWorldString.replace("_nether", "");
-                        p.teleport(new Location(Bukkit.getWorld(worldResult), (p.getLocation().getBlockX() * 8), p.getLocation().getBlockY(), (p.getLocation().getBlockZ() * 8)));
-                    } else {
-                        String worldResult = cWorldString.replace("_the_end", "");
-                        p.teleport(new Location(Bukkit.getWorld(worldResult + "_nether"), ((double)p.getLocation().getBlockX() / 8), p.getLocation().getBlockY(), ((double) p.getLocation().getBlockZ() / 8)));
+                        if (isNether) {
+                            String worldResult = cWorldString.replace("_nether", "");
+                            p.teleport(new Location(Bukkit.getWorld(worldResult), (p.getLocation().getBlockX() * 8), p.getLocation().getBlockY(), (p.getLocation().getBlockZ() * 8)));
+                        } else {
+                            String worldResult = cWorldString.replace("_the_end", "");
+                            p.teleport(new Location(Bukkit.getWorld(worldResult + "_nether"), ((double) p.getLocation().getBlockX() / 8), Math.abs(p.getLocation().getBlockY()), ((double) p.getLocation().getBlockZ() / 8)));
+                        }
+                    }catch (Exception eig){
+                        p.sendMessage(ChatColor.RED + "This is currently not possible!");
                     }
-
 
                 }
             }

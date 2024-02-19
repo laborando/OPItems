@@ -14,12 +14,10 @@ Holo display
 fake player
 rocket to the moon 
 Landminen
-BUGS: Portal2Go in Private Pocket Dimension
 
 IN  WORK:
 Private Pocket Dimensions are now really unloading when quitting
 
-!!Entschärfer!!!
 
 DONE:
 
@@ -45,4 +43,6 @@ Changes:
  - Added a bit of Flavor to the Private Pocket Dimension
  - Added NoPermissionError Message to /opitems <~cursed sword> commands
 
-Fixes:
+Fixed Bugs:
+ - Portal2Go throws errors when trying to teleport from the Private Pocket Dimension
+ - Portal2Go throws you into the void when teleporting into the Nether
