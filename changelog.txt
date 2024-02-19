@@ -37,6 +37,7 @@ Added Configs:
  - EnableLandmine
 
 Changes:
+ - Improved the Header of the Config
  - Added Lores to some of the Items
  - Added TNT-Blocks Activated Message to the TNT-Detonator
  - Fixed Typos

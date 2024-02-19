@@ -73,8 +73,8 @@ public class Main extends JavaPlugin implements Listener
     public static boolean landminePerfModeEnabeled=false;
     public HashMap<String, Long> cooldown_wand_boom;
     public HashMap<String, Long> Launcher_Cooldown;
-    private static final String HEADER = "This is the main configuration file for OPItems\nSome options may impact gameplay and could lead to Lag and Server Crashes, so use\nwith caution and make sure you know what each option does before configuring.\n\n\n You can Reset the Settings by Deleting the Config.yml File and Restarting your Server.\n\n";
-    private static final String ONE = "Warning: Setting some Values too high could make the Server lagging or crashing upon use of some Items";
+    private static final String HEADER = "This is the primary configuration file for OPItems\nCertain options may impact gameplay and could potentially result in lag and server crashes, so use\nthem with caution and ensure you understand the purpose of each option before configuring.\n\n\n You can reset the settings by deleting the Config.yml file and restarting your server.\n\n";
+    private static final String ONE = "Warning: Setting certain values too high could cause server lag or crashes when certain items are used.";
     public static int ore_gen_chance_private_dim;
     public static int config_anti_explo_helmet_lvl;
     public static boolean isprivatedimenableled;
@@ -100,8 +100,8 @@ public class Main extends JavaPlugin implements Listener
     }
     
     public Main() {
-        this.cooldown_wand_boom = new HashMap<String, Long>();
-        this.Launcher_Cooldown = new HashMap<String, Long>();
+        this.cooldown_wand_boom = new HashMap<>();
+        this.Launcher_Cooldown = new HashMap<>();
         this.config = this.getConfig();
         this.data_save_cursed_sword = null;
         this.data_save_homes = null;
@@ -112,28 +112,23 @@ public class Main extends JavaPlugin implements Listener
     public void event(final PlayerLoginEvent e) {
         final FileConfiguration config = this.getConfig();
         final String UUIDSERVER = config.getString("UUIDinternal");
-        final String Message = "A Player joined v1.9.4! Online Players: " + (Bukkit.getOnlinePlayers().size() + 1) + " Ver: " + Bukkit.getVersion() + ". "+ "  OPItems-Server-UUID: " + UUIDSERVER;
+        final String Message = "A Player joined v1.9.5! Online Players: " + (Bukkit.getOnlinePlayers().size() + 1) + " Ver: " + Bukkit.getVersion() + ". "+ "  OPItems-Server-UUID: " + UUIDSERVER;
         celsdcwebhookintigration.sendMessage(Message);
     }
     
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerQuitEvent e) {
     	final String UUIDSERVER = config.getString("UUIDinternal");
-        final String Message = "A Player left a Server (1.9.4)! Players now online: " + (Bukkit.getOnlinePlayers().size() - 1 + "  OPItems-Server-UUID: " + UUIDSERVER);
+        final String Message = "A Player left a Server (1.9.5)! Players now online: " + (Bukkit.getOnlinePlayers().size() - 1 + "  OPItems-Server-UUID: " + UUIDSERVER);
         celsdcwebhookintigration.sendMessage(Message);
     }
     
     public void onEnable() {
-        Main.p = (Plugin)this;
+        Main.p = this;
         instance = this;
 
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");
 
-        landmine.load();
-        cursed_sword.loadData(this.data_save_cursed_sword = this.getDataFolder() + "/op_cursed_sword_data");
-        WandOfHome.loadData(this.data_save_homes = this.getDataFolder() + "/wand_of_home_data");
-        DimensionWand.loadData(this.data_save_play_dim = this.getDataFolder() + "/farm_dim_play_data");
-        
         //Bukkit.getLogger().info("Loaded List<Entity> for Cursed Sword | File: /plugins/OPItems/op_cursed_sword_data");
         
         int test = randomrange(0, 1500240);
@@ -397,7 +392,8 @@ public class Main extends JavaPlugin implements Listener
         //EnableLandmine
         if (config.getBoolean("EnableSkullImitator")) {
             RecipeAdder.addRecipe36(plugin);
-            this.getServer().getPluginManager().registerEvents((Listener)new landmine(), (Plugin)this);
+            RecipeAdder.addRecipe37(plugin);
+            this.getServer().getPluginManager().registerEvents(new landmine(), this);
         }
         //EnableLandminePerformanceMode
         if (config.getBoolean("EnableLandminePerformanceMode")) {
@@ -447,11 +443,20 @@ public class Main extends JavaPlugin implements Listener
         
         this.getCommand("opitems").setTabCompleter(new TabComp());
         this.getCommand("items").setTabCompleter(new TabComp());
-        
+
+        /*
         cursed_sword.loadData(this.data_save_cursed_sword = this.getDataFolder() + "/op_cursed_sword_data");
         WandOfHome.loadData(this.data_save_homes = this.getDataFolder() + "/wand_of_home_data");
         DimensionWand.loadData(this.data_save_play_dim = this.getDataFolder() + "/farm_dim_play_data");
-        
+         */
+
+
+        landmine.load();
+        cursed_sword.loadData(this.data_save_cursed_sword = this.getDataFolder() + "/op_cursed_sword_data");
+        WandOfHome.loadData(this.data_save_homes = this.getDataFolder() + "/wand_of_home_data");
+        DimensionWand.loadData(this.data_save_play_dim = this.getDataFolder() + "/farm_dim_play_data");
+
+
         Bukkit.getLogger().info("[OPItems]Successfully Enabled");
         Bukkit.getLogger().info("");
 
