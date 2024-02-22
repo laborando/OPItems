@@ -11,7 +11,7 @@ public class AutoItems {
     static BukkitTask otherTask = null;
     public static void innitAutoRemove(int delay, int warning_sek){
 
-        System.out.println(Main.getPluginInstance());
+        //System.out.println(Main.getPluginInstance());
 
         otherTask = new BukkitRunnable() {
             @Override
