@@ -50,6 +50,7 @@ public class landmine implements Listener {
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPluginInstance(), () -> {
                     if (!(e.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE)) {
                         lml.remove(e.getBlock().getLocation());
+                        e.getBlock().getLocation().getWorld().createExplosion(e.getBlock().getLocation(), 1);
                     }
                 });
             }
