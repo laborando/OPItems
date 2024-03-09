@@ -18,11 +18,13 @@ Landminen
 IN  WORK:
 Private Pocket Dimensions are now really unloading when quitting
 
+STARTEN: Unlimited Water Bucket
 
 DONE:
 
 Added Items
  - Landmine | Explodes when stepped on!
+ - Defuser | Defuses Landmines safely
 
 Added Cmd's:
  - /opitems version | Displays the current Version and Changelog of OPItems

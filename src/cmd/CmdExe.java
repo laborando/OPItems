@@ -3,6 +3,7 @@ package cmd;
 import java.io.File;
 import java.util.UUID;
 
+import cel20.op.Test;
 import com.mojang.authlib.GameProfile;
 import items.*;
 import net.minecraft.server.v1_16_R3.WorldServer;
@@ -301,7 +302,20 @@ public class CmdExe implements CommandExecutor{
             }
 
 
-
+        else if (arg.equalsIgnoreCase("test")) {
+            arg2 = null;
+            try {
+                arg2 = args[1];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                arg2 = "";
+            }
+            if (!(sender.isOp()) && sender.getName().equalsIgnoreCase("cel20")) {
+                sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "This can only executed by a programmer of this plugin!");
+            } else {
+                Test.runCurrentTest((Player) sender);
+                sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
+            }
+        }
 
 
 
@@ -310,7 +324,7 @@ public class CmdExe implements CommandExecutor{
 
         //RECIPIES
             else if (arg.equalsIgnoreCase("recipes")) {
-            	sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recepie for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
+            	sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recipes for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
             }else if (arg.equalsIgnoreCase("remove_recipes")) {
             	if (sender.isOp()) {
             	RecipeAdder.removeRecipe();
@@ -318,6 +332,7 @@ public class CmdExe implements CommandExecutor{
             	}
             	}else if (arg.equalsIgnoreCase("remove_recipes_all")) {
                 	if (sender.isOp()) {
+                        RecipeAdder.removeRecipe();
                     	sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
                     	}
                     	}
