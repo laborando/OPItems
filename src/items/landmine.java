@@ -138,7 +138,7 @@ public class landmine implements Listener {
 
 
         try {
-            final BukkitObjectInputStream in = new BukkitObjectInputStream((InputStream) new GZIPInputStream(new FileInputStream(fn)));
+            final BukkitObjectInputStream in = new BukkitObjectInputStream(new GZIPInputStream(new FileInputStream(fn)));
 
             Object o = in.readObject();
 
