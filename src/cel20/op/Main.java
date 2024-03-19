@@ -1,9 +1,11 @@
 
 package cel20.op;
 
+import java.awt.*;
 import java.util.logging.Logger;
 import java.io.File;
 
+import celutis.CLogger;
 import items.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EnderPearl;
@@ -244,6 +246,9 @@ public class Main extends JavaPlugin implements Listener
         config.addDefault("AutomaticPeriodicItemsRemoveWarningDurationSecs", 60);
         config.addDefault("AutomaticPeriodicItemsRemovePeriodeInMinutes", 30);
 
+        //LOGGER
+        config.addDefault("CLoggerMode", 0);
+        config.addDefault("CLoggerFlushIntervallSec", 300);
 
 
         //TNTBowTNTAmount
@@ -252,8 +257,17 @@ public class Main extends JavaPlugin implements Listener
         //Bukkit.getLogger().info("[OPItems]Loaded Config");
 
 
+        if (config.getInt("CLoggerMode")==0) {
+            Bukkit.getLogger().info("[OPItems] CLogger Disabled!");
+        }else if (config.getInt("CLoggerMode")==1) {
+            CLogger.startAsync(this.getDataFolder().toString(), config.getInt("CLoggerFlushIntervallSec"));
+            Bukkit.getLogger().info("[OPItems] CLogger Enabled in Asynk Mode!");
+        }else if (config.getInt("CLoggerMode")==2) {
+            CLogger.startSynced(this.getDataFolder().toString(), config.getInt("CLoggerFlushIntervallSec"));
+            Bukkit.getLogger().info("[OPItems] CLogger Enabled in Synked Mode!");
+        }
 
-
+        //ITEMS CONFIG
         if (config.getBoolean("EnableAutomaticPeriodicItemsRemove")) {
             manage.AutoItems.innitAutoRemove(config.getInt("AutomaticPeriodicItemsRemovePeriodeInMinutes"), config.getInt("AutomaticPeriodicItemsRemoveWarningDurationSecs"));
             Bukkit.getLogger().info("[OPItems] AutoItemRemove Started!");
@@ -482,6 +496,9 @@ public class Main extends JavaPlugin implements Listener
         landmine.save();
         
         RecipeAdder.removeRecipe();
+
+        CLogger.flushNow();
+
         //Bukkit.getLogger().warning("Recipes removed...");
         Bukkit.getLogger().warning("OPItems is now disabled");
     }
