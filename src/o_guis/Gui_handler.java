@@ -24,7 +24,7 @@ public class Gui_handler implements Listener
 	
 	public void openConfigOne(Player player) {
 		player.closeInventory();
-        final Inventory guia = Bukkit.createInventory((InventoryHolder)null, 27, new StringBuilder().append(ChatColor.BOLD).append(ChatColor.GOLD).append("Settings | Page 1").toString());
+        final Inventory guia = Bukkit.createInventory(null, 27, new StringBuilder().append(ChatColor.BOLD).append(ChatColor.GOLD).append("Settings | Page 1").toString());
         final ItemStack a = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         final ItemStack b = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         final ItemStack c = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
@@ -1019,7 +1019,7 @@ public class Gui_handler implements Listener
                 //--|
                 
                 
-                final Inventory guia = Bukkit.createInventory((InventoryHolder)null, 27, new StringBuilder().append(ChatColor.BOLD).append(ChatColor.GOLD).append("Settings | Page 2").toString());
+                final Inventory guia = Bukkit.createInventory(null, 27, new StringBuilder().append(ChatColor.BOLD).append(ChatColor.GOLD).append("Settings | Page 2").toString());
                 
                 /*
                 guia.setItem(0, a1);

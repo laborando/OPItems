@@ -21,6 +21,8 @@ Private Pocket Dimensions are now really unloading when quitting
 
 DONE:
 
+CLogger
+
 Added Items
  - Landmine | Explodes when stepped on!
 
@@ -33,6 +35,8 @@ Added Configs:
  - PrivatePocketDimensionPerformanceModeActivated | Activates Performance Mode for The Private Pocket Dimension
  - EnableLandminePerformanceMode | Activates Performance Mode for the Landmines Feature
  - EnableLandmine
+ - CLoggerFlushIntervallSec
+ - CLoggerMode
 
 Changes:
  - Improved the Header of the Config

@@ -39,7 +39,7 @@ public class op_gui
         guiglass.setItemMeta(guiglassi);
         final ItemStack ophelp = new ItemStack(Material.REDSTONE_TORCH, 1);
         final ItemMeta ophelpi = ophelp.getItemMeta();
-        ophelpi.setDisplayName(ChatColor.GOLD + "Klick to display the OPItems-Help-Message");
+        ophelpi.setDisplayName(ChatColor.GOLD + "Click to display the OPItems-Help-Message");
         ophelpi.addEnchant(Enchantment.SOUL_SPEED, 1, true);
         ophelpi.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         ophelpi.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ATTRIBUTES });

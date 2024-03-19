@@ -3,6 +3,8 @@ package cmd;
 import java.io.File;
 import java.util.UUID;
 
+import celutis.CLogger;
+import celutis.Logutis;
 import com.mojang.authlib.GameProfile;
 import items.*;
 import net.minecraft.server.v1_16_R3.WorldServer;
@@ -260,6 +262,20 @@ public class CmdExe implements CommandExecutor{
                     sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
                 }else{
                     sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
+                }
+            }
+
+            //LOGGER
+            else if (arg.equalsIgnoreCase("report")) {
+
+                if (!(sender.isOp())) {
+                    sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
+                }else{
+                    if(!(CLogger.isEnabled())){
+                        sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "CLogger is not enabled! To create a report, you have to enable CLogger in the config.yml File! Set `CLoggerMode` to `1` or `2`.");
+                    }else{
+                        Logutis.createReportAndLog();
+                    }
                 }
             }
 
