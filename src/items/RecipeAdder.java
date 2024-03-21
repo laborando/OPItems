@@ -751,4 +751,22 @@ public class RecipeAdder
 
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
+    public static void addRecipe38(final Main pluginint) {
+        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_38");
+        RecipeAdder.map.put(38, key);
+        final ItemStack itemStack = new ItemStack(Material.WATER_BUCKET, 1);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Infinitive Water Bucket");
+        itemMeta.addEnchant(Enchantment.SWEEPING_EDGE, 75, true);
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        itemStack.setItemMeta(itemMeta);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape(new String[] { "xcx", "xax", "bbb" });
+        shapedRecipe.setIngredient('b', Material.HEAVY_WEIGHTED_PRESSURE_PLATE);
+        shapedRecipe.setIngredient('a', Material.WATER_BUCKET);
+        shapedRecipe.setIngredient('x', Material.AIR);
+        shapedRecipe.setIngredient('c', Material.DIAMOND);
+
+        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+    }
 }

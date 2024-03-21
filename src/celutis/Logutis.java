@@ -20,6 +20,9 @@ public class Logutis {
         rep.add("ItemFactory: " + Bukkit.getItemFactory());
         rep.add("WarningState: " + Bukkit.getWarningState());
         rep.add("WorldContainer: " + Bukkit.getWorldContainer());
+        rep.add("Players Connected: " + Bukkit.getOnlinePlayers().size());
+        rep.add("Idle Timeout: " + Bukkit.getIdleTimeout());
+        rep.add("View Distance: " + Bukkit.getViewDistance());
         rep.add("Plugins:");
         for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
             rep.add("   - " + plugin.getName());

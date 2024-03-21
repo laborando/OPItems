@@ -18,20 +18,22 @@ Landminen
 IN  WORK:
 Private Pocket Dimensions are now really unloading when quitting
 
-STARTEN: Unlimited Water Bucket
+STARTEN:
 
 DONE:
 
-CLogger
+
 
 Added Items
  - Landmine | Explodes when stepped on!
  - Defuser | Defuses Landmines safely
+ - Unlimited Water Bucket | Got unlimited water
 
 Added Cmd's:
  - /opitems version | Displays the current Version and Changelog of OPItems
  - /opitems delete_all_pocket_worlds | Deletes the pocket worlds currently loaded
  - /opitems reset_landmines | Resets the List of Landmines in the World
+ - /opitems report | Generates a short report with some useful information to give when reporting a bug
 
 Added Configs:
  - PrivatePocketDimensionPerformanceModeActivated | Activates Performance Mode for The Private Pocket Dimension
@@ -48,6 +50,7 @@ Changes:
  - Updated Celutis to v0.5
  - Added a bit of Flavor to the Private Pocket Dimension
  - Added NoPermissionError Message to /opitems <~cursed sword> commands
+ - Added CLogger
 
 Fixed Bugs:
  - Portal2Go throws errors when trying to teleport from the Private Pocket Dimension

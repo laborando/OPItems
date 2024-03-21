@@ -183,6 +183,7 @@ public class Main extends JavaPlugin implements Listener
         this.getServer().getPluginManager().registerEvents(new DimensionWand(), this);
         this.getServer().getPluginManager().registerEvents(new Gui_handler(), this);
         this.getServer().getPluginManager().registerEvents(new TntBow(), this);
+        this.getServer().getPluginManager().registerEvents(new Other(), this);
         
         //Bukkit.getLogger().info("[OPItems]Registered Events");
         final FileConfiguration config = this.getConfig();
@@ -236,6 +237,7 @@ public class Main extends JavaPlugin implements Listener
         config.addDefault("EnableSkullImitator", true);
         config.addDefault("EnableLandmine", true);
         config.addDefault("EnableLandminePerformanceMode", false);
+        config.addDefault("AllowCraftInfWaterBucket", true);
 
         //PRIVATE POCKET DIMESION
         //PrivatePocketDimensionPerformanceModeActivated
@@ -409,6 +411,10 @@ public class Main extends JavaPlugin implements Listener
             RecipeAdder.addRecipe37(plugin);
             this.getServer().getPluginManager().registerEvents(new landmine(), this);
         }
+        //AllowCraftInfWaterBucket
+        if (config.getBoolean("AllowCraftInfWaterBucket")) {
+            RecipeAdder.addRecipe38(plugin);
+        }
         //EnableLandminePerformanceMode
         if (config.getBoolean("EnableLandminePerformanceMode")) {
             landminePerfModeEnabeled=true;
@@ -430,8 +436,7 @@ public class Main extends JavaPlugin implements Listener
                 Main.update = 1;
             }
             if (updater.getResult() == Updater.UpdateResult.FAIL_BADID) {
-                Bukkit.getLogger().severe("[OPItems] ERROR whilst looking for Updates, THIS PLUGIN WILL NOT AUTOUPDATE!");
-                Bukkit.getLogger().severe("[OPItems] If this doesn't disappear after a few hours, autoupdate stopped working!");
+                Bukkit.getLogger().severe("[OPItems] There was an error looking for an update, if this isn't only temporary, look for updates yourself around every month. ");
             }
 
             if (Main.update == 1) {
@@ -497,7 +502,10 @@ public class Main extends JavaPlugin implements Listener
         
         RecipeAdder.removeRecipe();
 
-        CLogger.flushNow();
+        try {
+            CLogger.flushNow();
+        }catch (NoClassDefFoundError ignored){}
+
 
         //Bukkit.getLogger().warning("Recipes removed...");
         Bukkit.getLogger().warning("OPItems is now disabled");
