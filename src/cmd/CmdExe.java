@@ -10,6 +10,7 @@ import items.*;
 import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -27,6 +28,8 @@ import static celutis.celutis.deleteDirectory;
 
 public class CmdExe implements CommandExecutor{
 
+    private boolean cLoggerStartingStage = false;
+
 	public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
         String arg = null;
         try {
@@ -42,52 +45,47 @@ public class CmdExe implements CommandExecutor{
         }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
-            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.4(a)");
+            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.5(a)");
             sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
             sender.sendMessage(ChatColor.GOLD + "Tested for MC 1.16, 1.17, 1.18, 1.19.x, 1.20.1, 1.20.2, 1.20.3, 1.20.4");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.GOLD + "");
 // Added Items
             sender.sendMessage(ChatColor.BLUE + "Added Items:");
-            sender.sendMessage(ChatColor.YELLOW + "- Portal2Go | Go to the Nether at any time!");
-            sender.sendMessage(ChatColor.YELLOW + "- Skull Imitator | Imitates your skull and lets you place it down");
+            sender.sendMessage(ChatColor.YELLOW + "- Landmine | Explodes when stepped on!");
+            sender.sendMessage(ChatColor.YELLOW + "- Defuser | Defuses Landmines safely");
+            sender.sendMessage(ChatColor.YELLOW + "- Unlimited Water Bucket | Got unlimited water");
             sender.sendMessage(ChatColor.GOLD + "");
-// Added Cmds
+// Added Cmd's
             sender.sendMessage(ChatColor.BLUE + "Added Commands:");
-            sender.sendMessage(ChatColor.YELLOW + "- /opitems skull <player_name> | Gives you the Skull of the given player");
-            sender.sendMessage(ChatColor.YELLOW + "- /opitems cancel_automated_item_removal | Cancels the activated Periodic Item Removal for the current session");
-            sender.sendMessage(ChatColor.GOLD + "");
-// Changes
-            sender.sendMessage(ChatColor.BLUE + "Changes:");
-            sender.sendMessage(ChatColor.YELLOW + "- Added Automated Periodic Item Removal that can be activated and configured in the config");
-            sender.sendMessage(ChatColor.YELLOW + "- Decreased Filesize");
-            sender.sendMessage(ChatColor.YELLOW + "- Fixed some Spelling Mistakes");
-            sender.sendMessage(ChatColor.YELLOW + "- Improved English Grammar");
-            sender.sendMessage(ChatColor.YELLOW + "- Fixed wrong output when executing /opitemshelp");
-            sender.sendMessage(ChatColor.YELLOW + "- Added Updater BadID Error & API Failure Error Messages");
-            sender.sendMessage(ChatColor.YELLOW + "- Added Display Changelog Option to OPItems GUI");
-            sender.sendMessage(ChatColor.YELLOW + "- Standardized OPItems GUI Names");
-            sender.sendMessage(ChatColor.YELLOW + "- Updated Celutis to v1.4");
-            sender.sendMessage(ChatColor.YELLOW + "- Optimized Startup Performance");
-            sender.sendMessage(ChatColor.YELLOW + "- Shortened Startup Messages");
-            sender.sendMessage(ChatColor.GOLD + "");
-// Version Changes
-            sender.sendMessage(ChatColor.BLUE + "Version Changes:");
-            sender.sendMessage(ChatColor.YELLOW + "- Added Support for 1.20.3 & 1.20.4");
+            sender.sendMessage(ChatColor.YELLOW + "- /opitems version | Displays the current Version and Changelog of OPItems");
+            sender.sendMessage(ChatColor.YELLOW + "- /opitems delete_all_pocket_worlds | Deletes the pocket worlds currently loaded");
+            sender.sendMessage(ChatColor.YELLOW + "- /opitems reset_landmines | Resets the List of Landmines in the World");
+            sender.sendMessage(ChatColor.YELLOW + "- /opitems report | Generates a short report with some useful information to give when reporting a bug");
             sender.sendMessage(ChatColor.GOLD + "");
 // Added Configs
             sender.sendMessage(ChatColor.BLUE + "Added Configs:");
-            sender.sendMessage(ChatColor.YELLOW + "- EnableAutomaticPeriodicItemsRemove");
-            sender.sendMessage(ChatColor.YELLOW + "- AutomaticPeriodicItemsRemoveWarningDurationSecs");
-            sender.sendMessage(ChatColor.YELLOW + "- AutomaticPeriodicItemsRemovePeriodInMinutes");
-            sender.sendMessage(ChatColor.YELLOW + "- EnablePortal2Go");
-            sender.sendMessage(ChatColor.YELLOW + "- EnableSkullImitator");
+            sender.sendMessage(ChatColor.YELLOW + "- PrivatePocketDimensionPerformanceModeActivated | Activates Performance Mode for The Private Pocket Dimension");
+            sender.sendMessage(ChatColor.YELLOW + "- EnableLandminePerformanceMode | Activates Performance Mode for the Landmines Feature");
+            sender.sendMessage(ChatColor.YELLOW + "- EnableLandmine");
+            sender.sendMessage(ChatColor.YELLOW + "- CLoggerFlushIntervallSec");
+            sender.sendMessage(ChatColor.YELLOW + "- CLoggerMode");
+            sender.sendMessage(ChatColor.GOLD + "");
+// Changes
+            sender.sendMessage(ChatColor.BLUE + "Changes:");
+            sender.sendMessage(ChatColor.YELLOW + "- Improved the Header of the Config");
+            sender.sendMessage(ChatColor.YELLOW + "- Added Lores to some of the Items");
+            sender.sendMessage(ChatColor.YELLOW + "- Added TNT-Blocks Activated Message to the TNT-Detonator");
+            sender.sendMessage(ChatColor.YELLOW + "- Fixed Typos");
+            sender.sendMessage(ChatColor.YELLOW + "- Updated Celutis to v0.5");
+            sender.sendMessage(ChatColor.YELLOW + "- Added a bit of Flavor to the Private Pocket Dimension");
+            sender.sendMessage(ChatColor.YELLOW + "- Added NoPermissionError Message to /opitems <~cursed sword> commands");
+            sender.sendMessage(ChatColor.YELLOW + "- Added CLogger");
             sender.sendMessage(ChatColor.GOLD + "");
 // Fixed Bugs
             sender.sendMessage(ChatColor.BLUE + "Fixed Bugs:");
-            sender.sendMessage(ChatColor.YELLOW + "- Fixed IllegalStateException on Startup");
-            sender.sendMessage(ChatColor.YELLOW + "- Fixed NullPointerException");
-            sender.sendMessage(ChatColor.YELLOW + "- Fixed NoClassDefFoundError on Cmd Execution");
+            sender.sendMessage(ChatColor.YELLOW + "- Portal2Go throws errors when trying to teleport from the Private Pocket Dimension");
+            sender.sendMessage(ChatColor.YELLOW + "- Portal2Go throws you into the void when teleporting into the Nether");
 
 
         }
@@ -272,9 +270,15 @@ public class CmdExe implements CommandExecutor{
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
                 }else{
                     if(!(CLogger.isEnabled())){
-                        sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "CLogger is not enabled! To create a report, you have to enable CLogger in the config.yml File! Set `CLoggerMode` to `1` or `2`.");
+
+                            sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "CLogger is not enabled! Starting CLogger... Execute the command again to generate the report!");
+                            CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+
+
                     }else{
                         Logutis.createReportAndLog();
+                        sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Report generated!");
                     }
                 }
             }
@@ -326,7 +330,7 @@ public class CmdExe implements CommandExecutor{
 
         //RECIPIES
             else if (arg.equalsIgnoreCase("recipes")) {
-            	sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recepie for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
+            	sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recipes for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
             }else if (arg.equalsIgnoreCase("remove_recipes")) {
             	if (sender.isOp()) {
             	RecipeAdder.removeRecipe();

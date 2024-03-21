@@ -75,6 +75,7 @@ public class CLogger {
                 });
 
                 writer.close();
+                collected.clear();
             } catch (IOException e) {
                 e.printStackTrace();
             }
