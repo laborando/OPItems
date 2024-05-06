@@ -6,11 +6,9 @@ import java.net.URLConnection;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.JSONArray;
-import java.io.Reader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Enumeration;
-import java.io.OutputStream;
 import java.io.BufferedOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -70,7 +68,6 @@ public class Updater
     }
     
     public Updater(final Plugin plugin, final int id, final File file, final UpdateType type, final UpdateCallback callback, final boolean announce) {
-        this.id = -1;
         this.apiKey = null;
         this.result = UpdateResult.SUCCESS;
         this.plugin = plugin;
@@ -80,51 +77,11 @@ public class Updater
         this.id = id;
         this.updateFolder = this.plugin.getServer().getUpdateFolderFile();
         this.callback = callback;
-        final File pluginFile = this.plugin.getDataFolder().getParentFile();
-        final File updaterFile = new File(pluginFile, "Updater");
-        final File updaterConfigFile = new File(updaterFile, "config.yml");
-        final YamlConfiguration config = new YamlConfiguration();
-        config.options().header("This configuration file affects all plugins using the Updater system (version 2+ - http://forums.bukkit.org/threads/96681/ )\nIf you wish to use your API key, read http://wiki.bukkit.org/ServerMods_API and place it below.\nSome updating systems will not adhere to the disabled value, but these may be turned off in their plugin's configuration.");
-        config.addDefault("api-key", (Object)"PUT_API_KEY_HERE");
-        config.addDefault("disable", (Object)false);
-        if (!updaterFile.exists()) {
-            this.fileIOOrError(updaterFile, updaterFile.mkdir(), true);
-        }
-        final boolean createFile = !updaterConfigFile.exists();
-        try {
-            if (createFile) {
-                this.fileIOOrError(updaterConfigFile, updaterConfigFile.createNewFile(), true);
-                config.options().copyDefaults(true);
-                config.save(updaterConfigFile);
-            }
-            else {
-                config.load(updaterConfigFile);
-            }
-        }
-        catch (Exception e) {
-            String message;
-            if (createFile) {
-                message = "The updater could not create configuration at " + updaterFile.getAbsolutePath();
-            }
-            else {
-                message = "The updater could not load configuration at " + updaterFile.getAbsolutePath();
-            }
-            this.plugin.getLogger().log(Level.SEVERE, message, e);
-        }
-        if (config.getBoolean("disable")) {
-            this.result = UpdateResult.DISABLED;
-            return;
-        }
-        String key = config.getString("api-key");
-        if ("PUT_API_KEY_HERE".equalsIgnoreCase(key) || "".equals(key)) {
-            key = null;
-        }
-        this.apiKey = key;
         try {
             this.url = new URL("https://api.curseforge.com/servermods/files?projectIds=" + this.id);
         }
         catch (MalformedURLException e2) {
-            this.plugin.getLogger().log(Level.SEVERE, "The project ID provided for updating, " + this.id + " is invalid.", e2);
+            this.plugin.getLogger().log(Level.SEVERE, "The project ID provided for updating OPItems, " + this.id + " is invalid.", e2);
             this.result = UpdateResult.FAIL_BADID;
         }
         if (this.result != UpdateResult.FAIL_BADID) {
@@ -416,8 +373,6 @@ public class Updater
             if (title.split("^v|[\\s_-]v").length < 2) {
                 final String authorInfo = this.plugin.getDescription().getAuthors().isEmpty() ? "" : (" (" + this.plugin.getDescription().getAuthors().get(0) + ")");
                 this.plugin.getLogger().warning("The author of this plugin" + authorInfo + " has misconfigured their Auto Update system");
-                this.plugin.getLogger().warning("File versions should follow the format 'PluginName vVERSION'");
-                this.plugin.getLogger().warning("Please notify the author of this error.");
                 this.result = UpdateResult.FAIL_NOVERSION;
                 return false;
             }
@@ -464,28 +419,27 @@ public class Updater
                 return false;
             }
             final JSONObject latestUpdate = (JSONObject)array.get(array.size() - 1);
-            this.versionName = (String)latestUpdate.get((Object)"name");
-            this.versionLink = (String)latestUpdate.get((Object)"downloadUrl");
-            this.versionType = (String)latestUpdate.get((Object)"releaseType");
-            this.versionGameVersion = (String)latestUpdate.get((Object)"gameVersion");
+            this.versionName = (String)latestUpdate.get("name");
+            this.versionLink = (String)latestUpdate.get("downloadUrl");
+            this.versionType = (String)latestUpdate.get("releaseType");
+            this.versionGameVersion = (String)latestUpdate.get("gameVersion");
             return true;
         }
         catch (IOException e) {
             if (e.getMessage().contains("HTTP response code: 403")) {
-                this.plugin.getLogger().severe("dev.bukkit.org rejected the API key provided in plugins/Updater/config.yml");
-                this.plugin.getLogger().severe("Please double-check your configuration to ensure it is correct.");
+                this.plugin.getLogger().severe("[Updater] dev.bukkit.org rejected the API key.");
                 this.result = UpdateResult.FAIL_APIKEY;
             }
             else {
-                this.plugin.getLogger().severe("The updater could not contact dev.bukkit.org for updating.");
-                this.plugin.getLogger().severe("If you have not recently modified your configuration and this is the first time you are seeing this message, the site may be experiencing temporary downtime. Try again later.");
+                this.plugin.getLogger().severe("The updater could not contact curseforge/dev.bukkit.org for updating.");
+                this.plugin.getLogger().severe("If you have not recently modified your configuration, try again later.");
                 this.result = UpdateResult.FAIL_DBO;
             }
             this.plugin.getLogger().log(Level.SEVERE, null, e);
             return false;
         }
     }
-    
+
     private void fileIOOrError(final File file, final boolean result, final boolean create) {
         if (!result) {
             this.plugin.getLogger().severe("The updater could not " + (create ? "create" : "delete") + " file at: " + file.getAbsolutePath());
