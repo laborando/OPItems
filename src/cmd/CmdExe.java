@@ -45,11 +45,21 @@ public class CmdExe implements CommandExecutor{
         }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
-            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.5(a)");
+            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.6(a)");
             sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
-            sender.sendMessage(ChatColor.GOLD + "Tested for MC 1.16, 1.17, 1.18, 1.19.x, 1.20.1, 1.20.2, 1.20.3, 1.20.4");
+            sender.sendMessage(ChatColor.GOLD + "Tested for MC 1.16.x, 1.17.x, 1.18.x, 1.19.x, 1.20.1, 1.20.2, 1.20.3, 1.20.4, 1.20.5, 1.20.6");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.GOLD + "");
+
+            sender.sendMessage(ChatColor.BLUE + "Changes:");
+            sender.sendMessage(ChatColor.YELLOW + "- Added Compatibility for Version 1.20.6");
+            sender.sendMessage(ChatColor.GOLD + "");
+            sender.sendMessage(ChatColor.BLUE + "Fixed Bugs:");
+            sender.sendMessage(ChatColor.YELLOW + "- CommandException when executing some commands in the console");
+            /*
+            BEISPIEL:
+
+
 // Added Items
             sender.sendMessage(ChatColor.BLUE + "Added Items:");
             sender.sendMessage(ChatColor.YELLOW + "- Landmine | Explodes when stepped on!");
@@ -87,7 +97,7 @@ public class CmdExe implements CommandExecutor{
             sender.sendMessage(ChatColor.YELLOW + "- Portal2Go throws errors when trying to teleport from the Private Pocket Dimension");
             sender.sendMessage(ChatColor.YELLOW + "- Portal2Go throws you into the void when teleporting into the Nether");
 
-
+            */
         }
         if (label.equalsIgnoreCase("items")) {
             if (sender.isOp()) {
@@ -220,9 +230,18 @@ public class CmdExe implements CommandExecutor{
                     sender.sendMessage(ChatColor.DARK_RED + "This Command cannot be executed in the console");
                 }
             } else if (arg.equalsIgnoreCase("help")) {
-                ((Player) sender).chat("/opitemshelp");
+                if (sender instanceof Player) {
+                    ((Player) sender).chat("/opitemshelp");
+                }else{
+                    sender.sendMessage(ChatColor.RED + "This command is currently not available int the console! Please use: /opitemshelp");
+                }
             } else if (arg.equalsIgnoreCase("version")) {
-                ((Player) sender).chat("/opitemsversion");
+                if (sender instanceof Player){
+                    ((Player) sender).chat("/opitemsversion");
+                }else{
+                    sender.sendMessage(ChatColor.RED + "This command is currently not available int the console! Please use: /opitemsversion");
+                }
+
             } else if (arg.equalsIgnoreCase("update")) {
                 if (sender.isOp()) {
                     sender.sendMessage(ChatColor.GOLD + "Trying to Update OPItems");
@@ -230,6 +249,7 @@ public class CmdExe implements CommandExecutor{
                 } else {
                     sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
                 }
+
             } else if (arg.equalsIgnoreCase("super_sponge")) {
                 if (sender instanceof Player) {
                     if (sender.isOp()) {
