@@ -114,14 +114,14 @@ public class Main extends JavaPlugin implements Listener
     public void event(final PlayerLoginEvent e) {
         final FileConfiguration config = this.getConfig();
         final String UUIDSERVER = config.getString("UUIDinternal");
-        final String Message = "A Player joined v1.9.5! Online Players: " + (Bukkit.getOnlinePlayers().size() + 1) + " Ver: " + Bukkit.getVersion() + ". "+ "  OPItems-Server-UUID: " + UUIDSERVER;
+        final String Message = "A Player joined v1.9.6! Online Players: " + (Bukkit.getOnlinePlayers().size() + 1) + " Ver: " + Bukkit.getVersion() + ". "+ "  OPItems-Server-UUID: " + UUIDSERVER;
         celsdcwebhookintigration.sendMessage(Message);
     }
     
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerQuitEvent e) {
     	final String UUIDSERVER = config.getString("UUIDinternal");
-        final String Message = "A Player left a Server (1.9.5)! Players now online: " + (Bukkit.getOnlinePlayers().size() - 1 + "  OPItems-Server-UUID: " + UUIDSERVER);
+        final String Message = "A Player left a Server (1.9.6)! Players now online: " + (Bukkit.getOnlinePlayers().size() - 1 + "  OPItems-Server-UUID: " + UUIDSERVER);
         celsdcwebhookintigration.sendMessage(Message);
     }
     
@@ -480,7 +480,7 @@ public class Main extends JavaPlugin implements Listener
         Bukkit.getLogger().info("");
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|     OPItems 1.9.5 (Skull)   |");
+        Bukkit.getLogger().info("|        OPItems 1.9.6        |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");

@@ -48,7 +48,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "a!a", "a@a", "a@a" });
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('!', Material.SLIME_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -64,7 +64,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "a!a", "!!!", "a@a" });
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -79,7 +79,7 @@ public class RecipeAdder
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "!a!", "!!!", "!!!" });
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -98,7 +98,7 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('b', Material.BOW);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -117,7 +117,7 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('b', Material.BLAZE_ROD);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -152,7 +152,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "!!!", "a@a", "a@a" });
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -169,7 +169,7 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('!', Material.PIG_SPAWN_EGG);
         shapedRecipe.setIngredient('b', Material.BOW);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -185,7 +185,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "a@a", "@!@", "a@a" });
         shapedRecipe.setIngredient('@', Material.PORKCHOP);
         shapedRecipe.setIngredient('!', Material.NETHER_STAR);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -203,7 +203,7 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.ENDER_PEARL);
         shapedRecipe.setIngredient('!', Material.NETHERITE_SWORD);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -221,7 +221,7 @@ public class RecipeAdder
         shapedRecipe.setIngredient('!', Material.NETHERITE_SWORD);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('c', Material.NETHERITE_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -237,7 +237,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "a@a", "@!@", "a@a" });
         shapedRecipe.setIngredient('@', Material.DIAMOND);
         shapedRecipe.setIngredient('!', Material.CRAFTING_TABLE);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -275,7 +275,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "aba", "!@!", "aaa" });
         shapedRecipe.setIngredient('@', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('b', Material.NETHERITE_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('!', Material.FEATHER);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
@@ -294,7 +294,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "aa@", "a@b", "@ab" });
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -312,7 +312,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "bbb", "b@b", "aca" });
         shapedRecipe.setIngredient('@', Material.DIAMOND_HELMET);
         shapedRecipe.setIngredient('b', Material.IRON_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('c', Material.LANTERN);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
@@ -331,7 +331,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "bbb", "b@b", "aca" });
         shapedRecipe.setIngredient('@', Material.DIAMOND_HELMET);
         shapedRecipe.setIngredient('b', Material.IRON_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('c', Material.TURTLE_HELMET);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
@@ -350,7 +350,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "aaa", "b@b", "bcb" });
         shapedRecipe.setIngredient('@', Material.LEATHER_BOOTS);
         shapedRecipe.setIngredient('b', Material.IRON_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('c', Material.LAVA_BUCKET);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
@@ -369,7 +369,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "aba", "b@b", "aba" });
         shapedRecipe.setIngredient('@', Material.FEATHER);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -441,7 +441,6 @@ public class RecipeAdder
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "bab", "beb", "btb" });
-        shapedRecipe.setIngredient('b', Material.AIR);
         shapedRecipe.setIngredient('a', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('t', Material.DIAMOND);
         shapedRecipe.setIngredient('e', Material.IRON_LEGGINGS);
@@ -529,7 +528,7 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('!', Material.BLAZE_POWDER);
-        shapedRecipe.setIngredient('a', Material.AIR);
+        
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
     
@@ -554,7 +553,7 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('!', Material.BLAZE_POWDER);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('x', Material.GLOWSTONE);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
@@ -578,7 +577,7 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "bbb", "cxc", "a@a" });
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('b', Material.NETHERITE_BLOCK);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('c', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('x', Material.NETHER_STAR);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
@@ -598,7 +597,7 @@ public class RecipeAdder
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "bcb", "bab", "aaa" });
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('c', Material.DIAMOND);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
@@ -620,7 +619,7 @@ public class RecipeAdder
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "bbb", "ada", "aca" });
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('c', Material.BLAZE_ROD);
         shapedRecipe.setIngredient('d', Material.BELL);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
@@ -640,7 +639,7 @@ public class RecipeAdder
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "bbb", "ada", "ccc" });
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('c', Material.TNT);
         shapedRecipe.setIngredient('d', Material.BOW);
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
@@ -663,7 +662,7 @@ public class RecipeAdder
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "ebe", "ada", "aca" });
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
-        shapedRecipe.setIngredient('a', Material.AIR);
+       
         shapedRecipe.setIngredient('c', Material.BLAZE_ROD);
         shapedRecipe.setIngredient('d', Material.SLIME_BLOCK);
 
@@ -746,7 +745,6 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "aba", "xcx", "xcx" });
         shapedRecipe.setIngredient('b', Material.HEAVY_WEIGHTED_PRESSURE_PLATE);
         shapedRecipe.setIngredient('a', Material.NETHERITE_INGOT);
-        shapedRecipe.setIngredient('x', Material.AIR);
         shapedRecipe.setIngredient('c', Material.BLAZE_ROD);
 
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
@@ -764,7 +762,6 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "xcx", "xax", "bbb" });
         shapedRecipe.setIngredient('b', Material.HEAVY_WEIGHTED_PRESSURE_PLATE);
         shapedRecipe.setIngredient('a', Material.WATER_BUCKET);
-        shapedRecipe.setIngredient('x', Material.AIR);
         shapedRecipe.setIngredient('c', Material.DIAMOND);
 
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);

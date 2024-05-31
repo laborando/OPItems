@@ -1,10 +1,9 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="OPItems">
-    <output-path>F:/1.19.3 Paper/plugins</output-path>
+    <output-path>E:/1.19.3 Paper/plugins</output-path>
     <root id="archive" name="OPItems.jar">
       <element id="module-output" name="OPItems" />
       <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
     </root>
   </artifact>
 </component>
-

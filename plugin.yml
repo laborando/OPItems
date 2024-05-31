@@ -1,7 +1,7 @@
 api-version: 1.13
 name: OPItems
 main: cel20.op.Main
-version: 1.9.5
+version: 1.9.6
 authors:
     - Cel20
 description: The OPItems Plugin
