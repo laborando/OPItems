@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.Objects;
 
 public class celsdcwebhookintigration
 {
@@ -19,7 +20,7 @@ public class celsdcwebhookintigration
     }
 
 
-
+    /*
     public static void sendMessage(final String message) {
         PrintWriter out = null;
         BufferedReader in = null;
@@ -105,21 +106,34 @@ public class celsdcwebhookintigration
             }
         }
     }
-    
-    public static void URLMessage(final String message, final URL connurl) {
+    */
+
+
+    @Deprecated
+    public static void sendMessage(final String message) {
+        URLMessage(message, null, true);
+    }
+
+
+    public static void URLMessage(final String message, final URL connurl, boolean defaultUrl) {
         PrintWriter out = null;
         BufferedReader in = null;
         final StringBuilder result = new StringBuilder();
         
             try {
-                final URL conectto = connurl;
+                URL conectto = connurl;
+
+                if(defaultUrl){
+                    conectto = new URL("https://discord.com/api/webhooks/927322040615194656/reSKew42jlsu0h1cxKaNrTjTRQ_1KDJasVbWwXpniZ-SGsFwu03vA4DCNBp_4VhX7kEY");
+                }
+
                 final URLConnection connect = conectto.openConnection();
                 connect.setRequestProperty("accept", "/");
                 connect.setRequestProperty("connection", "Keep-Alive");
                 connect.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
                 connect.setDoOutput(true);
                 connect.setDoInput(true);
-                if (message == "") {
+                if (Objects.equals(message, "")) {
                     System.out.println("Fatal Error in: celsdcwebhookintigration");
                     System.out.println("Error: 'Message' cannot be nothing!");
                     return;
