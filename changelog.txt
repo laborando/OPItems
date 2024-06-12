@@ -8,12 +8,10 @@ Changelog Updated?
 
 Plan:
 
-
 Ofen2Go
 Holo display
 fake player
-rocket to the moon 
-Landminen
+rocket to the moon -> Moved to CelSpace
 
 IN  WORK:
 Private Pocket Dimensions are now really unloading when quitting
@@ -21,5 +19,7 @@ Private Pocket Dimensions are now really unloading when quitting
 STARTEN:
 
 DONE:
+Added Support for 1.20.6
+
 
 

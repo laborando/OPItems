@@ -187,7 +187,7 @@ public class Main extends JavaPlugin implements Listener
         
         //Bukkit.getLogger().info("[OPItems]Registered Events");
         final FileConfiguration config = this.getConfig();
-        config.options().header("This is the main configuration file for OPItems\nSome options may impact gameplay and could lead to Lag and Server Crashes, so use\nwith cautio and make sure you know what each option does before configuring.\n\n\n You can Reset the Settings by Deleting the Config.yml File and Restarting your Server.\n\n");
+        config.options().header(HEADER + "\n\n\n" + ONE);
         config.addDefault("wand_of_(massive)_boom_cooldown_MiliSeconds", 1000);
         config.addDefault("launcher_cooldown_MiliSeconds", 4000);
         config.addDefault("Wand_of_Boom_Explosion_Strenght", 10);
@@ -445,10 +445,10 @@ public class Main extends JavaPlugin implements Listener
                     Bukkit.getLogger().info(ANSI_YELLOW + "A new Update for OPItems has been found. Please update with /opitems update" + ANSI_RESET);
                 }
                 if (updater.getLatestType() == Updater.ReleaseType.BETA) {
-                    Bukkit.getLogger().info(ANSI_YELLOW + "A new Update for OPItems has been found. The update is in the BETA stage! If you want to update, do it with /opitems update" + ANSI_RESET);
+                    Bukkit.getLogger().info(ANSI_YELLOW + "A new Update for OPItems has been found. The update is in the BETA stage! If you want to update, you can do it with /opitems update" + ANSI_RESET);
                 }
                 if (updater.getLatestType() == Updater.ReleaseType.ALPHA) {
-                    Bukkit.getLogger().info(ANSI_YELLOW + "A new Update for OPItems has been found. The update is in the ALPHA stage! If you want to update, do it with /opitems update" + ANSI_RESET);
+                    Bukkit.getLogger().info(ANSI_YELLOW + "A new Update for OPItems has been found. The update is in the ALPHA stage! If you want to update, you can do it with /opitems update" + ANSI_RESET);
                 }
                 Main.update_type = updater.getLatestType();
             }
@@ -533,7 +533,8 @@ public class Main extends JavaPlugin implements Listener
         if (a == Material.FLINT && 
           item.containsEnchantment(Enchantment.ARROW_DAMAGE))
           if (e.getClickedBlock().getY() == p.getLocation().getY()) {
-            p.sendMessage("Ja");
+            p.sendMessage("This Item is not enabled and supported");
+              p.sendMessage("This is only a test Item");
             double bx = e.getClickedBlock().getX();
             double by = e.getClickedBlock().getY();
             double px = p.getLocation().getX();
