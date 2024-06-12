@@ -1,6 +1,9 @@
 package celutis;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
@@ -23,6 +26,26 @@ public class Logutis {
         rep.add("Players Connected: " + Bukkit.getOnlinePlayers().size());
         rep.add("Idle Timeout: " + Bukkit.getIdleTimeout());
         rep.add("View Distance: " + Bukkit.getViewDistance());
+        rep.add("Worlds:");
+        for (World world : Bukkit.getWorlds()) {
+            rep.add("   - " + world.getName());
+            rep.add("      -> IsAutoSave: " + world.isAutoSave());
+            rep.add("      -> MaxHeight: " + world.getMaxHeight());
+            rep.add("      -> Absolute World Folder: " + world.getWorldFolder().getAbsolutePath());
+            rep.add("      -> Generator: " + world.getGenerator());
+            rep.add("      -> UUID: " + world.getUID());
+            rep.add("      -> Players: ");
+            for (Player player : world.getPlayers()) {
+                rep.add("           -> " + player.getName() + ";" + player.getUniqueId());
+            }
+            rep.add("      -> Chunks: ");
+            for (Chunk c : world.getLoadedChunks()) {
+                rep.add("           -> Coords:" + c.getX() + ";" + c.getZ());
+                rep.add("                 -> Entity Count:" + c.getEntities().length);
+                rep.add("                 -> TileEntity Count:" + c.getTileEntities().length);
+            }
+        }
+
         rep.add("Plugins:");
         for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
             rep.add("   - " + plugin.getName());
