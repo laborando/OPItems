@@ -13,12 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 public class SkullImitator implements Listener {
-
-    /*
-    itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Portal2Go");
-        itemMeta.addEnchant(Enchantment.SILK_TOUCH, 75, true);
-        itemMeta.addEnchant(Enchantment.THORNS, 75, true);
-     */
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockPlaceEvent e) {
         final Player p = (Player) e.getPlayer();
