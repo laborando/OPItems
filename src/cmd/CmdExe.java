@@ -45,17 +45,19 @@ public class CmdExe implements CommandExecutor{
         }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
-            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.6(a)");
+            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.7(a)");
             sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
-            sender.sendMessage(ChatColor.GOLD + "Tested for MC 1.16.x, 1.17.x, 1.18.x, 1.19.x, 1.20.1, 1.20.2, 1.20.3, 1.20.4, 1.20.5, 1.20.6");
+            sender.sendMessage(ChatColor.GOLD + "Tested for MC 1.16.x, 1.17.x, 1.18.x, 1.19.x, 1.20.1, 1.20.2, 1.20.3, 1.20.4, 1.20.5, 1.20.6, 1.21");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.GOLD + "");
-
+            sender.sendMessage(ChatColor.BLUE + "Added Items:");
+            sender.sendMessage(ChatColor.YELLOW + "- Protective Elytra");
+            sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.BLUE + "Changes:");
-            sender.sendMessage(ChatColor.YELLOW + "- Added Compatibility for Version 1.20.6");
+            sender.sendMessage(ChatColor.YELLOW + "- Removed Discord Webhooks for now");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.BLUE + "Fixed Bugs:");
-            sender.sendMessage(ChatColor.YELLOW + "- CommandException when executing some commands in the console");
+            sender.sendMessage(ChatColor.YELLOW + "- NoFall not working");
             /*
             BEISPIEL:
 
@@ -274,6 +276,23 @@ public class CmdExe implements CommandExecutor{
                 }else{
                 sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
             }
+            } else if (arg.equalsIgnoreCase("set_gliding")) {
+                if (sender.isOp()) {
+
+                    if(!(sender instanceof Player)){
+                        sender.sendMessage(ChatColor.RED + "You are not a Player!");
+                        return false;
+                    }
+
+                    Player p = (Player) sender;
+
+                    p.setGliding(true);
+
+
+
+                }else{
+                    sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
+                }
             } else if (arg.equalsIgnoreCase("reset_landmines")) {
                 if (sender.isOp()) {
                     landmine.reset();

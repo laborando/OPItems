@@ -1,13 +1,12 @@
-Hidden File: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/files/4669814
-
 Vor Release:
 Plugin.yml Version?
 Startup Message Version?
-Discord Webhook Messages Version?
+Discord Webhook Messages Version? //Remove
 Changelog Updated?
 
 Plan:
 
+Private Pocket Dimensions are now really unloading when quitting
 
 Ofen2Go
 Holo display
@@ -16,10 +15,13 @@ rocket to the moon
 Landminen
 
 IN  WORK:
-Private Pocket Dimensions are now really unloading when quitting
 
 STARTEN:
 
 DONE:
+
+ - Fixed Antifall not working
+ - Removed Discord Webhooks
+ - Added Protective Elytra
 
 

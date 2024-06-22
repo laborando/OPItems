@@ -112,17 +112,16 @@ public class Main extends JavaPlugin implements Listener
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerLoginEvent e) {
-        final FileConfiguration config = this.getConfig();
-        final String UUIDSERVER = config.getString("UUIDinternal");
-        final String Message = "A Player joined v1.9.6! Online Players: " + (Bukkit.getOnlinePlayers().size() + 1) + " Ver: " + Bukkit.getVersion() + ". "+ "  OPItems-Server-UUID: " + UUIDSERVER;
-        celsdcwebhookintigration.sendMessage(Message);
+
+        //removed Webhooks
+
     }
     
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerQuitEvent e) {
-    	final String UUIDSERVER = config.getString("UUIDinternal");
-        final String Message = "A Player left a Server (1.9.6)! Players now online: " + (Bukkit.getOnlinePlayers().size() - 1 + "  OPItems-Server-UUID: " + UUIDSERVER);
-        celsdcwebhookintigration.sendMessage(Message);
+
+        //removed Webhooks
+
     }
     
     public void onEnable() {
@@ -188,69 +187,70 @@ public class Main extends JavaPlugin implements Listener
         //Bukkit.getLogger().info("[OPItems]Registered Events");
         final FileConfiguration config = this.getConfig();
         config.options().header("This is the main configuration file for OPItems\nSome options may impact gameplay and could lead to Lag and Server Crashes, so use\nwith cautio and make sure you know what each option does before configuring.\n\n\n You can Reset the Settings by Deleting the Config.yml File and Restarting your Server.\n\n");
-        config.addDefault("wand_of_(massive)_boom_cooldown_MiliSeconds", 1000);
-        config.addDefault("launcher_cooldown_MiliSeconds", 4000);
-        config.addDefault("Wand_of_Boom_Explosion_Strenght", 10);
-        config.addDefault("Wand_of_Massive_Boom_Explosion_Strenght", 20);
-        config.addDefault("CraftedKnockyTheStickKnockbackEnchantmentLevel", 10);
-        config.addDefault("CraftedBlockySwordDamageAllEnchantmentLevel", 17);
-        config.addDefault("CraftedTheAntiDamageProtectionEnchantmentLevel", 75);
-        config.addDefault("CraftedPickyPickDigSpeedEnchantmentLevel", 1200);
-        config.addDefault("CraftedPickyPickLootBonusBlocksEnchantmentLevel", 5);
-        config.addDefault("AllowBommer", true);
-        config.addDefault("AllowEndsword", true);
-        config.addDefault("AllowBlitzer", true);
-        config.addDefault("AllowCrafter", true);
-        config.addDefault("AllowBlazer", true);
-        config.addDefault("AllowBower", true);
-        config.addDefault("AllowPigCannon", true);
-        config.addDefault("AllowFlyFeather", true);
-        config.addDefault("AllowAntiFall", true);
-        config.addDefault("AllowCraftOtherItems", true);
-        config.addDefault("AllowHookofVelectory", true);
-        config.addDefault("AllowCraftNightVisor", true);
-        config.addDefault("AllowCraftWaterHelmet", true);
-        config.addDefault("AllowCraftLaucher", true);
-        config.addDefault("AllowCraftFireShoes", true);
-        config.addDefault("AllowCraftWandOfBoom", true);
-        config.addDefault("AllowCraftWandOfMassiveBoom", true);
-        config.addDefault("AllowCraftWandOfInvisiblity", true);
-        config.addDefault("AllowCraftSpeedLeggings", true);
-        config.addDefault("AllowCraftSuperSponge", true);
-        config.addDefault("AllowCrafLavaSponge", true);
-        config.addDefault("AllowCraftEnderpealer", true);
+        config.addDefault("wand_of_(massive)_boom_cooldown_MiliSeconds", Integer.valueOf(1000));
+        config.addDefault("launcher_cooldown_MiliSeconds", Integer.valueOf(4000));
+        config.addDefault("Wand_of_Boom_Explosion_Strenght", Integer.valueOf(10));
+        config.addDefault("Wand_of_Massive_Boom_Explosion_Strenght", Integer.valueOf(20));
+        config.addDefault("CraftedKnockyTheStickKnockbackEnchantmentLevel", Integer.valueOf(10));
+        config.addDefault("CraftedBlockySwordDamageAllEnchantmentLevel", Integer.valueOf(17));
+        config.addDefault("CraftedTheAntiDamageProtectionEnchantmentLevel", Integer.valueOf(75));
+        config.addDefault("CraftedPickyPickDigSpeedEnchantmentLevel", Integer.valueOf(1200));
+        config.addDefault("CraftedPickyPickLootBonusBlocksEnchantmentLevel", Integer.valueOf(5));
+        config.addDefault("AllowBommer", Boolean.TRUE);
+        config.addDefault("AllowEndsword", Boolean.TRUE);
+        config.addDefault("AllowBlitzer", Boolean.TRUE);
+        config.addDefault("AllowCrafter", Boolean.TRUE);
+        config.addDefault("AllowBlazer", Boolean.TRUE);
+        config.addDefault("AllowBower", Boolean.TRUE);
+        config.addDefault("AllowPigCannon", Boolean.TRUE);
+        config.addDefault("AllowFlyFeather", Boolean.TRUE);
+        config.addDefault("AllowAntiFall", Boolean.TRUE);
+        config.addDefault("AllowCraftOtherItems", Boolean.TRUE);
+        config.addDefault("AllowHookofVelectory", Boolean.TRUE);
+        config.addDefault("AllowCraftNightVisor", Boolean.TRUE);
+        config.addDefault("AllowCraftWaterHelmet", Boolean.TRUE);
+        config.addDefault("AllowCraftLaucher", Boolean.TRUE);
+        config.addDefault("AllowCraftFireShoes", Boolean.TRUE);
+        config.addDefault("AllowCraftWandOfBoom", Boolean.TRUE);
+        config.addDefault("AllowCraftWandOfMassiveBoom", Boolean.TRUE);
+        config.addDefault("AllowCraftWandOfInvisiblity", Boolean.TRUE);
+        config.addDefault("AllowCraftSpeedLeggings", Boolean.TRUE);
+        config.addDefault("AllowCraftSuperSponge", Boolean.TRUE);
+        config.addDefault("AllowCrafLavaSponge", Boolean.TRUE);
+        config.addDefault("AllowCraftEnderpealer", Boolean.TRUE);
         config.addDefault("UUIDinternal", rndnumfinal);
-        config.addDefault("AllowCraftTNTDetonator", true);
-        config.addDefault("AllowCraftCursedSword", true);
-        config.addDefault("CursedSwordEnabled", true);
-        config.addDefault("PrivatePocketDimensionEnabled", true);
-        config.addDefault("AllowCraftPrivatePocketDimension", true);
-        config.addDefault("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock", 50);
-        config.addDefault("AllowCraftAntiExplosionHelmet", true);
-        config.addDefault("AntiExplosionHelmetAntiExploEnchLevel", 75);
-        config.addDefault("AllowCraftandActivatedWandofHome", true);
-        config.addDefault("AllowCraftTNTBow", true);
+        config.addDefault("AllowCraftTNTDetonator", Boolean.TRUE);
+        config.addDefault("AllowCraftCursedSword", Boolean.TRUE);
+        config.addDefault("CursedSwordEnabled", Boolean.TRUE);
+        config.addDefault("PrivatePocketDimensionEnabled", Boolean.TRUE);
+        config.addDefault("AllowCraftPrivatePocketDimension", Boolean.TRUE);
+        config.addDefault("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock", Integer.valueOf(50));
+        config.addDefault("AllowCraftAntiExplosionHelmet", Boolean.TRUE);
+        config.addDefault("AntiExplosionHelmetAntiExploEnchLevel", Integer.valueOf(75));
+        config.addDefault("AllowCraftandActivatedWandofHome", Boolean.TRUE);
+        config.addDefault("AllowCraftTNTBow", Boolean.TRUE);
         config.addDefault("TNTBowTNTAmount", 50);
-        config.addDefault("ActivateWandofBlocks", true);
-        config.addDefault("AllowCraftWandofBlocks", true);
-        config.addDefault("EnablePortal2Go", true);
-        config.addDefault("EnableSkullImitator", true);
-        config.addDefault("EnableLandmine", true);
-        config.addDefault("EnableLandminePerformanceMode", false);
-        config.addDefault("AllowCraftInfWaterBucket", true);
+        config.addDefault("ActivateWandofBlocks", Boolean.TRUE);
+        config.addDefault("AllowCraftWandofBlocks", Boolean.TRUE);
+        config.addDefault("EnablePortal2Go", Boolean.TRUE);
+        config.addDefault("EnableSkullImitator", Boolean.TRUE);
+        config.addDefault("EnableLandmine", Boolean.TRUE);
+        config.addDefault("EnableLandminePerformanceMode", Boolean.FALSE);
+        config.addDefault("AllowCraftInfWaterBucket", Boolean.TRUE);
+        config.addDefault("AllowCraftProtectiveElytra", Boolean.TRUE);
 
         //PRIVATE POCKET DIMESION
         //PrivatePocketDimensionPerformanceModeActivated
-        config.addDefault("PrivatePocketDimensionPerformanceModeActivated", false);
+        config.addDefault("PrivatePocketDimensionPerformanceModeActivated", Boolean.FALSE);
 
         //AUTOITEMSREMOVE
-        config.addDefault("EnableAutomaticPeriodicItemsRemove", false);
-        config.addDefault("AutomaticPeriodicItemsRemoveWarningDurationSecs", 60);
-        config.addDefault("AutomaticPeriodicItemsRemovePeriodeInMinutes", 30);
+        config.addDefault("EnableAutomaticPeriodicItemsRemove", Boolean.FALSE);
+        config.addDefault("AutomaticPeriodicItemsRemoveWarningDurationSecs", Integer.valueOf(60));
+        config.addDefault("AutomaticPeriodicItemsRemovePeriodeInMinutes", Integer.valueOf(30));
 
         //LOGGER
-        config.addDefault("CLoggerMode", 0);
-        config.addDefault("CLoggerFlushIntervallSec", 300);
+        config.addDefault("CLoggerMode", Integer.valueOf(0));
+        config.addDefault("CLoggerFlushIntervallSec", Integer.valueOf(300));
 
 
         //TNTBowTNTAmount
@@ -420,6 +420,10 @@ public class Main extends JavaPlugin implements Listener
             landminePerfModeEnabeled=true;
         }
 
+        //AllowCraftProtectiveElytra
+        if (config.getBoolean("AllowCraftInfWaterBucket")) {
+            RecipeAdder.addRecipe39(plugin);
+        }
         Main.ore_gen_chance_private_dim = config.getInt("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock");
         Main.isprivatedimenableled = config.getBoolean("PrivatePocketDimensionEnabled");
         Main.config_anti_explo_helmet_lvl = config.getInt("AntiExplosionHelmetAntiExploEnchLevel");
@@ -480,12 +484,12 @@ public class Main extends JavaPlugin implements Listener
         Bukkit.getLogger().info("");
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.6        |");
+        Bukkit.getLogger().info("|        OPItems 1.9.7        |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
         Bukkit.getLogger().info("");
-        opitems_version = "1.9.5";
+        opitems_version = "1.9.7";
         
 
     }
