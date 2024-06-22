@@ -766,4 +766,32 @@ public class RecipeAdder
 
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
     }
+
+    public static void addRecipe39(final Main pluginint) {
+        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_39");
+        RecipeAdder.map.put(38, key);
+        final ItemStack itemStack = new ItemStack(Material.ELYTRA, 1);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Protective Elytra");
+
+        itemMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 10, true);
+        itemMeta.addEnchant(Enchantment.PROTECTION_FIRE, 3, true);
+        itemMeta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3, true);
+        itemMeta.addEnchant(Enchantment.PROTECTION_PROJECTILE, 3, true);
+
+        itemMeta.addEnchant(Enchantment.DURABILITY, 3, true);
+        itemMeta.addEnchant(Enchantment.MENDING, 3, true);
+
+        itemStack.setItemMeta(itemMeta);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape(new String[] { "ccc", "xax", "bdb" });
+        shapedRecipe.setIngredient('a', Material.ELYTRA);
+        shapedRecipe.setIngredient('b', Material.DIAMOND);
+        shapedRecipe.setIngredient('c', Material.DIAMOND);
+        shapedRecipe.setIngredient('d', Material.NETHERITE_CHESTPLATE);
+
+
+
+        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+    }
 }

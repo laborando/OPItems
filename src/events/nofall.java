@@ -13,6 +13,9 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.Listener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class nofall implements Listener
 {
     @EventHandler(priority = EventPriority.HIGH)
@@ -22,6 +25,9 @@ public class nofall implements Listener
             final ItemStack i = new ItemStack(Material.FEATHER, 1);
             final ItemMeta itemMeta = i.getItemMeta();
             itemMeta.setDisplayName(ChatColor.BOLD + "AntiFall");
+            List<String> lore = new ArrayList<>();
+            lore.add(ChatColor.RED + " - As long as this is in your inventory, you will be immune to fall-damage");
+            itemMeta.setLore(lore);
             itemMeta.setUnbreakable(true);
             itemMeta.addEnchant(Enchantment.ARROW_FIRE, 10, true);
             i.setItemMeta(itemMeta);
@@ -35,6 +41,9 @@ public class nofall implements Listener
             final ItemStack i = new ItemStack(Material.FEATHER, 1);
             final ItemMeta itemMeta = i.getItemMeta();
             itemMeta.setDisplayName(ChatColor.BOLD + "AntiFall");
+            List<String> lore = new ArrayList<>();
+            lore.add(ChatColor.RED + " - As long as this is in your inventory, you will be immune to fall-damage");
+            itemMeta.setLore(lore);
             itemMeta.setUnbreakable(true);
             itemMeta.addEnchant(Enchantment.ARROW_FIRE, 10, true);
             i.setItemMeta(itemMeta);
