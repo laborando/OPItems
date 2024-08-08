@@ -48,8 +48,9 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "a!a", "a@a", "a@a" });
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('!', Material.SLIME_BLOCK);
-       
         Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        System.out.println(Bukkit.getServer().getRecipe(new NamespacedKey((Plugin)pluginint, "opitems_desc_1")));
+        System.out.println(Bukkit.getServer().getRecipe(new NamespacedKey((Plugin)pluginint, "opitems_desc_1")).getResult().getType());
     }
     
     public static void addRecipe2(final Main pluginint, final int level) {
