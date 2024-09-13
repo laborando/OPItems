@@ -238,6 +238,7 @@ public class Main extends JavaPlugin implements Listener
         config.addDefault("EnableLandminePerformanceMode", Boolean.FALSE);
         config.addDefault("AllowCraftInfWaterBucket", Boolean.TRUE);
         config.addDefault("AllowCraftProtectiveElytra", Boolean.TRUE);
+        config.addDefault("EnableRiptider", Boolean.TRUE);
 
         //PRIVATE POCKET DIMESION
         //PrivatePocketDimensionPerformanceModeActivated
@@ -280,7 +281,13 @@ public class Main extends JavaPlugin implements Listener
         	this.getServer().getPluginManager().registerEvents(new WandOfBlocks(), this);
         }
         
-        
+        //EnableRiptider
+        if (config.getBoolean("EnableRiptider")) {
+            this.getServer().getPluginManager().registerEvents(new Riptider(), this);
+            RecipeAdder.addRecipe40(plugin);
+        }
+
+
         if (config.getBoolean("CursedSwordEnabled")) {
             this.getServer().getPluginManager().registerEvents(new cursed_sword(), this);
         }
@@ -484,12 +491,12 @@ public class Main extends JavaPlugin implements Listener
         Bukkit.getLogger().info("");
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.7        |");
+        Bukkit.getLogger().info("|        OPItems 1.9.8        |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
         Bukkit.getLogger().info("");
-        opitems_version = "1.9.7";
+        opitems_version = "1.9.8";
         
 
     }

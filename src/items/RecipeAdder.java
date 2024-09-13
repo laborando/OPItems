@@ -1,6 +1,8 @@
 
 package items;
 
+import celutis.CLogger;
+import celutis.Logutis;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.Recipe;
@@ -48,7 +50,17 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "a!a", "a@a", "a@a" });
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('!', Material.SLIME_BLOCK);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
         System.out.println(Bukkit.getServer().getRecipe(new NamespacedKey((Plugin)pluginint, "opitems_desc_1")));
         System.out.println(Bukkit.getServer().getRecipe(new NamespacedKey((Plugin)pluginint, "opitems_desc_1")).getResult().getType());
     }
@@ -66,7 +78,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe3(final Main pluginint) {
@@ -81,7 +103,17 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "!a!", "!!!", "!!!" });
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe4(final Main pluginint) {
@@ -100,7 +132,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.BOW);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe5(final Main pluginint) {
@@ -119,7 +161,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.BLAZE_ROD);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe6(final Main pluginint) {
@@ -137,7 +189,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('b', Material.TNT);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe7(final Main pluginint, final int speed, final int loot) {
@@ -154,7 +216,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe8(final Main pluginint) {
@@ -171,7 +243,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('!', Material.PIG_SPAWN_EGG);
         shapedRecipe.setIngredient('b', Material.BOW);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe9(final Main pluginint) {
@@ -187,7 +269,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.PORKCHOP);
         shapedRecipe.setIngredient('!', Material.NETHER_STAR);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe10(final Main pluginint) {
@@ -205,7 +297,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('!', Material.NETHERITE_SWORD);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe11(final Main pluginint) {
@@ -223,7 +325,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('c', Material.NETHERITE_BLOCK);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe12(final Main pluginint) {
@@ -239,7 +351,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.DIAMOND);
         shapedRecipe.setIngredient('!', Material.CRAFTING_TABLE);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe13(final Main pluginint) {
@@ -256,7 +378,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.DRAGON_BREATH);
         shapedRecipe.setIngredient('a', Material.NETHERITE_BLOCK);
         shapedRecipe.setIngredient('!', Material.FEATHER);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe14(final Main pluginint) {
@@ -278,7 +410,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.NETHERITE_BLOCK);
        
         shapedRecipe.setIngredient('!', Material.FEATHER);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe15(final Main pluginint) {
@@ -296,7 +438,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.BAMBOO);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe16(final Main pluginint) {
@@ -315,7 +467,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.IRON_INGOT);
        
         shapedRecipe.setIngredient('c', Material.LANTERN);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe17(final Main pluginint) {
@@ -334,7 +496,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.IRON_INGOT);
        
         shapedRecipe.setIngredient('c', Material.TURTLE_HELMET);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe18(final Main pluginint) {
@@ -353,7 +525,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.IRON_INGOT);
        
         shapedRecipe.setIngredient('c', Material.LAVA_BUCKET);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe19(final Main pluginint) {
@@ -371,7 +553,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('@', Material.FEATHER);
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
        
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe20(final Main pluginint) {
@@ -390,7 +582,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('a', Material.TNT);
         shapedRecipe.setIngredient('t', Material.BLAZE_ROD);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe21(final Main pluginint) {
@@ -409,7 +611,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.NETHERITE_BLOCK);
         shapedRecipe.setIngredient('a', Material.TNT);
         shapedRecipe.setIngredient('t', Material.BLAZE_ROD);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe22(final Main pluginint) {
@@ -427,7 +639,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('a', Material.PHANTOM_MEMBRANE);
         shapedRecipe.setIngredient('t', Material.DRAGON_BREATH);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe23(final Main pluginint) {
@@ -445,7 +667,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('a', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('t', Material.DIAMOND);
         shapedRecipe.setIngredient('e', Material.IRON_LEGGINGS);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe24(final Main pluginint) {
@@ -462,7 +694,17 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "bab", "aba", "bab" });
         shapedRecipe.setIngredient('a', Material.SPONGE);
         shapedRecipe.setIngredient('b', Material.GOLD_INGOT);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe25(final Main pluginint) {
@@ -481,7 +723,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.GOLD_INGOT);
         shapedRecipe.setIngredient('c', Material.MAGMA_BLOCK);
         try {
-            Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+            try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
         }
         catch (IllegalStateException ex) {}
     }
@@ -503,7 +755,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('c', Material.ENDER_PEARL);
         shapedRecipe.setIngredient('d', Material.NETHERITE_INGOT);
         try {
-            Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+            try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
         }
         catch (IllegalStateException ex) {}
     }
@@ -530,7 +792,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('!', Material.BLAZE_POWDER);
         
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe28(final Main pluginint) {
@@ -556,7 +828,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('!', Material.BLAZE_POWDER);
        
         shapedRecipe.setIngredient('x', Material.GLOWSTONE);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe29(final Main pluginint) {
@@ -581,7 +863,17 @@ public class RecipeAdder
        
         shapedRecipe.setIngredient('c', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('x', Material.NETHER_STAR);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe30(final Main pluginint) {
@@ -600,7 +892,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.NETHERITE_INGOT);
        
         shapedRecipe.setIngredient('c', Material.DIAMOND);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe31(final Main pluginint) {
@@ -623,7 +925,17 @@ public class RecipeAdder
        
         shapedRecipe.setIngredient('c', Material.BLAZE_ROD);
         shapedRecipe.setIngredient('d', Material.BELL);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe32(final Main pluginint) {
@@ -643,7 +955,17 @@ public class RecipeAdder
        
         shapedRecipe.setIngredient('c', Material.TNT);
         shapedRecipe.setIngredient('d', Material.BOW);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     
     public static void addRecipe33(final Main pluginint) {
@@ -668,7 +990,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('d', Material.SLIME_BLOCK);
 
         shapedRecipe.setIngredient('e', Material.NETHERITE_BLOCK);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     public static void addRecipe34(final Main pluginint) {
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_34");
@@ -687,7 +1019,17 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "aaa", "aba", "aaa" });
         shapedRecipe.setIngredient('b', Material.FLINT_AND_STEEL);
         shapedRecipe.setIngredient('a', Material.OBSIDIAN);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     public static void addRecipe35(final Main pluginint) {
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_35");
@@ -707,7 +1049,17 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "aaa", "aba", "aaa" });
         shapedRecipe.setIngredient('b', Material.APPLE);
         shapedRecipe.setIngredient('a', Material.BAMBOO);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     public static void addRecipe36(final Main pluginint) {
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_36");
@@ -728,7 +1080,17 @@ public class RecipeAdder
         shapedRecipe.shape(new String[] { "aba", "bab", "aba" });
         shapedRecipe.setIngredient('b', Material.HEAVY_WEIGHTED_PRESSURE_PLATE);
         shapedRecipe.setIngredient('a', Material.TNT);
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     public static void addRecipe37(final Main pluginint) {
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_37");
@@ -748,7 +1110,17 @@ public class RecipeAdder
         shapedRecipe.setIngredient('a', Material.NETHERITE_INGOT);
         shapedRecipe.setIngredient('c', Material.BLAZE_ROD);
 
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
     public static void addRecipe38(final Main pluginint) {
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_38");
@@ -765,12 +1137,22 @@ public class RecipeAdder
         shapedRecipe.setIngredient('a', Material.WATER_BUCKET);
         shapedRecipe.setIngredient('c', Material.DIAMOND);
 
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
 
     public static void addRecipe39(final Main pluginint) {
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_39");
-        RecipeAdder.map.put(38, key);
+        RecipeAdder.map.put(39, key);
         final ItemStack itemStack = new ItemStack(Material.ELYTRA, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Protective Elytra");
@@ -793,6 +1175,49 @@ public class RecipeAdder
 
 
 
-        Bukkit.getServer().addRecipe((Recipe)shapedRecipe);
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
+    }
+
+    public static void addRecipe40(final Main pluginint) {
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_40");
+        RecipeAdder.map.put(40, key);
+        final ItemStack itemStack = new ItemStack(Material.ELYTRA, 1);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Riptider");
+
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RED + " - This Trident can always use its riptide enchantment!");
+        itemMeta.setLore(lore);
+
+        itemStack.setItemMeta(itemMeta);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape(new String[] { "ccc", "xax", "bdb" });
+        shapedRecipe.setIngredient('a', Material.HEART_OF_THE_SEA);
+        shapedRecipe.setIngredient('x', Material.DIAMOND);
+        shapedRecipe.setIngredient('b', Material.FEATHER);
+        shapedRecipe.setIngredient('c', Material.QUARTZ);
+        shapedRecipe.setIngredient('d', Material.TRIDENT);
+
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
     }
 }

@@ -7,19 +7,17 @@ Discord Webhook Messages Version?
 Changelog Updated?
 
 Plan:
-
+Private Pocket Dimensions are now really unloading when quitting
 
 Ofen2Go
 Holo display
 fake player
-rocket to the moon 
-Landminen
 
 IN  WORK:
-Private Pocket Dimensions are now really unloading when quitting
 
-STARTEN:
+Riptider
+
 
 DONE:
 
-
+Added Error handler for recipes adder

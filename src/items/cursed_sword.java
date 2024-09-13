@@ -103,6 +103,7 @@ public class cursed_sword implements Listener
         }
         catch (IOException e) {
             e.printStackTrace();
+            Bukkit.getLogger().warning("This could be resolved after a restart! Please try again!");
         }
     }
     
