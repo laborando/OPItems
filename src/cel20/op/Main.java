@@ -132,7 +132,7 @@ public class Main extends JavaPlugin implements Listener
 
         //Bukkit.getLogger().info("Loaded List<Entity> for Cursed Sword | File: /plugins/OPItems/op_cursed_sword_data");
         
-        int test = randomrange(0, 1500240);
+        int test = randomrange(0, 1500241);
         int test2 = randomrange(0, 1500240);
         int test3 = randomrange(0, 1500240);
         int test4 = randomrange(0, 1500240);
