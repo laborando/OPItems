@@ -1,4 +1,4 @@
-package items;
+package items.normal;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,16 +17,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockEvent;
-import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import cel20.op.Main;
-import celutis.celutis;
+import utis.celutis;
 
 public class WandOfBlocks implements Listener {
 	

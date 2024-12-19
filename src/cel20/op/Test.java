@@ -5,8 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.ConcurrentModificationException;
-import java.util.List;
 import java.util.Queue;
 
 public class Test {
@@ -21,7 +19,7 @@ public class Test {
 
         Location lp = p.getLocation().add(0, 1, 0);
 
-        Queue<Location> ll = celutis.celutis.getCircleLocationsQue(lp, 4, 20);
+        Queue<Location> ll = utis.celutis.getCircleLocationsQue(lp, 4, 20);
 
         t = new BukkitRunnable() {
             @Override

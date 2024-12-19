@@ -12,12 +12,11 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import items.give_items;
+import items.normal.give_items;
 
 public class Gui_handler implements Listener
 {
@@ -851,7 +850,7 @@ public class Gui_handler implements Listener
                     a10.setItemMeta(aa);
                 }
                 
-                int wandOfBoomExplosionStrength = cel20.op.Main.getPluginInstance().getConfig().getInt("Wand_of_Boom_Explosion_Strenght");
+                int wandOfBoomExplosionStrength = cel20.op.Main.getPluginInstance().getConfig().getInt("Wand_of_Boom_Explosion_Strength");
                 String wandOfBoomDisplayName = ChatColor.GREEN + "Wand of Boom Explosion Strength: " + ChatColor.BOLD + wandOfBoomExplosionStrength;
                 a10.setType(Material.YELLOW_CONCRETE);
                aa = a10.getItemMeta();

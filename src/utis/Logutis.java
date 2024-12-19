@@ -1,4 +1,4 @@
-package celutis;
+package utis;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;

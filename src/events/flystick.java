@@ -1,7 +1,7 @@
 
 package events;
 
-import cel20.op.Updater;
+import utis.Updater;
 import cel20.op.Main;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
 
 public class flystick implements Listener
 {

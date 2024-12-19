@@ -1,5 +1,5 @@
 
-package cel20.op;
+package utis;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import java.net.URLConnection;
@@ -18,7 +18,6 @@ import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
-import org.bukkit.configuration.file.YamlConfiguration;
 import java.net.URL;
 import java.io.File;
 import org.bukkit.plugin.Plugin;

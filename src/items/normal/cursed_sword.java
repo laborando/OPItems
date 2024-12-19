@@ -1,5 +1,5 @@
 
-package items;
+package items.normal;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.util.io.BukkitObjectInputStream;
@@ -13,7 +13,6 @@ import java.io.OutputStream;
 import java.util.zip.GZIPOutputStream;
 import java.io.FileOutputStream;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -25,9 +24,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 

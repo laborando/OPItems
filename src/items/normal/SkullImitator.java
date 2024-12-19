@@ -1,4 +1,4 @@
-package items;
+package items.normal;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

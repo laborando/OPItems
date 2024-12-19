@@ -1,22 +1,18 @@
 
 
-package celutis;
+package utis;
 
-import com.mojang.authlib.GameProfile;
 import org.bukkit.*;
 
 import java.io.File;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Block;
 
-import java.lang.reflect.Field;
 import java.util.*;
 
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.util.Vector;
 
@@ -25,7 +21,7 @@ public class celutis
 	
 	//v0.5 MC
 	
-    private static int randomrange(final int min, final int max) {
+    public static int randomrange(final int min, final int max) {
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min!");
         }
