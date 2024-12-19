@@ -1,5 +1,5 @@
 
-package items;
+package items.normal;
 
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.ItemFlag;

@@ -1,5 +1,5 @@
 package dimensions;
-import celutis.celutis;
+import utis.celutis;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.TreeType;

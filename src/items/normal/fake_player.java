@@ -1,5 +1,5 @@
 
-package items;
+package items.normal;
 
 import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Location;
@@ -7,7 +7,6 @@ import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import com.mojang.authlib.GameProfile;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
 public class fake_player extends EntityPlayer {
 

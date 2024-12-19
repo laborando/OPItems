@@ -1,10 +1,9 @@
-package items;
+package items.normal;
 
 
 import cel20.op.Main;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

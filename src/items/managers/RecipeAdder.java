@@ -1,11 +1,9 @@
 
-package items;
+package items.managers;
 
-import celutis.CLogger;
-import celutis.Logutis;
+import utis.CLogger;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.ChatColor;
@@ -15,7 +13,7 @@ import org.bukkit.plugin.Plugin;
 import cel20.op.Main;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import java.util.HashMap;
@@ -61,8 +59,6 @@ public class RecipeAdder
             CLogger.logAndFlush(e.getMessage());
 
         }
-        System.out.println(Bukkit.getServer().getRecipe(new NamespacedKey((Plugin)pluginint, "opitems_desc_1")));
-        System.out.println(Bukkit.getServer().getRecipe(new NamespacedKey((Plugin)pluginint, "opitems_desc_1")).getResult().getType());
     }
     
     public static void addRecipe2(final Main pluginint, final int level) {
@@ -1220,4 +1216,40 @@ public class RecipeAdder
 
         }
     }
+
+
+    public static void addRecipe41(final Main pluginint) {
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_41");
+        RecipeAdder.map.put(40, key);
+        final ItemStack itemStack = new ItemStack(Material.ELYTRA, 1);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Wand of Warden");
+
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RED + " - Click anywhere on the ground to spawn a warden!");
+        lore.add(ChatColor.RED + " - Effect: -5 Hearts; Spawns Warden on the clicked position");
+        itemMeta.setLore(lore);
+
+        itemStack.setItemMeta(itemMeta);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape(new String[] { "cxc", "xax", "bdb" });
+        shapedRecipe.setIngredient('a', Material.NETHER_STAR);
+        shapedRecipe.setIngredient('x', Material.OBSIDIAN);
+        shapedRecipe.setIngredient('b', Material.IRON_BARS);
+        shapedRecipe.setIngredient('c', Material.OBSERVER);
+        shapedRecipe.setIngredient('d', Material.END_ROD);
+
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
+    }
+
 }

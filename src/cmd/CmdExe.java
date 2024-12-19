@@ -3,14 +3,17 @@ package cmd;
 import java.io.File;
 import java.util.UUID;
 
-import celutis.CLogger;
-import celutis.Logutis;
+import items.managers.RecipeAdder;
+import items.normal.cursed_sword;
+import items.normal.fake_player;
+import items.normal.give_items;
+import items.normal.landmine;
+import utis.CLogger;
+import utis.Logutis;
 import com.mojang.authlib.GameProfile;
-import items.*;
 import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -24,7 +27,7 @@ import events.mega_sponge;
 import o_guis.op_gui;
 import manage.Items;
 
-import static celutis.celutis.deleteDirectory;
+import static utis.celutis.deleteDirectory;
 
 public class CmdExe implements CommandExecutor{
 
@@ -199,7 +202,7 @@ public class CmdExe implements CommandExecutor{
                     sender.sendMessage(ChatColor.RED + "Usage: /opitems skull <player_name>");
                 } else {
                     Player p = (Player) sender;
-                    p.getInventory().addItem(celutis.celutis.getSkullbyName(arg2));
+                    p.getInventory().addItem(utis.celutis.getSkullbyName(arg2));
                     sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
                 }
 

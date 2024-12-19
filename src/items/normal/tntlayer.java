@@ -1,9 +1,8 @@
 
-package items;
+package items.normal;
 
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.EventHandler;
-import java.util.Iterator;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.EntityType;
