@@ -1220,14 +1220,18 @@ public class RecipeAdder
 
     public static void addRecipe41(final Main pluginint) {
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_41");
-        RecipeAdder.map.put(40, key);
-        final ItemStack itemStack = new ItemStack(Material.ELYTRA, 1);
+        RecipeAdder.map.put(41, key);
+        final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Wand of Warden");
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, false);
+        itemMeta.addEnchant(Enchantment.QUICK_CHARGE, 1, false);
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.RED + " - Click anywhere on the ground to spawn a warden!");
         lore.add(ChatColor.RED + " - Effect: -5 Hearts; Spawns Warden on the clicked position");
+        lore.add(ChatColor.RED + " - Cooldown: 90s");
         itemMeta.setLore(lore);
 
         itemStack.setItemMeta(itemMeta);
@@ -1238,6 +1242,38 @@ public class RecipeAdder
         shapedRecipe.setIngredient('b', Material.IRON_BARS);
         shapedRecipe.setIngredient('c', Material.OBSERVER);
         shapedRecipe.setIngredient('d', Material.END_ROD);
+
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
+    }
+
+    public static void addRecipe42(final Main pluginint) {
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_42");
+        RecipeAdder.map.put(42, key);
+        final ItemStack itemStack = new ItemStack(Material.DIAMOND_BOOTS, 1);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Jumpy Boots");
+
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RED + " - Enables one to triple jump");
+        lore.add(ChatColor.RED + " - Can be upgraded to netherite and enchanted!");
+        itemMeta.setLore(lore);
+
+        itemStack.setItemMeta(itemMeta);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape(new String[] { "xbx", "xcx", "xax" });
+        shapedRecipe.setIngredient('x', Material.DIAMOND);
+        shapedRecipe.setIngredient('b', Material.DIAMOND_BLOCK);
+        shapedRecipe.setIngredient('c', Material.FEATHER);
 
         try {
             Bukkit.getServer().addRecipe(shapedRecipe);

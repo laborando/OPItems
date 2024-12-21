@@ -100,7 +100,8 @@ public class ConfigInniter {
         config.addDefault("AllowCraftProtectiveElytra", Boolean.TRUE);
         config.addDefault("EnableRiptider", Boolean.TRUE);
         config.addDefault("EnableItemsForNewerVersions", Boolean.TRUE);
-        config.addDefault("EnableWandOfWarden", Boolean.TRUE);
+        config.addDefault("EnableCraftWandOfWarden", Boolean.TRUE);
+        config.addDefault("EnableJumpyBoots", Boolean.TRUE);
 
 
 

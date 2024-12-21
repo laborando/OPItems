@@ -14,7 +14,7 @@ public class Other implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerBucketEmptyEvent e) {
-        final Player p = (Player) e.getPlayer();
+        final Player p = e.getPlayer();
         final ItemStack item = p.getInventory().getItemInMainHand();
         if(item.getItemMeta() == null){
             return;

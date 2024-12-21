@@ -3,10 +3,11 @@ package cmd;
 import java.io.File;
 import java.util.UUID;
 
+import cel20.op.Test;
 import items.managers.RecipeAdder;
 import items.normal.cursed_sword;
 import items.normal.fake_player;
-import items.normal.give_items;
+import items.managers.give_items;
 import items.normal.landmine;
 import utis.CLogger;
 import utis.Logutis;
@@ -156,6 +157,13 @@ public class CmdExe implements CommandExecutor{
                 sender.sendMessage(ChatColor.RED + "No Subcommand! Please write /opitems <help | give | gui | update>");
                 return true;
             }
+
+            if (arg.equalsIgnoreCase("test")) {
+                if (sender.isOp()) {
+                    Test.runCurrentTest((Player) sender);
+                }
+            }
+
             if (arg.equalsIgnoreCase("give")) {
                 if (sender.isOp()) {
 
