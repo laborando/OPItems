@@ -17,11 +17,11 @@ public class SkullImitator implements Listener {
     public void event(final BlockPlaceEvent e) {
         final Player p = (Player) e.getPlayer();
         final ItemStack item = p.getInventory().getItemInMainHand();
-        if(item.getItemMeta() == null){
+        if (item.getItemMeta() == null) {
             return;
         }
         if (item.getType() == Material.PLAYER_HEAD && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Skull Imitator")) {
-            if(!(p.isSneaking())) {
+            if (!(p.isSneaking())) {
 
                 p.sendMessage(ChatColor.RED + "Do you really want to place this head and lock its texture?");
                 p.sendMessage(ChatColor.RED + "If yes: Sneak + Place");
@@ -37,16 +37,13 @@ public class SkullImitator implements Listener {
             final Player p = (Player) e.getPlayer();
 
 
-
             final ItemStack item = p.getInventory().getItemInMainHand();
-            if(item.getItemMeta() == null){
+            if (item.getItemMeta() == null) {
                 return;
             }
 
 
-
             if (item.getType() == Material.PLAYER_HEAD && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Skull Imitator")) {
-
 
 
                 if (e.getAction() == Action.RIGHT_CLICK_AIR) {
@@ -55,7 +52,8 @@ public class SkullImitator implements Listener {
                     try {
                         sm.setOwner(p.getPlayer().getName());
                         item.setItemMeta(sm);
-                    }catch (NullPointerException ignored1){}
+                    } catch (NullPointerException ignored1) {
+                    }
                 }
 
 

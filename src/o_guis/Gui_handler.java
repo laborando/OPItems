@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import items.normal.give_items;
+import items.managers.give_items;
 
 public class Gui_handler implements Listener
 {

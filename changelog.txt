@@ -1,12 +1,13 @@
-Hidden File: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/files/4669814
-
 Vor Release:
 Plugin.yml Version?
 Startup Message Version?
-Discord Webhook Messages Version?
 Changelog Updated?
 
+//Discord Webhook Messages Version?
+
+
 Plan:
+Complete GUI rework
 Private Pocket Dimensions are now really unloading when quitting
 
 Ofen2Go
@@ -14,13 +15,11 @@ Holo display
 fake player
 
 IN  WORK:
-Warden
 
 
 DONE:
+Warden
 Tidied up
 Added Error handler for recipes adder
 
-CANCELED
-Riptider
 

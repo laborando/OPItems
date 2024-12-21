@@ -102,9 +102,6 @@ public class ConfigLoader {
         if (config.getBoolean("AllowCraftFireShoes")) {
             RecipeAdder.addRecipe18(plugin);
         }
-        if (config.getBoolean("AllowCraftLaucher")) {
-            RecipeAdder.addRecipe19(plugin);
-        }
         if (config.getBoolean("AllowCraftLauncher")) {
             RecipeAdder.addRecipe19(plugin);
         }
@@ -114,9 +111,6 @@ public class ConfigLoader {
         if (config.getBoolean("AllowCraftWandOfMassiveBoom")) {
             RecipeAdder.addRecipe21(plugin);
         }
-        if (config.getBoolean("AllowCraftWandOfInvisiblity")) {
-            RecipeAdder.addRecipe22(plugin);
-        }
         if (config.getBoolean("AllowCraftWandOfInvisibility")) {
             RecipeAdder.addRecipe22(plugin);
         }
@@ -125,9 +119,6 @@ public class ConfigLoader {
         }
         if (config.getBoolean("AllowCraftSuperSponge")) {
             RecipeAdder.addRecipe24(plugin);
-        }
-        if (config.getBoolean("AllowCrafLavaSponge")) {
-            RecipeAdder.addRecipe25(plugin);
         }
         if (config.getBoolean("AllowCraftLavaSponge")) {
             RecipeAdder.addRecipe25(plugin);
@@ -197,11 +188,15 @@ public class ConfigLoader {
 
 
         if (config.getBoolean("EnableItemsForNewerVersions") && GlobalVars.newerFeaturesEnabled) {
-            if (config.getBoolean("EnableWandOfWarden")) {
+            if (config.getBoolean("EnableCraftWandOfWarden")) {
                 RecipeAdder.addRecipe41(plugin);
             }
+        }
 
-
+        //EnableJumpyBoots
+        if (config.getBoolean("EnableJumpyBoots")) {
+            m.getServer().getPluginManager().registerEvents(new JumpyBoots(), m);
+            RecipeAdder.addRecipe42(plugin);
         }
 
 

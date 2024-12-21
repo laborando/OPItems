@@ -34,14 +34,15 @@ public class fake_player extends EntityPlayer {
 
         // add player in player list for player
         connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, this));
+
         // make player spawn in world
         connection.sendPacket(new PacketPlayOutNamedEntitySpawn(this));
+
         // change head rotation
         connection.sendPacket(new PacketPlayOutEntityHeadRotation(this, (byte) ((loc.getYaw() * 256f) / 360f)));
-        // now remove player from tab list
+
+        //byebye
         connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, this));
-        // here the entity is showed, you can show item in hand like that :
-        // connection.sendPacket(new PacketPlayOutEntityEquipment(getId(), 0, CraftItemStack.asNMSCopy(itemInHand)));
     }
 
     public void remove() {

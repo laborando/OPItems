@@ -1,6 +1,9 @@
 
 package cel20.op;
 
+import java.util.logging.Filter;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.io.File;
 
@@ -8,7 +11,9 @@ import cel20.op.config.ConfigInniter;
 import cel20.op.config.ConfigLoader;
 import cel20.op.data.ItemData;
 import cel20.op.load.*;
+import com.mysql.jdbc.log.Log;
 import items.managers.RecipeAdder;
+import org.apache.logging.log4j.LogManager;
 import utis.CLogger;
 import org.bukkit.command.CommandSender;
 import org.bukkit.ChatColor;
@@ -74,18 +79,13 @@ public class Main extends JavaPlugin implements Listener
 
         String mcVer = Bukkit.getVersion();
 
+        boolean sheduleNewerFeatures = false;
+
         try{
             String majVer = mcVer.split("\\.")[1];
             Bukkit.getLogger().info("Server is running major version " + majVer);
             if(Integer.parseInt(majVer) > 19){
-                Bukkit.getLogger().info(ChatColor.GREEN + "Features for newer Versions enabled.");
-
-                GlobalVars.newerFeaturesEnabled = true;
-
-                VersionDependent.loadNewerItems(this);
-
-            }else{
-                Bukkit.getLogger().info(ChatColor.RED + "Features for newer Versions not enabled. Please use Mc1.20");
+                sheduleNewerFeatures = true;
             }
         }catch(Exception ignored){}
 
@@ -108,6 +108,17 @@ public class Main extends JavaPlugin implements Listener
         //CONTENT
         //items
         ItemData.loadItems(plugin);
+        //Newer Content
+        if(config.getBoolean("EnableItemsForNewerVersions")){
+            if(sheduleNewerFeatures){
+                VersionDependent.loadNewerItems(this);
+                GlobalVars.newerFeaturesEnabled = true;
+                Bukkit.getLogger().info("Features for newer Versions enabled.");
+            }else{
+                Bukkit.getLogger().info("Features for newer Versions not enabled. Please use Mc1.20+");
+            }
+        }
+
 
 
         Bukkit.getLogger().info("[OPItems]Successfully Enabled");
@@ -122,7 +133,6 @@ public class Main extends JavaPlugin implements Listener
         Bukkit.getLogger().info("This is a BETA Version of OPItems!");
         Bukkit.getLogger().info("");
         opitems_version = "1.9.8";
-        
 
     }
     
@@ -163,5 +173,4 @@ public class Main extends JavaPlugin implements Listener
         return priDimPerformMode;
     }
 
-    
 }

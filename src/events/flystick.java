@@ -40,7 +40,7 @@ public class flystick implements Listener
         	}
         }
         if (!p.getInventory().contains(nv) && p.isInvisible()) {
-            p.sendMessage("You are not invisibel anymore");
+            p.sendMessage("You are not invisible anymore");
             p.setInvisible(false);
         }
     }
@@ -63,7 +63,7 @@ public class flystick implements Listener
             p.setAllowFlight(false);
         }
         if (!p.getInventory().contains(nv) && p.isInvisible()) {
-            p.sendMessage("You are not invisibel anymore");
+            p.sendMessage("You are not invisible anymore");
             p.setInvisible(false);
         }
     }
@@ -88,7 +88,7 @@ public class flystick implements Listener
         	}
         }
         if (!p.getInventory().contains(nv) && p.isInvisible()) {
-            p.sendMessage("You are not invisibel anymore");
+            p.sendMessage("You are not invisible anymore");
             p.setInvisible(false);
         }
     }
@@ -99,10 +99,10 @@ public class flystick implements Listener
         final Player p = e.getPlayer();
         if (Main.update == 1 && p.isOp()) {
             if (Main.update_type == Updater.ReleaseType.RELEASE) {
-                p.sendMessage(ChatColor.GREEN + "A new Update is aviable for OPItems update with /opitems update or /updateopitems");
+                p.sendMessage(ChatColor.GREEN + "A new Update is available for OPItems update with /opitems update or /updateopitems");
             }
             if (Main.update_type == Updater.ReleaseType.BETA) {
-                p.sendMessage(ChatColor.GREEN + "A new Update is aviable for OPItems update with /opitems update or /updateopitems");
+                p.sendMessage(ChatColor.GREEN + "A new Update is available for OPItems update with /opitems update or /updateopitems");
             }
         }
     }

@@ -12,20 +12,20 @@ import org.bukkit.projectiles.ProjectileSource;
 
 public class Riptider implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final ProjectileLaunchEvent e) {
-        Bukkit.broadcastMessage("f");
-
-        if (e.getEntity().getType() != EntityType.TRIDENT) return;
-
-        Bukkit.broadcastMessage("m");
-
-        ProjectileSource p = e.getEntity().getShooter();
-
-        if(!(p instanceof Player)) return;
-
-
-
-
-    }
+//    @EventHandler(priority = EventPriority.HIGH)
+//    public void event(final ProjectileLaunchEvent e) {
+//        Bukkit.broadcastMessage("f");
+//
+//        if (e.getEntity().getType() != EntityType.TRIDENT) return;
+//
+//        Bukkit.broadcastMessage("m");
+//
+//        ProjectileSource p = e.getEntity().getShooter();
+//
+//        if(!(p instanceof Player)) return;
+//
+//
+//
+//
+//    }
 }

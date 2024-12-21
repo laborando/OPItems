@@ -1,72 +1,65 @@
 package items.newer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.bukkit.Location;
+import cel20.op.Test;
+import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import cel20.op.Main;
+import utis.ParticleUtis;
 import utis.celutis;
 
 public class WandOfWarden implements Listener {
 
-    private ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
+    static Map<String, Long> Cooldown = new HashMap<>();
 
-    @EventHandler
-    public void onProjectileLaunch(ProjectileLaunchEvent event) {
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerInteractEvent e) {
 
-        if (event.getEntity() instanceof Arrow) {
-            Arrow arrow = (Arrow) event.getEntity();
-            if (arrow.getShooter() instanceof Player) {
-                Player shooter = (Player) arrow.getShooter();
+        final Player p = e.getPlayer();
+        final ItemStack item = p.getInventory().getItemInMainHand();
+        if (item.getType() == Material.BLAZE_ROD && item.containsEnchantment(Enchantment.ARROW_DAMAGE) && item.containsEnchantment(Enchantment.QUICK_CHARGE)) {
 
-                ItemStack bow = shooter.getInventory().getItemInMainHand();
-                if (bow.containsEnchantment(Enchantment.SILK_TOUCH) && bow.containsEnchantment(Enchantment.LUCK)) {
+            if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                final Block b = e.getClickedBlock();
 
-                    firedArrows.add(arrow);
+
+
+                Cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
+
+                if(!((System.currentTimeMillis() - Cooldown.get(p.getName())) >= 90000)) {
+                    p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Still on cooldown...");
+                    return;
                 }
+
+
+                Cooldown.put(p.getName(), System.currentTimeMillis());
+
+                p.damage(10);
+
+
+                ParticleUtis.particleCircleWithWarden(b.getLocation().add(0, 1, 0), 3, 30, Particle.REDSTONE, Color.AQUA, 0.5f, 2, 5, p);
+
             }
         }
     }
 
-    @EventHandler
-    public void onProjectileHit(ProjectileHitEvent event) {
-        if (event.getEntity() instanceof Arrow) {
-            Arrow arrow = (Arrow) event.getEntity();
-            if (firedArrows.contains(arrow)) {
-
-                Location l = arrow.getLocation();
-
-                spawnExplosiveTNT(l);
-
-                firedArrows.remove(arrow);
-            }
-        }
-    }
-
-    public void spawnExplosiveTNT(Location location) {
-        for (int i = 0; i < Main.tntbowamount; i++) {
-            Location spawnLocation = location.clone().add(0.5, 0, 0.5);
-            TNTPrimed tnt = (TNTPrimed) location.getWorld().spawnEntity(spawnLocation, EntityType.PRIMED_TNT);
-
-            Vector velocity = new Vector(celutis.randomRangeDouble(-0.1, 0.1), celutis.randomRangeDouble(0.005, 0.2), celutis.randomRangeDouble(-0.1, 0.1));
-            velocity.normalize().multiply(1);
-
-
-            tnt.setFuseTicks(40);
-            tnt.setVelocity(velocity);
-
-        }
-    }
 
 }
