@@ -3,22 +3,24 @@ Plugin.yml Version?
 Startup Message Version?
 Changelog Updated?
 
-//Discord Webhook Messages Version?
-
-
 Plan:
 Complete GUI rework
-Private Pocket Dimensions are now really unloading when quitting
 
 Ofen2Go
 Holo display
-fake player
+fake player?
 
 IN  WORK:
 
 
 DONE:
-Warden
+Fixed landmines deleting the records of itself when placed in not supported world (disabled that!)
+Private Pocket Dimensions should now really unload when quitting
+Readded /give
+Fixed Portal2Go going from nether to the overworld
+Fixed Private Dimension Wand
+Fixed many typos, but many still to go!
+Wand of Warden
 Tidied up
 Added Error handler for recipes adder
 

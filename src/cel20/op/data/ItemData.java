@@ -23,10 +23,8 @@ public class ItemData {
 
         cursed_sword.saveData(Main.data_save_cursed_sword);
 
-        //Bukkit.getLogger().info("Saved List<Entity> for Cursed Sword | File: /plugins/OPItems/op_cursed_sword_data");
         WandOfHome.saveData(Main.data_save_homes);
 
-        //Bukkit.getLogger().info("Saved HashMap<String, Location> for Wand of Home | File: /plugins/OPItems/wand_of_home_data");
         DimensionWand.saveData(Main.data_save_play_dim);
 
         landmine.save();

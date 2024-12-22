@@ -1,13 +1,8 @@
 package cmd.filters;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.core.Filter;
 import org.apache.logging.log4j.core.LogEvent;
-import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.message.Message;
-
-import java.util.logging.LogRecord;
 
 public class SummonFilter implements Filter {
 
@@ -62,15 +57,7 @@ public class SummonFilter implements Filter {
         }
         //return null;
     }
-    public org.apache.logging.log4j.core.Filter.Result filter(org.apache.logging.log4j.Logger arg0, java.util.logging.Level arg1, Marker arg2, String arg3, Object... arg4) {
-        return null;
-    }
-    public Result filter(org.apache.logging.log4j.Logger arg0, java.util.logging.Level arg1, Marker arg2, Object arg3, Throwable arg4) {
-        return null;
-    }
-    public Result filter(org.apache.logging.log4j.Logger arg0, java.util.logging.Level arg1, Marker arg2, Message arg3, Throwable arg4) {
-        return null;
-    }
+
     @Override
     public Result getOnMatch() {
         return null;

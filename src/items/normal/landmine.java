@@ -68,7 +68,19 @@ public class landmine implements Listener {
         if (item.getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Landmine")) {
 
             Block b = e.getBlock();
-            lml.add(b.getLocation());
+
+            Location location = b.getLocation();
+
+            if(location.getWorld().getName().equalsIgnoreCase("world")){
+                lml.add(b.getLocation());
+            }else if(location.getWorld().getName().equalsIgnoreCase("world_nether")) {
+                lml.add(b.getLocation());
+            }else if(location.getWorld().getName().equalsIgnoreCase("world_the_end")) {
+                lml.add(b.getLocation());
+            }else{
+                e.getPlayer().sendMessage(ChatColor.RED + "Landmines can currently only be placed in the overworld, the nether and the end!");
+                e.setCancelled(true);
+            }
 
         }
     }

@@ -49,61 +49,32 @@ public class CmdExe implements CommandExecutor{
         }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
-            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.7(a)");
+            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.8(a)");
+            sender.sendMessage(ChatColor.RED + "OPItems BETA Version!");
+            sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
-            sender.sendMessage(ChatColor.GOLD + "Tested for MC 1.16.x, 1.17.x, 1.18.x, 1.19.x, 1.20.1, 1.20.2, 1.20.3, 1.20.4, 1.20.5, 1.20.6, 1.21");
-            sender.sendMessage(ChatColor.GOLD + "");
+            sender.sendMessage(ChatColor.GOLD + "Compatible Versions 1.16.x, 1.17.x, 1.18.x, 1.19.x, 1.20.1, 1.20.2, 1.20.3, 1.20.*, 1.21.1, 1.21.2, 1.21.3, 1.21.4");
+            sender.sendMessage(ChatColor.GOLD + "Target Version: 1.21.4");
+            sender.sendMessage(ChatColor.GOLD + "Newer Items supported Versions: 1.20+");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.BLUE + "Added Items:");
-            sender.sendMessage(ChatColor.YELLOW + "- Protective Elytra");
+            sender.sendMessage(ChatColor.YELLOW + "- Wand of Warden");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.BLUE + "Changes:");
-            sender.sendMessage(ChatColor.YELLOW + "- Removed Discord Webhooks for now");
+            sender.sendMessage(ChatColor.YELLOW + "- Readded /give command");
+            sender.sendMessage(ChatColor.YELLOW + "- Restructured the plugin");
+            sender.sendMessage(ChatColor.YELLOW + "- Added Error handler for recipes");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.BLUE + "Fixed Bugs:");
-            sender.sendMessage(ChatColor.YELLOW + "- NoFall not working");
-            /*
-            BEISPIEL:
+            sender.sendMessage(ChatColor.YELLOW + "- Landmines within unloaded worlds deleting its data when restarting");
+            sender.sendMessage(ChatColor.YELLOW + "- Private Pocket Dimension not unloading properly when quitting");
+            sender.sendMessage(ChatColor.YELLOW + "- Portal2Go going from nether to the overworld");
+            sender.sendMessage(ChatColor.YELLOW + "- Private Dimensions using false generators because of automatic world reloading");
+            sender.sendMessage(ChatColor.YELLOW + "- Private Dimensions Wand teleporting to false Y-Coords");
+            sender.sendMessage(ChatColor.GOLD + "");
+            sender.sendMessage(ChatColor.BLUE + "Other");
+            sender.sendMessage(ChatColor.YELLOW + "- The Sourcecode is now available on GitHub");
 
-
-// Added Items
-            sender.sendMessage(ChatColor.BLUE + "Added Items:");
-            sender.sendMessage(ChatColor.YELLOW + "- Landmine | Explodes when stepped on!");
-            sender.sendMessage(ChatColor.YELLOW + "- Defuser | Defuses Landmines safely");
-            sender.sendMessage(ChatColor.YELLOW + "- Unlimited Water Bucket | Got unlimited water");
-            sender.sendMessage(ChatColor.GOLD + "");
-// Added Cmd's
-            sender.sendMessage(ChatColor.BLUE + "Added Commands:");
-            sender.sendMessage(ChatColor.YELLOW + "- /opitems version | Displays the current Version and Changelog of OPItems");
-            sender.sendMessage(ChatColor.YELLOW + "- /opitems delete_all_pocket_worlds | Deletes the pocket worlds currently loaded");
-            sender.sendMessage(ChatColor.YELLOW + "- /opitems reset_landmines | Resets the List of Landmines in the World");
-            sender.sendMessage(ChatColor.YELLOW + "- /opitems report | Generates a short report with some useful information to give when reporting a bug");
-            sender.sendMessage(ChatColor.GOLD + "");
-// Added Configs
-            sender.sendMessage(ChatColor.BLUE + "Added Configs:");
-            sender.sendMessage(ChatColor.YELLOW + "- PrivatePocketDimensionPerformanceModeActivated | Activates Performance Mode for The Private Pocket Dimension");
-            sender.sendMessage(ChatColor.YELLOW + "- EnableLandminePerformanceMode | Activates Performance Mode for the Landmines Feature");
-            sender.sendMessage(ChatColor.YELLOW + "- EnableLandmine");
-            sender.sendMessage(ChatColor.YELLOW + "- CLoggerFlushIntervallSec");
-            sender.sendMessage(ChatColor.YELLOW + "- CLoggerMode");
-            sender.sendMessage(ChatColor.GOLD + "");
-// Changes
-            sender.sendMessage(ChatColor.BLUE + "Changes:");
-            sender.sendMessage(ChatColor.YELLOW + "- Improved the Header of the Config");
-            sender.sendMessage(ChatColor.YELLOW + "- Added Lores to some of the Items");
-            sender.sendMessage(ChatColor.YELLOW + "- Added TNT-Blocks Activated Message to the TNT-Detonator");
-            sender.sendMessage(ChatColor.YELLOW + "- Fixed Typos");
-            sender.sendMessage(ChatColor.YELLOW + "- Updated Celutis to v0.5");
-            sender.sendMessage(ChatColor.YELLOW + "- Added a bit of Flavor to the Private Pocket Dimension");
-            sender.sendMessage(ChatColor.YELLOW + "- Added NoPermissionError Message to /opitems <~cursed sword> commands");
-            sender.sendMessage(ChatColor.YELLOW + "- Added CLogger");
-            sender.sendMessage(ChatColor.GOLD + "");
-// Fixed Bugs
-            sender.sendMessage(ChatColor.BLUE + "Fixed Bugs:");
-            sender.sendMessage(ChatColor.YELLOW + "- Portal2Go throws errors when trying to teleport from the Private Pocket Dimension");
-            sender.sendMessage(ChatColor.YELLOW + "- Portal2Go throws you into the void when teleporting into the Nether");
-
-            */
         }
         if (label.equalsIgnoreCase("items")) {
             if (sender.isOp()) {
@@ -175,7 +146,13 @@ public class CmdExe implements CommandExecutor{
                         if (arg2.equalsIgnoreCase("old")) {
                             give_items.giveItemsOld(p);
                         }else{
-                            give_items.giveItems(p);
+                            try {
+                                int itemNum = Integer.parseInt(arg2);
+                                give_items.giveItems(p, itemNum);
+                            } catch (NumberFormatException e) {
+                                give_items.giveItemsMessage(p);
+                            }
+
                         }
 
 

@@ -21,21 +21,23 @@ import org.bukkit.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.configuration.file.FileConfiguration;
+
 import java.util.HashMap;
+
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import utis.Updater;
 
-public class Main extends JavaPlugin implements Listener
-{
+public class Main extends JavaPlugin implements Listener {
 
     private static Main instance;
+
     public File getFileNonProt() {
         return super.getFile();
     }
-	
 
-    public static boolean landminePerfModeEnabeled=false;
+
+    public static boolean landminePerfModeEnabeled = false;
     public HashMap<String, Long> cooldown_wand_boom;
     public HashMap<String, Long> Launcher_Cooldown;
     public static int ore_gen_chance_private_dim;
@@ -51,7 +53,7 @@ public class Main extends JavaPlugin implements Listener
     public static int tntbowamount;
     public static String opitems_version = "Not Innited";
 
-    public static boolean priDimPerformMode=false;
+    public static boolean priDimPerformMode = false;
 
     static {
         Main.ore_gen_chance_private_dim = 100;
@@ -62,7 +64,7 @@ public class Main extends JavaPlugin implements Listener
         Main.tntbowamount = 50;
     }
 
-    public Main(){
+    public Main() {
         this.cooldown_wand_boom = new HashMap<>();
         this.Launcher_Cooldown = new HashMap<>();
         this.config = this.getConfig();
@@ -70,8 +72,9 @@ public class Main extends JavaPlugin implements Listener
         data_save_homes = null;
         data_save_play_dim = null;
     }
-    
+
     public void onEnable() {
+
         Main.p = this;
         instance = this;
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");
@@ -81,17 +84,18 @@ public class Main extends JavaPlugin implements Listener
 
         boolean sheduleNewerFeatures = false;
 
-        try{
+        try {
             String majVer = mcVer.split("\\.")[1];
             Bukkit.getLogger().info("Server is running major version " + majVer);
-            if(Integer.parseInt(majVer) > 19){
+            if (Integer.parseInt(majVer) > 19) {
                 sheduleNewerFeatures = true;
             }
-        }catch(Exception ignored){}
+        } catch (Exception ignored) {
+        }
 
         //EVENTS
         Events.registerAllEvents(this, plugin);
-        
+
         //CONFIG
         final FileConfiguration config = this.getConfig();
         ConfigInniter.innitConfig(config);
@@ -109,19 +113,19 @@ public class Main extends JavaPlugin implements Listener
         //items
         ItemData.loadItems(plugin);
         //Newer Content
-        if(config.getBoolean("EnableItemsForNewerVersions")){
-            if(sheduleNewerFeatures){
+        if (config.getBoolean("EnableItemsForNewerVersions")) {
+            if (sheduleNewerFeatures) {
                 VersionDependent.loadNewerItems(this);
                 GlobalVars.newerFeaturesEnabled = true;
                 Bukkit.getLogger().info("Features for newer Versions enabled.");
-            }else{
+            } else {
                 Bukkit.getLogger().info("Features for newer Versions not enabled. Please use Mc1.20+");
             }
         }
 
-
-
         Bukkit.getLogger().info("[OPItems]Successfully Enabled");
+
+
         Bukkit.getLogger().info("");
 
 
@@ -135,17 +139,18 @@ public class Main extends JavaPlugin implements Listener
         opitems_version = "1.9.8";
 
     }
-    
+
     public void onDisable() {
         Bukkit.getLogger().warning("[OPItems] Disabling. Saving Data...");
 
         ItemData.saveItemData(this);
-        
+
         RecipeAdder.removeRecipe();
 
         try {
             CLogger.flushNow();
-        }catch (NoClassDefFoundError ignored){}
+        } catch (NoClassDefFoundError ignored) {
+        }
 
         Bukkit.getLogger().warning("OPItems is now disabled");
     }
@@ -153,14 +158,15 @@ public class Main extends JavaPlugin implements Listener
     public static Plugin getPluginInstance() {
         return Main.p;
     }
-    
+
     public Logger getLoggerClass() {
         return super.getLogger();
     }
-    
+
     private static int randomrange(final int min, final int max) {
         return (int) utis.celutis.randomRangeDouble(min, max);
     }
+
     public static void executeUpdate(CommandSender sender) {
         UpdateHandler.executeUpdate(sender, Main.getInstance());
     }
@@ -169,7 +175,7 @@ public class Main extends JavaPlugin implements Listener
         return instance;
     }
 
-    public boolean isOnPrivatePocketPerformMode(){
+    public boolean isOnPrivatePocketPerformMode() {
         return priDimPerformMode;
     }
 

@@ -71,6 +71,9 @@ public class ParticleUtis {
         Queue<Location> ll = utis.celutis.getCircleLocationsQue(location, radius, amount);
         Queue<Location> copyLl = new ArrayDeque<>();
 
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:" + location.getWorld().getName() + " run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
+
+
         copyLl.addAll(ll);
 
         for (int i = 0; i < timesX; i++) {
@@ -107,7 +110,20 @@ public class ParticleUtis {
 
 
                         if(!hasDone){
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
+
+                            if(location.getWorld().getName().equalsIgnoreCase("world")){
+                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:overworld run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
+                            }else if(location.getWorld().getName().equalsIgnoreCase("world_nether")) {
+                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:the_nether run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
+                            }else if(location.getWorld().getName().equalsIgnoreCase("world_the_end")) {
+                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:the_end run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
+                            }else{
+                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:" + location.getWorld().getName() + " run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
+                            }
+
+                            //player.performCommand( "execute in minecraft:" + location.getWorld().getName() + " run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
+
+
                             hasDone = true;
                         }
 

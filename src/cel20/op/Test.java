@@ -15,6 +15,10 @@ public class Test {
 
     public static void runCurrentTest(Player p) {
 
+        final NamespacedKey key = new NamespacedKey(Main.getPluginInstance(), "opitems_desc_42");
+
+        p.getInventory().addItem(Bukkit.getRecipe(key).getResult());
+
         p.sendMessage("Executing current Test: Temporary chat filter for warden summoning text / ram usage");
 
         if (t != null && !t.isCancelled()) {

@@ -75,14 +75,21 @@ static List<String> players_in_customw;
 		if(players_in_customw.contains(e.getUniqueId().toString())) {
 		new WorldCreator(wn).createWorld();
             World world = Bukkit.getWorld(wn);
-        if (world == null) {
-        	String message = ChatColor.RED + "" + ChatColor.BOLD + "The World is still loading!\n"
-                    + "Try Joining in ~7 seconds\n"
-                    + "Debug: World: " + wn + " Timestamp: " + System.currentTimeMillis();
-        	e.disallow(PlayerPreLoginEvent.Result.KICK_OTHER,message);
+//        if (world == null) {
+//        	String message = ChatColor.RED + "" + ChatColor.BOLD + "The World is still loading!\n"
+//                    + "Try Joining in ~7 seconds\n"
+//                    + "Debug: World: " + wn + " Timestamp: " + System.currentTimeMillis();
+//        	e.disallow(PlayerPreLoginEvent.Result.KICK_OTHER,message);
 
-            Bukkit.getServer().getWorlds().add(world);
-        }
+            Bukkit.getServer().unloadWorld(wn, false);
+
+                final WorldCreator worldCreator2 = new WorldCreator(wn);
+
+                worldCreator2.generator(new ChunkGen());
+
+                Bukkit.createWorld(worldCreator2);
+
+//        }
 		}
         	
         }
@@ -101,7 +108,7 @@ static List<String> players_in_customw;
             		c.unload(true);
             	}
             	Bukkit.getLogger().info("Pocket World for " + e.getPlayer().getName() + " unloaded.");
-                Bukkit.unloadWorld(wn, true);
+                Bukkit.getServer().unloadWorld(wn, true);
             }else {
             	
             }
@@ -144,8 +151,6 @@ static List<String> players_in_customw;
 
                 worldCreator2.generator(new ChunkGen());
 
-
-
                 Bukkit.createWorld(worldCreator2);
 
                 p.sendMessage(ChatColor.RED + "The World is still initializing...");
@@ -155,14 +160,17 @@ static List<String> players_in_customw;
             }
             Location l;
             if (playerWorld != targetWorld) {
-                l = celutis.getHighestNonAirBlockLocation(targetWorld, e.getPlayer().getLocation().getBlockX(), e.getPlayer().getLocation().getBlockZ());
+                l = new Location(targetWorld, e.getPlayer().getLocation().getX(), targetWorld.getHighestBlockYAt(e.getPlayer().getLocation())+1, e.getPlayer().getLocation().getZ());
+                //l = celutis.getHighestNonAirBlockLocation(targetWorld, e.getPlayer().getLocation().getBlockX(), e.getPlayer().getLocation().getBlockZ());
             }
             else {
-                l = celutis.getHighestNonAirBlockLocation(Bukkit.getWorld("world"), e.getPlayer().getLocation().getBlockX(), e.getPlayer().getLocation().getBlockZ());
+
+                l = new Location(Bukkit.getWorld("world"), e.getPlayer().getLocation().getX(), Bukkit.getWorld("world").getHighestBlockYAt(e.getPlayer().getLocation())+1, e.getPlayer().getLocation().getZ());
+
             }
-            if (l != null) {
-                e.getPlayer().teleport(l);
-            }
+
+            e.getPlayer().teleport(l);
+
         }
     }
     public static void saveData(final String filePath) {

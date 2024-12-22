@@ -1187,11 +1187,12 @@ public class RecipeAdder
     public static void addRecipe40(final Main pluginint) {
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_40");
         RecipeAdder.map.put(40, key);
-        final ItemStack itemStack = new ItemStack(Material.ELYTRA, 1);
+        final ItemStack itemStack = new ItemStack(Material.TRIDENT, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Riptider");
 
         List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RED + " - Currently not finished!");
         lore.add(ChatColor.RED + " - This Trident can always use its riptide enchantment!");
         itemMeta.setLore(lore);
 
@@ -1264,6 +1265,7 @@ public class RecipeAdder
         itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Jumpy Boots");
 
         List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RED + " - Currently not finished!");
         lore.add(ChatColor.RED + " - Enables one to triple jump");
         lore.add(ChatColor.RED + " - Can be upgraded to netherite and enchanted!");
         itemMeta.setLore(lore);
