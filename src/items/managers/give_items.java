@@ -1,6 +1,9 @@
 
 package items.managers;
 
+import cel20.op.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.enchantments.Enchantment;
@@ -11,13 +14,25 @@ import org.bukkit.entity.Player;
 
 public class give_items
 {
-    public static void giveItems(final Player player) {
 
-        player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Due to the Way this Cmd works, this command will be discontinued.");
-        player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recipes for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
-        player.sendMessage("");
-        player.sendMessage(ChatColor.GOLD + "You can get some of the older Items by using the deprecated Method /opitems give old");
-        player.sendMessage("");
+    public static void giveItemsMessage(final Player player) {
+
+        player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Missing argument: /opitems give <itemNumber> ");
+    }
+
+    public static void giveItems(final Player player, int itemNum) {
+
+        try {
+            final NamespacedKey key = new NamespacedKey(Main.getPluginInstance(), "opitems_desc_" + itemNum);
+
+            player.getInventory().addItem(Bukkit.getRecipe(key).getResult());
+        } catch (Exception e) {
+
+            player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Command execution failed!");
+            player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "The given number does not represent an OPItem / The OPItems with the corresponding number has been disabled");
+        }
+
+
     }
     public static void giveItemsOld(final Player player){
 

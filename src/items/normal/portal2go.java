@@ -45,8 +45,8 @@ public class portal2go implements Listener {
                         String cWorldString = p.getLocation().getWorld().getName();
 
                         if (isNether) {
-                            String worldResult = cWorldString.replace("_nether", "");
-                            p.teleport(new Location(Bukkit.getWorld(worldResult), (p.getLocation().getBlockX() * 8), p.getLocation().getBlockY(), (p.getLocation().getBlockZ() * 8)));
+                            String worldResult = "world";
+                            p.teleport(new Location(Bukkit.getWorld(worldResult), (p.getLocation().getBlockX() * 8), Bukkit.getWorld("world").getHighestBlockYAt(e.getPlayer().getLocation())+1, (p.getLocation().getBlockZ() * 8)));
                         } else {
                             String worldResult = cWorldString.replace("_the_end", "");
                             p.teleport(new Location(Bukkit.getWorld(worldResult + "_nether"), ((double) p.getLocation().getBlockX() / 8), Math.abs(p.getLocation().getBlockY()), ((double) p.getLocation().getBlockZ() / 8)));

@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class OldItems implements Listener {
 
-    public static Main mainRef = null;
+    public static Main mainRef = Main.getInstance();
     
     
 
@@ -39,7 +39,6 @@ public class OldItems implements Listener {
             if (a == Material.FLINT &&
                     item.containsEnchantment(Enchantment.ARROW_DAMAGE))
                 if (e.getClickedBlock().getY() == p.getLocation().getY()) {
-                    p.sendMessage("Ja");
                     double bx = e.getClickedBlock().getX();
                     double by = e.getClickedBlock().getY();
                     double px = p.getLocation().getX();
@@ -81,7 +80,7 @@ public class OldItems implements Listener {
             }
         if (a == Material.FEATHER &&
                 item.containsEnchantment(Enchantment.SOUL_SPEED)) {
-            double cooldownTime = mainRef.config.getDouble("launcher_cooldown_MiliSeconds");
+            double cooldownTime = mainRef.config.getDouble("launcher_cooldown_MilliSeconds");
             if (mainRef.Launcher_Cooldown.containsKey(p.getName())) {
                 double secondsLeft = ((double) mainRef.Launcher_Cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
                 if (secondsLeft > 0.0D) {

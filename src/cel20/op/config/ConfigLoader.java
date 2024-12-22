@@ -18,10 +18,10 @@ public class ConfigLoader {
             Bukkit.getLogger().info("[OPItems] CLogger Disabled!");
         }else if (config.getInt("CLoggerMode")==1) {
             CLogger.startAsync(m.getDataFolder().toString(), config.getInt("CLoggerFlushIntervallSec"));
-            Bukkit.getLogger().info("[OPItems] CLogger Enabled in Asynk Mode!");
+            Bukkit.getLogger().info("[OPItems] CLogger Enabled in Async Mode!");
         }else if (config.getInt("CLoggerMode")==2) {
             CLogger.startSynced(m.getDataFolder().toString(), config.getInt("CLoggerFlushIntervallSec"));
-            Bukkit.getLogger().info("[OPItems] CLogger Enabled in Synked Mode!");
+            Bukkit.getLogger().info("[OPItems] CLogger Enabled in Synced Mode!");
         }
 
         //ITEMS CONFIG
@@ -60,7 +60,7 @@ public class ConfigLoader {
         if (config.getBoolean("AllowBlazer")) {
             RecipeAdder.addRecipe5(plugin);
         }
-        if (config.getBoolean("AllowBommer")) {
+        if (config.getBoolean("AllowBoomer")) {
             RecipeAdder.addRecipe6(plugin);
         }
         if (config.getBoolean("AllowCraftOtherItems")) {
@@ -89,7 +89,7 @@ public class ConfigLoader {
         if (config.getBoolean("AllowAntiFall")) {
             RecipeAdder.addRecipe14(plugin);
         }
-        if (config.getBoolean("AllowHookofVelectory")) {
+        if (config.getBoolean("AllowHookOfVelectory")) {
             RecipeAdder.addRecipe15(plugin);
             m.getServer().getPluginManager().registerEvents(new hookofvelectory(), m);
         }
@@ -139,7 +139,7 @@ public class ConfigLoader {
             RecipeAdder.addRecipe30(plugin);
         }
 //AllowCraftandActivatedWandofHome
-        if (config.getBoolean("AllowCraftandActivatedWandofHome")) {
+        if (config.getBoolean("AllowCraftAndActivatedWandOfHome")) {
             RecipeAdder.addRecipe31(plugin);
             m.getServer().getPluginManager().registerEvents(new WandOfHome(), m);
         }

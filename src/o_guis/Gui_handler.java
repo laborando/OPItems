@@ -52,7 +52,7 @@ public class Gui_handler implements Listener
         final ItemStack z = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         final ItemStack aa = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1);
         int z2 = 7;
-        if (cel20.op.Main.getPluginInstance().getConfig() .getBoolean("AllowBommer")) {
+        if (cel20.op.Main.getPluginInstance().getConfig() .getBoolean("AllowBoomer")) {
             a.setType(Material.GREEN_CONCRETE);
             final ItemMeta aaa = a.getItemMeta();
             aaa.addEnchant(Enchantment.SILK_TOUCH, 1, true);
@@ -239,7 +239,7 @@ public class Gui_handler implements Listener
             mm.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
             m.setItemMeta(mm);
         }
-        if (cel20.op.Main.getPluginInstance().getConfig() .getBoolean("AllowHookofVelectory")) {
+        if (cel20.op.Main.getPluginInstance().getConfig() .getBoolean("AllowHookOfVelectory")) {
             n.setType(Material.GREEN_CONCRETE);
             final ItemMeta nn = n.getItemMeta();
             nn.addEnchant(Enchantment.SILK_TOUCH, 1, true);
@@ -466,7 +466,7 @@ public class Gui_handler implements Listener
         aa.setType(Material.ORANGE_CONCRETE);
         final ItemMeta aaaa = aa.getItemMeta();
         aaaa.addEnchant(Enchantment.SILK_TOUCH, 1, true);
-        aaaa.setDisplayName(ChatColor.GREEN + "The Cooldown for Launcher is: " + ChatColor.BOLD + cel20.op.Main.getPluginInstance().getConfig() .getDouble("launcher_cooldown_MiliSeconds") / 1000.0 + ChatColor.RESET + ChatColor.GREEN + " Seconds");
+        aaaa.setDisplayName(ChatColor.GREEN + "The Cooldown for Launcher is: " + ChatColor.BOLD + cel20.op.Main.getPluginInstance().getConfig() .getDouble("launcher_cooldown_MilliSeconds") / 1000.0 + ChatColor.RESET + ChatColor.GREEN + " Seconds");
         aaaa.addEnchant(Enchantment.DURABILITY, 1, true);
         aaaa.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         aa.setItemMeta(aaaa);
@@ -567,7 +567,7 @@ public class Gui_handler implements Listener
                 if (event.getCurrentItem().containsEnchantment(Enchantment.SILK_TOUCH)) {
                     event.setCancelled(true);
                     final Player ptemp = (Player)player;
-                    give_items.giveItems(ptemp);
+                    give_items.giveItemsMessage(ptemp);
                 }
             }
             else if (event.getCurrentItem().getType() == Material.CRAFTING_TABLE) {
@@ -934,7 +934,7 @@ public class Gui_handler implements Listener
 
                 //---------------
                 
-                if (cel20.op.Main.getPluginInstance().getConfig().getBoolean("AllowCraftandActivatedWandofHome")) {
+                if (cel20.op.Main.getPluginInstance().getConfig().getBoolean("AllowCraftAndActivatedWandOfHome")) {
                     a17.setType(Material.GREEN_CONCRETE);
                     aa = a17.getItemMeta();
                     aa.addEnchant(Enchantment.SILK_TOUCH, 1, true);

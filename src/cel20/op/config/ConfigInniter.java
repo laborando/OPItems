@@ -46,9 +46,9 @@ public class ConfigInniter {
         final String rndnum3 = String.valueOf(test) + test2 + test3 + test4 + test5 + test6 + test7 + test8 + test9 + test10 + test11;
         final String rndnumfinal = rndnum3 + rndnum2 + rndnum;
 
-        config.options().header("This is the main configuration file for OPItems\nSome options may impact gameplay and could lead to Lag and Server Crashes, so use\nwith cautio and make sure you know what each option does before configuring.\n\n\n You can Reset the Settings by Deleting the Config.yml File and Restarting your Server.\n\n");
+        config.options().header("This is the main configuration file for OPItems\nSome options may impact gameplay and could lead to lag and server crashes, so use\nwith caution and make sure you know what each option does before configuring.\n\n\n You can reset the config by deleting the config.yml file and restarting your server.\n\n");
         config.addDefault("wand_of_(massive)_boom_cooldown_MilliSeconds", 1000);
-        config.addDefault("launcher_cooldown_MiliSeconds", 4000);
+        config.addDefault("launcher_cooldown_MilliSeconds", 4000);
         config.addDefault("Wand_of_Boom_Explosion_Strength", 10);
         config.addDefault("Wand_of_Massive_Boom_Explosion_Strength", 20);
         config.addDefault("CraftedKnockyTheStickKnockbackEnchantmentLevel", 10);
@@ -56,7 +56,7 @@ public class ConfigInniter {
         config.addDefault("CraftedTheAntiDamageProtectionEnchantmentLevel", 75);
         config.addDefault("CraftedPickyPickDigSpeedEnchantmentLevel", 1200);
         config.addDefault("CraftedPickyPickLootBonusBlocksEnchantmentLevel", 5);
-        config.addDefault("AllowBommer", Boolean.TRUE);
+        config.addDefault("AllowBoomer", Boolean.TRUE);
         config.addDefault("AllowEndsword", Boolean.TRUE);
         config.addDefault("AllowBlitzer", Boolean.TRUE);
         config.addDefault("AllowCrafter", Boolean.TRUE);
@@ -66,7 +66,7 @@ public class ConfigInniter {
         config.addDefault("AllowFlyFeather", Boolean.TRUE);
         config.addDefault("AllowAntiFall", Boolean.TRUE);
         config.addDefault("AllowCraftOtherItems", Boolean.TRUE);
-        config.addDefault("AllowHookofVelectory", Boolean.TRUE);
+        config.addDefault("AllowHookOfVelectory", Boolean.TRUE);
         config.addDefault("AllowCraftNightVisor", Boolean.TRUE);
         config.addDefault("AllowCraftWaterHelmet", Boolean.TRUE);
         config.addDefault("AllowCraftLauncher", Boolean.TRUE);
@@ -87,7 +87,7 @@ public class ConfigInniter {
         config.addDefault("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock", Integer.valueOf(50));
         config.addDefault("AllowCraftAntiExplosionHelmet", Boolean.TRUE);
         config.addDefault("AntiExplosionHelmetAntiExploEnchLevel", Integer.valueOf(75));
-        config.addDefault("AllowCraftandActivatedWandofHome", Boolean.TRUE);
+        config.addDefault("AllowCraftAndActivatedWandOfHome", Boolean.TRUE);
         config.addDefault("AllowCraftTNTBow", Boolean.TRUE);
         config.addDefault("TNTBowTNTAmount", 50);
         config.addDefault("ActivateWandofBlocks", Boolean.TRUE);
