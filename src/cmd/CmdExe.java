@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import cel20.op.Test;
 import items.managers.RecipeAdder;
-import items.normal.cursed_sword;
+import items.normal.cursedSword;
 import items.normal.fake_player;
 import items.managers.give_items;
 import items.normal.landmine;
@@ -254,13 +254,13 @@ public class CmdExe implements CommandExecutor{
                 }
             } else if (arg.equalsIgnoreCase("reset_cursed_sword_list")) {
                 if (sender.isOp()) {
-                    cursed_sword.resetList();
+                    cursedSword.resetList();
                 }else{
                     sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                 }
             } else if (arg.equalsIgnoreCase("display_sword_list")) {
                 if (sender.isOp()) {
-                    cursed_sword.sendMsgList(sender);
+                    cursedSword.sendMsgList(sender);
                 }else{
                 sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
             }

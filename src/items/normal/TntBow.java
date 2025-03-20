@@ -23,7 +23,7 @@ public class TntBow implements Listener {
 	private ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
     
     static {
-        cursed_sword.list_entity = new ArrayList<EntityType>();
+        cursedSword.list_entity = new ArrayList<EntityType>();
     }
 	
     @EventHandler

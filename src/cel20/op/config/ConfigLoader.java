@@ -5,7 +5,7 @@ import cel20.op.Main;
 import items.managers.RecipeAdder;
 import items.normal.*;
 import utis.CLogger;
-import events.hookofvelectory;
+import items.classic.hookOfVelectory;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -43,7 +43,7 @@ public class ConfigLoader {
 
 
         if (config.getBoolean("CursedSwordEnabled")) {
-            m.getServer().getPluginManager().registerEvents(new cursed_sword(), m);
+            m.getServer().getPluginManager().registerEvents(new cursedSword(), m);
         }
         if (config.getBoolean("AllowCraftOtherItems")) {
             RecipeAdder.addRecipe1(plugin, config.getInt("CraftedKnockyTheStickKnockbackEnchantmentLevel"));
@@ -91,7 +91,7 @@ public class ConfigLoader {
         }
         if (config.getBoolean("AllowHookOfVelectory")) {
             RecipeAdder.addRecipe15(plugin);
-            m.getServer().getPluginManager().registerEvents(new hookofvelectory(), m);
+            m.getServer().getPluginManager().registerEvents(new hookOfVelectory(), m);
         }
         if (config.getBoolean("AllowCraftNightVisor")) {
             RecipeAdder.addRecipe16(plugin);
@@ -205,7 +205,19 @@ public class ConfigLoader {
         Main.isprivatedimenableled = config.getBoolean("PrivatePocketDimensionEnabled");
         Main.config_anti_explo_helmet_lvl = config.getInt("AntiExplosionHelmetAntiExploEnchLevel");
         Main.tntbowamount = config.getInt("TNTBowTNTAmount");
-        
+
+        //CDs
+
+        /*
+        config.addDefault("HookOfVelectoryCDms", 500L);
+        config.addDefault("BowerCDms", 333L);
+        config.addDefault("BlitzerCDms", 666L);
+         */
+
+        GlobalVars.blitzerCD = config.getLong("BlitzerCDms");
+        GlobalVars.bowerCD = config.getLong("BowerCDms");
+        GlobalVars.hookOfVelectoryCD = config.getLong("HookOfVelectoryCDms");
+
     }
 
 }

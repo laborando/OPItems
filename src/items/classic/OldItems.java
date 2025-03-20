@@ -15,8 +15,6 @@ import org.bukkit.inventory.ItemStack;
 public class OldItems implements Listener {
 
     public static Main mainRef = Main.getInstance();
-    
-    
 
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -32,7 +30,7 @@ public class OldItems implements Listener {
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (a == Material.NETHERITE_SWORD &&
                     item.getItemMeta().getDisplayName().contains(ChatColor.BOLD + "Enderpearler")) {
-                EnderPearl ep = (EnderPearl)e.getPlayer().launchProjectile( EnderPearl.class);
+                EnderPearl ep = (EnderPearl) e.getPlayer().launchProjectile(EnderPearl.class);
                 ep.setBounce(true);
                 ep.eject();
             }
@@ -59,8 +57,6 @@ public class OldItems implements Listener {
         }
 
 
-
-
         if (a == Material.FEATHER &&
                 item.containsEnchantment(Enchantment.ARROW_DAMAGE))
             if (mainRef.config.getBoolean("AllowFlyFeather")) {
@@ -84,7 +80,7 @@ public class OldItems implements Listener {
             if (mainRef.Launcher_Cooldown.containsKey(p.getName())) {
                 double secondsLeft = ((double) mainRef.Launcher_Cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
                 if (secondsLeft > 0.0D) {
-                    p.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "You cant use mainRef Item for another " + secondsLeft + " seconds!");
+                    p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You cant use mainRef Item for another " + secondsLeft + " seconds!");
                     return;
                 }
             }
@@ -99,7 +95,7 @@ public class OldItems implements Listener {
         if (a == Material.BLAZE_ROD &&
                 item.containsEnchantment(Enchantment.FIRE_ASPECT))
             if (mainRef.config.getBoolean("AllowBlazer")) {
-                Fireball f = (Fireball)e.getPlayer().launchProjectile(Fireball.class);
+                Fireball f = (Fireball) e.getPlayer().launchProjectile(Fireball.class);
                 f.setIsIncendiary(true);
                 f.setYield(10.0F);
                 p.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1.0F, 1.0F);
@@ -109,19 +105,14 @@ public class OldItems implements Listener {
         if (a == Material.ARROW &&
                 item.containsEnchantment(Enchantment.FROST_WALKER))
             if (mainRef.config.getBoolean("AllowBower")) {
-                Arrow f = e.getPlayer().launchProjectile(Arrow.class);
-                f.setFireTicks(1000000);
-                f.setVelocity(f.getVelocity().multiply(5));
-                f.setShotFromCrossbow(true);
-                f.setPickupStatus(Arrow.PickupStatus.DISALLOWED);
-                f.setPierceLevel(100);
+                Bower.handle(p);
             } else {
                 p.sendMessage(ChatColor.RED + "This Feature is currently disabled");
             }
         if (a == Material.BLAZE_POWDER &&
                 item.containsEnchantment(Enchantment.FROST_WALKER))
             if (mainRef.config.getBoolean("AllowBoomer")) {
-                Fireball f = (Fireball)e.getPlayer().launchProjectile(Fireball.class);
+                Fireball f = (Fireball) e.getPlayer().launchProjectile(Fireball.class);
                 f.setYield(0.0F);
                 f.setVelocity(f.getVelocity().multiply(3));
                 f.addPassenger(p.getLocation().getWorld().spawnEntity(p.getLocation(), EntityType.PRIMED_TNT));
@@ -137,7 +128,7 @@ public class OldItems implements Listener {
                 item.containsEnchantment(Enchantment.FIRE_ASPECT)) {
             e.setCancelled(true);
             if (mainRef.config.getBoolean("AllowPigCannon")) {
-                Arrow f = (Arrow)e.getPlayer().launchProjectile(Arrow.class);
+                Arrow f = (Arrow) e.getPlayer().launchProjectile(Arrow.class);
                 f.setFireTicks(0);
                 f.setVelocity(f.getVelocity().multiply(0.5D));
                 f.setDamage(0.0D);
@@ -151,21 +142,9 @@ public class OldItems implements Listener {
         }
         if (a == Material.BLAZE_ROD &&
                 item.containsEnchantment(Enchantment.CHANNELING)) {
-            double cooldownTime = mainRef.config.getDouble("wand_of_(massive)_boom_cooldown_MiliSeconds");
-            if (mainRef.cooldown_wand_boom.containsKey(p.getName())) {
-                double secondsLeft = ((double) mainRef.cooldown_wand_boom.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
-                if (secondsLeft > 0.0D) {
-                    p.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "You cant use mainRef Item for another " + secondsLeft + " seconds!");
-                    return;
-                }
-            }
-            Block prel = p.getTargetBlockExact(150);
-            if (prel != null) {
-                Location loc2345 = prel.getLocation();
-                p.getWorld().createExplosion(loc2345, mainRef.config.getInt("Wand_of_Boom_Explosion_Strength"));
-                mainRef.cooldown_wand_boom.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-            }
+            WandOfBooms.handleBeta(mainRef, p);
         }
+
         if (a == Material.BLAZE_ROD &&
                 item.containsEnchantment(Enchantment.DIG_SPEED))
             if (p.isInvisible()) {
@@ -173,22 +152,8 @@ public class OldItems implements Listener {
             } else {
                 p.setInvisible(true);
             }
-        if (a == Material.BLAZE_ROD &&
-                item.containsEnchantment(Enchantment.LUCK)) {
-            double cooldownTime = mainRef.config.getDouble("wand_of_(massive)_boom_cooldown_MilliSeconds");
-            if (mainRef.cooldown_wand_boom.containsKey(p.getName())) {
-                double secondsLeft = ((double) mainRef.cooldown_wand_boom.get(p.getName()).longValue() / 1000L) + cooldownTime / 1000.0D - (System.currentTimeMillis() / 1000L);
-                if (secondsLeft > 0.0D) {
-                    p.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "You cant use mainRef Item for another " + secondsLeft + " seconds!");
-                    return;
-                }
-            }
-            Block prel = p.getTargetBlockExact(150);
-            if (prel != null) {
-                Location loc2345 = prel.getLocation();
-                p.getWorld().createExplosion(loc2345, mainRef.config.getInt("Wand_of_Massive_Boom_Explosion_Strength"));
-                mainRef.cooldown_wand_boom.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-            }
+        if (a == Material.BLAZE_ROD && item.containsEnchantment(Enchantment.LUCK)) {
+            WandOfBooms.handleAlpha(mainRef, p);
         }
         if (a == Material.NETHERITE_SWORD &&
                 item.containsEnchantment(Enchantment.ARROW_DAMAGE))
@@ -228,28 +193,28 @@ public class OldItems implements Listener {
                                                 p.teleport(location);
                                                 p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                                             } else {
-                                                p.sendMessage(ChatColor.BOLD + "" +ChatColor.BOLD + "There are Blocks in the Way");
+                                                p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
                                             }
                                         } else {
-                                            p.sendMessage(ChatColor.BOLD + "" +ChatColor.BOLD + "There are Blocks in the Way");
+                                            p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
                                         }
                                     } else {
-                                        p.sendMessage(ChatColor.BOLD + "" +ChatColor.BOLD + "There are Blocks in the Way");
+                                        p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
                                     }
                                 } else {
-                                    p.sendMessage(ChatColor.BOLD + "" +ChatColor.BOLD + "There are Blocks in the Way");
+                                    p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
                                 }
                             } else {
-                                p.sendMessage(ChatColor.BOLD + "" +ChatColor.BOLD + "There are Blocks in the Way");
+                                p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
                             }
                         } else {
-                            p.sendMessage(ChatColor.BOLD + "" +ChatColor.BOLD + "There are Blocks in the Way");
+                            p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
                         }
                     } else {
-                        p.sendMessage(ChatColor.BOLD + "" +ChatColor.BOLD + "There are Blocks in the Way");
+                        p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
                     }
                 } else {
-                    p.sendMessage(ChatColor.BOLD + "" +ChatColor.BOLD + "There are Blocks in the Way");
+                    p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
                 }
             } else {
                 p.sendMessage(ChatColor.RED + "This Feature is currently disabled");
@@ -257,12 +222,7 @@ public class OldItems implements Listener {
         if (a == Material.PRISMARINE_SHARD &&
                 item.containsEnchantment(Enchantment.OXYGEN))
             if (mainRef.config.getBoolean("AllowBlitzer")) {
-                Block prel = p.getTargetBlockExact(150);
-                if (prel != null) {
-                    Location l = prel.getLocation();
-                    p.getWorld().strikeLightning(l);
-                    p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0F, 1.0F);
-                }
+               Blitzer.handle(p);
             } else {
                 p.sendMessage(ChatColor.RED + "This Feature is currently disabled");
             }

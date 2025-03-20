@@ -102,6 +102,9 @@ public class ConfigInniter {
         config.addDefault("EnableItemsForNewerVersions", Boolean.TRUE);
         config.addDefault("EnableCraftWandOfWarden", Boolean.TRUE);
         config.addDefault("EnableJumpyBoots", Boolean.TRUE);
+        config.addDefault("HookOfVelectoryCDms", 500L);
+        config.addDefault("BowerCDms", 333L);
+        config.addDefault("BlitzerCDms", 666L);
 
 
 

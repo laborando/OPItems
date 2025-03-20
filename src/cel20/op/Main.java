@@ -51,7 +51,7 @@ public class Main extends JavaPlugin implements Listener {
     public static String data_save_homes;
     public static String data_save_play_dim;
     public static int tntbowamount;
-    public static String opitems_version = "Not Innited";
+    public static String opitems_version = "Not innited";
 
     public static boolean priDimPerformMode = false;
 
@@ -130,13 +130,13 @@ public class Main extends JavaPlugin implements Listener {
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.8 BETA   |");
+        Bukkit.getLogger().info("|        OPItems 1.9.9 BETA   |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
         Bukkit.getLogger().info("This is a BETA Version of OPItems!");
         Bukkit.getLogger().info("");
-        opitems_version = "1.9.8";
+        opitems_version = "1.9.9";
 
     }
 

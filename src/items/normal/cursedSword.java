@@ -31,12 +31,12 @@ import org.bukkit.entity.LivingEntity;
 import java.util.List;
 import org.bukkit.event.Listener;
 
-public class cursed_sword implements Listener
+public class cursedSword implements Listener
 {
     static List<EntityType> list_entity;
     
     static {
-        cursed_sword.list_entity = new ArrayList<EntityType>();
+        cursedSword.list_entity = new ArrayList<EntityType>();
     }
     
     @EventHandler(priority = EventPriority.HIGH)
@@ -51,7 +51,7 @@ public class cursed_sword implements Listener
                 if (!p.getWorld().getName().equalsIgnoreCase("world_the_end")) {
                 	
                 	
-                    cursed_sword.list_entity.add(e.getEntity().getType());
+                    cursedSword.list_entity.add(e.getEntity().getType());
                     if(e.getEntity() instanceof LivingEntity) {
                     	
                     LivingEntity le = (LivingEntity) e.getEntity();
@@ -80,7 +80,7 @@ public class cursed_sword implements Listener
             } while (temploc.getBlock().getType() == Material.AIR);
             final Location loc = temploc;
             loc.setWorld(e.getPlayer().getWorld());
-            cursed_sword.list_entity.forEach(en ->{
+            cursedSword.list_entity.forEach(en ->{
             	
             	e.getPlayer().getWorld().spawnEntity(loc, en);
             	
@@ -88,14 +88,14 @@ public class cursed_sword implements Listener
             	
             );
             
-            cursed_sword.list_entity.clear();
+            cursedSword.list_entity.clear();
         }
     }
     
     public static void saveData(final String filePath) {
         try {
             final BukkitObjectOutputStream out = new BukkitObjectOutputStream((OutputStream)new GZIPOutputStream(new FileOutputStream(filePath)));
-            out.writeObject((Object)cursed_sword.list_entity);
+            out.writeObject((Object) cursedSword.list_entity);
             out.close();
         }
         catch (IOException e) {
@@ -111,11 +111,11 @@ public class cursed_sword implements Listener
             Object o = in.readObject();
             
             if(o instanceof List<?>) {
-            	cursed_sword.list_entity = (List<EntityType>)o;
+            	cursedSword.list_entity = (List<EntityType>)o;
                 }else {
                 	Bukkit.getLogger().severe("Your Wand of Home Data File is Probably corrupted!");
                 	Bukkit.getLogger().severe("An Error Could occur!");
-                	cursed_sword.list_entity = (List<EntityType>)o;
+                	cursedSword.list_entity = (List<EntityType>)o;
                 }
             
             in.close();
@@ -123,7 +123,7 @@ public class cursed_sword implements Listener
         catch (ClassNotFoundException | IOException ex2) {
             
             System.out.println("Probably first time starting... Creating new File. Do not report the following unless it is happening for more than two times");
-            cursed_sword.list_entity = new ArrayList<EntityType>();
+            cursedSword.list_entity = new ArrayList<EntityType>();
             File f = new File(filePath);
             try {
 				if(!f.createNewFile()) {
@@ -137,10 +137,10 @@ public class cursed_sword implements Listener
     }
     
     public static void sendMsgList(final CommandSender p) {
-        p.sendMessage(cursed_sword.list_entity.toString());
+        p.sendMessage(cursedSword.list_entity.toString());
     }
     
     public static void resetList() {
-        cursed_sword.list_entity = new ArrayList<EntityType>();
+        cursedSword.list_entity = new ArrayList<EntityType>();
     }
 }
