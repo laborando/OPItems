@@ -12,7 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class give_items
+public class giveItems
 {
 
     public static void giveItemsMessage(final Player player) {

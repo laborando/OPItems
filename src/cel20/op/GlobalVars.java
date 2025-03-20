@@ -10,4 +10,7 @@ public class GlobalVars {
 
     public static long bowerCD = 100L;
 
+    public static long pigCanonCD = 100L;
+    public static long teleportSwordCD = 100L;
+    public static long enderPearlSwordCD = 100L;
 }

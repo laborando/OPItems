@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import items.managers.give_items;
+import items.managers.giveItems;
 
 public class Gui_handler implements Listener
 {
@@ -567,7 +567,7 @@ public class Gui_handler implements Listener
                 if (event.getCurrentItem().containsEnchantment(Enchantment.SILK_TOUCH)) {
                     event.setCancelled(true);
                     final Player ptemp = (Player)player;
-                    give_items.giveItemsMessage(ptemp);
+                    giveItems.giveItemsMessage(ptemp);
                 }
             }
             else if (event.getCurrentItem().getType() == Material.CRAFTING_TABLE) {

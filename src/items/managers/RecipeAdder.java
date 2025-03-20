@@ -535,7 +535,7 @@ public class RecipeAdder
     }
     
     public static void addRecipe19(final Main pluginint) {
-        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_19");
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_19");
         RecipeAdder.map.put(19, key);
         final ItemStack itemStack = new ItemStack(Material.FEATHER, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
@@ -735,17 +735,17 @@ public class RecipeAdder
     }
     
     public static void addRecipe26(final Main pluginint) {
-        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_26");
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_26");
         RecipeAdder.map.put(26, key);
         final ItemStack itemStack = new ItemStack(Material.NETHERITE_SWORD, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Enderpearler");
         itemMeta.setUnbreakable(true);
-        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         itemMeta.addEnchant(Enchantment.MENDING, 10, true);
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
-        shapedRecipe.shape(new String[] { "dcd", "cac", "cbc" });
+        shapedRecipe.shape("dcd", "cac", "cbc");
         shapedRecipe.setIngredient('a', Material.NETHERITE_SWORD);
         shapedRecipe.setIngredient('b', Material.ENDER_EYE);
         shapedRecipe.setIngredient('c', Material.ENDER_PEARL);
@@ -767,7 +767,7 @@ public class RecipeAdder
     }
     
     public static void addRecipe27(final Main pluginint) {
-        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_27");
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_27");
         RecipeAdder.map.put(27, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
@@ -814,7 +814,7 @@ public class RecipeAdder
         itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
 
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.RED + " - Right-click to teleport towards the direktion you're looking");
+        lore.add(ChatColor.RED + " - Right-click to teleport towards the direction you're looking");
         itemMeta.setLore(lore);
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
@@ -838,7 +838,7 @@ public class RecipeAdder
     }
     
     public static void addRecipe29(final Main pluginint) {
-        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_29");
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_29");
         RecipeAdder.map.put(29, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
@@ -965,14 +965,14 @@ public class RecipeAdder
     }
     
     public static void addRecipe33(final Main pluginint) {
-        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_33");
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_33");
         RecipeAdder.map.put(33, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Wand of Blocks");
         itemMeta.addEnchant(Enchantment.SILK_TOUCH, 75, true);
         itemMeta.addEnchant(Enchantment.THORNS, 75, true);
-        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.RED + " - Right-click to charge");
         lore.add(ChatColor.RED + " - Right-click + Sneak to release the Blocks");
@@ -999,7 +999,7 @@ public class RecipeAdder
         }
     }
     public static void addRecipe34(final Main pluginint) {
-        final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_34");
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_34");
         RecipeAdder.map.put(34, key);
         final ItemStack itemStack = new ItemStack(Material.STICK, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
@@ -1008,7 +1008,7 @@ public class RecipeAdder
         itemMeta.addEnchant(Enchantment.THORNS, 75, true);
         itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.RED + " - Right-click in the Air to travel between the Overworld and the Nether");
+        lore.add(ChatColor.RED + " - Right-click in the Air to travel between the overworld and the Nether");
         itemMeta.setLore(lore);
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
@@ -1232,7 +1232,6 @@ public class RecipeAdder
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.RED + " - Click anywhere on the ground to spawn a warden!");
         lore.add(ChatColor.RED + " - Effect: -5 Hearts; Spawns Warden on the clicked position");
-        lore.add(ChatColor.RED + " - Cooldown: 90s");
         itemMeta.setLore(lore);
 
         itemStack.setItemMeta(itemMeta);

@@ -208,15 +208,12 @@ public class ConfigLoader {
 
         //CDs
 
-        /*
-        config.addDefault("HookOfVelectoryCDms", 500L);
-        config.addDefault("BowerCDms", 333L);
-        config.addDefault("BlitzerCDms", 666L);
-         */
-
         GlobalVars.blitzerCD = config.getLong("BlitzerCDms");
         GlobalVars.bowerCD = config.getLong("BowerCDms");
         GlobalVars.hookOfVelectoryCD = config.getLong("HookOfVelectoryCDms");
+        GlobalVars.pigCanonCD = config.getLong("PigCannonCDms");
+        GlobalVars.teleportSwordCD = config.getLong("TeleportSwordCDms");
+        GlobalVars.enderPearlSwordCD = config.getLong("enderPearlSwordCDms");
 
     }
 

@@ -29,16 +29,23 @@ public class hookOfVelectory implements Listener
     public void onFish(final PlayerFishEvent e) {
 
         Player p = e.getPlayer();
-        
+
+
+
         cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 
         if(!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.hookOfVelectoryCD)) {
-            //
             return;
         }
 
+        if (e.getState() == PlayerFishEvent.State.FISHING)
+            return;
+
+        cooldown.put(p.getName(), System.currentTimeMillis());
+
+
         if (e.getState() == PlayerFishEvent.State.REEL_IN) {
-            
+
             final ItemStack item = p.getInventory().getItemInMainHand();
             if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.ARROW_DAMAGE)) {
 
@@ -50,6 +57,7 @@ public class hookOfVelectory implements Listener
                 p.setVelocity(vec);
             }
         }
+
         if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
             
             final ItemStack item = p.getInventory().getItemInMainHand();
@@ -91,16 +99,6 @@ public class hookOfVelectory implements Listener
             }
         }
         if (e.getState() == PlayerFishEvent.State.FAILED_ATTEMPT) {
-            
-            final ItemStack item = p.getInventory().getItemInMainHand();
-            if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.ARROW_DAMAGE)) {
-                final Location pl = p.getLocation();
-                final Location hl = e.getHook().getLocation();
-                final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
-                p.setVelocity(vec);
-            }
-        }
-        if (e.getState() == PlayerFishEvent.State.FISHING) {
             
             final ItemStack item = p.getInventory().getItemInMainHand();
             if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.ARROW_DAMAGE)) {

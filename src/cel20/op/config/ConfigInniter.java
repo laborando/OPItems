@@ -102,10 +102,12 @@ public class ConfigInniter {
         config.addDefault("EnableItemsForNewerVersions", Boolean.TRUE);
         config.addDefault("EnableCraftWandOfWarden", Boolean.TRUE);
         config.addDefault("EnableJumpyBoots", Boolean.TRUE);
-        config.addDefault("HookOfVelectoryCDms", 500L);
-        config.addDefault("BowerCDms", 333L);
+        config.addDefault("HookOfVelectoryCDms", 999L);
+        config.addDefault("BowerCDms", 176);
         config.addDefault("BlitzerCDms", 666L);
-
+        config.addDefault("PigCannonCDms", 333L);
+        config.addDefault("TeleportSwordCDms", 100L);
+        config.addDefault("enderPearlSwordCDms", 1000L);
 
 
         //PRIVATE POCKET DIMESION

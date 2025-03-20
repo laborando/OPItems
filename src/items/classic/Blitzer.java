@@ -1,6 +1,7 @@
 package items.classic;
 
 import cel20.op.GlobalVars;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -18,9 +19,11 @@ public class Blitzer {
         cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 
         if(!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.blitzerCD)) {
-            //
             return;
         }
+
+
+        cooldown.put(p.getName(), System.currentTimeMillis());
 
         Block prel = p.getTargetBlockExact(150);
         if (prel != null) {

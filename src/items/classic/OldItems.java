@@ -30,9 +30,7 @@ public class OldItems implements Listener {
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (a == Material.NETHERITE_SWORD &&
                     item.getItemMeta().getDisplayName().contains(ChatColor.BOLD + "Enderpearler")) {
-                EnderPearl ep = (EnderPearl) e.getPlayer().launchProjectile(EnderPearl.class);
-                ep.setBounce(true);
-                ep.eject();
+                EnderpearlSword.handle(p);
             }
             if (a == Material.FLINT &&
                     item.containsEnchantment(Enchantment.ARROW_DAMAGE))
@@ -80,7 +78,7 @@ public class OldItems implements Listener {
             if (mainRef.Launcher_Cooldown.containsKey(p.getName())) {
                 double secondsLeft = ((double) mainRef.Launcher_Cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
                 if (secondsLeft > 0.0D) {
-                    p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You cant use mainRef Item for another " + secondsLeft + " seconds!");
+                    p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You cant use thisL Item for another " + secondsLeft + " seconds!");
                     return;
                 }
             }
@@ -128,14 +126,7 @@ public class OldItems implements Listener {
                 item.containsEnchantment(Enchantment.FIRE_ASPECT)) {
             e.setCancelled(true);
             if (mainRef.config.getBoolean("AllowPigCannon")) {
-                Arrow f = (Arrow) e.getPlayer().launchProjectile(Arrow.class);
-                f.setFireTicks(0);
-                f.setVelocity(f.getVelocity().multiply(0.5D));
-                f.setDamage(0.0D);
-                f.setPickupStatus(Arrow.PickupStatus.DISALLOWED);
-                f.setPierceLevel(0);
-                f.addPassenger(p.getLocation().getWorld().spawnEntity(p.getLocation(), EntityType.PIG));
-                p.playSound(p.getLocation(), Sound.ENTITY_PIG_AMBIENT, 1.0F, 1.0F);
+                PigCannon.handle(p);
             } else {
                 p.sendMessage(ChatColor.RED + "This Feature is currently disabled");
             }
@@ -158,64 +149,9 @@ public class OldItems implements Listener {
         if (a == Material.NETHERITE_SWORD &&
                 item.containsEnchantment(Enchantment.ARROW_DAMAGE))
             if (mainRef.config.getBoolean("AllowEndsword")) {
-                Location location = p.getLocation().clone();
-                Location location2 = p.getLocation().clone();
-                Location location3 = p.getLocation().clone();
-                Location location4 = p.getLocation().clone();
-                Location location5 = p.getLocation().clone();
-                Location location6 = p.getLocation().clone();
-                Location location7 = p.getLocation().clone();
-                Location location1 = p.getLocation().clone();
-                location.add(p.getEyeLocation().getDirection().multiply(8));
-                location2.add(p.getEyeLocation().getDirection().multiply(2));
-                location3.add(p.getEyeLocation().getDirection().multiply(3));
-                location4.add(p.getEyeLocation().getDirection().multiply(4));
-                location5.add(p.getEyeLocation().getDirection().multiply(5));
-                location6.add(p.getEyeLocation().getDirection().multiply(6));
-                location7.add(p.getEyeLocation().getDirection().multiply(7));
-                location1.add(p.getEyeLocation().getDirection().multiply(1));
-                Block block = location.getBlock();
-                Block block2 = location.getBlock();
-                Block block3 = location.getBlock();
-                Block block4 = location.getBlock();
-                Block block5 = location.getBlock();
-                Block block6 = location.getBlock();
-                Block block7 = location.getBlock();
-                Block block1 = location.getBlock();
-                if (block1.isPassable()) {
-                    if (block2.isPassable()) {
-                        if (block3.isPassable()) {
-                            if (block4.isPassable()) {
-                                if (block5.isPassable()) {
-                                    if (block6.isPassable()) {
-                                        if (block7.isPassable()) {
-                                            if (block.isPassable()) {
-                                                p.teleport(location);
-                                                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
-                                            } else {
-                                                p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
-                                            }
-                                        } else {
-                                            p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
-                                        }
-                                    } else {
-                                        p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
-                                    }
-                                } else {
-                                    p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
-                                }
-                            } else {
-                                p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
-                            }
-                        } else {
-                            p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
-                        }
-                    } else {
-                        p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
-                    }
-                } else {
-                    p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
-                }
+
+                TeleportSword.handleOld(p);
+
             } else {
                 p.sendMessage(ChatColor.RED + "This Feature is currently disabled");
             }
@@ -231,7 +167,6 @@ public class OldItems implements Listener {
             e.setCancelled(true);
             if (mainRef.config.getBoolean("AllowCrafter")) {
                 Player pl = e.getPlayer();
-                Location l = pl.getLocation();
                 pl.openWorkbench(null, true);
             } else {
                 p.sendMessage(ChatColor.RED + "This Feature is currently disabled");

@@ -7,7 +7,7 @@ import cel20.op.Test;
 import items.managers.RecipeAdder;
 import items.normal.cursedSword;
 import items.normal.fake_player;
-import items.managers.give_items;
+import items.managers.giveItems;
 import items.normal.landmine;
 import utis.CLogger;
 import utis.Logutis;
@@ -30,12 +30,12 @@ import manage.Items;
 
 import static utis.celutis.deleteDirectory;
 
-public class CmdExe implements CommandExecutor{
+public class CmdExe implements CommandExecutor {
 
     private boolean cLoggerStartingStage = false;
 
-	public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
-        String arg = null;
+    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+        String arg;
         try {
             arg = args[0];
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -49,22 +49,26 @@ public class CmdExe implements CommandExecutor{
         }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
-            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.8(a)");
+            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.9(a)");
             sender.sendMessage(ChatColor.RED + "OPItems BETA Version!");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
-            sender.sendMessage(ChatColor.GOLD + "Compatible Versions 1.16.x, 1.17.x, 1.18.x, 1.19.x, 1.20.1, 1.20.2, 1.20.3, 1.20.*, 1.21.1, 1.21.2, 1.21.3, 1.21.4");
+            sender.sendMessage(ChatColor.GOLD + "Compatible Versions 1.16.x - 1.21.*");
             sender.sendMessage(ChatColor.GOLD + "Target Version: 1.21.4");
             sender.sendMessage(ChatColor.GOLD + "Newer Items supported Versions: 1.20+");
             sender.sendMessage(ChatColor.GOLD + "");
+            sender.sendMessage(ChatColor.BLUE + "Changes:");
+            sender.sendMessage(ChatColor.YELLOW + "- Added cooldowns for some items");
+            sender.sendMessage(ChatColor.YELLOW + "- Fixed some typos and errors regarding strings");
+            sender.sendMessage(ChatColor.YELLOW + "- Fixed Hook of Velectory");
+            sender.sendMessage(ChatColor.GOLD + "");
+
+
+/*
+            sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.BLUE + "Added Items:");
             sender.sendMessage(ChatColor.YELLOW + "- Wand of Warden");
-            sender.sendMessage(ChatColor.GOLD + "");
-            sender.sendMessage(ChatColor.BLUE + "Changes:");
-            sender.sendMessage(ChatColor.YELLOW + "- Readded /give command");
-            sender.sendMessage(ChatColor.YELLOW + "- Restructured the plugin");
-            sender.sendMessage(ChatColor.YELLOW + "- Added Error handler for recipes");
-            sender.sendMessage(ChatColor.GOLD + "");
+
             sender.sendMessage(ChatColor.BLUE + "Fixed Bugs:");
             sender.sendMessage(ChatColor.YELLOW + "- Landmines within unloaded worlds deleting its data when restarting");
             sender.sendMessage(ChatColor.YELLOW + "- Private Pocket Dimension not unloading properly when quitting");
@@ -74,6 +78,8 @@ public class CmdExe implements CommandExecutor{
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.BLUE + "Other");
             sender.sendMessage(ChatColor.YELLOW + "- The Sourcecode is now available on GitHub");
+             */
+
 
         }
         if (label.equalsIgnoreCase("items")) {
@@ -144,13 +150,13 @@ public class CmdExe implements CommandExecutor{
                         final Player p = (Player) sender;
 
                         if (arg2.equalsIgnoreCase("old")) {
-                            give_items.giveItemsOld(p);
+                            giveItems.giveItemsOld(p);
                         }else{
                             try {
                                 int itemNum = Integer.parseInt(arg2);
-                                give_items.giveItems(p, itemNum);
+                                giveItems.giveItems(p, itemNum);
                             } catch (NumberFormatException e) {
-                                give_items.giveItemsMessage(p);
+                                giveItems.giveItemsMessage(p);
                             }
 
                         }
