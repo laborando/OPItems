@@ -11,6 +11,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigLoader {
 
+    public static void earlyLoadConfig(FileConfiguration config, Main plugin, Main m){
+        GlobalVars.craftingDisabled = config.getBoolean("DisableOPItemsCrafting");
+    }
+
     public static void loadConfigs(FileConfiguration config, Main plugin, Main m){
 
         //CLogger
@@ -214,6 +218,12 @@ public class ConfigLoader {
         GlobalVars.pigCanonCD = config.getLong("PigCannonCDms");
         GlobalVars.teleportSwordCD = config.getLong("TeleportSwordCDms");
         GlobalVars.enderPearlSwordCD = config.getLong("enderPearlSwordCDms");
+
+
+
+        //Global Settings
+        GlobalVars.craftingDisabled = config.getBoolean("DisableOPItemsCrafting");
+
 
     }
 

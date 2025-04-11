@@ -101,6 +101,7 @@ public class Main extends JavaPlugin implements Listener {
         ConfigInniter.innitConfig(config);
         config.options().copyDefaults(true);
         this.saveConfig();
+        ConfigLoader.earlyLoadConfig(config, plugin, this);
         ConfigLoader.loadConfigs(config, plugin, this);
 
         //Updater
@@ -123,20 +124,24 @@ public class Main extends JavaPlugin implements Listener {
             }
         }
 
-        Bukkit.getLogger().info("[OPItems]Successfully Enabled");
+        Bukkit.getLogger().info("[OPItems] Successfully Enabled");
 
 
         Bukkit.getLogger().info("");
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.9 BETA   |");
+        Bukkit.getLogger().info("|        OPItems 1.9.10       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("This is a BETA Version of OPItems!");
+        //Bukkit.getLogger().info("This is a BETA Version of OPItems!");
         Bukkit.getLogger().info("");
-        opitems_version = "1.9.9";
+
+        if(GlobalVars.craftingDisabled)
+            Bukkit.getLogger().info("OPItems crafting is disabled!");
+
+        opitems_version = "1.9.10";
 
     }
 

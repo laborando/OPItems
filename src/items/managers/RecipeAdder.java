@@ -1,6 +1,8 @@
 
 package items.managers;
 
+import cel20.op.GlobalVars;
+import org.bukkit.attribute.AttributeModifier;
 import utis.CLogger;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -16,6 +18,8 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+
+import javax.xml.stream.events.Attribute;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,11 +41,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe1(final Main pluginint, final int level) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_1");
         RecipeAdder.map.put(1, key);
         final ItemStack itemStack = new ItemStack(Material.STICK, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Knocky the Stick");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.addEnchant(Enchantment.KNOCKBACK, level, true);
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
@@ -62,11 +70,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe2(final Main pluginint, final int level) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_2");
         RecipeAdder.map.put(2, key);
         final ItemStack itemStack = new ItemStack(Material.NETHERITE_SWORD, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "The Blocky Sword");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.addEnchant(Enchantment.DAMAGE_ALL, level, true);
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
@@ -88,12 +100,16 @@ public class RecipeAdder
     }
     
     public static void addRecipe3(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_3");
         RecipeAdder.map.put(3, key);
         final ItemStack itemStack = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "The Anti Damage");
         itemMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 75, true);
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "!a!", "!!!", "!!!" });
@@ -113,11 +129,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe4(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_4");
         RecipeAdder.map.put(4, key);
         final ItemStack itemStack = new ItemStack(Material.ARROW, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Bower");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.addEnchant(Enchantment.FIRE_ASPECT, 75, true);
         itemMeta.addEnchant(Enchantment.ARROW_INFINITE, 75, true);
         itemMeta.addEnchant(Enchantment.FROST_WALKER, 75, true);
@@ -142,11 +162,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe5(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_5");
         RecipeAdder.map.put(5, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Blazer");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.addEnchant(Enchantment.FIRE_ASPECT, 75, true);
         itemMeta.addEnchant(Enchantment.ARROW_INFINITE, 75, true);
         itemMeta.addEnchant(Enchantment.FROST_WALKER, 75, true);
@@ -171,11 +195,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe6(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_6");
         RecipeAdder.map.put(6, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_POWDER, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Boomer");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.addEnchant(Enchantment.FIRE_ASPECT, 75, true);
         itemMeta.addEnchant(Enchantment.ARROW_INFINITE, 75, true);
         itemMeta.addEnchant(Enchantment.FROST_WALKER, 75, true);
@@ -199,11 +227,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe7(final Main pluginint, final int speed, final int loot) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_7");
         RecipeAdder.map.put(7, key);
         final ItemStack itemStack = new ItemStack(Material.NETHERITE_PICKAXE, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "PickyPick");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 5, true);
         itemMeta.addEnchant(Enchantment.DIG_SPEED, 1200, true);
         itemStack.setItemMeta(itemMeta);
@@ -226,12 +258,16 @@ public class RecipeAdder
     }
     
     public static void addRecipe8(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_8");
         RecipeAdder.map.put(8, key);
         final ItemStack itemStack = new ItemStack(Material.COOKED_PORKCHOP, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Pig Cannon");
         itemMeta.addEnchant(Enchantment.FIRE_ASPECT, 75, true);
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "b@b", "@!@", "a@a" });
@@ -253,12 +289,16 @@ public class RecipeAdder
     }
     
     public static void addRecipe9(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_9");
         RecipeAdder.map.put(9, key);
         final ItemStack itemStack = new ItemStack(Material.PIG_SPAWN_EGG, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Pig spawn Egg");
         itemMeta.addEnchant(Enchantment.FIRE_ASPECT, 75, true);
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "a@a", "@!@", "a@a" });
@@ -279,6 +319,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe10(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_10");
         RecipeAdder.map.put(10, key);
         final ItemStack itemStack = new ItemStack(Material.NETHERITE_SWORD, 1);
@@ -286,6 +329,7 @@ public class RecipeAdder
         itemMeta.setDisplayName(ChatColor.BOLD + "Endsword");
         itemMeta.addEnchant(Enchantment.DAMAGE_ALL, 10, true);
         itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "b@b", "@!@", "a@a" });
@@ -307,11 +351,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe11(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_11");
         RecipeAdder.map.put(11, key);
         final ItemStack itemStack = new ItemStack(Material.PRISMARINE_SHARD, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Blitzer");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.addEnchant(Enchantment.OXYGEN, 10, true);
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
@@ -335,11 +383,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe12(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_12");
         RecipeAdder.map.put(12, key);
         final ItemStack itemStack = new ItemStack(Material.CRAFTING_TABLE, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "Crafter");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.addEnchant(Enchantment.PIERCING, 10, true);
         itemStack.setItemMeta(itemMeta);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
@@ -361,11 +413,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe13(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_13");
         RecipeAdder.map.put(13, key);
         final ItemStack itemStack = new ItemStack(Material.FEATHER, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "FlyFeather");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemMeta.setUnbreakable(true);
         itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
         itemStack.setItemMeta(itemMeta);
@@ -388,11 +444,15 @@ public class RecipeAdder
     }
     
     public static void addRecipe14(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_14");
         RecipeAdder.map.put(14, key);
         final ItemStack itemStack = new ItemStack(Material.FEATHER, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "AntiFall");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
 
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.RED + " - As long as this is in your inventory, you will be immune to fall-damage");
@@ -420,6 +480,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe15(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_15");
         RecipeAdder.map.put(15, key);
         final ItemStack itemStack = new ItemStack(Material.FISHING_ROD, 1);
@@ -448,6 +511,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe16(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_16");
         RecipeAdder.map.put(16, key);
         final ItemStack itemStack = new ItemStack(Material.IRON_HELMET, 1);
@@ -477,6 +543,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe17(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_17");
         RecipeAdder.map.put(17, key);
         final ItemStack itemStack = new ItemStack(Material.IRON_HELMET, 1);
@@ -506,6 +575,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe18(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_18");
         RecipeAdder.map.put(18, key);
         final ItemStack itemStack = new ItemStack(Material.LEATHER_BOOTS, 1);
@@ -535,6 +607,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe19(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_19");
         RecipeAdder.map.put(19, key);
         final ItemStack itemStack = new ItemStack(Material.FEATHER, 1);
@@ -563,6 +638,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe20(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_20");
         RecipeAdder.map.put(20, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -592,6 +670,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe21(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_21");
         RecipeAdder.map.put(21, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -621,6 +702,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe22(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_22");
         RecipeAdder.map.put(22, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -649,6 +733,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe23(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_23");
         RecipeAdder.map.put(23, key);
         final ItemStack itemStack = new ItemStack(Material.IRON_LEGGINGS, 1);
@@ -677,6 +764,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe24(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_24");
         RecipeAdder.map.put(24, key);
         final ItemStack itemStack = new ItemStack(Material.SPONGE, 4);
@@ -704,6 +794,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe25(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_25");
         RecipeAdder.map.put(25, key);
         final ItemStack itemStack = new ItemStack(Material.SPONGE, 4);
@@ -735,6 +828,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe26(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_26");
         RecipeAdder.map.put(26, key);
         final ItemStack itemStack = new ItemStack(Material.NETHERITE_SWORD, 1);
@@ -767,6 +863,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe27(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_27");
         RecipeAdder.map.put(27, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -802,6 +901,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe28(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_28");
         RecipeAdder.map.put(28, key);
         final ItemStack itemStack = new ItemStack(Material.NETHERITE_SWORD, 1);
@@ -838,6 +940,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe29(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_29");
         RecipeAdder.map.put(29, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -873,6 +978,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe30(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_30");
         RecipeAdder.map.put(30, key);
         final ItemStack itemStack = new ItemStack(Material.NETHERITE_HELMET, 1);
@@ -902,6 +1010,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe31(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_31");
         RecipeAdder.map.put(31, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -935,6 +1046,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe32(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_32");
         RecipeAdder.map.put(32, key);
         final ItemStack itemStack = new ItemStack(Material.BOW, 1);
@@ -965,6 +1079,9 @@ public class RecipeAdder
     }
     
     public static void addRecipe33(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_33");
         RecipeAdder.map.put(33, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -999,6 +1116,9 @@ public class RecipeAdder
         }
     }
     public static void addRecipe34(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_34");
         RecipeAdder.map.put(34, key);
         final ItemStack itemStack = new ItemStack(Material.STICK, 1);
@@ -1028,6 +1148,9 @@ public class RecipeAdder
         }
     }
     public static void addRecipe35(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_35");
         RecipeAdder.map.put(35, key);
         final ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD, 1);
@@ -1058,6 +1181,9 @@ public class RecipeAdder
         }
     }
     public static void addRecipe36(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_36");
         RecipeAdder.map.put(36, key);
         final ItemStack itemStack = new ItemStack(Material.HEAVY_WEIGHTED_PRESSURE_PLATE, 4);
@@ -1089,6 +1215,9 @@ public class RecipeAdder
         }
     }
     public static void addRecipe37(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_37");
         RecipeAdder.map.put(37, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -1119,6 +1248,9 @@ public class RecipeAdder
         }
     }
     public static void addRecipe38(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_38");
         RecipeAdder.map.put(38, key);
         final ItemStack itemStack = new ItemStack(Material.WATER_BUCKET, 1);
@@ -1147,6 +1279,9 @@ public class RecipeAdder
     }
 
     public static void addRecipe39(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey((Plugin)pluginint, "opitems_desc_39");
         RecipeAdder.map.put(39, key);
         final ItemStack itemStack = new ItemStack(Material.ELYTRA, 1);
@@ -1185,6 +1320,9 @@ public class RecipeAdder
     }
 
     public static void addRecipe40(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_40");
         RecipeAdder.map.put(40, key);
         final ItemStack itemStack = new ItemStack(Material.TRIDENT, 1);
@@ -1220,6 +1358,9 @@ public class RecipeAdder
 
 
     public static void addRecipe41(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_41");
         RecipeAdder.map.put(41, key);
         final ItemStack itemStack = new ItemStack(Material.BLAZE_ROD, 1);
@@ -1257,6 +1398,9 @@ public class RecipeAdder
     }
 
     public static void addRecipe42(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_42");
         RecipeAdder.map.put(42, key);
         final ItemStack itemStack = new ItemStack(Material.DIAMOND_BOOTS, 1);

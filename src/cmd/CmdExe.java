@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.UUID;
 
 import cel20.op.Test;
+import cmd.cmds.Give;
 import items.managers.RecipeAdder;
 import items.normal.cursedSword;
 import items.normal.fake_player;
@@ -47,10 +48,15 @@ public class CmdExe implements CommandExecutor {
         } catch (ArrayIndexOutOfBoundsException e) {
             arg2 = "";
         }
+        String arg3 = null;
+        try {
+            arg3 = args[2];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            arg3 = "";
+        }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
-            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.9(a)");
-            sender.sendMessage(ChatColor.RED + "OPItems BETA Version!");
+            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.10(a)");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
             sender.sendMessage(ChatColor.GOLD + "Compatible Versions 1.16.x - 1.21.*");
@@ -58,9 +64,9 @@ public class CmdExe implements CommandExecutor {
             sender.sendMessage(ChatColor.GOLD + "Newer Items supported Versions: 1.20+");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.BLUE + "Changes:");
-            sender.sendMessage(ChatColor.YELLOW + "- Added cooldowns for some items");
-            sender.sendMessage(ChatColor.YELLOW + "- Fixed some typos and errors regarding strings");
-            sender.sendMessage(ChatColor.YELLOW + "- Fixed Hook of Velectory");
+            sender.sendMessage(ChatColor.YELLOW + "- Added a config to remove the ability to craft all items at once");
+            sender.sendMessage(ChatColor.YELLOW + "- Added the ability to /opitems give OPItems to other players");
+            sender.sendMessage(ChatColor.YELLOW + "- Removed visible enchantment tags from some items");
             sender.sendMessage(ChatColor.GOLD + "");
 
 
@@ -144,28 +150,8 @@ public class CmdExe implements CommandExecutor {
             if (arg.equalsIgnoreCase("give")) {
                 if (sender.isOp()) {
 
-                    if (sender instanceof Player) {
+                    Give.execute(sender, arg2, arg3);
 
-
-                        final Player p = (Player) sender;
-
-                        if (arg2.equalsIgnoreCase("old")) {
-                            giveItems.giveItemsOld(p);
-                        }else{
-                            try {
-                                int itemNum = Integer.parseInt(arg2);
-                                giveItems.giveItems(p, itemNum);
-                            } catch (NumberFormatException e) {
-                                giveItems.giveItemsMessage(p);
-                            }
-
-                        }
-
-
-
-                    } else {
-                        sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("This Command cannot be executed in the console").toString());
-                    }
                 } else {
                     sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("YOU DON'T HAVE THE PERMISSION TO PERFORM THIS COMMAND").toString());
                 }

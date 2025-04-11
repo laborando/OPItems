@@ -17,7 +17,7 @@ public class giveItems
 
     public static void giveItemsMessage(final Player player) {
 
-        player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Missing argument: /opitems give <itemNumber> ");
+        player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Missing argument: /opitems give <itemNumber> <targetPlayer>");
     }
 
     public static void giveItems(final Player player, int itemNum) {

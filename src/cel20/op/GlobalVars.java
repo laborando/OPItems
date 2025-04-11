@@ -13,4 +13,7 @@ public class GlobalVars {
     public static long pigCanonCD = 100L;
     public static long teleportSwordCD = 100L;
     public static long enderPearlSwordCD = 100L;
+
+    public static boolean craftingDisabled = false;
+
 }

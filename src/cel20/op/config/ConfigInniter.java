@@ -108,7 +108,7 @@ public class ConfigInniter {
         config.addDefault("PigCannonCDms", 333L);
         config.addDefault("TeleportSwordCDms", 100L);
         config.addDefault("enderPearlSwordCDms", 1000L);
-
+        config.addDefault("DisableOPItemsCrafting", Boolean.FALSE);
 
         //PRIVATE POCKET DIMESION
         //PrivatePocketDimensionPerformanceModeActivated
