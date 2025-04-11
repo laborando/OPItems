@@ -131,7 +131,7 @@ public class Main extends JavaPlugin implements Listener {
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.10       |");
+        Bukkit.getLogger().info("|        OPItems 1.9.11       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
@@ -141,7 +141,7 @@ public class Main extends JavaPlugin implements Listener {
         if(GlobalVars.craftingDisabled)
             Bukkit.getLogger().info("OPItems crafting is disabled!");
 
-        opitems_version = "1.9.10";
+        opitems_version = "1.9.11";
 
     }
 

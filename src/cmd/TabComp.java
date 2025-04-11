@@ -30,10 +30,62 @@ public class TabComp implements TabCompleter {
             if(args.length == 2){
                 if(args[0].trim().equalsIgnoreCase("give")){
                     final List<String> completions = new ArrayList<String>();
-                    for (int i = 0; i < 41; i++) {
-                        completions.add(i+1 + "");
+
+                    completions.add("KnockyTheStick");
+                    completions.add("TheBlockySword");
+                    completions.add("TheAntiDamage");
+                    completions.add("Bower");
+                    completions.add("Blazer");
+                    completions.add("Boomer");
+                    completions.add("PickyPick");
+                    completions.add("PigCannon");
+                    completions.add("PigSpawnEgg");
+                    completions.add("EndSword");
+                    completions.add("Blitzer");
+                    completions.add("Crafter");
+                    completions.add("FlyFeather");
+                    completions.add("AntiFall");
+                    completions.add("HookOfVelectory");
+                    completions.add("NightVisor");
+                    completions.add("WaterHelmet");
+                    completions.add("FireShoes");
+                    completions.add("Launcher");
+                    completions.add("WandOfBoom");
+                    completions.add("WandOfMassiveBoom");
+                    completions.add("WandOfInvisibility");
+                    completions.add("SpeedLeggings");
+                    completions.add("SuperSponge");
+                    completions.add("LavaSponge");
+                    completions.add("EnderPearler");
+                    completions.add("TNTDetonator");
+                    completions.add("CursedSword");
+                    completions.add("PocketDimensionWand");
+                    completions.add("AntiExplosionHelmet");
+                    completions.add("WandOfHome");
+                    completions.add("TNTBow");
+                    completions.add("WandOfBlocks");
+                    completions.add("Portal2Go");
+                    completions.add("SkullImitator");
+                    completions.add("Landmine");
+                    completions.add("Defuser");
+                    completions.add("InfiniteWaterBucket");
+                    completions.add("ProtectivElytra");
+                    completions.add("WandOfWarden");
+                    if(args[1] == null || args[1].trim().isEmpty()){
+                        return completions;
                     }
-                    return completions;
+
+
+                    List<String> realCompletions = new ArrayList<>();
+
+                    for (String completion : completions) {
+
+                        if (completion.toLowerCase().startsWith(args[1].trim().toLowerCase()))
+                            realCompletions.add(completion);
+
+                    }
+
+                    return realCompletions;
                 }
             }
             if(args.length == 3){

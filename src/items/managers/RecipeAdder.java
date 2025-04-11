@@ -1255,7 +1255,7 @@ public class RecipeAdder
         RecipeAdder.map.put(38, key);
         final ItemStack itemStack = new ItemStack(Material.WATER_BUCKET, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Infinitive Water Bucket");
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Infinite Water Bucket");
         itemMeta.addEnchant(Enchantment.SWEEPING_EDGE, 75, true);
         itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         itemStack.setItemMeta(itemMeta);

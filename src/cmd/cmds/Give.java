@@ -18,8 +18,7 @@ public class Give {
                     giveItems.giveItemsOld(p);
                 } else {
                     try {
-                        int itemNum = Integer.parseInt(arg);
-                        giveItems.giveItems(p, itemNum);
+                        giveItems.giveItems(p, recipeStringToNum(arg));
                     } catch (NumberFormatException e) {
                         giveItems.giveItemsMessage(p);
                     }
@@ -31,8 +30,11 @@ public class Give {
 
             Player p = Bukkit.getPlayer(targetPlayer);
 
+            /*
             if(sender.getName().equalsIgnoreCase(targetPlayer))
                 sender.sendMessage("Info: You can give items to yourself by executing /opitems give <itemNumber>, <player> is only required when giving to other players");
+            */
+
 
             if(p == null){
                 sender.sendMessage(ChatColor.RED + "The player " + targetPlayer + " was not found!");
@@ -51,8 +53,8 @@ public class Give {
                 giveItems.giveItemsOld(p);
             } else {
                 try {
-                    int itemNum = Integer.parseInt(arg);
-                    giveItems.giveItems(p, itemNum);
+
+                    giveItems.giveItems(p, recipeStringToNum(arg));
                 } catch (NumberFormatException e) {
                     giveItems.giveItemsMessage(p);
                 }
@@ -63,6 +65,107 @@ public class Give {
 
 
 
+
+    }
+
+    public static int recipeStringToNum(String r){
+
+        try {
+            return Integer.parseInt(r);
+        }catch (Exception awwwNoInteger){}
+
+        String casedString = r.trim().toLowerCase();
+
+        switch (casedString) {
+            case "knockythestick":
+                return 1;
+            case "theblockysword":
+                return 2;
+            case "theantidamage":
+                return 3;
+            case "bower":
+                return 4;
+            case "blazer":
+                return 5;
+            case "boomer":
+                return 6;
+            case "pickypick":
+                return 7;
+            case "pigcannon":
+                return 8;
+            case "pigspawnegg":
+                return 9;
+            case "endsword":
+                return 10;
+            case "blitzer":
+                return 11;
+            case "crafter":
+                return 12;
+            case "flyfeather":
+                return 13;
+            case "antifall":
+                return 14;
+            case "hookofvelectory":
+                return 15;
+            case "nightvisor":
+                return 16;
+            case "waterhelmet":
+                return 17;
+            case "fireshoes":
+                return 18;
+            case "laucher":
+                return 19;
+            case "wandofboom":
+                return 20;
+            case "wandofmassiveboom":
+                return 21;
+            case "wandofinvisibility":
+                return 22;
+            case "speedleggings":
+                return 23;
+            case "supersponge":
+                return 24;
+            case "lavasponge":
+                return 25;
+            case "enderpearler":
+                return 26;
+            case "tntdetonator":
+                return 27;
+            case "cursedsword":
+                return 28;
+            case "pocketdimensionwand":
+                return 29;
+            case "antiexplosionhelmet":
+                return 30;
+            case "wandofhome":
+                return 31;
+            case "tntbow":
+                return 32;
+            case "wandofblocks":
+                return 33;
+            case "portal2go":
+                return 34;
+            case "skullimitator":
+                return 35;
+            case "landmine":
+                return 36;
+            case "defuser":
+                return 37;
+            case "infinitewaterbucket":
+                return 38;
+            case "protectivelytra":
+                return 39;
+            case "riptider":
+                return 40;
+            case "wandofwarden":
+                return 41;
+            case "jumpyboots":
+                return 42;
+
+
+            default:
+                return -1;
+        }
 
     }
 

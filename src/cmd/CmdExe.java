@@ -261,7 +261,7 @@ public class CmdExe implements CommandExecutor {
 
                     if(!(sender instanceof Player)){
                         sender.sendMessage(ChatColor.RED + "You are not a Player!");
-                        return false;
+                        return true;
                     }
 
                     Player p = (Player) sender;
@@ -368,7 +368,7 @@ public class CmdExe implements CommandExecutor {
                 sender.sendMessage(ChatColor.RED + "Subcommand not Found! /opitems <give | gui | help | update | skull>");
             }
         }
-        return false;
+        return true;
     }
 
 }
