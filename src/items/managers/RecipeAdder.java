@@ -455,7 +455,7 @@ public class RecipeAdder
         itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
 
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.RED + " - As long as this is in your inventory, you will be immune to fall-damage");
+        lore.add(ChatColor.RED + " - As long as this is in your inventory, you will be immune to fall damage");
         itemMeta.setLore(lore);
         itemMeta.setUnbreakable(true);
         itemMeta.addEnchant(Enchantment.ARROW_FIRE, 10, true);

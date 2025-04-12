@@ -10,6 +10,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 public class OldItems implements Listener {
@@ -21,8 +22,15 @@ public class OldItems implements Listener {
     public void event(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
-        if (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK)
+        Action action = e.getAction();
+
+        if (e.getHand() != EquipmentSlot.HAND)
             return;
+
+        if (!(action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK))
+            return;
+
+
         ItemStack item = p.getInventory().getItemInMainHand();
         if (item == null)
             return;
@@ -32,6 +40,8 @@ public class OldItems implements Listener {
                     item.getItemMeta().getDisplayName().contains(ChatColor.BOLD + "Enderpearler")) {
                 EnderpearlSword.handle(p);
             }
+
+            //Durch Wände gehen dings
             if (a == Material.FLINT &&
                     item.containsEnchantment(Enchantment.ARROW_DAMAGE))
                 if (e.getClickedBlock().getY() == p.getLocation().getY()) {
@@ -59,26 +69,27 @@ public class OldItems implements Listener {
                 item.containsEnchantment(Enchantment.ARROW_DAMAGE))
             if (mainRef.config.getBoolean("AllowFlyFeather")) {
                 if (p.getGameMode() == GameMode.CREATIVE) {
-                    p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "This item is not made for Creative");
+                    p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "This item is not usable in creative mode");
                 } else if (p.getAllowFlight()) {
                     p.setFlying(false);
                     p.setAllowFlight(false);
+                    p.sendMessage(ChatColor.RED + "Flying disabled");
                 } else {
                     p.setAllowFlight(true);
-                    p.sendMessage(ChatColor.GREEN + "You can fly now");
-                    p.sendMessage("You can only fly with the fly feather in the inventory");
-                    p.sendMessage("If you can't fly now, try again in 30 sek.");
+                    p.sendMessage(ChatColor.GREEN + "Flying enabled");
                 }
             } else {
                 p.sendMessage(ChatColor.RED + "This feature is currently disabled");
             }
+
+
         if (a == Material.FEATHER &&
                 item.containsEnchantment(Enchantment.SOUL_SPEED)) {
             double cooldownTime = mainRef.config.getDouble("launcher_cooldown_MilliSeconds");
             if (mainRef.Launcher_Cooldown.containsKey(p.getName())) {
                 double secondsLeft = ((double) mainRef.Launcher_Cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
                 if (secondsLeft > 0.0D) {
-                    p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You cant use thisL Item for another " + secondsLeft + " seconds!");
+                    p.sendMessage(ChatColor.RED + "You cant use thisL Item for another " + secondsLeft + " seconds!");
                     return;
                 }
             }

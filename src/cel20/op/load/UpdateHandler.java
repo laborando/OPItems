@@ -22,7 +22,7 @@ public class UpdateHandler {
             if (updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE) {
                 Main.update = 1;
             }else if (updater.getResult() == Updater.UpdateResult.FAIL_BADID) {
-                Bukkit.getLogger().severe("[OPItems] There was an error looking for an update, if m isn't only temporary, look for updates yourself around every month. ");
+                Bukkit.getLogger().severe("[OPItems] There was an error looking for updates!");
             }
 
             if (Main.update == 1) {
@@ -31,11 +31,12 @@ public class UpdateHandler {
                     Bukkit.getLogger().info(ANSI_YELLOW + "A new Update for OPItems has been found. Please update with /opitems update" + ANSI_RESET);
                 }else if (updater.getLatestType() == Updater.ReleaseType.BETA) {
                     Bukkit.getLogger().info(ANSI_YELLOW + "A new Update for OPItems has been found. The update is in the BETA stage it might be a bit more unstable! If you want to update, do it with /opitems update" + ANSI_RESET);
-                }else if (updater.getLatestType() == Updater.ReleaseType.ALPHA) {
-                    Bukkit.getLogger().info(ANSI_YELLOW + "A new Update for OPItems has been found. The update is in the ALPHA stage! If you want to update, do it with /opitems update" + ANSI_RESET);
                 }
+
                 Main.update_type = updater.getLatestType();
+
             }
+
 
         }catch (java.lang.IllegalStateException ignored){}
         

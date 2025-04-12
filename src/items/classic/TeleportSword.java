@@ -24,6 +24,8 @@ public class TeleportSword {
         }
         cooldown.put(p.getName(), System.currentTimeMillis());
 
+
+        //Needs rework lol
         Location location = p.getLocation().clone();
         Location location2 = p.getLocation().clone();
         Location location3 = p.getLocation().clone();

@@ -1,6 +1,7 @@
 
 package events;
 
+import org.bukkit.inventory.ItemFlag;
 import utis.Updater;
 import cel20.op.Main;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -18,92 +19,71 @@ import org.bukkit.Material;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.Listener;
 
-public class flystick implements Listener
-{
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final PlayerRespawnEvent e) {
-        final Player p = e.getPlayer();
-        final ItemStack nv = new ItemStack(Material.BLAZE_ROD, 1);
-        final ItemMeta iM = nv.getItemMeta();
-        iM.addEnchant(Enchantment.CHANNELING, 10, true);
-        iM.setDisplayName(ChatColor.BOLD + "Wand of Boom");
-        nv.setItemMeta(iM);
-        final ItemStack i = new ItemStack(Material.FEATHER, 1);
-        final ItemMeta itemMeta = i.getItemMeta();
+public class flystick implements Listener {
+
+    private ItemStack fs;
+    private ItemStack wob;
+
+    public flystick(){
+        final ItemStack itemStack = new ItemStack(Material.FEATHER, 1);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "FlyFeather");
+        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        itemMeta.setUnbreakable(true);
         itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-        i.setItemMeta(itemMeta);
-        if (!p.getInventory().contains(i)) {
-        	if(!(p.getGameMode().equals(GameMode.CREATIVE) || p.getGameMode().equals(GameMode.SPECTATOR))) {
-            p.setFlying(false);
-            p.setAllowFlight(false);
-        	}
-        }
-        if (!p.getInventory().contains(nv) && p.isInvisible()) {
-            p.sendMessage("You are not invisible anymore");
-            p.setInvisible(false);
-        }
+        itemStack.setItemMeta(itemMeta);
+
+        fs = itemStack;
+
+        final ItemStack itemStackII = new ItemStack(Material.BLAZE_ROD, 1);
+        final ItemMeta itemMetaII = itemStackII.getItemMeta();
+        itemMetaII.setDisplayName(ChatColor.BOLD + "Wand of Invisibility");
+        itemMetaII.setUnbreakable(true);
+        itemMetaII.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        itemMetaII.addEnchant(Enchantment.DIG_SPEED, 10, true);
+        itemStackII.setItemMeta(itemMetaII);
+
+        wob = itemStackII;
+
     }
-    
+
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerDropItemEvent e) {
         final Player p = e.getPlayer();
-        final ItemStack nv = new ItemStack(Material.BLAZE_ROD, 1);
-        final ItemMeta iM = nv.getItemMeta();
-        iM.addEnchant(Enchantment.CHANNELING, 10, true);
-        iM.setDisplayName(ChatColor.BOLD + "Wand of Boom");
-        nv.setItemMeta(iM);
-        final ItemStack i = new ItemStack(Material.FEATHER, 1);
-        final ItemMeta itemMeta = i.getItemMeta();
-        itemMeta.setDisplayName(ChatColor.BOLD + "FlyFeather");
-        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-        i.setItemMeta(itemMeta);
-        if (p.getGameMode() != GameMode.CREATIVE && !p.getInventory().contains(i)) {
+        if (p.getGameMode() != GameMode.CREATIVE && !p.getInventory().contains(fs)) {
             p.setFlying(false);
             p.setAllowFlight(false);
         }
-        if (!p.getInventory().contains(nv) && p.isInvisible()) {
+        if (!p.getInventory().contains(wob) && p.isInvisible()) {
             p.sendMessage("You are not invisible anymore");
             p.setInvisible(false);
         }
     }
-    
+
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerLoginEvent e) {
         final Player p = e.getPlayer();
-        final ItemStack nv = new ItemStack(Material.BLAZE_ROD, 1);
-        final ItemMeta iM = nv.getItemMeta();
-        iM.addEnchant(Enchantment.CHANNELING, 10, true);
-        iM.setDisplayName(ChatColor.BOLD + "Wand of Boom");
-        nv.setItemMeta(iM);
-        final ItemStack i = new ItemStack(Material.FEATHER, 1);
-        final ItemMeta itemMeta = i.getItemMeta();
-        itemMeta.setDisplayName(ChatColor.BOLD + "FlyFeather");
-        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
-        i.setItemMeta(itemMeta);
-        if (!p.getInventory().contains(i)) {
-        	if(!(p.getGameMode().equals(GameMode.CREATIVE) || p.getGameMode().equals(GameMode.SPECTATOR))) {
-            p.setFlying(false);
-            p.setAllowFlight(false);
-        	}
+        if (!p.getInventory().contains(fs)) {
+            if (!(p.getGameMode().equals(GameMode.CREATIVE) || p.getGameMode().equals(GameMode.SPECTATOR))) {
+                p.setFlying(false);
+                p.setAllowFlight(false);
+            }
         }
-        if (!p.getInventory().contains(nv) && p.isInvisible()) {
+        if (!p.getInventory().contains(wob) && p.isInvisible()) {
             p.sendMessage("You are not invisible anymore");
             p.setInvisible(false);
         }
     }
-    
+
     @EventHandler(priority = EventPriority.HIGH)
-    
-    public void event(final PlayerJoinEvent e) {
+    public void event(final PlayerRespawnEvent e) {
         final Player p = e.getPlayer();
-        if (Main.update == 1 && p.isOp()) {
-            if (Main.update_type == Updater.ReleaseType.RELEASE) {
-                p.sendMessage(ChatColor.GREEN + "A new Update is available for OPItems update with /opitems update or /updateopitems");
-            }
-            if (Main.update_type == Updater.ReleaseType.BETA) {
-                p.sendMessage(ChatColor.GREEN + "A new Update is available for OPItems update with /opitems update or /updateopitems");
-            }
+
+        if (!(p.getGameMode().equals(GameMode.CREATIVE) || p.getGameMode().equals(GameMode.SPECTATOR))) {
+            p.setFlying(false);
+            p.setAllowFlight(false);
         }
+
+        p.setInvisible(false);
     }
 }

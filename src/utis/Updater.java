@@ -371,7 +371,7 @@ public class Updater
             final String localVersion = this.plugin.getDescription().getVersion();
             if (title.split("^v|[\\s_-]v").length < 2) {
                 final String authorInfo = this.plugin.getDescription().getAuthors().isEmpty() ? "" : (" (" + this.plugin.getDescription().getAuthors().get(0) + ")");
-                this.plugin.getLogger().warning("The author of this plugin" + authorInfo + " has misconfigured their Auto Update system");
+                this.plugin.getLogger().warning("[OPItems] Update error: files have wrong descs.");
                 this.result = UpdateResult.FAIL_NOVERSION;
                 return false;
             }
@@ -385,7 +385,60 @@ public class Updater
     }
     
     public boolean shouldUpdate(final String localVersion, final String remoteVersion) {
-        return !localVersion.equalsIgnoreCase(remoteVersion);
+
+        try {
+            int remoteSubVer = 69;
+            int localSubVer = -69;
+
+            String[] lvs = localVersion.split("\\.");
+            String[] rvs = remoteVersion.split("\\.");
+
+            localSubVer = Integer.parseInt(lvs[lvs.length - 3]);
+            remoteSubVer = Integer.parseInt(rvs[rvs.length - 3]);
+
+            if(remoteSubVer > localSubVer)
+                return true;
+            if(remoteSubVer < localSubVer)
+                return false;
+        }catch (Exception e){
+            this.plugin.getLogger().warning("[OPItems] Update error: unable to match subversion of local and remote versions.");
+            return false;
+        }
+
+        try {
+            int remoteSubVer = 69;
+            int localSubVer = -69;
+
+            String[] lvs = localVersion.split("\\.");
+            String[] rvs = remoteVersion.split("\\.");
+
+            localSubVer = Integer.parseInt(lvs[lvs.length - 2]);
+            remoteSubVer = Integer.parseInt(rvs[rvs.length - 2]);
+
+            if(remoteSubVer > localSubVer)
+                return true;
+            if(remoteSubVer < localSubVer)
+                return false;
+        }catch (Exception e){
+            this.plugin.getLogger().warning("[OPItems] Update error: unable to match subversion of local and remote versions.");
+            return false;
+        }
+
+        try {
+            int remoteSubVer = 69;
+            int localSubVer = -69;
+
+            String[] lvs = localVersion.split("\\.");
+            String[] rvs = remoteVersion.split("\\.");
+
+            localSubVer = Integer.parseInt(lvs[lvs.length - 1]);
+            remoteSubVer = Integer.parseInt(rvs[rvs.length - 1]);
+
+            return (remoteSubVer > localSubVer);
+        }catch (Exception e){
+            this.plugin.getLogger().warning("[OPItems] Update error: unable to match subversion of local and remote versions.");
+            return false;
+        }
     }
     
     private boolean hasTag(final String version) {
