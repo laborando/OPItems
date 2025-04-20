@@ -131,7 +131,7 @@ public class Main extends JavaPlugin implements Listener {
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.11       |");
+        Bukkit.getLogger().info("|        OPItems 1.9.12       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");

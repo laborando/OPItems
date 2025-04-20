@@ -54,9 +54,7 @@ public class UpdateHandler {
         }
         else if (updater.getResult() == Updater.UpdateResult.NO_UPDATE) {
             sender.sendMessage(ChatColor.GOLD + "OPItems is running the newest Version");
-        }
-        else {
-            sender.sendMessage(String.valueOf(ChatColor.RED) + ChatColor.BOLD + "UPDATE FAILED:");
+        }else {
             sender.sendMessage(String.valueOf(ChatColor.RED) + ChatColor.BOLD + "OPItems Failed to Update. Error:");
             sender.sendMessage(updater.getResult().toString());
         }

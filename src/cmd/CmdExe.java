@@ -56,18 +56,18 @@ public class CmdExe implements CommandExecutor {
         }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
-            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.10(a)");
+            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.12(a)");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
             sender.sendMessage(ChatColor.GOLD + "Compatible Versions 1.16.x - 1.21.*");
             sender.sendMessage(ChatColor.GOLD + "Target Version: 1.21.4");
             sender.sendMessage(ChatColor.GOLD + "Newer Items supported Versions: 1.20+");
-            sender.sendMessage(ChatColor.GOLD + "");
-            sender.sendMessage(ChatColor.BLUE + "Changes:");
-            sender.sendMessage(ChatColor.YELLOW + "- Added a config to remove the ability to craft all items at once");
-            sender.sendMessage(ChatColor.YELLOW + "- Added the ability to /opitems give OPItems to other players");
-            sender.sendMessage(ChatColor.YELLOW + "- Removed visible enchantment tags from some items");
-            sender.sendMessage(ChatColor.GOLD + "");
+//            sender.sendMessage(ChatColor.GOLD + "");
+//            sender.sendMessage(ChatColor.BLUE + "Changes:");
+//            sender.sendMessage(ChatColor.YELLOW + "- Added a config to remove the ability to craft all items at once");
+//            sender.sendMessage(ChatColor.YELLOW + "- Added the ability to /opitems give OPItems to other players");
+//            sender.sendMessage(ChatColor.YELLOW + "- Removed visible enchantment tags from some items");
+//            sender.sendMessage(ChatColor.GOLD + "");
 
 
 /*
@@ -94,15 +94,23 @@ public class CmdExe implements CommandExecutor {
                     final Items items = new Items();
                     Bukkit.broadcastMessage(new StringBuilder().append(ChatColor.BOLD).append(ChatColor.RED).append("All Items will be removed in 10 sec.!").toString());
                     Bukkit.getScheduler().runTaskLater((Plugin) Main.getPluginInstance(), () -> items.removeItems(), 200L);
+                    return true;
                 }
                 if (arg.equalsIgnoreCase("player_heap")) {
+                    sender.sendMessage("Per-player item count:");
                     final Items items = new Items();
                     items.ItemsPlayerHeap();
+                    return true;
                 }
                 if (arg.equalsIgnoreCase("remove_now")) {
+                    sender.sendMessage("Loaded items are being removed...");
                     final Items items = new Items();
                     items.removeItems();
+                    return true;
                 }
+
+                sender.sendMessage("Subcommand not found / not given!");
+                return false;
 
             } else {
                 sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
@@ -115,10 +123,14 @@ public class CmdExe implements CommandExecutor {
                 sender.sendMessage(ChatColor.GOLD + "OPItems by Cel20");
                 sender.sendMessage(ChatColor.GOLD + "This Plugin can be configurated in the /plugins/opitems/plugin.yml file");
                 sender.sendMessage(ChatColor.GOLD + "Important Commands: ");
-                sender.sendMessage(ChatColor.GOLD + "/opitems recipes | Gives you a link to the recipes");
-                sender.sendMessage(ChatColor.GOLD + "/opitems gui | opens the GUI of OPItems");
+                sender.sendMessage(ChatColor.GOLD + "/opitems give | gives you opitems");
+                sender.sendMessage(ChatColor.GOLD + "/opitems recipes | gives you a link to the recipes");
+                sender.sendMessage(ChatColor.GOLD + "/opitems gui | opens the GUI of OPItems (not up-to-date)");
                 sender.sendMessage(ChatColor.GOLD + "/opitems help | displays this message");
+                sender.sendMessage(ChatColor.GOLD + "/opitems skull | generates the head of a given player");
+                sender.sendMessage(ChatColor.GOLD + "/opitems updates | tries to update opitems");
                 sender.sendMessage(ChatColor.GOLD + "/opitemsversion | displays the current Version and Changelog");
+                sender.sendMessage(ChatColor.GOLD + "/items | displays the current Version and Changelog");
             } else {
                 sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
             }
@@ -137,7 +149,7 @@ public class CmdExe implements CommandExecutor {
         }
         if (label.equalsIgnoreCase("opitems")) {
             if (args.length == 0) {
-                sender.sendMessage(ChatColor.RED + "No Subcommand! Please write /opitems <help | give | gui | update>");
+                sender.sendMessage(ChatColor.RED + "No Subcommand! Execute '/opitems help' for a list of available subcommands");
                 return true;
             }
 
@@ -365,7 +377,7 @@ public class CmdExe implements CommandExecutor {
 
 
             else {
-                sender.sendMessage(ChatColor.RED + "Subcommand not Found! /opitems <give | gui | help | update | skull>");
+                sender.sendMessage(ChatColor.RED + "Subcommand not found! Execute '/opitems help' for a list of available subcommands");
             }
         }
         return true;

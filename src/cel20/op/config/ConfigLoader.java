@@ -49,13 +49,13 @@ public class ConfigLoader {
         if (config.getBoolean("CursedSwordEnabled")) {
             m.getServer().getPluginManager().registerEvents(new cursedSword(), m);
         }
-        if (config.getBoolean("AllowCraftOtherItems")) {
+        if (config.getBoolean("AllowCraftKnockyTheStick")) {
             RecipeAdder.addRecipe1(plugin, config.getInt("CraftedKnockyTheStickKnockbackEnchantmentLevel"));
         }
-        if (config.getBoolean("AllowCraftOtherItems")) {
+        if (config.getBoolean("AllowCraftBlockySword")) {
             RecipeAdder.addRecipe2(plugin, config.getInt("CraftedBlockySwordDamageAllEnchantmentLevel"));
         }
-        if (config.getBoolean("AllowCraftOtherItems")) {
+        if (config.getBoolean("AllowCraftTheAntiDamage")) {
             RecipeAdder.addRecipe3(plugin);
         }
         if (config.getBoolean("AllowBower")) {
@@ -67,7 +67,7 @@ public class ConfigLoader {
         if (config.getBoolean("AllowBoomer")) {
             RecipeAdder.addRecipe6(plugin);
         }
-        if (config.getBoolean("AllowCraftOtherItems")) {
+        if (config.getBoolean("AllowCraftPickyPick")) {
             final int speed = config.getInt("CraftedPickyPickDigSpeedEnchantmentLevel");
             final int loot = config.getInt("CraftedPickyPickLootBonusBlocksEnchantmentLevel");
             RecipeAdder.addRecipe7(plugin, speed, loot);
@@ -171,7 +171,7 @@ public class ConfigLoader {
             Main.priDimPerformMode =true;
         }
         //EnableLandmine
-        if (config.getBoolean("EnableSkullImitator")) {
+        if (config.getBoolean("EnableLandmine")) {
             RecipeAdder.addRecipe36(plugin);
             RecipeAdder.addRecipe37(plugin);
             m.getServer().getPluginManager().registerEvents(new landmine(), m);

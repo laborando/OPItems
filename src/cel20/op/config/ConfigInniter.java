@@ -109,6 +109,11 @@ public class ConfigInniter {
         config.addDefault("TeleportSwordCDms", 100L);
         config.addDefault("enderPearlSwordCDms", 1000L);
         config.addDefault("DisableOPItemsCrafting", Boolean.FALSE);
+        config.addDefault("AllowCraftKnockyTheStick", Boolean.TRUE);
+        config.addDefault("AllowCraftTheAntiDamage", Boolean.TRUE);
+        config.addDefault("AllowCraftBlockySword", Boolean.TRUE);
+        config.addDefault("AllowCraftPickyPick", Boolean.TRUE);
+
 
         //PRIVATE POCKET DIMESION
         //PrivatePocketDimensionPerformanceModeActivated
