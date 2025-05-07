@@ -1,1 +1,1 @@
-Minecraft OPItems Plugin by Cel20 (laborando on GitHub)
+OPItems Plugin by Cel20/laborando
