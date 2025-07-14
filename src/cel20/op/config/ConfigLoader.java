@@ -203,6 +203,17 @@ public class ConfigLoader {
             RecipeAdder.addRecipe42(plugin);
         }
 
+        //Piercer
+
+        if (config.getBoolean("EnablePiercer")) {
+            m.getServer().getPluginManager().registerEvents(new Piercer(), m);
+        }
+
+        if (config.getBoolean("AllowCraftPiercer")) {
+            GlobalVars.piercerDamageLevel = config.getInt("PiercerDamageLevel", 3);
+            GlobalVars.piercerKnockbackLevel = config.getInt("PiercerKnockbackLevel", 3);
+            RecipeAdder.addRecipe43(plugin);
+        }
 
 
         Main.ore_gen_chance_private_dim = config.getInt("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock");

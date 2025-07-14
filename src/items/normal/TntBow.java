@@ -21,10 +21,6 @@ import utis.celutis;
 public class TntBow implements Listener {
 	
 	private ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
-    
-    static {
-        cursedSword.list_entity = new ArrayList<EntityType>();
-    }
 	
     @EventHandler
     public void onProjectileLaunch(ProjectileLaunchEvent event) {

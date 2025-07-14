@@ -2,6 +2,8 @@ package cel20.op;
 
 public class GlobalVars {
 
+    public static String uuid = ";";
+
     public static boolean newerFeaturesEnabled = false;
 
     public static long hookOfVelectoryCD = 100L;
@@ -16,4 +18,6 @@ public class GlobalVars {
 
     public static boolean craftingDisabled = false;
 
+    public static int piercerDamageLevel;
+    public static int piercerKnockbackLevel;
 }

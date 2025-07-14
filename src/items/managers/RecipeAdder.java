@@ -2,7 +2,6 @@
 package items.managers;
 
 import cel20.op.GlobalVars;
-import org.bukkit.attribute.AttributeModifier;
 import utis.CLogger;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 
-import javax.xml.stream.events.Attribute;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class RecipeAdder
         RecipeAdder.map = new HashMap<Integer, NamespacedKey>();
     }
     
-    public static void removeRecipe() {
+    public static void removeRecipes() {
         try {
             for (final NamespacedKey p : RecipeAdder.map.values()) {
                 Bukkit.removeRecipe(p);
@@ -1408,9 +1406,8 @@ public class RecipeAdder
         itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Jumpy Boots");
 
         List<String> lore = new ArrayList<>();
-        lore.add(ChatColor.RED + " - Currently not finished!");
+        lore.add(ChatColor.RED + " - Currently not implemented!");
         lore.add(ChatColor.RED + " - Enables one to triple jump");
-        lore.add(ChatColor.RED + " - Can be upgraded to netherite and enchanted!");
         itemMeta.setLore(lore);
 
         itemStack.setItemMeta(itemMeta);
@@ -1419,6 +1416,44 @@ public class RecipeAdder
         shapedRecipe.setIngredient('x', Material.DIAMOND);
         shapedRecipe.setIngredient('b', Material.DIAMOND_BLOCK);
         shapedRecipe.setIngredient('c', Material.FEATHER);
+
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        }catch (Error e){
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
+    }
+
+    public static void addRecipe43(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_43");
+        RecipeAdder.map.put(43, key);
+        final ItemStack itemStack = new ItemStack(Material.BOW, 1);
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Piercer");
+
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RED + " - Shoots piercing arrows");
+        itemMeta.setLore(lore);
+
+        itemMeta.addEnchant(Enchantment.ARROW_KNOCKBACK, 3, true);
+        itemMeta.addEnchant(Enchantment.LUCK, 3, true);
+        itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
+
+        itemStack.setItemMeta(itemMeta);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape(new String[] { "xbx", "xcx", "xax" });
+        shapedRecipe.setIngredient('a', Material.BLAZE_ROD);
+        shapedRecipe.setIngredient('b', Material.DIAMOND_BLOCK);
+        shapedRecipe.setIngredient('c', Material.BOW);
 
         try {
             Bukkit.getServer().addRecipe(shapedRecipe);

@@ -22,14 +22,16 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="JavaSE-1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">
       <library name="craftbukkit-1.16.5.jar">
         <CLASSES>
           <root url="jar://C:/data/craftbukkit-1.16.5.jar!/" />
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC>
+          <root url="https://hub.spigotmc.org/javadocs/bukkit/" />
+        </JAVADOC>
         <SOURCES />
       </library>
     </orderEntry>

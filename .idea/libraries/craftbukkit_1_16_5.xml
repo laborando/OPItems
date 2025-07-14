@@ -3,7 +3,9 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../../../../dev/craftbukkit-1.16.5.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="https://hub.spigotmc.org/javadocs/bukkit/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../../../../dev/craftbukkit-1.16.5.jar!/" />
     </SOURCES>

@@ -3,12 +3,12 @@ package cmd;
 import java.io.File;
 import java.util.UUID;
 
+import cel20.op.GlobalVars;
 import cel20.op.Test;
 import cmd.cmds.Give;
 import items.managers.RecipeAdder;
 import items.normal.cursedSword;
 import items.normal.fake_player;
-import items.managers.giveItems;
 import items.normal.landmine;
 import utis.CLogger;
 import utis.Logutis;
@@ -56,12 +56,18 @@ public class CmdExe implements CommandExecutor {
         }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
+            /*
             sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.12(a)");
             sender.sendMessage(ChatColor.GOLD + "");
             sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
             sender.sendMessage(ChatColor.GOLD + "Compatible Versions 1.16.x - 1.21.*");
             sender.sendMessage(ChatColor.GOLD + "Target Version: 1.21.4");
             sender.sendMessage(ChatColor.GOLD + "Newer Items supported Versions: 1.20+");
+            */
+
+            sender.sendMessage(ChatColor.GOLD + "Current Version: " + Main.opitems_version);
+            sender.sendMessage(ChatColor.BLUE + "Changelog: https://modrinth.com/plugin/opitems/changelog");
+
 //            sender.sendMessage(ChatColor.GOLD + "");
 //            sender.sendMessage(ChatColor.BLUE + "Changes:");
 //            sender.sendMessage(ChatColor.YELLOW + "- Added a config to remove the ability to craft all items at once");
@@ -364,7 +370,7 @@ public class CmdExe implements CommandExecutor {
             	sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recipes for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
             }else if (arg.equalsIgnoreCase("remove_recipes")) {
             	if (sender.isOp()) {
-            	RecipeAdder.removeRecipe();
+            	RecipeAdder.removeRecipes();
             	sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
             	}
             	}else if (arg.equalsIgnoreCase("remove_recipes_all")) {

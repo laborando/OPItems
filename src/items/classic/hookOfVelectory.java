@@ -14,7 +14,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.Material;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.Listener;
-import sun.security.action.GetLongAction;
 
 import java.util.HashMap;
 import java.util.Map;

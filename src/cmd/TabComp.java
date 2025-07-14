@@ -71,6 +71,8 @@ public class TabComp implements TabCompleter {
                     completions.add("InfiniteWaterBucket");
                     completions.add("ProtectivElytra");
                     completions.add("WandOfWarden");
+                    completions.add("JumpyBoots");
+                    completions.add("Piercer");
                     if(args[1] == null || args[1].trim().isEmpty()){
                         return completions;
                     }

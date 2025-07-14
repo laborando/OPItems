@@ -161,6 +161,8 @@ public class Give {
                 return 41;
             case "jumpyboots":
                 return 42;
+            case "piercer":
+                return 43;
 
 
             default:

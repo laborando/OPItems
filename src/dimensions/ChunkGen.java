@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Random;
 
 import org.bukkit.generator.ChunkGenerator;
-import sun.reflect.generics.tree.Tree;
 
 public class ChunkGen extends ChunkGenerator
 {

@@ -1,9 +1,6 @@
 
 package cel20.op;
 
-import java.util.logging.Filter;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.io.File;
 
@@ -11,12 +8,9 @@ import cel20.op.config.ConfigInniter;
 import cel20.op.config.ConfigLoader;
 import cel20.op.data.ItemData;
 import cel20.op.load.*;
-import com.mysql.jdbc.log.Log;
 import items.managers.RecipeAdder;
-import org.apache.logging.log4j.LogManager;
 import utis.CLogger;
 import org.bukkit.command.CommandSender;
-import org.bukkit.ChatColor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -27,6 +21,7 @@ import java.util.HashMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import utis.Updater;
+import utis.WorkerLogger;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -124,6 +119,10 @@ public class Main extends JavaPlugin implements Listener {
             }
         }
 
+        WorkerLogger logger = new WorkerLogger("https://plugins.opitems.workers.dev/");
+
+
+
         Bukkit.getLogger().info("[OPItems] Successfully Enabled");
 
 
@@ -131,18 +130,20 @@ public class Main extends JavaPlugin implements Listener {
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.12       |");
+        Bukkit.getLogger().info("|        OPItems 1.9.13       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
         //Bukkit.getLogger().info("This is a BETA Version of OPItems!");
         Bukkit.getLogger().info("");
 
-        if(GlobalVars.craftingDisabled)
+        if(GlobalVars.craftingDisabled) {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
+        }
 
-        opitems_version = "1.9.11";
+        opitems_version = "1.9.13";
 
+         logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitems_version);
     }
 
     public void onDisable() {
@@ -150,7 +151,7 @@ public class Main extends JavaPlugin implements Listener {
 
         ItemData.saveItemData(this);
 
-        RecipeAdder.removeRecipe();
+        RecipeAdder.removeRecipes();
 
         try {
             CLogger.flushNow();
