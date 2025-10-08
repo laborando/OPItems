@@ -56,7 +56,7 @@ public class ConfigLoader {
             RecipeAdder.addRecipe2(plugin, config.getInt("CraftedBlockySwordDamageAllEnchantmentLevel"));
         }
         if (config.getBoolean("AllowCraftTheAntiDamage")) {
-            RecipeAdder.addRecipe3(plugin);
+            RecipeAdder.addRecipe3(plugin, config.getInt("CraftedTheAntiDamageProtectionEnchantmentLevel"));
         }
         if (config.getBoolean("AllowBower")) {
             RecipeAdder.addRecipe4(plugin);

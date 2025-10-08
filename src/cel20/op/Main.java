@@ -121,16 +121,13 @@ public class Main extends JavaPlugin implements Listener {
 
         WorkerLogger logger = new WorkerLogger("https://plugins.opitems.workers.dev/");
 
-
-
         Bukkit.getLogger().info("[OPItems] Successfully Enabled");
-
 
         Bukkit.getLogger().info("");
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.13       |");
+        Bukkit.getLogger().info("|        OPItems 1.9.14       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
@@ -141,7 +138,7 @@ public class Main extends JavaPlugin implements Listener {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
         }
 
-        opitems_version = "1.9.13";
+        opitems_version = "1.9.14";
 
          logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitems_version);
     }

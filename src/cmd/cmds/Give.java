@@ -8,7 +8,14 @@ import org.bukkit.entity.Player;
 
 public class Give {
 
-    public static void execute(CommandSender sender, String arg, String targetPlayer) {
+    public static void execute(CommandSender sender, String arg, String targetPlayer, String p1, String p2) {
+
+        int n1 = -1;
+        int n2 = -1;
+
+        n1 = ((p1 == null) || !p1.isEmpty()) ? Integer.parseInt(p1) : -1;
+        n2 = ((p2 == null) || !p2.isEmpty()) ? Integer.parseInt(p2) : -1;
+
 
         if (targetPlayer == null || targetPlayer.equalsIgnoreCase("")) {
             if (sender instanceof Player) {
@@ -18,7 +25,7 @@ public class Give {
                     giveItems.giveItemsOld(p);
                 } else {
                     try {
-                        giveItems.giveItems(p, recipeStringToNum(arg));
+                        giveItems.giveItems(p, recipeStringToNum(arg), n1, n2);
                     } catch (NumberFormatException e) {
                         giveItems.giveItemsMessage(p);
                     }
@@ -54,7 +61,7 @@ public class Give {
             } else {
                 try {
 
-                    giveItems.giveItems(p, recipeStringToNum(arg));
+                    giveItems.giveItems(p, recipeStringToNum(arg), n1, n2);
                 } catch (NumberFormatException e) {
                     giveItems.giveItemsMessage(p);
                 }

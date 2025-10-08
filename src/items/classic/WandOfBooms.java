@@ -16,7 +16,7 @@ public class WandOfBooms {
             if (mainRef.cooldown_wand_boom.containsKey(p.getName())) {
                 double secondsLeft = ((double) mainRef.cooldown_wand_boom.get(p.getName()).longValue() / 1000L) + cooldownTime / 1000.0D - (System.currentTimeMillis() / 1000L);
                 if (secondsLeft > 0.0D) {
-                    p.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "You cant use this Item for another " + secondsLeft + " seconds!");
+                    p.sendMessage(ChatColor.RED + "You cant use this Item for another " + secondsLeft + " seconds!");
                     return;
                 }
             }
@@ -34,7 +34,7 @@ public class WandOfBooms {
         if (mainRef.cooldown_wand_boom.containsKey(p.getName())) {
             double secondsLeft = ((double) mainRef.cooldown_wand_boom.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
             if (secondsLeft > 0.0D) {
-                p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You cant use this Item for another " + secondsLeft + " seconds!");
+                p.sendMessage(ChatColor.RED + "You cant use this Item for another " + secondsLeft + " seconds!");
                 return;
             }
         }

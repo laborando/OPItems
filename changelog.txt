@@ -14,6 +14,8 @@ IN  WORK:
 
 
 DONE:
-Fixed Cursed Sword Deleting the List of killed Enemies
 
+OPItems now have proper internal flags -> Future preparation
 
+FB: Anti Damage Prot Level not set by Config
+FB:

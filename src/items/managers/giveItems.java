@@ -20,12 +20,14 @@ public class giveItems
         player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Missing argument: /opitems give <itemNumber> <targetPlayer>");
     }
 
-    public static void giveItems(final Player player, int itemNum) {
+    public static void giveItems(final Player player, int itemNum, int p1, int p2) {
 
         try {
-            final NamespacedKey key = new NamespacedKey(Main.getPluginInstance(), "opitems_desc_" + itemNum);
 
-            player.getInventory().addItem(Bukkit.getRecipe(key).getResult());
+            GiveErrorBackgiver.setPlayer(player);
+            player.getInventory().addItem(rawItemsGenerator.getItem(itemNum, p1, p2));
+
+
         } catch (Exception e) {
 
             player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Command execution failed!");
@@ -34,6 +36,8 @@ public class giveItems
 
 
     }
+
+    @Deprecated
     public static void giveItemsOld(final Player player){
 
 
@@ -255,4 +259,5 @@ public class giveItems
         player.getInventory().addItem(new ItemStack[] { chestplate });
 
     }
+
 }

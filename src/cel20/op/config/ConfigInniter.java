@@ -108,6 +108,7 @@ public class ConfigInniter {
         config.addDefault("CraftedPickyPickLootBonusBlocksEnchantmentLevel", 5);
 
 
+
         config.addDefault("UUID-DoNotChange", newUUID);
 
 

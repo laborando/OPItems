@@ -54,6 +54,18 @@ public class CmdExe implements CommandExecutor {
         } catch (ArrayIndexOutOfBoundsException e) {
             arg3 = "";
         }
+        String arg4 = null;
+        try {
+            arg4 = args[3];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            arg4 = "";
+        }
+        String arg5 = null;
+        try {
+            arg5 = args[4];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            arg5 = "";
+        }
         if (label.equalsIgnoreCase("opitemsversion")) {
 
             /*
@@ -168,7 +180,7 @@ public class CmdExe implements CommandExecutor {
             if (arg.equalsIgnoreCase("give")) {
                 if (sender.isOp()) {
 
-                    Give.execute(sender, arg2, arg3);
+                    Give.execute(sender, arg2, arg3, arg4, arg5);
 
                 } else {
                     sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("YOU DON'T HAVE THE PERMISSION TO PERFORM THIS COMMAND").toString());

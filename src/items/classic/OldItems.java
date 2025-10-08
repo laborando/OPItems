@@ -95,7 +95,7 @@ public class OldItems implements Listener {
             }
             Player player = e.getPlayer();
             Location loctemp123412347860 = player.getLocation();
-            org.bukkit.util.Vector vec = new org.bukkit.util.Vector(0.0D, loctemp123412347860.getY() + 50.0D, 0.0D);
+            org.bukkit.util.Vector vec = new org.bukkit.util.Vector(0.0D, loctemp123412347860.getY() + 50, 0.0D);
 
             //0.0D, loctemp123412347860.getY() + 50.0D, 0.0D
             player.setVelocity(vec);
