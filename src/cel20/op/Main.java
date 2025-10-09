@@ -1,27 +1,27 @@
 
 package cel20.op;
 
-import java.util.logging.Logger;
-import java.io.File;
-
 import cel20.op.config.ConfigInniter;
 import cel20.op.config.ConfigLoader;
 import cel20.op.data.ItemData;
-import cel20.op.load.*;
+import cel20.op.load.Commands;
+import cel20.op.load.Events;
+import cel20.op.load.UpdateHandler;
+import cel20.op.load.VersionDependent;
 import items.managers.RecipeAdder;
-import utis.CLogger;
-import org.bukkit.command.CommandSender;
-
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-
-import java.util.HashMap;
-
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import utis.CLogger;
 import utis.Updater;
 import utis.WorkerLogger;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class Main extends JavaPlugin implements Listener {
 

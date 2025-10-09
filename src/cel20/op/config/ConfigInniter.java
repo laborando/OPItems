@@ -5,8 +5,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.security.SecureRandom;
 import java.util.Base64;
 
-import static utis.celutis.randomrange;
-
 public class ConfigInniter {
 
     public static void innitConfig(FileConfiguration config){

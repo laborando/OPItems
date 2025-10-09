@@ -1,16 +1,12 @@
 package cmd;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TabComp implements TabCompleter {
 
@@ -25,6 +21,7 @@ public class TabComp implements TabCompleter {
                 completions.add("recipes");
                 completions.add("skull");
                 completions.add("version");
+                completions.add("upgradeItems");
                 return completions;
             }
             if(args.length == 2){

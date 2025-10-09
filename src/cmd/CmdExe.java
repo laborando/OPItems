@@ -7,6 +7,7 @@ import cel20.op.GlobalVars;
 import cel20.op.Test;
 import cmd.cmds.Give;
 import items.managers.RecipeAdder;
+import items.managers.upgrade.ItemUpgrader;
 import items.normal.cursedSword;
 import items.normal.fake_player;
 import items.normal.landmine;
@@ -177,13 +178,20 @@ public class CmdExe implements CommandExecutor {
                 }
             }
 
+            if (arg.equalsIgnoreCase("upgradeItems")) {
+                if(sender instanceof Player)
+                    ItemUpgrader.upgradeMainItem((Player) sender);
+            }
+
+
+
             if (arg.equalsIgnoreCase("give")) {
                 if (sender.isOp()) {
 
                     Give.execute(sender, arg2, arg3, arg4, arg5);
 
                 } else {
-                    sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("YOU DON'T HAVE THE PERMISSION TO PERFORM THIS COMMAND").toString());
+                    sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
                 }
             }
             //cancel_automated_item_removal

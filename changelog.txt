@@ -15,7 +15,7 @@ IN  WORK:
 
 DONE:
 
-OPItems now have proper internal flags -> Future preparation
+There is now a command to update older items to their newer versions.
 
-FB: Anti Damage Prot Level not set by Config
+FB:
 FB:

@@ -41,7 +41,13 @@ public class rawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.BOLD + "Knocky the Stick");
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                itemMeta.addEnchant(Enchantment.KNOCKBACK, param1, true);
+
+                if(param1 == -5){
+                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedBlockySwordDamageAllEnchantmentLevel");
+                }
+                    itemMeta.addEnchant(Enchantment.KNOCKBACK, param1, true);
+
+
                 if(param1 == -1)
                     GiveErrorBackgiver.giveLatestPlayerErrorMessageEnchError();
                 break;
@@ -51,7 +57,13 @@ public class rawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.BOLD + "The Blocky Sword");
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                itemMeta.addEnchant(Enchantment.DAMAGE_ALL, param1, true);
+
+                if(param1 == -5){
+                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedBlockySwordDamageAllEnchantmentLevel");
+                }else{
+                    itemMeta.addEnchant(Enchantment.DAMAGE_ALL, param1, true);
+                }
+
                 if(param1 == -1)
                     GiveErrorBackgiver.giveLatestPlayerErrorMessageEnchError();
                 break;
@@ -60,7 +72,14 @@ public class rawItemsGenerator {
                 itemStack = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.BOLD + "The Anti Damage");
+
+                if(param1 == -5){
+                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedTheAntiDamageProtectionEnchantmentLevel");
+                }
+
+
                 itemMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, param1, true);
+
                 if(param1 == -1)
                     GiveErrorBackgiver.giveLatestPlayerErrorMessageEnchError();
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -103,6 +122,15 @@ public class rawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.BOLD + "PickyPick");
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
+                if(param1 == -5){
+                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedPickyPickDigSpeedEnchantmentLevel");
+                }
+
+                if(param2 == -5){
+                    param2 = (int) Main.getPluginInstance().getConfig().get("CraftedPickyPickLootBonusBlocksEnchantmentLevel");
+                }
+
                 itemMeta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, param2, true); // loot
                 itemMeta.addEnchant(Enchantment.DIG_SPEED, param1, true); // speed
                 if(param1 == -1)
