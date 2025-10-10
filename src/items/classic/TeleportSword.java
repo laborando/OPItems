@@ -43,13 +43,13 @@ public class TeleportSword {
         location7.add(p.getEyeLocation().getDirection().multiply(7));
         location1.add(p.getEyeLocation().getDirection().multiply(1));
         Block block = location.getBlock();
-        Block block2 = location.getBlock();
-        Block block3 = location.getBlock();
-        Block block4 = location.getBlock();
-        Block block5 = location.getBlock();
-        Block block6 = location.getBlock();
-        Block block7 = location.getBlock();
-        Block block1 = location.getBlock();
+        Block block2 = location2.getBlock();
+        Block block3 = location3.getBlock();
+        Block block4 = location4.getBlock();
+        Block block5 = location5.getBlock();
+        Block block6 = location6.getBlock();
+        Block block7 = location7.getBlock();
+        Block block1 = location1.getBlock();
         if (block1.isPassable()) {
             if (block2.isPassable()) {
                 if (block3.isPassable()) {
@@ -61,28 +61,34 @@ public class TeleportSword {
                                         p.teleport(location);
                                         p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                                     } else {
-                                        p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
+                                        p.teleport(block7.getLocation().add(0, 1, 0).setDirection(p.getEyeLocation().getDirection()));
+                                        p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                                     }
                                 } else {
-                                    p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
+                                    p.teleport(block6.getLocation().add(0, 1, 0).setDirection(p.getEyeLocation().getDirection()));
+                                    p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                                 }
                             } else {
-                                p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
+                                p.teleport(block5.getLocation().add(0, 1, 0).setDirection(p.getEyeLocation().getDirection()));
+                                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                             }
                         } else {
-                            p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
+                            p.teleport(block4.getLocation().add(0, 1, 0).setDirection(p.getEyeLocation().getDirection()));
+                            p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                         }
                     } else {
-                        p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
+                        p.teleport(block3.getLocation().add(0, 1, 0).setDirection(p.getEyeLocation().getDirection()));
+                        p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                     }
                 } else {
-                    p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
+                    p.teleport(block2.getLocation().add(0, 1, 0).setDirection(p.getEyeLocation().getDirection()));
+                    p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                 }
             } else {
-                p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
+                p.teleport(block1.getLocation().add(0, 1, 0).setDirection(p.getEyeLocation().getDirection()));
+                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
             }
-        } else {
-            p.sendMessage(ChatColor.BOLD + "" + ChatColor.BOLD + "There are Blocks in the Way");
         }
+
     }
 }

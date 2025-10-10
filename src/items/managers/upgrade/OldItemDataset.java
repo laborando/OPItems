@@ -5,10 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class OldItemDataset {
@@ -22,6 +19,10 @@ public class OldItemDataset {
         if(isCreated)
             return;
 
+        itemList = new ArrayList<>();
+
+
+        //Autocreators
         for (int i = 0; i < 100; i++) {
 
             ItemStack item = rawItemsGenerator.getItem(i, 1, 1);
@@ -30,6 +31,8 @@ public class OldItemDataset {
                 itemList.add(new OldItem(i, item.getType(), new ArrayList<>(item.getEnchantments().keySet())));
             }
         }
+
+        //itemList.add(new OldItem(43, Material.BOW, Arrays.asList(Enchantment.)))
 
 
         isCreated = true;

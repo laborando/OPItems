@@ -20,4 +20,5 @@ public class GlobalVars {
 
     public static int piercerDamageLevel;
     public static int piercerKnockbackLevel;
+    public static String itemVersionLevel = "1.0";
 }

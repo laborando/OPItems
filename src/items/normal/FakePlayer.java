@@ -8,7 +8,7 @@ import com.mojang.authlib.GameProfile;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class fake_player extends EntityPlayer {
+public class FakePlayer extends EntityPlayer {
 
     private final Location loc;
 
@@ -17,7 +17,7 @@ public class fake_player extends EntityPlayer {
 
 
 
-    public fake_player(WorldServer ws, GameProfile gp, Location loc) {
+    public FakePlayer(WorldServer ws, GameProfile gp, Location loc) {
         super(MinecraftServer.getServer(), ws, gp, new PlayerInteractManager(ws));
         this.loc = loc;
         setLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch()); // set location

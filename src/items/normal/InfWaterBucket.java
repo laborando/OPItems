@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class Other implements Listener {
+public class InfWaterBucket implements Listener {
 
 
     @EventHandler(priority = EventPriority.HIGH)

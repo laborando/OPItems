@@ -47,7 +47,7 @@ public class ConfigLoader {
 
 
         if (config.getBoolean("CursedSwordEnabled")) {
-            m.getServer().getPluginManager().registerEvents(new cursedSword(), m);
+            m.getServer().getPluginManager().registerEvents(new CursedSword(), m);
         }
         if (config.getBoolean("AllowCraftKnockyTheStick")) {
             RecipeAdder.addRecipe1(plugin, config.getInt("CraftedKnockyTheStickKnockbackEnchantmentLevel"));
@@ -174,7 +174,7 @@ public class ConfigLoader {
         if (config.getBoolean("EnableLandmine")) {
             RecipeAdder.addRecipe36(plugin);
             RecipeAdder.addRecipe37(plugin);
-            m.getServer().getPluginManager().registerEvents(new landmine(), m);
+            m.getServer().getPluginManager().registerEvents(new Landmine(), m);
         }
         //AllowCraftInfWaterBucket
         if (config.getBoolean("AllowCraftInfWaterBucket")) {

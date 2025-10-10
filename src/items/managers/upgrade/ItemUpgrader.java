@@ -2,6 +2,7 @@ package items.managers.upgrade;
 
 import items.managers.rawItemsGenerator;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,6 +15,11 @@ public class ItemUpgrader {
 
         p.sendMessage(ChatColor.GREEN + "Comparing item against database...");
         ItemStack item = p.getInventory().getItemInMainHand();
+
+        if(item.getType() == Material.AIR){
+            p.sendMessage(ChatColor.RED + "Please only hold the item in the main hand.");
+            return;
+        }
 
         if(item.getAmount() > 1){
             p.sendMessage(ChatColor.RED + "Please only hold one item at a time.");

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class landmine implements Listener {
+public class Landmine implements Listener {
 
     private static List<Location> lml = new ArrayList<>();
 

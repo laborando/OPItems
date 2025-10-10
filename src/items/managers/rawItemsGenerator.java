@@ -1,5 +1,6 @@
 package items.managers;
 
+import cel20.op.GlobalVars;
 import cel20.op.Main;
 import cmd.cmds.Give;
 import org.bukkit.Bukkit;
@@ -32,6 +33,7 @@ public class rawItemsGenerator {
         ItemMeta itemMeta;
 
         NamespacedKey itemTypeIDNS = new NamespacedKey(Main.getPluginInstance(), "itemTypeID");
+        NamespacedKey itemTypeVL = new NamespacedKey(Main.getPluginInstance(), "itemVersionLevel");
 
 
 
@@ -43,7 +45,7 @@ public class rawItemsGenerator {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
                 if(param1 == -5){
-                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedBlockySwordDamageAllEnchantmentLevel");
+                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedKnockyTheStickKnockbackEnchantmentLevel");
                 }
                     itemMeta.addEnchant(Enchantment.KNOCKBACK, param1, true);
 
@@ -60,9 +62,9 @@ public class rawItemsGenerator {
 
                 if(param1 == -5){
                     param1 = (int) Main.getPluginInstance().getConfig().get("CraftedBlockySwordDamageAllEnchantmentLevel");
-                }else{
-                    itemMeta.addEnchant(Enchantment.DAMAGE_ALL, param1, true);
                 }
+                    itemMeta.addEnchant(Enchantment.DAMAGE_ALL, param1, true);
+
 
                 if(param1 == -1)
                     GiveErrorBackgiver.giveLatestPlayerErrorMessageEnchError();
@@ -508,6 +510,7 @@ public class rawItemsGenerator {
                 itemMeta.addEnchant(Enchantment.ARROW_KNOCKBACK, 3, true);
                 itemMeta.addEnchant(Enchantment.LUCK, 3, true);
                 itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
 
@@ -520,6 +523,7 @@ public class rawItemsGenerator {
 
         try {
             itemMeta.getPersistentDataContainer().set(itemTypeIDNS, PersistentDataType.STRING, "opitems_" + id);
+            itemMeta.getPersistentDataContainer().set(itemTypeVL, PersistentDataType.STRING, "opitems_" + GlobalVars.itemVersionLevel);
             itemStack.setItemMeta(itemMeta);
         } catch (Exception e) {
             return itemStack;

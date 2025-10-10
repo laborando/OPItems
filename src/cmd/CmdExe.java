@@ -3,14 +3,13 @@ package cmd;
 import java.io.File;
 import java.util.UUID;
 
-import cel20.op.GlobalVars;
 import cel20.op.Test;
 import cmd.cmds.Give;
 import items.managers.RecipeAdder;
 import items.managers.upgrade.ItemUpgrader;
-import items.normal.cursedSword;
-import items.normal.fake_player;
-import items.normal.landmine;
+import items.normal.CursedSword;
+import items.normal.FakePlayer;
+import items.normal.Landmine;
 import utis.CLogger;
 import utis.Logutis;
 import com.mojang.authlib.GameProfile;
@@ -26,7 +25,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import cel20.op.Main;
-import events.mega_sponge;
+import events.SuperSponge;
 import o_guis.op_gui;
 import manage.Items;
 
@@ -179,10 +178,9 @@ public class CmdExe implements CommandExecutor {
             }
 
             if (arg.equalsIgnoreCase("upgradeItems")) {
-                if(sender instanceof Player)
+                if (sender instanceof Player)
                     ItemUpgrader.upgradeMainItem((Player) sender);
-            }
-
+            } else
 
 
             if (arg.equalsIgnoreCase("give")) {
@@ -228,7 +226,7 @@ public class CmdExe implements CommandExecutor {
                         final Player p = (Player) sender;
                         final String angst = "temp";
                         try {
-                            fake_player fp = new fake_player((WorldServer) p.getWorld(), new GameProfile(UUID.randomUUID(), "test"), p.getLocation());
+                            FakePlayer fp = new FakePlayer((WorldServer) p.getWorld(), new GameProfile(UUID.randomUUID(), "test"), p.getLocation());
                             fp.spawn();
                         } catch (Error e) {
                             e.printStackTrace();
@@ -252,13 +250,13 @@ public class CmdExe implements CommandExecutor {
             } else if (arg.equalsIgnoreCase("help")) {
                 if (sender instanceof Player) {
                     ((Player) sender).chat("/opitemshelp");
-                }else{
+                } else {
                     sender.sendMessage(ChatColor.RED + "This command is currently not available int the console! Please use: /opitemshelp");
                 }
             } else if (arg.equalsIgnoreCase("version")) {
-                if (sender instanceof Player){
+                if (sender instanceof Player) {
                     ((Player) sender).chat("/opitemsversion");
-                }else{
+                } else {
                     sender.sendMessage(ChatColor.RED + "This command is currently not available int the console! Please use: /opitemsversion");
                 }
 
@@ -275,7 +273,7 @@ public class CmdExe implements CommandExecutor {
                     if (sender.isOp()) {
                         final Player p = (Player) sender;
                         final Block block = p.getLocation().getBlock();
-                        mega_sponge.run_sponge(block);
+                        SuperSponge.run_sponge(block);
                     } else {
                         sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                     }
@@ -284,20 +282,20 @@ public class CmdExe implements CommandExecutor {
                 }
             } else if (arg.equalsIgnoreCase("reset_cursed_sword_list")) {
                 if (sender.isOp()) {
-                    cursedSword.resetList();
-                }else{
+                    CursedSword.resetList();
+                } else {
                     sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                 }
             } else if (arg.equalsIgnoreCase("display_sword_list")) {
                 if (sender.isOp()) {
-                    cursedSword.sendMsgList(sender);
-                }else{
-                sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
-            }
+                    CursedSword.sendMsgList(sender);
+                } else {
+                    sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
+                }
             } else if (arg.equalsIgnoreCase("set_gliding")) {
                 if (sender.isOp()) {
 
-                    if(!(sender instanceof Player)){
+                    if (!(sender instanceof Player)) {
                         sender.sendMessage(ChatColor.RED + "You are not a Player!");
                         return true;
                     }
@@ -307,15 +305,14 @@ public class CmdExe implements CommandExecutor {
                     p.setGliding(true);
 
 
-
-                }else{
+                } else {
                     sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                 }
             } else if (arg.equalsIgnoreCase("reset_landmines")) {
                 if (sender.isOp()) {
-                    landmine.reset();
+                    Landmine.reset();
                     sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
-                }else{
+                } else {
                     sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                 }
             }
@@ -325,15 +322,14 @@ public class CmdExe implements CommandExecutor {
 
                 if (!(sender.isOp())) {
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
-                }else{
-                    if(!(CLogger.isEnabled())){
+                } else {
+                    if (!(CLogger.isEnabled())) {
 
-                            sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "CLogger is not enabled! Starting CLogger... Execute the command again to generate the report!");
-                            CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+                        sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "CLogger is not enabled! Starting CLogger... Execute the command again to generate the report!");
+                        CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
 
 
-
-                    }else{
+                    } else {
                         Logutis.createReportAndLog();
                         sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Report generated!");
                     }
@@ -378,27 +374,20 @@ public class CmdExe implements CommandExecutor {
             }
 
 
-
-
-
-
-
-
-
-        //RECIPIES
+            //RECIPIES
             else if (arg.equalsIgnoreCase("recipes")) {
-            	sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recipes for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
-            }else if (arg.equalsIgnoreCase("remove_recipes")) {
-            	if (sender.isOp()) {
-            	RecipeAdder.removeRecipes();
-            	sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
-            	}
-            	}else if (arg.equalsIgnoreCase("remove_recipes_all")) {
-                	if (sender.isOp()) {
-                    	sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
-                    	}
-                    	}
-            
+                sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recipes for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
+            } else if (arg.equalsIgnoreCase("remove_recipes")) {
+                if (sender.isOp()) {
+                    RecipeAdder.removeRecipes();
+                    sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
+                }
+            } else if (arg.equalsIgnoreCase("remove_recipes_all")) {
+                if (sender.isOp()) {
+                    sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
+                }
+            }
+
             //
 
 
