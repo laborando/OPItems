@@ -90,7 +90,7 @@ public class CursedSword implements Listener
     
     public static void saveData(final String filePath) {
         try {
-            final BukkitObjectOutputStream out = new BukkitObjectOutputStream((OutputStream)new GZIPOutputStream(new FileOutputStream(filePath)));
+            final BukkitObjectOutputStream out = new BukkitObjectOutputStream(new GZIPOutputStream(new FileOutputStream(filePath)));
             out.writeObject((Object) CursedSword.list_entity);
             out.close();
         }
@@ -102,7 +102,7 @@ public class CursedSword implements Listener
     
     public static void loadData(final String filePath) {
         try {
-            final BukkitObjectInputStream in = new BukkitObjectInputStream((InputStream)new GZIPInputStream(new FileInputStream(filePath)));
+            final BukkitObjectInputStream in = new BukkitObjectInputStream(new GZIPInputStream(new FileInputStream(filePath)));
             
             Object o = in.readObject();
             
@@ -137,6 +137,6 @@ public class CursedSword implements Listener
     }
     
     public static void resetList() {
-        CursedSword.list_entity = new ArrayList<EntityType>();
+        CursedSword.list_entity = new ArrayList<>();
     }
 }

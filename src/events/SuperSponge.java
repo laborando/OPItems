@@ -1,6 +1,7 @@
 
 package events;
 
+import cel20.op.GlobalVars;
 import cel20.op.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.block.BlockFace;
@@ -21,7 +22,7 @@ public class SuperSponge
 
     public static void recursiveSpongeRunner(int cStep, List<Block> b){
 
-        if(cStep == 20){
+        if(cStep == GlobalVars.spongeClearRange){
             recursiveWaterRemoval(0, b);
             return;
         }
@@ -40,7 +41,7 @@ public class SuperSponge
         if(!b.isEmpty()){
             Block block = b.get(0);
 
-            if (block.getType() == Material.WATER || block.getType() == Material.KELP) {
+            if (block.getType() == Material.WATER || block.getType() == Material.KELP_PLANT || block.getType() == Material.TALL_SEAGRASS || block.getType() == Material.SEAGRASS) {
                 block.setType(Material.AIR, false);
             }
 

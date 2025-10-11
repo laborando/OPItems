@@ -220,6 +220,7 @@ public class ConfigLoader {
         Main.isprivatedimenableled = config.getBoolean("PrivatePocketDimensionEnabled");
         Main.config_anti_explo_helmet_lvl = config.getInt("AntiExplosionHelmetAntiExploEnchLevel");
         Main.tntbowamount = config.getInt("TNTBowTNTAmount");
+        GlobalVars.spongeClearRange = config.getInt("SuperSpongeClearRadius");
 
         //CDs
 

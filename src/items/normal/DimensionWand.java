@@ -68,8 +68,19 @@ static List<String> players_in_customw;
 
     }
 
+
+    boolean alreadyWarningSaid = false;
+
 	@EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerPreLoginEvent e) {
+
+        //[HorriblePaperMessageEvenIfNotCircumventableWarning]
+
+        if(!alreadyWarningSaid && celutis.isPaper()){
+            alreadyWarningSaid = true;
+            Bukkit.getConsoleSender().sendMessage("[HorriblePaperMessageEvenIfNotCircumventableWarning] There is no other way but to use this event. At least give some alternatives: [paper]");
+        }
+
 		final String wn = "pocket-world-" + e.getUniqueId();
 		Bukkit.getLogger().info(wn);
 		if(players_in_customw.contains(e.getUniqueId().toString())) {

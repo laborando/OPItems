@@ -17,12 +17,20 @@ DONE:
 
 There is now a command to update older items to their newer versions.
 The Endsword now also teleports partly if the rest of the way is obstructed
+The Pigs are no longer shot on an arrow
+Made the wand of blocks explosions less explosive (lag and too op)
+OPItems gives now a warning back to the warning of using the PreLoginEvent of paper
+
+
+OP: Super Sponge was optimized
+
+CF: SuperSpongeClearRadius
 
 FB: Endsword does not check the blocks on the way, but only one block 8 times
 FB: Piercer showing item-enchantments (dont have gameplay meaning)
-FB:
-FB:
-FB:
+FB: Super Sponge now also clears Kelp and Sea Grass
+FB: Skull Imitator Skin is now really locked after being placed
+FB: Skull imitator Skulls are now really treated as not changeable skulls
 FB:
 FB:
 FB:

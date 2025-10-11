@@ -15,18 +15,25 @@ import org.bukkit.inventory.meta.SkullMeta;
 public class SkullImitator implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockPlaceEvent e) {
-        final Player p = (Player) e.getPlayer();
+        final Player p = e.getPlayer();
         final ItemStack item = p.getInventory().getItemInMainHand();
         if (item.getItemMeta() == null) {
             return;
         }
         if (item.getType() == Material.PLAYER_HEAD && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Skull Imitator")) {
-            if (!(p.isSneaking())) {
 
-                p.sendMessage(ChatColor.RED + "Do you really want to place this head and lock its texture?");
-                p.sendMessage(ChatColor.RED + "If yes: Sneak + Place");
-                e.setCancelled(true);
+            if(item.getItemMeta().getLore() == null || item.getItemMeta().getLore().isEmpty()){
+
+            }else{
+                if (!(p.isSneaking())) {
+
+                    p.sendMessage(ChatColor.RED + "Do you really want to place this head and lock its texture?");
+                    p.sendMessage(ChatColor.RED + "If yes: Sneak + Place");
+                    e.setCancelled(true);
+                }
             }
+
+
         }
     }
 
@@ -34,7 +41,7 @@ public class SkullImitator implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerInteractEvent e) {
         if (e.getPlayer() instanceof Player) {
-            final Player p = (Player) e.getPlayer();
+            final Player p = e.getPlayer();
 
 
             final ItemStack item = p.getInventory().getItemInMainHand();
@@ -42,6 +49,9 @@ public class SkullImitator implements Listener {
                 return;
             }
 
+            if(item.getItemMeta().getLore() == null || item.getItemMeta().getLore().isEmpty()){
+                return;
+            }
 
             if (item.getType() == Material.PLAYER_HEAD && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Skull Imitator")) {
 

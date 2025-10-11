@@ -20,7 +20,21 @@ public class celutis
 {
 	
 	//v0.5 MC
-	
+
+    public static boolean isPaper() {
+        try {
+            Class.forName("com.destroystokyo.paper.PaperConfig");
+            return true;
+        } catch (ClassNotFoundException e) {
+            try {
+                Class.forName("io.papermc.paper.configuration.Configuration");
+                return true;
+            } catch (ClassNotFoundException ex) {
+                return false;
+            }
+        }
+    }
+
     public static int randomrange(final int min, final int max) {
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min!");

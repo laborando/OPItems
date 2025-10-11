@@ -40,28 +40,6 @@ public class OldItems implements Listener {
                     item.getItemMeta().getDisplayName().contains(ChatColor.BOLD + "Enderpearler")) {
                 EnderpearlSword.handle(p);
             }
-
-            //Durch Wände gehen dings
-            if (a == Material.FLINT &&
-                    item.containsEnchantment(Enchantment.ARROW_DAMAGE))
-                if (e.getClickedBlock().getY() == p.getLocation().getY()) {
-                    double bx = e.getClickedBlock().getX();
-                    double by = e.getClickedBlock().getY();
-                    double px = p.getLocation().getX();
-                    double py = p.getLocation().getY();
-                    double y = by - py;
-                    double x = bx - px;
-                    Location b = e.getClickedBlock().getLocation();
-                    if (x < 0.0D) {
-                        Location tp = null;
-                        tp.setX(b.getX() - 1.0D);
-                        tp.setY(b.getY());
-                        tp.setZ(b.getZ());
-                        p.teleport(tp);
-                    }
-                } else {
-                    p.sendMessage(ChatColor.DARK_RED + "The Block you are clicking, has to be on the same Height as you.");
-                }
         }
 
 
@@ -89,7 +67,7 @@ public class OldItems implements Listener {
             if (mainRef.Launcher_Cooldown.containsKey(p.getName())) {
                 double secondsLeft = ((double) mainRef.Launcher_Cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
                 if (secondsLeft > 0.0D) {
-                    p.sendMessage(ChatColor.RED + "You cant use thisL Item for another " + secondsLeft + " seconds!");
+                    p.sendMessage(ChatColor.RED + "You cant use this Item for another " + secondsLeft + " seconds!");
                     return;
                 }
             }
@@ -104,7 +82,7 @@ public class OldItems implements Listener {
         if (a == Material.BLAZE_ROD &&
                 item.containsEnchantment(Enchantment.FIRE_ASPECT))
             if (mainRef.config.getBoolean("AllowBlazer")) {
-                Fireball f = (Fireball) e.getPlayer().launchProjectile(Fireball.class);
+                Fireball f = e.getPlayer().launchProjectile(Fireball.class);
                 f.setIsIncendiary(true);
                 f.setYield(10.0F);
                 p.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1.0F, 1.0F);

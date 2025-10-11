@@ -14,7 +14,6 @@ public class TeleportSword {
 
     static Map<String, Long> cooldown = new HashMap<>();
 
-    @Deprecated
     public static void handleOld(Player p){
 
         cooldown.computeIfAbsent(p.getName(), k -> (long) -69);

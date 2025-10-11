@@ -7,7 +7,9 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,15 +29,11 @@ public class PigCannon {
 
         cooldown.put(p.getName(), System.currentTimeMillis());
 
-        Arrow f = p.launchProjectile(Arrow.class);
-        f.setFireTicks(0);
-        f.setVelocity(f.getVelocity().multiply(0.5D));
-        f.setDamage(0.0D);
-        f.setPickupStatus(Arrow.PickupStatus.DISALLOWED);
-        f.setPierceLevel(0);
-        f.addPassenger(p.getLocation().getWorld().spawnEntity(p.getLocation(), EntityType.PIG));
-        p.playSound(p.getLocation(), Sound.ENTITY_PIG_AMBIENT, 1.0F, 1.0F);
+        Pig f = p.getWorld().spawn(p.getLocation().add(0, 1.5, 0), Pig.class);
 
+        f.setVelocity(p.getLocation().getDirection().multiply(2));
+
+        p.playSound(p.getLocation(), Sound.ENTITY_PIG_AMBIENT, 1.0F, 1.0F);
 
     }
 

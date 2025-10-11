@@ -524,7 +524,20 @@ public class rawItemsGenerator {
         try {
             itemMeta.getPersistentDataContainer().set(itemTypeIDNS, PersistentDataType.STRING, "opitems_" + id);
             itemMeta.getPersistentDataContainer().set(itemTypeVL, PersistentDataType.STRING, "opitems_" + GlobalVars.itemVersionLevel);
+
+
+            List<String> lore = itemMeta.getLore();
+
+            if(lore == null)
+                lore = new ArrayList<>();
+
+            lore.add("");
+            lore.add("OPItem");
+
+            itemMeta.setLore(lore);
+
             itemStack.setItemMeta(itemMeta);
+
         } catch (Exception e) {
             return itemStack;
         }

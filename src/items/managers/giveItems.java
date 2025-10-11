@@ -225,7 +225,7 @@ public class giveItems
         chestplatem.addEnchant(Enchantment.PROTECTION_FALL, 75, true);
         chestplatem.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
         chestplate.setItemMeta(chestplatem);
-        player.getInventory().addItem(new ItemStack[] { chestplate });
+        player.getInventory().addItem(chestplate);
         chestplatem.removeEnchant(Enchantment.DEPTH_STRIDER);
         chestplatem.removeEnchant(Enchantment.ARROW_INFINITE);
         chestplatem.removeEnchant(Enchantment.FROST_WALKER);
@@ -233,9 +233,9 @@ public class giveItems
         chestplate.setType(Material.NETHERITE_HELMET);
         chestplatem.setDisplayName(ChatColor.BOLD + "Anti Explosion");
         chestplatem.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 75, true);
-        chestplatem.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        chestplatem.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         chestplate.setItemMeta(chestplatem);
-        player.getInventory().addItem(new ItemStack[] { chestplate });
+        player.getInventory().addItem(chestplate);
         
 
         itemMeta.setDisplayName(ChatColor.BOLD + "Cursed Sword");
@@ -243,7 +243,7 @@ public class giveItems
         itemMeta.addEnchant(Enchantment.ARROW_INFINITE, 75, true);
         itemMeta.addEnchant(Enchantment.DURABILITY, 255, true);
         itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 75, true);
-        itemMeta.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         
 
@@ -254,9 +254,9 @@ public class giveItems
         chestplatem.addEnchant(Enchantment.ARROW_INFINITE, 75, true);
         chestplatem.addEnchant(Enchantment.DURABILITY, 75, true);
         chestplatem.addEnchant(Enchantment.ARROW_DAMAGE, 75, true);
-        chestplatem.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+        chestplatem.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         chestplate.setItemMeta(chestplatem);
-        player.getInventory().addItem(new ItemStack[] { chestplate });
+        player.getInventory().addItem(chestplate);
 
     }
 

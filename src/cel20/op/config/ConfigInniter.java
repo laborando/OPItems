@@ -106,6 +106,8 @@ public class ConfigInniter {
         config.addDefault("CraftedPickyPickLootBonusBlocksEnchantmentLevel", 5);
 
 
+        config.addDefault("SuperSpongeClearRadius", 20);
+
 
         config.addDefault("UUID-DoNotChange", newUUID);
 

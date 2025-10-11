@@ -20,7 +20,7 @@ public class portal2go implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerInteractEvent e) {
         if (e.getPlayer() instanceof Player) {
-            final Player p = (Player) e.getPlayer();
+            final Player p = e.getPlayer();
 
 
 
@@ -57,6 +57,7 @@ public class portal2go implements Listener {
                             String worldResult = cWorldString.replace("_the_end", "");
 
                             World nether = Bukkit.getWorld(worldResult + "_nether");
+
                             int x = p.getLocation().getBlockX() / 8;
                             int z = p.getLocation().getBlockZ() / 8;
 

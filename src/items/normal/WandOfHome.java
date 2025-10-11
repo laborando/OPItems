@@ -45,7 +45,6 @@ static HashMap<String, Location> map_home;
 
 
             if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK ) {
-                final Block b = e.getClickedBlock();
                 if (!e.getPlayer().isSneaking()) {
                     p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Teleporting Home...");
                     p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "You can set your home by Shift + Rightclicking in the air.");
