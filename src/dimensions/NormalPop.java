@@ -1,5 +1,5 @@
 package dimensions;
-import utis.celutis;
+import utis.Celutis;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.TreeType;
@@ -58,7 +58,7 @@ public class NormalPop extends BlockPopulator {
                 for(Y = world.getMaxHeight()-1; Y>0 ; Y--){
                     if(chunk.getBlock(X, Y, Z).getType() == Material.GRASS_BLOCK){
 
-                        if (!celutis.hasAtLeastOneFaceWithoutBlock(chunk.getBlock(X, Y, Z))) {
+                        if (!Celutis.hasAtLeastOneFaceWithoutBlock(chunk.getBlock(X, Y, Z))) {
                             chunk.getBlock(X, Y, Z).setType(Material.WATER);
                         }
 

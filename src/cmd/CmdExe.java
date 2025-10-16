@@ -1,19 +1,19 @@
 package cmd;
 
 import java.io.File;
-import java.util.UUID;
 
 import cel20.op.Test;
 import cmd.cmds.Give;
+import cmd.cmds.Help;
+import cmd.cmds.Version;
 import items.managers.RecipeAdder;
 import items.managers.upgrade.ItemUpgrader;
 import items.normal.CursedSword;
 import items.normal.FakePlayer;
 import items.normal.Landmine;
 import utis.CLogger;
+import utis.Celutis;
 import utis.Logutis;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.server.v1_16_R3.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -25,11 +25,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import cel20.op.Main;
-import events.SuperSponge;
-import o_guis.op_gui;
+import items.classic.Sponges.SuperSponge;
+import o_guis.OpGui;
 import manage.Items;
 
-import static utis.celutis.deleteDirectory;
+import static utis.Celutis.deleteDirectory;
 
 public class CmdExe implements CommandExecutor {
 
@@ -66,46 +66,6 @@ public class CmdExe implements CommandExecutor {
         } catch (ArrayIndexOutOfBoundsException e) {
             arg5 = "";
         }
-        if (label.equalsIgnoreCase("opitemsversion")) {
-
-            /*
-            sender.sendMessage(ChatColor.GOLD + "Changelog for v1.9.12(a)");
-            sender.sendMessage(ChatColor.GOLD + "");
-            sender.sendMessage(ChatColor.GOLD + "Used API: craftbukkit-1.16.5");
-            sender.sendMessage(ChatColor.GOLD + "Compatible Versions 1.16.x - 1.21.*");
-            sender.sendMessage(ChatColor.GOLD + "Target Version: 1.21.4");
-            sender.sendMessage(ChatColor.GOLD + "Newer Items supported Versions: 1.20+");
-            */
-
-            sender.sendMessage(ChatColor.GOLD + "Current Version: " + Main.opitems_version);
-            sender.sendMessage(ChatColor.BLUE + "Changelog: https://modrinth.com/plugin/opitems/changelog");
-
-//            sender.sendMessage(ChatColor.GOLD + "");
-//            sender.sendMessage(ChatColor.BLUE + "Changes:");
-//            sender.sendMessage(ChatColor.YELLOW + "- Added a config to remove the ability to craft all items at once");
-//            sender.sendMessage(ChatColor.YELLOW + "- Added the ability to /opitems give OPItems to other players");
-//            sender.sendMessage(ChatColor.YELLOW + "- Removed visible enchantment tags from some items");
-//            sender.sendMessage(ChatColor.GOLD + "");
-
-
-/*
-            sender.sendMessage(ChatColor.GOLD + "");
-            sender.sendMessage(ChatColor.BLUE + "Added Items:");
-            sender.sendMessage(ChatColor.YELLOW + "- Wand of Warden");
-
-            sender.sendMessage(ChatColor.BLUE + "Fixed Bugs:");
-            sender.sendMessage(ChatColor.YELLOW + "- Landmines within unloaded worlds deleting its data when restarting");
-            sender.sendMessage(ChatColor.YELLOW + "- Private Pocket Dimension not unloading properly when quitting");
-            sender.sendMessage(ChatColor.YELLOW + "- Portal2Go going from nether to the overworld");
-            sender.sendMessage(ChatColor.YELLOW + "- Private Dimensions using false generators because of automatic world reloading");
-            sender.sendMessage(ChatColor.YELLOW + "- Private Dimensions Wand teleporting to false Y-Coords");
-            sender.sendMessage(ChatColor.GOLD + "");
-            sender.sendMessage(ChatColor.BLUE + "Other");
-            sender.sendMessage(ChatColor.YELLOW + "- The Sourcecode is now available on GitHub");
-             */
-
-
-        }
         if (label.equalsIgnoreCase("items")) {
             if (sender.isOp()) {
                 if (arg.equalsIgnoreCase("remove")) {
@@ -135,23 +95,6 @@ public class CmdExe implements CommandExecutor {
             }
 
 
-        }
-        if (label.equalsIgnoreCase("opitemshelp")) {
-            if (sender.isOp()) {
-                sender.sendMessage(ChatColor.GOLD + "OPItems by Cel20");
-                sender.sendMessage(ChatColor.GOLD + "This Plugin can be configurated in the /plugins/opitems/plugin.yml file");
-                sender.sendMessage(ChatColor.GOLD + "Important Commands: ");
-                sender.sendMessage(ChatColor.GOLD + "/opitems give | gives you opitems");
-                sender.sendMessage(ChatColor.GOLD + "/opitems recipes | gives you a link to the recipes");
-                sender.sendMessage(ChatColor.GOLD + "/opitems gui | opens the GUI of OPItems (not up-to-date)");
-                sender.sendMessage(ChatColor.GOLD + "/opitems help | displays this message");
-                sender.sendMessage(ChatColor.GOLD + "/opitems skull | generates the head of a given player");
-                sender.sendMessage(ChatColor.GOLD + "/opitems updates | tries to update opitems");
-                sender.sendMessage(ChatColor.GOLD + "/opitemsversion | displays the current Version and Changelog");
-                sender.sendMessage(ChatColor.GOLD + "/items | displays the current Version and Changelog");
-            } else {
-                sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
-            }
         }
         if (label.equalsIgnoreCase("updateopitems")) {
             if (sender.isOp()) {
@@ -215,7 +158,7 @@ public class CmdExe implements CommandExecutor {
                     sender.sendMessage(ChatColor.RED + "Usage: /opitems skull <player_name>");
                 } else {
                     Player p = (Player) sender;
-                    p.getInventory().addItem(utis.celutis.getSkullbyName(arg2));
+                    p.getInventory().addItem(Celutis.getSkullbyName(arg2));
                     sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
                 }
 
@@ -226,7 +169,7 @@ public class CmdExe implements CommandExecutor {
                         final Player p = (Player) sender;
                         final String angst = "temp";
                         try {
-                            FakePlayer fp = new FakePlayer((WorldServer) p.getWorld(), new GameProfile(UUID.randomUUID(), "test"), p.getLocation());
+                            FakePlayer fp = new FakePlayer(p.getLocation(), "test");
                             fp.spawn();
                         } catch (Error e) {
                             e.printStackTrace();
@@ -240,7 +183,7 @@ public class CmdExe implements CommandExecutor {
             } else if (arg.equalsIgnoreCase("gui")) {
                 if (sender instanceof Player) {
                     if (sender.isOp()) {
-                        op_gui.openOpitemsGui((Player) sender);
+                        OpGui.openOpitemsGui((Player) sender);
                     } else {
                         sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("You don't have the permission to perform this command!").toString());
                     }
@@ -248,18 +191,10 @@ public class CmdExe implements CommandExecutor {
                     sender.sendMessage(ChatColor.DARK_RED + "This Command cannot be executed in the console");
                 }
             } else if (arg.equalsIgnoreCase("help")) {
-                if (sender instanceof Player) {
-                    ((Player) sender).chat("/opitemshelp");
-                } else {
-                    sender.sendMessage(ChatColor.RED + "This command is currently not available int the console! Please use: /opitemshelp");
-                }
-            } else if (arg.equalsIgnoreCase("version")) {
-                if (sender instanceof Player) {
-                    ((Player) sender).chat("/opitemsversion");
-                } else {
-                    sender.sendMessage(ChatColor.RED + "This command is currently not available int the console! Please use: /opitemsversion");
-                }
-
+                Help.execute(sender);
+            }
+            else if (arg.equalsIgnoreCase("version")) {
+                Version.execute(sender);
             } else if (arg.equalsIgnoreCase("update")) {
                 if (sender.isOp()) {
                     sender.sendMessage(ChatColor.GOLD + "Trying to Update OPItems");

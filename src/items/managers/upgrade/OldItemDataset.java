@@ -32,8 +32,8 @@ public class OldItemDataset {
             }
         }
 
-        //itemList.add(new OldItem(43, Material.BOW, Arrays.asList(Enchantment.)))
-
+        itemList.add(new OldItem(37, Material.BLAZE_ROD, Arrays.asList(Enchantment.SWEEPING_EDGE)));
+        itemList.add(new OldItem(14, Material.FEATHER, Arrays.asList(Enchantment.ARROW_FIRE)));
 
         isCreated = true;
     }

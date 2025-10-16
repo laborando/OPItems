@@ -11,9 +11,6 @@ public class VersionDependent {
 
         RecipeAdder.addRecipe41((Main) p);
 
-
-
-
         p.getServer().getPluginManager().registerEvents(new WandOfWarden(), p);
 
     }

@@ -16,12 +16,12 @@ import org.bukkit.Location;
 import java.util.HashMap;
 import org.bukkit.event.Listener;
 
-public class tntlayer implements Listener
+public class Tntlayer implements Listener
 {
     static HashMap<Location, Block> map;
     
     static {
-        tntlayer.map = new HashMap<Location, Block>();
+        Tntlayer.map = new HashMap<Location, Block>();
     }
     
     @EventHandler(priority = EventPriority.HIGH)
@@ -36,8 +36,8 @@ public class tntlayer implements Listener
             if (b.getType() != Material.TNT) {
                 return;
             }
-            if (!tntlayer.map.containsValue(b)) {
-                tntlayer.map.put(b.getLocation(), b);
+            if (!Tntlayer.map.containsValue(b)) {
+                Tntlayer.map.put(b.getLocation(), b);
                 p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("TNT added").toString());
             }
         }
@@ -48,13 +48,13 @@ public class tntlayer implements Listener
             }
             else {
                 p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("Activating TNT-Blocks!").toString());
-                for (final Block b : tntlayer.map.values()) {
+                for (final Block b : Tntlayer.map.values()) {
                     if (b.getType() == Material.TNT) {
                         b.setType(Material.AIR);
                         b.getWorld().spawnEntity(b.getLocation(), EntityType.PRIMED_TNT);
                     }
                 }
-                tntlayer.map.clear();
+                Tntlayer.map.clear();
             }
         }
     }

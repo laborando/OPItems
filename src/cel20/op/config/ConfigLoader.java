@@ -2,7 +2,7 @@ package cel20.op.config;
 
 import cel20.op.GlobalVars;
 import cel20.op.Main;
-import items.classic.hookOfVelectory;
+import items.classic.HookOfVelectory;
 import items.managers.RecipeAdder;
 import items.normal.*;
 import org.bukkit.Bukkit;
@@ -95,7 +95,7 @@ public class ConfigLoader {
         }
         if (config.getBoolean("AllowHookOfVelectory")) {
             RecipeAdder.addRecipe15(plugin);
-            m.getServer().getPluginManager().registerEvents(new hookOfVelectory(), m);
+            m.getServer().getPluginManager().registerEvents(new HookOfVelectory(), m);
         }
         if (config.getBoolean("AllowCraftNightVisor")) {
             RecipeAdder.addRecipe16(plugin);
@@ -158,7 +158,7 @@ public class ConfigLoader {
         //EnablePortal2Go
         if (config.getBoolean("EnablePortal2Go")) {
             RecipeAdder.addRecipe34(plugin);
-            m.getServer().getPluginManager().registerEvents(new portal2go(), m);
+            m.getServer().getPluginManager().registerEvents(new Portal2go(), m);
         }
 
         //config.addDefault("EnableCraftSkullImitator", (Object)true);

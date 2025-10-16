@@ -1,5 +1,9 @@
 package cel20.op;
 
+import org.bukkit.NamespacedKey;
+
+import javax.xml.stream.events.Namespace;
+
 public class GlobalVars {
 
     public static String uuid = ";";
@@ -22,4 +26,7 @@ public class GlobalVars {
     public static int piercerKnockbackLevel;
     public static String itemVersionLevel = "1.0";
     public static int spongeClearRange = 1;
+
+    public static NamespacedKey opitemsMarker = new NamespacedKey(Main.getPluginInstance(), "opitemsMarker");
+    public static NamespacedKey opitemsAbilities = new NamespacedKey(Main.getPluginInstance(), "opitemsAbilities");
 }

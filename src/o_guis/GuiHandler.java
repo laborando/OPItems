@@ -18,7 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import items.managers.giveItems;
 
-public class Gui_handler implements Listener
+public class GuiHandler implements Listener
 {
 	
 	public void openConfigOne(Player player) {

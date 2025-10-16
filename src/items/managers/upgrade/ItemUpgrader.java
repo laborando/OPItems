@@ -4,6 +4,7 @@ import items.managers.rawItemsGenerator;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,7 +23,7 @@ public class ItemUpgrader {
         }
 
         if(item.getAmount() > 1){
-            p.sendMessage(ChatColor.RED + "Please only hold one item at a time.");
+            p.sendMessage(ChatColor.RED + "Please hold one item at a time.");
             return;
         }
 
@@ -43,7 +44,17 @@ public class ItemUpgrader {
 
         if(hasFound[0]){
             if(p.getInventory().contains(item)){
-                p.getInventory().remove(item);
+
+                Inventory inv = p.getInventory();
+
+                for (int i = 0; i < inv.getSize(); i++) {
+                ItemStack inow = inv.getItem(i);
+                if (inow != null && inow.equals(item)) {
+                    inv.clear(i);
+
+                    break;
+                }
+            }
                 p.getInventory().addItem(rawItemsGenerator.getItem(targetId.get(), -5, -5));
 
                 p.sendMessage(ChatColor.GREEN + "The item was updated. Item-ID: " + targetId.get());

@@ -1,55 +1,71 @@
-
 package items.normal;
 
-import net.minecraft.server.v1_16_R3.*;
-import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import cel20.op.Main;
 import com.mojang.authlib.GameProfile;
+import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class FakePlayer extends EntityPlayer {
 
     private final Location loc;
 
-
-
-
-
-
-    public FakePlayer(WorldServer ws, GameProfile gp, Location loc) {
-        super(MinecraftServer.getServer(), ws, gp, new PlayerInteractManager(ws));
+    public FakePlayer(Location loc, String name) {
+        super(
+                ((CraftServer) Bukkit.getServer()).getServer(),
+                ((CraftWorld) loc.getWorld()).getHandle(),
+                new GameProfile(UUID.randomUUID(), name),
+                new PlayerInteractManager(((CraftWorld) loc.getWorld()).getHandle())
+        );
         this.loc = loc;
-        setLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch()); // set location
+        setLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
     }
 
     public void spawn() {
         for (Player pl : Bukkit.getOnlinePlayers()) {
-            spawnFor(pl); // send all spawn packets
+            spawnFor(pl);
         }
     }
 
     public void spawnFor(Player p) {
         PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
 
-        // add player in player list for player
+        // Add fake player to tab list
         connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, this));
 
-        // make player spawn in world
+        // Spawn fake player in the world
         connection.sendPacket(new PacketPlayOutNamedEntitySpawn(this));
 
-        // change head rotation
+        // Head rotation packet
         connection.sendPacket(new PacketPlayOutEntityHeadRotation(this, (byte) ((loc.getYaw() * 256f) / 360f)));
 
-        //byebye
-        connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, this));
+        // Optionally remove from tab list again
+        Bukkit.getScheduler().runTaskLater(
+                Main.getInstance(),
+                () -> connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, this)),
+                60L
+        );
+    }
+
+    public void removeFor(Player p) {
+        PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
+        connection.sendPacket(new PacketPlayOutEntityDestroy(this.getId()));
     }
 
     public void remove() {
+        for (Player pl : Bukkit.getOnlinePlayers()) {
+            removeFor(pl);
+        }
         this.die();
     }
 
     public boolean isEntity(Entity et) {
-        return this.getId() == et.getId(); // check if it's this entity
+        return this.getId() == et.getId();
     }
 }

@@ -54,6 +54,7 @@ public class ConfigInniter {
         config.addDefault("AllowCraftAntiExplosionHelmet", Boolean.TRUE);
         config.addDefault("AllowCraftAndActivatedWandOfHome", Boolean.TRUE);
         config.addDefault("AllowCraftTNTBow", Boolean.TRUE);
+        config.addDefault("OPItemsSpecificBStatsDisable", Boolean.FALSE);
 
         config.addDefault("AllowCraftOtherItems", Boolean.TRUE);
 

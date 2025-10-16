@@ -1,5 +1,5 @@
 
-package events;
+package items.classic.Sponges;
 
 import cel20.op.GlobalVars;
 import cel20.op.Main;

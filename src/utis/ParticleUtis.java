@@ -8,16 +8,13 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.Console;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
 
 public class ParticleUtis {
 
     public static void particleCircle(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX){
 
-        Queue<Location> ll = utis.celutis.getCircleLocationsQue(location, radius, amount);
+        Queue<Location> ll = Celutis.getCircleLocationsQue(location, radius, amount);
 
         Queue<Location> copyLl = new ArrayDeque<>(ll);
 
@@ -52,7 +49,7 @@ public class ParticleUtis {
     //summon minecraft:warden ~ ~ ~ {Brain: {memories: {"minecraft:dig_cooldown":{value: {}, ttl: 1200L}, "minecraft:is_emerging": {value: {}, ttl: 85L}}}}
     public static void particleCircleWithWarden(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX, Player player){
 
-        Queue<Location> ll = utis.celutis.getCircleLocationsQue(location, radius, amount);
+        Queue<Location> ll = Celutis.getCircleLocationsQue(location, radius, amount);
         Queue<Location> copyLl = new ArrayDeque<>();
 
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:" + location.getWorld().getName() + " run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");

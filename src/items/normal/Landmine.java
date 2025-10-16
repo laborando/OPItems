@@ -1,6 +1,7 @@
 package items.normal;
 
 
+import cel20.op.GlobalVars;
 import cel20.op.Main;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -12,6 +13,7 @@ import org.bukkit.event.block.*;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
@@ -65,22 +67,12 @@ public class Landmine implements Listener {
         if (item.getItemMeta() == null) {
             return;
         }
-        if (item.getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Landmine")) {
+        String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsAbilities, PersistentDataType.STRING);
+        if (abl != null && abl.contains("landmine")) {
 
             Block b = e.getBlock();
 
-            Location location = b.getLocation();
-
-            if(location.getWorld().getName().equalsIgnoreCase("world")){
-                lml.add(b.getLocation());
-            }else if(location.getWorld().getName().equalsIgnoreCase("world_nether")) {
-                lml.add(b.getLocation());
-            }else if(location.getWorld().getName().equalsIgnoreCase("world_the_end")) {
-                lml.add(b.getLocation());
-            }else{
-                e.getPlayer().sendMessage(ChatColor.RED + "Landmines can currently only be placed in the overworld, the nether and the end!");
-                e.setCancelled(true);
-            }
+            lml.add(b.getLocation());
 
         }
     }
@@ -109,7 +101,10 @@ public class Landmine implements Listener {
                 if (item.getItemMeta() == null) {
                     return;
                 }
-                if (item.getType() == Material.BLAZE_ROD && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Defuser")) {
+
+                String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsAbilities, PersistentDataType.STRING);
+                if (abl != null && abl.contains("defuse")) {
+
 
                     if (e.getClickedBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
                         Block b = e.getClickedBlock();
@@ -177,11 +172,15 @@ public class Landmine implements Listener {
                         if (!(loc.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE)) {
                             lml.remove(loc);
                         }
+
+                        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 255, 255), 0.5F);
+
                         if (!Main.landminePerfModeEnabeled) {
                             Location ltmp = new Location(loc.getWorld(), loc.getX(), loc.getY(), loc.getZ());
                             ltmp.add(0.5, 0.2, 0.5);
-                            Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 255, 255), 0.5F);
-                            loc.getWorld().spawnParticle(Particle.REDSTONE, ltmp, 20, 0.3, 0.2, 0.3, dustOptions);
+                            try {
+                                loc.getWorld().spawnParticle(Particle.REDSTONE, ltmp, 20, 0.3, 0.2, 0.3, dustOptions);
+                            } catch (Exception exception){}
                         }
                     }
                 } catch (ConcurrentModificationException ignored) {

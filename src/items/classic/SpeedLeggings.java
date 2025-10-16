@@ -1,5 +1,5 @@
 
-package events;
+package items.classic;
 
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.EventHandler;
@@ -11,7 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.Listener;
 
-public class leggingevent implements Listener
+public class SpeedLeggings implements Listener
 {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerMoveEvent e) {

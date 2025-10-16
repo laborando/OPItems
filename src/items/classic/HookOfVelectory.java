@@ -3,7 +3,6 @@
 package items.classic;
 
 import cel20.op.GlobalVars;
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.EventHandler;
 import org.bukkit.Location;
@@ -19,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class hookOfVelectory implements Listener
+public class HookOfVelectory implements Listener
 {
 
     static Map<String, Long> cooldown = new HashMap<>();

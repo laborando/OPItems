@@ -1,8 +1,5 @@
 package items.normal;
 
-import cel20.op.Main;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -10,8 +7,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.Vector;
-import utis.celutis;
 
 import java.util.ArrayList;
 

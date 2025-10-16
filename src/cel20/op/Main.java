@@ -9,6 +9,7 @@ import cel20.op.load.Events;
 import cel20.op.load.UpdateHandler;
 import cel20.op.load.VersionDependent;
 import items.managers.RecipeAdder;
+import metrics.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,8 +17,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import utis.CLogger;
+import utis.Celutis;
 import utis.Updater;
-import utis.WorkerLogger;
+import metrics.WorkerLogger;
 
 import java.io.File;
 import java.util.HashMap;
@@ -119,7 +121,28 @@ public class Main extends JavaPlugin implements Listener {
             }
         }
 
+        //Cloudflare worker
         WorkerLogger logger = new WorkerLogger("https://plugins.opitems.workers.dev/");
+
+
+        //bStats
+        if(config.getBoolean("OPItemsSpecificBStatsDisable")){
+            Metrics metrics = new Metrics(this, 27611);
+
+            if(GlobalVars.newerFeaturesEnabled){
+                metrics.addCustomChart(new Metrics.SimplePie("newer_version_enabled", () -> "true"));
+            }else{
+                metrics.addCustomChart(new Metrics.SimplePie("newer_version_enabled", () -> "false"));
+            }
+
+            if(GlobalVars.craftingDisabled){
+                metrics.addCustomChart(new Metrics.SimplePie("crafting_disabled", () -> "true"));
+            }else{
+                metrics.addCustomChart(new Metrics.SimplePie("crafting_disabled", () -> "false"));
+            }
+        }
+
+
 
         Bukkit.getLogger().info("[OPItems] Successfully Enabled");
 
@@ -127,7 +150,7 @@ public class Main extends JavaPlugin implements Listener {
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.9.14       |");
+        Bukkit.getLogger().info("|        OPItems 1.10.1       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
@@ -138,7 +161,7 @@ public class Main extends JavaPlugin implements Listener {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
         }
 
-        opitems_version = "1.9.14";
+        opitems_version = "1.10.1";
 
          logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitems_version);
     }
@@ -167,7 +190,7 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     private static int randomrange(final int min, final int max) {
-        return (int) utis.celutis.randomRangeDouble(min, max);
+        return (int) Celutis.randomRangeDouble(min, max);
     }
 
     public static void executeUpdate(CommandSender sender) {

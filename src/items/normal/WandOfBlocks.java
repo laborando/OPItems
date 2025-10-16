@@ -22,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import cel20.op.Main;
-import utis.celutis;
+import utis.Celutis;
 
 public class WandOfBlocks implements Listener {
 
@@ -47,7 +47,7 @@ public class WandOfBlocks implements Listener {
             if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (!e.getPlayer().isSneaking()) {
 
-                    for (Block b2 : celutis.getRandomBlocks(e.getPlayer().getLocation(), 5)) {
+                    for (Block b2 : Celutis.getRandomBlocks(e.getPlayer().getLocation(), 5)) {
 
 
                         FallingBlock fallingBlock = b2.getWorld().spawnFallingBlock(b2.getLocation(), b2.getType().createBlockData());
@@ -57,7 +57,7 @@ public class WandOfBlocks implements Listener {
 
                         fallingBlock.setVelocity(new Vector(0, 0.1, 0));
                         b2.setType(Material.AIR);
-                        celutis.addValueToMultiMapStringXFallingBlock(PlayersBlocks, p.getName(), fallingBlock);
+                        Celutis.addValueToMultiMapStringXFallingBlock(PlayersBlocks, p.getName(), fallingBlock);
                     }
 
                     p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("To Charge: Shift-Right Click at your Target Block (Must be in a loaded Chunk).").toString());
@@ -86,7 +86,7 @@ public class WandOfBlocks implements Listener {
                                 lt2.setY(v.getWorld().getHighestBlockYAt(lt2) + 2);
 
                                 v.teleport(lt2);
-                                v.setVelocity(celutis.getVectorBetweenLocations(v.getLocation(), bt.getLocation()));
+                                v.setVelocity(Celutis.getVectorBetweenLocations(v.getLocation(), bt.getLocation()));
 
                             }
 
@@ -138,8 +138,8 @@ public class WandOfBlocks implements Listener {
             for (FallingBlock v : vfk) {
 
                 Location rl = btl;
-                rl.setX(btl.getX() + (celutis.randomRangeDouble(-dist, dist) / 4));
-                rl.setZ(btl.getZ() + (celutis.randomRangeDouble(-dist, dist) / 4));
+                rl.setX(btl.getX() + (Celutis.randomRangeDouble(-dist, dist) / 4));
+                rl.setZ(btl.getZ() + (Celutis.randomRangeDouble(-dist, dist) / 4));
                 rl.setY(btl.getWorld().getHighestBlockYAt(rl));
 
                 v.teleport(rl);

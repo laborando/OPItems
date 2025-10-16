@@ -7,18 +7,17 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class op_gui
+public class OpGui
 {
     public static void openOpitemsGui(final Player p) {
-        final Inventory gui = Bukkit.createInventory(null, 9, new StringBuilder().append(ChatColor.BOLD).append(ChatColor.GOLD).append("OPItems GUI").toString());
+        final Inventory gui = Bukkit.createInventory(null, 9, new StringBuilder().append(ChatColor.BOLD).append(ChatColor.RED).append("Deprecated - OPItems GUI").toString());
         final ItemStack geti = new ItemStack(Material.GOLD_BLOCK, 1);
         final ItemMeta getit = geti.getItemMeta();
-        getit.setDisplayName(new StringBuilder().append(ChatColor.GOLD).append(ChatColor.BOLD).append("Get all OPItems").toString());
+        getit.setDisplayName(new StringBuilder().append(ChatColor.GOLD).append(ChatColor.BOLD).append("Deprecated").toString());
         getit.addEnchant(Enchantment.SILK_TOUCH, 1, true);
         getit.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         geti.setItemMeta(getit);
@@ -59,7 +58,7 @@ public class op_gui
         gui.setItem(6, id);
         final ItemStack i = new ItemStack(Material.REDSTONE_TORCH, 1);
         final ItemMeta it = guiglass.getItemMeta();
-        it.setDisplayName(ChatColor.GOLD + "View Plugin Settings");
+        it.setDisplayName(ChatColor.GOLD + "Deprecated - View Plugin Settings");
         it.addEnchant(Enchantment.SILK_TOUCH, 1, true);
         it.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         it.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);

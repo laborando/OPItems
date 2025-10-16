@@ -21,7 +21,6 @@ public class EnderpearlSword {
         cooldown.put(p.getName(), System.currentTimeMillis());
 
         EnderPearl ep = p.launchProjectile(EnderPearl.class);
-        ep.setBounce(true);
         ep.eject();
 
     }

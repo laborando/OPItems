@@ -1,8 +1,5 @@
 package tests;
 
-import org.bukkit.Bukkit;
-import utis.WorkerLogger;
-
 import java.security.SecureRandom;
 import java.util.Base64;
 
@@ -10,7 +7,7 @@ public class Run {
 
     public static void main(String[] args) {
 
-        System.out.println("Running debug-Main class");
+        System.out.println("Running debug-Main class | Only for Debugging");
 
         byte[] randomBytes = new byte[99];
         SecureRandom secureRandom = new SecureRandom();

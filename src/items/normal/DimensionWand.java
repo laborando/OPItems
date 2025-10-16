@@ -26,7 +26,7 @@ import org.bukkit.util.io.BukkitObjectOutputStream;
 import dimensions.ChunkGen;
 
 import org.bukkit.WorldCreator;
-import utis.celutis;
+import utis.Celutis;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
 
@@ -76,7 +76,7 @@ static List<String> players_in_customw;
 
         //[HorriblePaperMessageEvenIfNotCircumventableWarning]
 
-        if(!alreadyWarningSaid && celutis.isPaper()){
+        if(!alreadyWarningSaid && Celutis.isPaper()){
             alreadyWarningSaid = true;
             Bukkit.getConsoleSender().sendMessage("[HorriblePaperMessageEvenIfNotCircumventableWarning] There is no other way but to use this event. At least give some alternatives: [paper]");
         }
@@ -147,7 +147,7 @@ static List<String> players_in_customw;
             p.sendMessage(ChatColor.GREEN + "Teleporting...");
             p.sendMessage(ChatColor.RED + "This could take up to 7 sec");
             final String wn = "pocket-world-" + e.getPlayer().getUniqueId();
-            if (!celutis.doesWorldExist(wn)) {
+            if (!Celutis.doesWorldExist(wn)) {
                 p.sendMessage(ChatColor.RED + "Generation of Pocket World started...");
                 final WorldCreator worldCreator = new WorldCreator(wn);
                 worldCreator.generator(new ChunkGen());
