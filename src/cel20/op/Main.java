@@ -8,8 +8,10 @@ import cel20.op.load.Commands;
 import cel20.op.load.Events;
 import cel20.op.load.UpdateHandler;
 import cel20.op.load.VersionDependent;
+import items.classic.sheduled.SchedulerStarter;
 import items.managers.RecipeAdder;
 import metrics.Metrics;
+import metrics.WorkerLogger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -19,7 +21,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import utis.CLogger;
 import utis.Celutis;
 import utis.Updater;
-import metrics.WorkerLogger;
 
 import java.io.File;
 import java.util.HashMap;
@@ -142,7 +143,8 @@ public class Main extends JavaPlugin implements Listener {
             }
         }
 
-
+        //Schedules
+        SchedulerStarter.startSchedulers();
 
         Bukkit.getLogger().info("[OPItems] Successfully Enabled");
 
@@ -150,7 +152,7 @@ public class Main extends JavaPlugin implements Listener {
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.10.1       |");
+        Bukkit.getLogger().info("|        OPItems 1.10.0       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
@@ -161,7 +163,7 @@ public class Main extends JavaPlugin implements Listener {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
         }
 
-        opitems_version = "1.10.1";
+        opitems_version = "1.10.0";
 
          logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitems_version);
     }

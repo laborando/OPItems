@@ -2,21 +2,19 @@ package items.managers;
 
 import cel20.op.GlobalVars;
 import cel20.op.Main;
-import cmd.cmds.Give;
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.ChatColor;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class rawItemsGenerator {
+public class RawItemsGenerator {
 
     public static ItemStack getItem(int id, int... lvl) {
         int level = (lvl.length > 0) ? lvl[0] : -1;
@@ -233,9 +231,11 @@ public class rawItemsGenerator {
                 itemStack = new ItemStack(Material.IRON_HELMET, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.RED + "Night Visor");
+
+                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "night_vision");
+
                 itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
                 break;
 
             case 17:
@@ -243,8 +243,10 @@ public class rawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.RED + "Water Helmet");
                 itemMeta.setUnbreakable(true);
+
+                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "water_breathing");
+
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                itemMeta.addEnchant(Enchantment.ARROW_FIRE, 10, true);
                 break;
 
             case 18:
@@ -252,6 +254,9 @@ public class rawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.RED + "Fire Shoes");
                 itemMeta.setUnbreakable(true);
+
+                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsCosmetic, PersistentDataType.STRING, "fire_norm");
+
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.ARROW_DAMAGE, 10, true);
                 break;

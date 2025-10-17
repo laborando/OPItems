@@ -1,30 +1,27 @@
 
-package events;
+package items.classic;
 
-import org.bukkit.inventory.ItemFlag;
-import utis.Updater;
-import cel20.op.Main;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.GameMode;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.EventHandler;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-public class flystick implements Listener {
+public class FlyingInvisibilitySticks implements Listener {
 
     private ItemStack fs;
     private ItemStack wob;
 
-    public flystick(){
+    public FlyingInvisibilitySticks(){
         final ItemStack itemStack = new ItemStack(Material.FEATHER, 1);
         final ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BOLD + "FlyFeather");

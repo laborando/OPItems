@@ -12,7 +12,7 @@ fake player?
 
 IN  WORK:
 
-WORKSTATION - FINISHED CRAFTING - ADD USAGE AND CO
+WORKSTATION - ADD GuI Responses
 
 DONE:
 
@@ -30,6 +30,8 @@ Added bStats
 Added Lores to some items
 The item names are now just red and not bold and some other color
 OPItems now have a grey OPItems marker
+Remade the FireShoes particle effect
+
 
 IT:
 
@@ -49,5 +51,17 @@ FB: Fixed Antifall (Remember to use /opitems upgradeItem)
 FB: Compability level set to 1.13
 FB: Being able to disenchant OPItems
 FB: Typos in Lores
+FB: Cosmetics can now be seen by everyone
+FB: Cosmentics are now displayed continously not only when moving
+FB: Water Helmet giving an effect that was too long
+FB: Water helmet now also works if not moving
+FB: Night Visor now also works if not moving
+FB: Tabcomplete showing op commands to non op players
+FB:
+FB:
+FB:
+FB:
+FB:
+FB:
 FB:
 FB:

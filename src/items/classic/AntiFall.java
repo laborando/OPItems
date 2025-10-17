@@ -2,22 +2,13 @@
 package items.classic;
 
 import cel20.op.GlobalVars;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.EventHandler;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.ChatColor;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.EntityType;
-import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.persistence.PersistentDataType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AntiFall implements Listener
 {

@@ -1,7 +1,7 @@
 package utis;
 
 import cel20.op.Main;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
 
 import java.io.BufferedWriter;
 import java.io.File;

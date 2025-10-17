@@ -5,6 +5,8 @@ import cel20.op.Main;
 import items.classic.HookOfVelectory;
 import items.managers.RecipeAdder;
 import items.normal.*;
+import items.normal.ws.Workstation;
+import items.normal.ws.WsGUIHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import utis.CLogger;
@@ -215,6 +217,12 @@ public class ConfigLoader {
             RecipeAdder.addRecipe43(plugin);
         }
 
+        //ActivateWorkstation
+        if (config.getBoolean("ActivateWorkstation")) {
+            m.getServer().getPluginManager().registerEvents(new Workstation(), m);
+            m.getServer().getPluginManager().registerEvents(new WsGUIHandler(), m);
+            RecipeAdder.addRecipe44(plugin);
+        }
 
         Main.ore_gen_chance_private_dim = config.getInt("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock");
         Main.isprivatedimenableled = config.getBoolean("PrivatePocketDimensionEnabled");

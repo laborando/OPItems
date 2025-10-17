@@ -1,35 +1,32 @@
 
 package items.normal;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.util.io.BukkitObjectInputStream;
-import java.io.InputStream;
-import java.util.zip.GZIPInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import org.bukkit.util.io.BukkitObjectOutputStream;
-import java.io.OutputStream;
-import java.util.zip.GZIPOutputStream;
-import java.io.FileOutputStream;
-import org.bukkit.World;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.EventHandler;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import java.util.ArrayList;
-
+import org.bukkit.World;
+import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-
-import java.util.List;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.io.BukkitObjectInputStream;
+import org.bukkit.util.io.BukkitObjectOutputStream;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 public class CursedSword implements Listener
 {

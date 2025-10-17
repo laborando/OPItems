@@ -170,6 +170,8 @@ public class Give {
                 return 42;
             case "piercer":
                 return 43;
+            case "workstation":
+                return 44;
 
 
             default:

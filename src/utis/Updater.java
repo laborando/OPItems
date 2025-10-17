@@ -1,26 +1,21 @@
 
 package utis;
 
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import java.net.URLConnection;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.JSONArray;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Enumeration;
-import java.io.BufferedOutputStream;
+import java.util.logging.Level;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.net.HttpURLConnection;
-import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.BufferedInputStream;
-import java.net.MalformedURLException;
-import java.util.logging.Level;
-import java.net.URL;
-import java.io.File;
-import org.bukkit.plugin.Plugin;
 
 public class Updater
 {

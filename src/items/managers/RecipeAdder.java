@@ -4,22 +4,16 @@ package items.managers;
 import cel20.op.GlobalVars;
 import cel20.op.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import utis.CLogger;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import static items.managers.rawItemsGenerator.getItem;
+import static items.managers.RawItemsGenerator.getItem;
 
 public class RecipeAdder {
     static HashMap<Integer, NamespacedKey> map;
@@ -1167,6 +1161,36 @@ public class RecipeAdder {
         shapedRecipe.setIngredient('a', Material.BLAZE_ROD);
         shapedRecipe.setIngredient('b', Material.DIAMOND_BLOCK);
         shapedRecipe.setIngredient('c', Material.BOW);
+
+        try {
+            Bukkit.getServer().addRecipe(shapedRecipe);
+        } catch (Error e) {
+            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
+            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
+            if (!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
+
+            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
+            CLogger.logAndFlush(e.getMessage());
+
+        }
+    }
+
+    public static void addRecipe44(final Main pluginint) {
+        if (GlobalVars.craftingDisabled)
+            return;
+
+        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_44");
+        RecipeAdder.map.put(44, key);
+        final ItemStack itemStack = getItem(44);
+        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
+        shapedRecipe.shape("abc", "xxx", "def");
+        shapedRecipe.setIngredient('a', Material.CRAFTING_TABLE);
+        shapedRecipe.setIngredient('b', Material.STONECUTTER);
+        shapedRecipe.setIngredient('c', Material.ANVIL);
+        shapedRecipe.setIngredient('d', Material.LOOM);
+        shapedRecipe.setIngredient('e', Material.SMITHING_TABLE);
+        shapedRecipe.setIngredient('f', Material.CARTOGRAPHY_TABLE);
+        shapedRecipe.setIngredient('x', Material.DIAMOND);
 
         try {
             Bukkit.getServer().addRecipe(shapedRecipe);

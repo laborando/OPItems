@@ -15,13 +15,16 @@ public class TabComp implements TabCompleter {
             if(args.length == 1){
                 final List<String> completions = new ArrayList<String>();
                 completions.add("help");
-                completions.add("gui");
-                completions.add("give");
-                completions.add("update");
                 completions.add("recipes");
-                completions.add("skull");
                 completions.add("version");
                 completions.add("upgradeItems");
+
+                if(sender.isOp()){
+                    completions.add("give");
+                    completions.add("update");
+                    completions.add("skull");
+                }
+
                 return completions;
             }
             if(args.length == 2){
@@ -70,6 +73,7 @@ public class TabComp implements TabCompleter {
                     completions.add("WandOfWarden");
                     completions.add("JumpyBoots");
                     completions.add("Piercer");
+                    completions.add("Workstation");
                     if(args[1] == null || args[1].trim().isEmpty()){
                         return completions;
                     }

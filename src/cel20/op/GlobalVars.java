@@ -2,8 +2,6 @@ package cel20.op;
 
 import org.bukkit.NamespacedKey;
 
-import javax.xml.stream.events.Namespace;
-
 public class GlobalVars {
 
     public static String uuid = ";";
@@ -29,4 +27,6 @@ public class GlobalVars {
 
     public static NamespacedKey opitemsMarker = new NamespacedKey(Main.getPluginInstance(), "opitemsMarker");
     public static NamespacedKey opitemsAbilities = new NamespacedKey(Main.getPluginInstance(), "opitemsAbilities");
+    public static NamespacedKey opitemsCosmetic = new NamespacedKey(Main.getPluginInstance(), "opitemsCosmetic");
+    public static NamespacedKey opitemsGui = new NamespacedKey(Main.getPluginInstance(), "opitemsGui");
 }

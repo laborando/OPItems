@@ -1,17 +1,17 @@
 
 package manage;
 
-import org.bukkit.Location;
-import org.bukkit.util.Vector;
-import org.bukkit.entity.Entity;
-import org.bukkit.Chunk;
-import java.util.Iterator;
-import java.util.Map;
-import org.bukkit.entity.Item;
-import org.bukkit.World;
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class Items
 {

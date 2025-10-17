@@ -4,12 +4,12 @@ package items.classic.Sponges;
 import cel20.op.GlobalVars;
 import cel20.op.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 
 import java.util.List;
-import org.bukkit.Material;
 import java.util.concurrent.CopyOnWriteArrayList;
-import org.bukkit.block.Block;
 
 public class SuperSponge
 {

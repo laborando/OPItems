@@ -3,16 +3,16 @@
 package items.classic;
 
 import cel20.op.GlobalVars;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.EventHandler;
 import org.bukkit.Location;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.Material;
-import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.Map;

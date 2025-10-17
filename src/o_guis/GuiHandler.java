@@ -1,5 +1,6 @@
 package o_guis;
 
+import items.managers.giveItems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -15,8 +16,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import items.managers.giveItems;
 
 public class GuiHandler implements Listener
 {

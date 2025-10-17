@@ -1,10 +1,10 @@
 package cel20.op.load;
 
 import cel20.op.Main;
-import items.normal.DimensionWand;
-import items.normal.WandOfHome;
 import items.normal.CursedSword;
+import items.normal.DimensionWand;
 import items.normal.Landmine;
+import items.normal.WandOfHome;
 
 public class ContentLoader {
 

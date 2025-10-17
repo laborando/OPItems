@@ -1,27 +1,28 @@
 
 package items.normal;
 
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.EventHandler;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.EntityType;
 import org.bukkit.ChatColor;
-import org.bukkit.event.block.Action;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.Material;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.block.Block;
 import org.bukkit.Location;
-import java.util.HashMap;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 
-public class Tntlayer implements Listener
+import java.util.HashMap;
+
+public class TntLayer implements Listener
 {
     static HashMap<Location, Block> map;
     
     static {
-        Tntlayer.map = new HashMap<Location, Block>();
+        TntLayer.map = new HashMap<Location, Block>();
     }
     
     @EventHandler(priority = EventPriority.HIGH)
@@ -36,8 +37,8 @@ public class Tntlayer implements Listener
             if (b.getType() != Material.TNT) {
                 return;
             }
-            if (!Tntlayer.map.containsValue(b)) {
-                Tntlayer.map.put(b.getLocation(), b);
+            if (!TntLayer.map.containsValue(b)) {
+                TntLayer.map.put(b.getLocation(), b);
                 p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("TNT added").toString());
             }
         }
@@ -48,13 +49,13 @@ public class Tntlayer implements Listener
             }
             else {
                 p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("Activating TNT-Blocks!").toString());
-                for (final Block b : Tntlayer.map.values()) {
+                for (final Block b : TntLayer.map.values()) {
                     if (b.getType() == Material.TNT) {
                         b.setType(Material.AIR);
                         b.getWorld().spawnEntity(b.getLocation(), EntityType.PRIMED_TNT);
                     }
                 }
-                Tntlayer.map.clear();
+                TntLayer.map.clear();
             }
         }
     }

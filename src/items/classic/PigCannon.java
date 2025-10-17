@@ -1,15 +1,9 @@
 package items.classic;
 
 import cel20.op.GlobalVars;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.Map;

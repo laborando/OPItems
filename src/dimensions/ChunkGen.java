@@ -2,16 +2,16 @@
 package dimensions;
 
 import cel20.op.Main;
-import org.bukkit.*;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
-import org.bukkit.generator.ChunkGenerator;
 
 public class ChunkGen extends ChunkGenerator
 {

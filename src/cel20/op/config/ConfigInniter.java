@@ -71,7 +71,7 @@ public class ConfigInniter {
         config.addDefault("EnableLandminePerformanceMode", Boolean.FALSE);
         config.addDefault("EnableRiptider", Boolean.TRUE);
         config.addDefault("ActivateWandofBlocks", Boolean.TRUE);
-
+        config.addDefault("ActivateWorkstation", Boolean.TRUE);
 
         config.addDefault("AllowBoomer", Boolean.TRUE);
         config.addDefault("AllowEndsword", Boolean.TRUE);

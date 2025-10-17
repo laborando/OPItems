@@ -1,7 +1,6 @@
 package items.normal;
 
-import java.util.ArrayList;
-
+import cel20.op.Main;
 import org.bukkit.Location;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
@@ -14,9 +13,9 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
-
-import cel20.op.Main;
 import utis.Celutis;
+
+import java.util.ArrayList;
 
 public class TntBow implements Listener {
 	

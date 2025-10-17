@@ -1,6 +1,6 @@
 package items.managers.upgrade;
 
-import items.managers.rawItemsGenerator;
+import items.managers.RawItemsGenerator;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -55,7 +55,7 @@ public class ItemUpgrader {
                     break;
                 }
             }
-                p.getInventory().addItem(rawItemsGenerator.getItem(targetId.get(), -5, -5));
+                p.getInventory().addItem(RawItemsGenerator.getItem(targetId.get(), -5, -5));
 
                 p.sendMessage(ChatColor.GREEN + "The item was updated. Item-ID: " + targetId.get());
             }else{

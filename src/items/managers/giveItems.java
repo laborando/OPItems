@@ -1,16 +1,13 @@
 
 package items.managers;
 
-import cel20.op.Main;
-import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.Material;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class giveItems
 {
@@ -25,7 +22,7 @@ public class giveItems
         try {
 
             GiveErrorBackgiver.setPlayer(player);
-            player.getInventory().addItem(rawItemsGenerator.getItem(itemNum, p1, p2));
+            player.getInventory().addItem(RawItemsGenerator.getItem(itemNum, p1, p2));
 
 
         } catch (Exception e) {
