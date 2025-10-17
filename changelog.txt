@@ -12,8 +12,6 @@ fake player?
 
 IN  WORK:
 
-WORKSTATION - ADD GuI Responses
-
 DONE:
 
 Deprecated OPItems GUI
@@ -57,11 +55,3 @@ FB: Water Helmet giving an effect that was too long
 FB: Water helmet now also works if not moving
 FB: Night Visor now also works if not moving
 FB: Tabcomplete showing op commands to non op players
-FB:
-FB:
-FB:
-FB:
-FB:
-FB:
-FB:
-FB:

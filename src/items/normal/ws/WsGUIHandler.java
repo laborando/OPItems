@@ -2,6 +2,7 @@ package items.normal.ws;
 
 import cel20.op.GlobalVars;
 import items.managers.giveItems;
+import net.minecraft.server.v1_16_R3.InventoryCrafting;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -13,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -37,6 +39,37 @@ public class WsGUIHandler implements Listener
         if (abl != null && abl.contains("ws_locked")) {
 
             event.setCancelled(true);
+
+            Inventory i;
+
+            switch (item.getType()){
+                case BARRIER:
+                    player.closeInventory();
+                    break;
+                case CRAFTING_TABLE:
+                    player.openWorkbench(null, true);
+                    break;
+                case STONECUTTER:
+                    i = Bukkit.createInventory(player, InventoryType.GRINDSTONE);
+                    player.openInventory(i);
+                    break;
+                case LOOM:
+                    i = Bukkit.createInventory(player, InventoryType.LOOM);
+                    player.openInventory(i);
+                    break;
+                case ANVIL:
+                    i = Bukkit.createInventory(player, InventoryType.ANVIL);
+                    player.openInventory(i);
+                    break;
+                case CARTOGRAPHY_TABLE:
+                    i = Bukkit.createInventory(player, InventoryType.CARTOGRAPHY);
+                    player.openInventory(i);
+                    break;
+                case SMITHING_TABLE:
+                    i = Bukkit.createInventory(player, InventoryType.SMITHING);
+                    player.openInventory(i);
+                    break;
+            }
 
         }
 

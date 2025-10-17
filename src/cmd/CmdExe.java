@@ -4,6 +4,7 @@ import cel20.op.Main;
 import cel20.op.Test;
 import cmd.cmds.Give;
 import cmd.cmds.Help;
+import cmd.cmds.Recipe;
 import cmd.cmds.Version;
 import items.classic.Sponges.SuperSponge;
 import items.managers.RecipeAdder;
@@ -310,7 +311,9 @@ public class CmdExe implements CommandExecutor {
 
             //RECIPIES
             else if (arg.equalsIgnoreCase("recipes")) {
-                sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Recipes for the items: https://legacy.curseforge.com/minecraft/bukkit-plugins/opitems/screenshots");
+
+                Recipe.execute(sender);
+
             } else if (arg.equalsIgnoreCase("remove_recipes")) {
                 if (sender.isOp()) {
                     RecipeAdder.removeRecipes();

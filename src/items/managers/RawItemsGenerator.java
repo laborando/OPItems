@@ -554,6 +554,7 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.RED + "Portable Work Station");
                 lore = new ArrayList<>();
                 lore.add(ChatColor.RED + " - A portable multiuse workstation");
+                lore.add(ChatColor.RED + " - Wont work for now");
                 itemMeta.setLore(lore);
 
                 itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "workstation");

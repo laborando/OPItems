@@ -21,9 +21,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.List;
+import java.util.*;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -143,7 +141,34 @@ public class Landmine implements Listener {
 
 
     public static void load() {
-        String fn = Main.getPluginInstance().getDataFolder() + "/landmine.cel20";
+
+
+        String fn = Main.getPluginInstance().getDataFolder() + "/landmine_worlds.cel20";
+
+        try {
+            final BukkitObjectInputStream in = new BukkitObjectInputStream(new GZIPInputStream(new FileInputStream(fn)));
+
+            Object o = in.readObject();
+
+            if (o instanceof String) {
+
+                String[] worlds = ((String) o).split(";");
+                for (String world : worlds) {
+                    WorldCreator creator = new WorldCreator(world);
+                    creator.createWorld();
+                }
+
+            } else {
+                Bukkit.getLogger().severe("Your Landmines_worlds Data File is probably corrupted!");
+                Bukkit.getLogger().severe("An Error Could occur!");
+                lml = (List<Location>) o;
+            }
+
+            in.close();
+        } catch (ClassNotFoundException | IOException ignored) {
+        }
+
+        fn = Main.getPluginInstance().getDataFolder() + "/landmine.cel20";
 
 
         try {
@@ -195,8 +220,37 @@ public class Landmine implements Listener {
     }
 
     public static void save() {
-        String fn = Main.getPluginInstance().getDataFolder() + "/landmine.cel20";
+
+
+        String fn = Main.getPluginInstance().getDataFolder() + "/landmine_worlds.cel20";
+
         File f = new File(fn);
+        try {
+            f.createNewFile();
+        } catch (IOException important) {
+            important.printStackTrace();
+        }
+        try {
+            final BukkitObjectOutputStream out = new BukkitObjectOutputStream(new GZIPOutputStream(new FileOutputStream(fn)));
+
+            Set<String> worlds = new HashSet<>();
+
+            lml.forEach(e -> worlds.add(e.getWorld().getName()));
+
+            final String[] wstr = {""};
+
+            worlds.forEach(e -> {
+                wstr[0] = wstr[0] + e + ";";
+            });
+
+            out.writeObject(wstr[0]);
+            out.close();
+        } catch (IOException important) {
+            important.printStackTrace();
+        }
+
+        fn = Main.getPluginInstance().getDataFolder() + "/landmine.cel20";
+        f = new File(fn);
         try {
             f.createNewFile();
         } catch (IOException important) {
