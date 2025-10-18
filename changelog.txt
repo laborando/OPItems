@@ -14,44 +14,11 @@ IN  WORK:
 
 DONE:
 
-Deprecated OPItems GUI
-There is now a command to update older items to their newer versions.
-The Endsword now also teleports partly if the rest of the way is obstructed
-The Pigs are no longer shot on an arrow
-Made the wand of blocks explosions less explosive (lag and too op)
-OPItems gives now a warning back to the warning of using the PreLoginEvent of paper
-The Landmine can now be placed in every dimension
-Updated /opitems help
-Removed long commands in favour for /opitems subcommand
-The Console can now also execute /opitems version & /opitems help
-Added bStats
-Added Lores to some items
-The item names are now just red and not bold and some other color
-OPItems now have a grey OPItems marker
-Remade the FireShoes particle effect
-
 
 IT:
 
-OP: Super Sponge was optimized
+OP:
 
-CF: SuperSpongeClearRadius
-CF: OPItemsSpecificBStatsDisable
+CF:
 
-FB: Endsword does not check the blocks on the way, but only one block 8 times
-FB: Piercer showing item-enchantmentsa (dont have gameplay meaning)
-FB: Super Sponge now also clears Kelp and Sea Grass
-FB: Skull Imitator Skin is now really locked after being placed
-FB: Skull imitator Skulls are now really treated as not changeable skulls
-FB: Defuser having strange when hold stat
-FB: Restricted the usage of grindstone on opitems
-FB: Fixed Antifall (Remember to use /opitems upgradeItem)
-FB: Compability level set to 1.13
-FB: Being able to disenchant OPItems
-FB: Typos in Lores
-FB: Cosmetics can now be seen by everyone
-FB: Cosmentics are now displayed continously not only when moving
-FB: Water Helmet giving an effect that was too long
-FB: Water helmet now also works if not moving
-FB: Night Visor now also works if not moving
-FB: Tabcomplete showing op commands to non op players
+FB:

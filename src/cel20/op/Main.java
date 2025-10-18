@@ -34,7 +34,6 @@ public class Main extends JavaPlugin implements Listener {
         return super.getFile();
     }
 
-
     public static boolean landminePerfModeEnabeled = false;
     public HashMap<String, Long> cooldown_wand_boom;
     public HashMap<String, Long> Launcher_Cooldown;
@@ -50,6 +49,7 @@ public class Main extends JavaPlugin implements Listener {
     public static String data_save_play_dim;
     public static int tntbowamount;
     public static String opitems_version = "Not innited";
+    public static Metrics metrics;
 
     public static boolean priDimPerformMode = false;
 
@@ -127,8 +127,8 @@ public class Main extends JavaPlugin implements Listener {
 
 
         //bStats
-        if(config.getBoolean("OPItemsSpecificBStatsDisable")){
-            Metrics metrics = new Metrics(this, 27611);
+        if(!config.getBoolean("OPItemsSpecificBStatsDisable")){
+            metrics = new Metrics(this, 27611);
 
             if(GlobalVars.newerFeaturesEnabled){
                 metrics.addCustomChart(new Metrics.SimplePie("newer_version_enabled", () -> "true"));
@@ -152,7 +152,7 @@ public class Main extends JavaPlugin implements Listener {
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.10.0       |");
+        Bukkit.getLogger().info("|        OPItems 1.10.1       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
@@ -163,7 +163,7 @@ public class Main extends JavaPlugin implements Listener {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
         }
 
-        opitems_version = "1.10.0";
+        opitems_version = "1.10.1";
 
          logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitems_version);
     }
@@ -179,6 +179,8 @@ public class Main extends JavaPlugin implements Listener {
             CLogger.flushNow();
         } catch (NoClassDefFoundError ignored) {
         }
+
+        metrics.shutdown();
 
         Bukkit.getLogger().warning("OPItems is now disabled");
     }
