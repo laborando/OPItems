@@ -154,8 +154,13 @@ public class Landmine implements Listener {
 
                 String[] worlds = ((String) o).split(";");
                 for (String world : worlds) {
-                    WorldCreator creator = new WorldCreator(world);
-                    creator.createWorld();
+                    try {
+                        WorldCreator creator = new WorldCreator(world);
+                        creator.createWorld();
+                    }catch (Exception e){
+                        if(!world.isEmpty())
+                            Bukkit.getLogger().info("The Landmine file for " + world + "was non existent or corrupted");
+                    }
                 }
 
             } else {

@@ -120,7 +120,7 @@ public class Give {
                 return 17;
             case "fireshoes":
                 return 18;
-            case "laucher":
+            case "launcher":
                 return 19;
             case "wandofboom":
                 return 20;
