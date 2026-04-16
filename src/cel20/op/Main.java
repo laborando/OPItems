@@ -21,6 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import utis.CLogger;
 import utis.Celutis;
 import utis.Updater;
+import utis.update.CUpdater;
 
 import java.io.File;
 import java.util.HashMap;
@@ -83,9 +84,15 @@ public class Main extends JavaPlugin implements Listener {
         boolean sheduleNewerFeatures = false;
 
         try {
+            String modernVersion = mcVer.split("\\.")[0];
+            Bukkit.getLogger().info("Server is running modern version " + modernVersion);
+
             String majVer = mcVer.split("\\.")[1];
             Bukkit.getLogger().info("Server is running major version " + majVer);
+
             if (Integer.parseInt(majVer) > 19) {
+                sheduleNewerFeatures = true;
+            }else if(Integer.parseInt(modernVersion) > 1){
                 sheduleNewerFeatures = true;
             }
         } catch (Exception ignored) {
@@ -103,6 +110,7 @@ public class Main extends JavaPlugin implements Listener {
         ConfigLoader.loadConfigs(config, plugin, this);
 
         //Updater
+        CUpdater updater = new CUpdater();
         UpdateHandler.handleStartupUpdater(this);
 
         //Commands

@@ -23,10 +23,13 @@ public class RecipeAdder {
     }
 
     public static void removeRecipes() {
+
         try {
             for (final NamespacedKey p : RecipeAdder.map.values()) {
                 Bukkit.removeRecipe(p);
             }
+
+
         } catch (Exception ex) {
         }
     }
@@ -1101,6 +1104,10 @@ public class RecipeAdder {
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_41");
         RecipeAdder.map.put(41, key);
+
+        Bukkit.removeRecipe(key);
+        //Dont know why this has to be, but it has to be fff
+
         final ItemStack itemStack = getItem(41);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"cxc", "xax", "bdb"});

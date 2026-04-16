@@ -231,15 +231,12 @@ public class ConfigLoader {
         GlobalVars.spongeClearRange = config.getInt("SuperSpongeClearRadius");
 
         //CDs
-
         GlobalVars.blitzerCD = config.getLong("BlitzerCDms");
         GlobalVars.bowerCD = config.getLong("BowerCDms");
         GlobalVars.hookOfVelectoryCD = config.getLong("HookOfVelectoryCDms");
         GlobalVars.pigCanonCD = config.getLong("PigCannonCDms");
         GlobalVars.teleportSwordCD = config.getLong("TeleportSwordCDms");
         GlobalVars.enderPearlSwordCD = config.getLong("enderPearlSwordCDms");
-
-
 
         //Global Settings
         GlobalVars.craftingDisabled = config.getBoolean("DisableOPItemsCrafting");

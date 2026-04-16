@@ -24,18 +24,16 @@ public class CLogger {
         File tf = new File(s + "/logs");
         tf.mkdirs();
         log("CLogger Started ASYNCED " + System.currentTimeMillis());
-        Thread t = new Thread(new Runnable() {
-            public void run() {
+        Thread t = new Thread(() -> {
 
-                try {
-                    Thread.sleep(secDel* 1000L);
-                } catch (InterruptedException e) {
-                    log("Automated Error Report: " + e.getMessage());
-                }
-
-                flushNow();
-
+            try {
+                Thread.sleep(secDel* 1000L);
+            } catch (InterruptedException e) {
+                log("Automated Error Report: " + e.getMessage());
             }
+
+            flushNow();
+
         });
         t.start();
 

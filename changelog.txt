@@ -11,9 +11,10 @@ Holo display
 fake player?
 
 IN  WORK:
-
+ - Writing new autoupdater, switching to modrinth
 DONE:
-
+ - Versions check work with newer versions
+ - Recipe 41 blocking reload
 
 IT:
 

@@ -1,7 +1,6 @@
 package items.managers;
 
 import cel20.op.GlobalVars;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

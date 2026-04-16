@@ -12,6 +12,7 @@ public class Commands {
         m.getCommand("items").setExecutor(new CmdExe());
         m.getCommand("opitems").setTabCompleter(new TabComp());
         m.getCommand("items").setTabCompleter(new TabComp());
+
     }
     
 }

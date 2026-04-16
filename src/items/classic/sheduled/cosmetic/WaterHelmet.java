@@ -4,7 +4,6 @@ package items.classic.sheduled.cosmetic;
 import cel20.op.GlobalVars;
 import items.classic.sheduled.BasicSchedule;
 import org.bukkit.Bukkit;
-import org.bukkit.Particle;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
