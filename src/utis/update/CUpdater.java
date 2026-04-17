@@ -1,19 +1,17 @@
 package utis.update;
 
+import cel20.op.Main;
 import org.bukkit.Bukkit;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import utis.Updater;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;
-import java.util.logging.Level;
+import java.util.stream.Stream;
 
 /*
 CUpdater for MC plugins via the Modrinth API
@@ -21,13 +19,16 @@ CUpdater for MC plugins via the Modrinth API
 public class CUpdater
 {
     public CVersion[] versions;
+    public CVersion highestVersion;
+    public boolean shouldUpdate = false;
     private String slug = "opitems";
 
-    public CUpdater(){
-        checkVersion();
+    public CUpdater(String cVersion, String slug){
+        this.slug = slug;
+        checkVersion(cVersion);
     }
 
-    private void checkVersion() {
+    private void checkVersion(String cVersion) {
 
         URL verList;
 
@@ -57,14 +58,34 @@ public class CUpdater
                 JSONObject version = (JSONObject)array.get(current);
                 parseVersion(version, current);
             }
-
-            for(int current = 0; current < array.size(); current++){
-                Bukkit.getConsoleSender().sendMessage(versions[current].toString());
-            }
         }
         catch (IOException e) {
             System.out.println("There was an error checking for updates: " + e.getMessage());
         }
+
+        //Compare Vers
+
+        VersionNumber highest = new VersionNumber(0,0,0);
+        highestVersion = null;
+
+        //Check for newest online Version
+        for (CVersion version : versions) {
+            if(version.getVersionNumber().isHigherThan(highest)){
+                highest = version.getVersionNumber();
+                highestVersion = version;
+            }
+        }
+
+        VersionNumber current = VersionNumber.toVersionNumber(cVersion);
+
+        shouldUpdate = highest.isHigherThan(current);
+
+        if(shouldUpdate){
+            Bukkit.getLogger().warning("An Update for OPItems has been found: " + highest + "; current version: " + cVersion);
+        }else{
+            Bukkit.getLogger().info("OPItems seems to be up-to-date: " + cVersion + "; highest found: " + highest);
+        }
+
     }
 
     private void parseVersion(JSONObject version, int current){
@@ -126,4 +147,74 @@ public class CUpdater
         versions[current] = ver;
     }
 
+
+    public boolean executeUpdate(Main instance) {
+        Bukkit.getLogger().warning("Starting update");
+        File toUpdate = instance.getFileNonProt();
+
+        //Make file empty
+        try {
+            new FileOutputStream(toUpdate).close();
+        } catch (IOException e) {
+            Bukkit.getLogger().warning("Could not delete file to update: " + toUpdate.getAbsolutePath());
+            Bukkit.getLogger().warning("Aborting update");
+            return false;
+        }
+
+        //Retrieving Data and writing to file
+
+        try {
+
+            FileOutputStream fos = new FileOutputStream(toUpdate);
+
+
+            InputStream data = getUpdateStream(highestVersion);
+
+
+            if(data == null){
+                Bukkit.getLogger().warning("Null Stream");
+                Bukkit.getLogger().warning("Aborting update");
+                return false;
+            }
+
+            byte[] buffer = new byte[8192];
+            int len;
+
+            while ((len = data.read(buffer)) != -1) {
+                fos.write(buffer, 0, len);
+            }
+
+            fos.flush();
+
+            Bukkit.getLogger().warning("Update finished");
+            Bukkit.getLogger().severe("Please restart the server!");
+
+        } catch (Exception e) {
+            Bukkit.getLogger().warning("Error writing to file: " + e.getMessage());
+            Bukkit.getLogger().warning("Aborting update");
+        }
+
+
+        return true;
+    }
+
+    public InputStream  getUpdateStream(CVersion version) {
+        URL fileURL;
+        try {
+            fileURL = new URL(version.fileURL);
+        } catch (MalformedURLException e) {
+            Bukkit.getLogger().warning("Malformed URL: " + version.fileURL);
+            Bukkit.getLogger().warning("Aborting update");
+            return null;
+        }
+
+        try {
+            return fileURL.openStream();
+        }
+        catch (Exception e) {
+            System.out.println("There retrieving the update: " + e.getMessage());
+            Bukkit.getLogger().warning("Aborting update");
+            return null;
+        }
+    }
 }

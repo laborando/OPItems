@@ -96,18 +96,6 @@ public class CmdExe implements CommandExecutor {
 
 
         }
-        if (label.equalsIgnoreCase("updateopitems")) {
-            if (sender.isOp()) {
-                sender.sendMessage(ChatColor.GOLD + "Trying to Update OPItems");
-
-
-                Main.executeUpdate(sender);
-
-
-            } else {
-                sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
-            }
-        }
         if (label.equalsIgnoreCase("opitems")) {
             if (args.length == 0) {
                 sender.sendMessage(ChatColor.RED + "No Subcommand! Execute '/opitems help' for a list of available subcommands");
@@ -197,7 +185,6 @@ public class CmdExe implements CommandExecutor {
                 Version.execute(sender);
             } else if (arg.equalsIgnoreCase("update")) {
                 if (sender.isOp()) {
-                    sender.sendMessage(ChatColor.GOLD + "Trying to Update OPItems");
                     Main.executeUpdate(sender);
                 } else {
                     sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");

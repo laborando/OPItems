@@ -22,7 +22,9 @@ public class Give {
 
                 final Player p = (Player) sender;
                 if (arg.equalsIgnoreCase("old")) {
-                    giveItems.giveItemsOld(p);
+
+                    sender.sendMessage("This feature has been deprecated.");
+
                 } else {
                     try {
                         giveItems.giveItems(p, recipeStringToNum(arg), n1, n2);
@@ -57,7 +59,9 @@ public class Give {
             }
 
             if (arg.equalsIgnoreCase("old")) {
-                giveItems.giveItemsOld(p);
+
+                sender.sendMessage("This feature has been deprecated.");
+
             } else {
                 try {
 

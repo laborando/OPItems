@@ -6,21 +6,21 @@ import cel20.op.config.ConfigLoader;
 import cel20.op.data.ItemData;
 import cel20.op.load.Commands;
 import cel20.op.load.Events;
-import cel20.op.load.UpdateHandler;
 import cel20.op.load.VersionDependent;
 import items.classic.sheduled.SchedulerStarter;
 import items.managers.RecipeAdder;
 import metrics.Metrics;
 import metrics.WorkerLogger;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import utis.CLogger;
 import utis.Celutis;
-import utis.Updater;
 import utis.update.CUpdater;
 
 import java.io.File;
@@ -41,16 +41,15 @@ public class Main extends JavaPlugin implements Listener {
     public static int ore_gen_chance_private_dim;
     public static int config_anti_explo_helmet_lvl;
     public static boolean isprivatedimenableled;
-    public static int update;
     public FileConfiguration config;
     static Plugin p;
-    public static Updater.ReleaseType update_type;
     public static String data_save_cursed_sword;
     public static String data_save_homes;
     public static String data_save_play_dim;
     public static int tntbowamount;
     public static String opitems_version = "Not innited";
     public static Metrics metrics;
+    public static CUpdater cUpdater;
 
     public static boolean priDimPerformMode = false;
 
@@ -58,8 +57,6 @@ public class Main extends JavaPlugin implements Listener {
         Main.ore_gen_chance_private_dim = 100;
         Main.config_anti_explo_helmet_lvl = 75;
         Main.isprivatedimenableled = true;
-        Main.update = 0;
-        Main.update_type = null;
         Main.tntbowamount = 50;
     }
 
@@ -74,6 +71,7 @@ public class Main extends JavaPlugin implements Listener {
 
     public void onEnable() {
 
+        opitems_version = "1.10.3";
         Main.p = this;
         instance = this;
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");
@@ -108,10 +106,6 @@ public class Main extends JavaPlugin implements Listener {
         this.saveConfig();
         ConfigLoader.earlyLoadConfig(config, plugin, this);
         ConfigLoader.loadConfigs(config, plugin, this);
-
-        //Updater
-        CUpdater updater = new CUpdater();
-        UpdateHandler.handleStartupUpdater(this);
 
         //Commands
         Commands.setAllexecutors(this);
@@ -154,13 +148,15 @@ public class Main extends JavaPlugin implements Listener {
         //Schedules
         SchedulerStarter.startSchedulers();
 
-        Bukkit.getLogger().info("[OPItems] Successfully Enabled");
+        //Updater
+        Bukkit.getLogger().info("Retrieving version information...");
+        cUpdater = new CUpdater(opitems_version, "opitems");
 
         Bukkit.getLogger().info("");
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems 1.10.2       |");
+        Bukkit.getLogger().info("|        OPItems " + opitems_version + "       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
@@ -170,8 +166,6 @@ public class Main extends JavaPlugin implements Listener {
         if(GlobalVars.craftingDisabled) {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
         }
-
-        opitems_version = "1.10.2";
 
          logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitems_version);
     }
@@ -206,7 +200,25 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     public static void executeUpdate(CommandSender sender) {
-        UpdateHandler.executeUpdate(sender, Main.getInstance());
+
+        if(!cUpdater.shouldUpdate){
+            sender.sendMessage(ChatColor.GREEN + "Version " + opitems_version + " is already up-to-date. The most recent online version is: " + cUpdater.highestVersion.version);
+            return;
+        }
+
+        sender.sendMessage(ChatColor.GREEN + "Starting update from v" + opitems_version + " to v" + cUpdater.highestVersion.version);
+
+        boolean success = cUpdater.executeUpdate(Main.getInstance());
+
+        if(success){
+            sender.sendMessage(ChatColor.GREEN + "Successfully updated! Please restart the server! There could be errors in changed classes if not restarted!");
+        }else{
+            sender.sendMessage(ChatColor.RED + "Failed updating!");
+
+            if(!(sender instanceof ConsoleCommandSender)){
+                sender.sendMessage(ChatColor.RED + "Please refer to the error log in the console");
+            }
+        }
     }
 
     public static Main getInstance() {

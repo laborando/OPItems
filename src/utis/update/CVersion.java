@@ -31,4 +31,9 @@ public class CVersion {
                 + "type" + type + "\n"
                 + "changelog: " + changelog + "\n";
     }
+
+    public VersionNumber getVersionNumber()
+    {
+        return VersionNumber.toVersionNumber(version);
+    }
 }

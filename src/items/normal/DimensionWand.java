@@ -31,7 +31,7 @@ public class DimensionWand implements Listener
 static List<String> players_in_customw;
     
     static {
-        DimensionWand.players_in_customw = new ArrayList<String>();
+        DimensionWand.players_in_customw = new ArrayList<>();
     }
 	
     @EventHandler(priority = EventPriority.HIGH)
@@ -63,7 +63,7 @@ static List<String> players_in_customw;
 
         if(!alreadyWarningSaid && Celutis.isPaper()){
             alreadyWarningSaid = true;
-            Bukkit.getConsoleSender().sendMessage("[HorriblePaperMessageEvenIfNotCircumventableWarning] There is no other way but to use this event. At least give some alternatives: [paper]");
+            Bukkit.getConsoleSender().sendMessage("[HorriblePaperMessageEvenIfNotCircumventableWarning] There seems to be no other way but to use this event: [paper]");
         }
 
 		final String wn = "pocket-world-" + e.getUniqueId();
@@ -130,10 +130,8 @@ static List<String> players_in_customw;
                 return;
             }
             p.sendMessage(ChatColor.GREEN + "Teleporting...");
-            p.sendMessage(ChatColor.RED + "This could take up to 7 sec");
             final String wn = "pocket-world-" + e.getPlayer().getUniqueId();
             if (!Celutis.doesWorldExist(wn)) {
-                p.sendMessage(ChatColor.RED + "Generation of Pocket World started...");
                 final WorldCreator worldCreator = new WorldCreator(wn);
                 worldCreator.generator(new ChunkGen());
                 Bukkit.createWorld(worldCreator);
