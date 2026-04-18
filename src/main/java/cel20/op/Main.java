@@ -71,7 +71,7 @@ public class Main extends JavaPlugin implements Listener {
 
     public void onEnable() {
 
-        opitems_version = "1.10.4";
+        opitems_version = "1.11.0";
         Main.p = this;
         instance = this;
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");
@@ -115,7 +115,9 @@ public class Main extends JavaPlugin implements Listener {
         //CONTENT
         //items
         ItemData.loadItems(plugin);
+
         //Newer Content
+        /*
         if (config.getBoolean("EnableItemsForNewerVersions")) {
             if (sheduleNewerFeatures) {
                 VersionDependent.loadNewerItems(this);
@@ -124,6 +126,12 @@ public class Main extends JavaPlugin implements Listener {
             } else {
                 Bukkit.getLogger().info("Features for newer Versions not enabled. Please use Mc1.20+");
             }
+        }
+        */
+        if (sheduleNewerFeatures) {
+            VersionDependent.loadNewerItems(this);
+            GlobalVars.newerFeaturesEnabled = true;
+            Bukkit.getLogger().info("Features for newer Versions (1.20+) enabled.");
         }
 
         //Cloudflare worker

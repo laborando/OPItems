@@ -1,5 +1,8 @@
 package utis.update;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CVersion {
 
     public enum UpdateType {
@@ -18,6 +21,7 @@ public class CVersion {
     public String date;
     public long downloads;
     public UpdateType type;
+    public List<String> supportedVersions = new ArrayList<>();
 
     public String fileURL;
     public long fileSize;
@@ -35,5 +39,12 @@ public class CVersion {
     public VersionNumber getVersionNumber()
     {
         return VersionNumber.toVersionNumber(version);
+    }
+
+    public boolean isCompatible(String mcV)
+    {
+
+        return supportedVersions.contains(mcV);
+
     }
 }

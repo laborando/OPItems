@@ -13,19 +13,19 @@ import utis.CLogger;
 
 public class ConfigLoader {
 
-    public static void earlyLoadConfig(FileConfiguration config, Main plugin, Main m){
+    public static void earlyLoadConfig(FileConfiguration config, Main plugin, Main m) {
         GlobalVars.craftingDisabled = config.getBoolean("DisableOPItemsCrafting");
     }
 
-    public static void loadConfigs(FileConfiguration config, Main plugin, Main m){
+    public static void loadConfigs(FileConfiguration config, Main plugin, Main m) {
 
         //CLogger
-        if (config.getInt("CLoggerMode")==0) {
+        if (config.getInt("CLoggerMode") == 0) {
             Bukkit.getLogger().info("[OPItems] CLogger Disabled!");
-        }else if (config.getInt("CLoggerMode")==1) {
+        } else if (config.getInt("CLoggerMode") == 1) {
             CLogger.startAsync(m.getDataFolder().toString(), config.getInt("CLoggerFlushIntervallSec"));
             Bukkit.getLogger().info("[OPItems] CLogger Enabled in Async Mode!");
-        }else if (config.getInt("CLoggerMode")==2) {
+        } else if (config.getInt("CLoggerMode") == 2) {
             CLogger.startSynced(m.getDataFolder().toString(), config.getInt("CLoggerFlushIntervallSec"));
             Bukkit.getLogger().info("[OPItems] CLogger Enabled in Synced Mode!");
         }
@@ -170,7 +170,7 @@ public class ConfigLoader {
         }
         //PrivatePocketDimensionPerformanceModeActivated
         if (config.getBoolean("PrivatePocketDimensionPerformanceModeActivated")) {
-            Main.priDimPerformMode =true;
+            Main.priDimPerformMode = true;
         }
         //EnableLandmine
         if (config.getBoolean("EnableLandmine")) {
@@ -184,7 +184,7 @@ public class ConfigLoader {
         }
         //EnableLandminePerformanceMode
         if (config.getBoolean("EnableLandminePerformanceMode")) {
-            Main.landminePerfModeEnabeled =true;
+            Main.landminePerfModeEnabeled = true;
         }
 
         //AllowCraftProtectiveElytra
@@ -193,10 +193,8 @@ public class ConfigLoader {
         }
 
 
-        if (config.getBoolean("EnableItemsForNewerVersions") && GlobalVars.newerFeaturesEnabled) {
-            if (config.getBoolean("EnableCraftWandOfWarden")) {
-                RecipeAdder.addRecipe41(plugin);
-            }
+        if (config.getBoolean("EnableCraftWandOfWarden")) {
+            RecipeAdder.addRecipe41(plugin);
         }
 
         //EnableJumpyBoots

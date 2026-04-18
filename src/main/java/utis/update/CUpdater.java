@@ -1,6 +1,7 @@
 package utis.update;
 
 import cel20.op.Main;
+import io.papermc.paper.ServerBuildInfo;
 import org.bukkit.Bukkit;
 import org.json.simple.*;
 
@@ -8,7 +9,9 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /*
 CUpdater for MC plugins via the Modrinth API
@@ -30,7 +33,7 @@ public class CUpdater
         URL verList;
 
         try {
-             verList = new URL("https://api.modrinth.com/v2/project/opitems/version");
+             verList = new URL("https://api.modrinth.com/v2/project/" + slug + "/version");
         } catch (MalformedURLException e) {
             System.out.println("There was an error checking for updates: " + e.getMessage());
             throw new RuntimeException(e);
@@ -83,6 +86,17 @@ public class CUpdater
             Bukkit.getLogger().info("OPItems seems to be up-to-date: " + cVersion + "; highest found: " + highest);
         }
 
+        String runningVer = ServerBuildInfo.buildInfo().minecraftVersionName();
+        boolean isCompatible = highestVersion.isCompatible(runningVer);
+
+        Bukkit.getLogger().info("Running MC Version: " + runningVer + "; Is compatible with" + highest + ": " + isCompatible);
+
+        if(shouldUpdate && !isCompatible)
+        {
+            Bukkit.getLogger().info("Please consider upgrading your Minecraft version");
+            shouldUpdate = false;
+        }
+
     }
 
     private void parseVersion(JSONObject version, int current){
@@ -114,10 +128,33 @@ public class CUpdater
         ver.fileSize = (long)file.get("size");
         ver.fileURL = (String)file.get("url");
 
+        JSONArray supVers = (JSONArray) version.get("game_versions");
+
+        supVers.stream().iterator().forEachRemaining(e -> {
+            String vn = (String) e;
+            ver.supportedVersions.add(vn);
+        });
+
+
+
         //Real username:
+        ver.author = getMRUserName(ver.authorID);
+
+
+        versions[current] = ver;
+    }
+
+    static Map<String, String> MRidName = new HashMap<>();
+    public String getMRUserName(String authorID)
+    {
+
+        if(MRidName.containsKey(authorID)){
+            return MRidName.get(authorID);
+        }
+
         URL userURL;
         try {
-            userURL = new URL("https://api.modrinth.com/v2/user/" + ver.authorID);
+            userURL = new URL("https://api.modrinth.com/v2/user/" + authorID);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -133,17 +170,19 @@ public class CUpdater
 
             final JSONObject user = (JSONObject)JSONValue.parse(response);
 
-            ver.author = (String) user.get("username");
+            String name = (String) user.get("username");
+
+            MRidName.put(authorID, name);
+
+            return name;
 
         }
         catch (IOException e) {
             System.out.println("There was an error checking for updates: " + e.getMessage());
         }
 
-
-        versions[current] = ver;
+        return "unsuccessfulUsernameRequestException";
     }
-
 
     public boolean executeUpdate(Main instance) {
         Bukkit.getLogger().warning("Starting update");

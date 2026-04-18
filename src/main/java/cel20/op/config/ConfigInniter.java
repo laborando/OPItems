@@ -27,7 +27,6 @@ public class ConfigInniter {
 
 
         config.addDefault("PrivatePocketDimensionPerformanceModeActivated", Boolean.FALSE);
-        config.addDefault("EnableItemsForNewerVersions", Boolean.TRUE);
 
         config.addDefault("DisableOPItemsCrafting", Boolean.FALSE);
         config.addDefault("AllowCraftKnockyTheStick", Boolean.TRUE);

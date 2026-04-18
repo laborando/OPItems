@@ -1,0 +1,18 @@
+TODO
+ - Change usage to check for PDC not enchantments
+ - Disable crafting via checking for opitems marker in PDC
+    --> See RawItemsGenerator
+ - Inhouse recipe viewer
+
+IN WOKR
+
+DONE
+ - Switched API to Paper
+ - Updated from 1.16 to 1.20.6
+ - Changed warden-spawing from using commands to using the API
+ - 'Gluecoded' old command logic to new Paper Command API replacing old Bukkit logic
+
+ - Added Cashing to Updater retrieving information regarding the author
+ - Updater now checks if newest version is compatible with mc-version
+
+ - Removed EnableItemsForNewerVersions config (no longer needed)
