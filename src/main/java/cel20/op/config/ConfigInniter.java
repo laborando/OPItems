@@ -51,7 +51,7 @@ public class ConfigInniter {
         config.addDefault("AllowCraftProtectiveElytra", Boolean.TRUE);
         config.addDefault("AllowCraftPrivatePocketDimension", Boolean.TRUE);
         config.addDefault("AllowCraftAntiExplosionHelmet", Boolean.TRUE);
-        config.addDefault("AllowCraftAndActivatedWandOfHome", Boolean.TRUE);
+        config.addDefault("AllowCraftWandOfHome", Boolean.TRUE);
         config.addDefault("AllowCraftTNTBow", Boolean.TRUE);
         config.addDefault("OPItemsSpecificBStatsDisable", Boolean.FALSE);
 
@@ -68,7 +68,6 @@ public class ConfigInniter {
         config.addDefault("EnableSkullImitator", Boolean.TRUE);
         config.addDefault("EnableLandmine", Boolean.TRUE);
         config.addDefault("EnableLandminePerformanceMode", Boolean.FALSE);
-        config.addDefault("EnableRiptider", Boolean.TRUE);
         config.addDefault("ActivateWandofBlocks", Boolean.TRUE);
         config.addDefault("ActivateWorkstation", Boolean.TRUE);
 

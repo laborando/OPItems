@@ -1,0 +1,28 @@
+package items;
+
+import cel20.op.Main;
+import org.bukkit.NamespacedKey;
+import org.bukkit.plugin.Plugin;
+
+public class NameSpaces {
+
+    public static NamespacedKey opitemsMarker;
+    public static NamespacedKey opitemsAbilities;
+    public static NamespacedKey opitemsCosmetic;
+    public static NamespacedKey opitemsGui;
+    public static NamespacedKey itemTypeIDNS;
+    public static NamespacedKey itemTypeVL;
+
+    public static void innitNameSpaces(Plugin p){
+
+        opitemsMarker = new NamespacedKey(p, "opitemsMarker");
+        opitemsAbilities = new NamespacedKey(p, "opitemsAbilities");
+        opitemsCosmetic = new NamespacedKey(p, "opitemsCosmetic");
+        opitemsGui = new NamespacedKey(p, "opitemsGui");
+
+        itemTypeIDNS = new NamespacedKey(p, "itemTypeID");
+        itemTypeVL = new NamespacedKey(p, "itemVersionLevel");
+
+    }
+
+}

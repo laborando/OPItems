@@ -2,6 +2,7 @@
 package items.classic.sheduled.cosmetic;
 
 import cel20.op.GlobalVars;
+import items.NameSpaces;
 import items.classic.sheduled.BasicSchedule;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
@@ -18,7 +19,7 @@ public class FireShoe extends BasicSchedule {
                 return;
             }
 
-            String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsCosmetic, PersistentDataType.STRING);
+            String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsCosmetic, PersistentDataType.STRING);
             if (abl != null && abl.contains("fire_norm")) {
 
                 p.getLocation().getWorld().spawnParticle(Particle.FLAME, p.getLocation(), 30,0.3, 0.8, 0.3, 0.05);

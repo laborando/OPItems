@@ -2,6 +2,7 @@ package items.managers;
 
 import cel20.op.GlobalVars;
 import cel20.op.Main;
+import items.NameSpaces;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -213,7 +214,7 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.RED + "AntiFall");
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
-                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "nofall");
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "nofall");
 
                 lore = new ArrayList<>();
                 lore.add(ChatColor.RED + " - Blocks fall damage if in inventory");
@@ -234,7 +235,7 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.RED + "Night Visor");
 
-                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "night_vision");
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "night_vision");
 
                 itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -246,7 +247,7 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.RED + "Water Helmet");
                 itemMeta.setUnbreakable(true);
 
-                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "water_breathing");
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "water_breathing");
 
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
@@ -257,7 +258,7 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.RED + "Fire Shoes");
                 itemMeta.setUnbreakable(true);
 
-                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsCosmetic, PersistentDataType.STRING, "fire_norm");
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsCosmetic, PersistentDataType.STRING, "fire_norm");
 
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.PUNCH, 10, true);
@@ -462,7 +463,7 @@ public class RawItemsGenerator {
                 itemMeta.addEnchant(Enchantment.THORNS, 75, true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
-                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "landmine");
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "landmine");
 
                 List<String> lore36 = new ArrayList<>();
                 lore36.add(ChatColor.RED + " - Place on the ground to set up");
@@ -476,7 +477,7 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Defuser");
 
-                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "defuse");
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "defuse");
 
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore37 = new ArrayList<>();
@@ -507,10 +508,10 @@ public class RawItemsGenerator {
             case 40:
                 itemStack = new ItemStack(Material.TRIDENT, 1);
                 itemMeta = itemStack.getItemMeta();
-                itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Riptider");
+                itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Unused OPItems itemslot 40");
                 List<String> lore40 = new ArrayList<>();
-                lore40.add(ChatColor.RED + " - Currently not finished!");
-                lore40.add(ChatColor.RED + " - This Trident can always use its riptide enchantment!");
+                lore40.add(ChatColor.RED + " - !");
+                lore40.add(ChatColor.RED + " - !");
                 itemMeta.setLore(lore40);
                 break;
 
@@ -559,7 +560,7 @@ public class RawItemsGenerator {
                 lore.add(ChatColor.RED + " - Wont work for now");
                 itemMeta.setLore(lore);
 
-                itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsAbilities, PersistentDataType.STRING, "workstation");
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "workstation");
 
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
@@ -576,7 +577,7 @@ public class RawItemsGenerator {
             itemMeta.getPersistentDataContainer().set(itemTypeIDNS, PersistentDataType.STRING, "opitems_" + id);
             itemMeta.getPersistentDataContainer().set(itemTypeVL, PersistentDataType.STRING, "opitems_" + GlobalVars.itemVersionLevel);
 
-            itemMeta.getPersistentDataContainer().set(GlobalVars.opitemsMarker, PersistentDataType.STRING, "true");
+            itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsMarker, PersistentDataType.STRING, "true");
             List<String> cLore = itemMeta.getLore();
 
             if(cLore == null)

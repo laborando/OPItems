@@ -38,15 +38,7 @@ public class ConfigLoader {
 
         //ActivateWandofBlocks
         if (config.getBoolean("ActivateWandofBlocks")) {
-            m.getServer().getPluginManager().registerEvents(new WandOfBlocks(), m);
         }
-
-        //EnableRiptider
-        if (config.getBoolean("EnableRiptider")) {
-            m.getServer().getPluginManager().registerEvents(new Riptider(), m);
-            RecipeAdder.addRecipe40(plugin);
-        }
-
 
         if (config.getBoolean("CursedSwordEnabled")) {
             m.getServer().getPluginManager().registerEvents(new CursedSword(), m);
@@ -145,9 +137,8 @@ public class ConfigLoader {
             RecipeAdder.addRecipe30(plugin);
         }
 //AllowCraftandActivatedWandofHome
-        if (config.getBoolean("AllowCraftAndActivatedWandOfHome")) {
+        if (config.getBoolean("AllowCraftWandOfHome")) {
             RecipeAdder.addRecipe31(plugin);
-            m.getServer().getPluginManager().registerEvents(new WandOfHome(), m);
         }
 //AllowCraftTNTBow        
         if (config.getBoolean("AllowCraftTNTBow")) {
@@ -166,7 +157,6 @@ public class ConfigLoader {
         //config.addDefault("EnableCraftSkullImitator", (Object)true);
         if (config.getBoolean("EnableSkullImitator")) {
             RecipeAdder.addRecipe35(plugin);
-            m.getServer().getPluginManager().registerEvents(new SkullImitator(), m);
         }
         //PrivatePocketDimensionPerformanceModeActivated
         if (config.getBoolean("PrivatePocketDimensionPerformanceModeActivated")) {

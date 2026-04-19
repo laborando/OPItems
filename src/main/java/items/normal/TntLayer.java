@@ -17,23 +17,20 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.HashMap;
 
-public class TntLayer implements Listener
+public class TntLayer
 {
     static HashMap<Location, Block> map;
     
     static {
-        TntLayer.map = new HashMap<Location, Block>();
+        TntLayer.map = new HashMap<>();
     }
-    
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final PlayerInteractEvent e) {
+
+    public static void event(final PlayerInteractEvent e) {
         final Player p = e.getPlayer();
-        if (p.getItemInHand().getType() != Material.BLAZE_ROD || !p.getItemInHand().containsEnchantment(Enchantment.DEPTH_STRIDER) || !p.getItemInHand().containsEnchantment(Enchantment.FROST_WALKER) || !p.getItemInHand().containsEnchantment(Enchantment.POWER) || !p.getItemInHand().containsEnchantment(Enchantment.INFINITY)) {
-            return;
-        }
+
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             final Block b = e.getClickedBlock();
-            final BlockFace bf = e.getBlockFace();
+
             if (b.getType() != Material.TNT) {
                 return;
             }

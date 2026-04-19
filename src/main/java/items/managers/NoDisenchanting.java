@@ -1,6 +1,7 @@
 package items.managers;
 
 import cel20.op.GlobalVars;
+import items.NameSpaces;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -22,7 +23,7 @@ public class NoDisenchanting implements Listener {
                 return;
             }
 
-            String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsMarker, PersistentDataType.STRING);
+            String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsMarker, PersistentDataType.STRING);
             if (abl != null && abl.contains("true")) {
 
                 e.setCancelled(true);
@@ -38,7 +39,7 @@ public class NoDisenchanting implements Listener {
             return;
         }
 
-        String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsMarker, PersistentDataType.STRING);
+        String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsMarker, PersistentDataType.STRING);
         if (abl != null && abl.contains("true")) {
 
             e.setCancelled(true);

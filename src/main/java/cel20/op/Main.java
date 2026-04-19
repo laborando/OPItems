@@ -7,6 +7,9 @@ import cel20.op.data.ItemData;
 import cel20.op.load.Commands;
 import cel20.op.load.Events;
 import cel20.op.load.VersionDependent;
+import items.EventManager;
+import items.NameSpaces;
+import items.classic.FlyingInvisibilitySticks;
 import items.classic.sheduled.SchedulerStarter;
 import items.managers.RecipeAdder;
 import metrics.Metrics;
@@ -16,7 +19,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import utis.CLogger;
@@ -27,7 +29,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-public class Main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin {
 
     private static Main instance;
 
@@ -81,6 +83,9 @@ public class Main extends JavaPlugin implements Listener {
 
         boolean sheduleNewerFeatures = false;
 
+        //Must be first!
+        NameSpaces.innitNameSpaces(this);
+
         try {
             String modernVersion = mcVer.split("\\.")[0];
             Bukkit.getLogger().info("Server is running modern version " + modernVersion);
@@ -98,6 +103,9 @@ public class Main extends JavaPlugin implements Listener {
 
         //EVENTS
         Events.registerAllEvents(this, plugin);
+
+        EventManager.innitEventManager(this);
+        getServer().getPluginManager().registerEvents(new EventManager(), this);
 
         //CONFIG
         final FileConfiguration config = this.getConfig();

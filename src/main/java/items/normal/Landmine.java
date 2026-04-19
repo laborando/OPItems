@@ -3,6 +3,7 @@ package items.normal;
 
 import cel20.op.GlobalVars;
 import cel20.op.Main;
+import items.NameSpaces;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -68,7 +69,7 @@ public class Landmine implements Listener {
         if (item.getItemMeta() == null) {
             return;
         }
-        String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsAbilities, PersistentDataType.STRING);
+        String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsAbilities, PersistentDataType.STRING);
         if (abl != null && abl.contains("landmine")) {
 
             Block b = e.getBlock();
@@ -103,7 +104,7 @@ public class Landmine implements Listener {
                     return;
                 }
 
-                String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsAbilities, PersistentDataType.STRING);
+                String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsAbilities, PersistentDataType.STRING);
                 if (abl != null && abl.contains("defuse")) {
 
 

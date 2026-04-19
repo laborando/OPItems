@@ -166,7 +166,7 @@ public class Give {
                 return 38;
             case "protectivelytra":
                 return 39;
-            case "riptider":
+            case "unused":
                 return 40;
             case "wandofwarden":
                 return 41;

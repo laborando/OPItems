@@ -1,6 +1,7 @@
 package items.normal.ws;
 
 import cel20.op.GlobalVars;
+import items.NameSpaces;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
@@ -24,7 +25,7 @@ public class WsGUIHandler implements Listener
             return;
         }
 
-        String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsGui, PersistentDataType.STRING);
+        String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsGui, PersistentDataType.STRING);
         if (abl != null && abl.contains("ws_locked")) {
 
             event.setCancelled(true);

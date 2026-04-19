@@ -2,6 +2,7 @@
 package items.classic.sheduled.cosmetic;
 
 import cel20.op.GlobalVars;
+import items.NameSpaces;
 import items.classic.sheduled.BasicSchedule;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
@@ -19,7 +20,7 @@ public class NightHelmet extends BasicSchedule {
                 return;
             }
 
-            String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsAbilities, PersistentDataType.STRING);
+            String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsAbilities, PersistentDataType.STRING);
             if (abl != null && abl.contains("night_vision")) {
 
                 p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 300, 1, false, false, false));

@@ -2,6 +2,7 @@
 package items.classic;
 
 import cel20.op.GlobalVars;
+import items.NameSpaces;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,7 +31,7 @@ public class AntiFall implements Listener
                         return;
                     }
 
-                    String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsAbilities, PersistentDataType.STRING);
+                    String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsAbilities, PersistentDataType.STRING);
                     if (abl != null && abl.contains("nofall")) {
 
                         e.setCancelled(true);

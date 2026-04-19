@@ -1,6 +1,7 @@
 package items.normal.ws;
 
 import cel20.op.GlobalVars;
+import items.NameSpaces;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -28,7 +29,7 @@ public class Workstation implements Listener {
             return;
         }
 
-        String abl = item.getItemMeta().getPersistentDataContainer().get(GlobalVars.opitemsAbilities, PersistentDataType.STRING);
+        String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsAbilities, PersistentDataType.STRING);
         if (abl != null && abl.contains("workstation")) {
 
             e.setCancelled(true);

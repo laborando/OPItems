@@ -18,12 +18,10 @@ public class Events {
     public static void registerAllEvents(Main m, Main plugin)
     {
 
-        Bukkit.getPluginManager().registerEvents(m, m);
         m.getServer().getPluginManager().registerEvents(new FlyingInvisibilitySticks(), m);
         m.getServer().getPluginManager().registerEvents(new AntiFall(), m);
         m.getServer().getPluginManager().registerEvents(new SpeedLeggings(), m);
         m.getServer().getPluginManager().registerEvents(new SuperSpongeStarter(), m);
-        m.getServer().getPluginManager().registerEvents(new TntLayer(), m);
         m.getServer().getPluginManager().registerEvents(new DimensionWand(), m);
         m.getServer().getPluginManager().registerEvents(new TntBow(), m);
         m.getServer().getPluginManager().registerEvents(new InfWaterBucket(), m);

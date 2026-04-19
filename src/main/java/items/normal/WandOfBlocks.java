@@ -10,136 +10,162 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.EntityBlockFormEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import utis.Celutis;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
-public class WandOfBlocks implements Listener {
+public class WandOfBlocks {
+
+    //33
 
     static Map<String, List<FallingBlock>> PlayersBlocks;
     static Map<String, Long> Cooldown;
-
-    public boolean executed = false;
 
     static {
         WandOfBlocks.PlayersBlocks = new HashMap<>();
         WandOfBlocks.Cooldown = new HashMap<>();
     }
 
-    @SuppressWarnings("deprecation")
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final PlayerInteractEvent e) {
+    public static void event(final PlayerInteractEvent e) {
         final Player p = e.getPlayer();
-        final ItemStack item = p.getInventory().getItemInMainHand();
-        if (item.getType() == Material.BLAZE_ROD && item.containsEnchantment(Enchantment.SILK_TOUCH) && item.containsEnchantment(Enchantment.THORNS)) {
+
+        if (!e.getPlayer().isSneaking()) {
+
+            for (Block b2 : Celutis.getRandomBlocks(e.getPlayer().getLocation(), 5)) {
 
 
-            if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                if (!e.getPlayer().isSneaking()) {
+                FallingBlock fallingBlock = b2.getWorld().spawn(b2.getLocation(), FallingBlock.class);
 
-                    for (Block b2 : Celutis.getRandomBlocks(e.getPlayer().getLocation(), 5)) {
+                fallingBlock.setBlockData(b2.getBlockData());
+
+                fallingBlock.setCancelDrop(true);
+                fallingBlock.setDropItem(true);
+                fallingBlock.setGravity(false);
+                fallingBlock.setHurtEntities(true);
+
+                fallingBlock.setVelocity(new Vector(0, 0.1, 0));
+                b2.setType(Material.AIR);
+                Celutis.addValueToMultiMapStringXFallingBlock(PlayersBlocks, p.getName(), fallingBlock);
+            }
+
+        } else {
+
+            Block bt = p.getTargetBlockExact(300, FluidCollisionMode.NEVER);
+
+            if (bt == null) {
+                return;
+            }
+
+            Cooldown.computeIfAbsent(p.getName(), k -> (long) -20000);
+
+            if (!((System.currentTimeMillis() - Cooldown.get(p.getName().toString())) >= 5000)) {
+
+                p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Still on cooldown...");
+
+            } else {
 
 
-                        FallingBlock fallingBlock = b2.getWorld().spawnFallingBlock(b2.getLocation(), b2.getType().createBlockData());
-                        fallingBlock.setDropItem(false);
-                        fallingBlock.setGravity(false);
-                        fallingBlock.setHurtEntities(true);
+                Cooldown.put(p.getName(), System.currentTimeMillis());
+                String keyToIterate = p.getName();
+                List<FallingBlock> valuesForKey = PlayersBlocks.get(keyToIterate);
+                if (valuesForKey != null) {
+                    for (FallingBlock v : valuesForKey) {
+                        Location lt2 = v.getLocation();
+                        lt2.setY(v.getWorld().getHighestBlockYAt(lt2) + 2);
 
-                        fallingBlock.setVelocity(new Vector(0, 0.1, 0));
-                        b2.setType(Material.AIR);
-                        Celutis.addValueToMultiMapStringXFallingBlock(PlayersBlocks, p.getName(), fallingBlock);
+                        v.teleport(lt2);
+                        v.setVelocity(Celutis.getVectorBetweenLocations(v.getLocation(), bt.getLocation()));
+
                     }
 
-                    p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("To Charge: Shift-Right Click at your Target Block (Must be in a loaded Chunk).").toString());
-                } else {
 
-                    Block bt = p.getTargetBlockExact(300, FluidCollisionMode.NEVER);
+                    BukkitRunnable colChecker = new BukkitRunnable() {
 
-                    if (bt == null) {
-                        return;
-                    }
+                        int var = 2000;
+                        boolean executed = false;
 
-                    Cooldown.computeIfAbsent(p.getName(), k -> (long) -20000);
-
-                    if (!((System.currentTimeMillis() - Cooldown.get(p.getName().toString())) >= 5000)) {
-                        p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Still on cooldown...");
-
-                    } else {
+                        @Override
+                        public void run() {
 
 
-                        Cooldown.put(p.getName(), System.currentTimeMillis());
-                        String keyToIterate = p.getName();
-                        List<FallingBlock> valuesForKey = PlayersBlocks.get(keyToIterate);
-                        if (valuesForKey != null) {
                             for (FallingBlock v : valuesForKey) {
-                                Location lt2 = v.getLocation();
-                                lt2.setY(v.getWorld().getHighestBlockYAt(lt2) + 2);
+                                if (v.getLocation().distance(bt.getLocation()) < 10 && !executed) {
 
-                                v.teleport(lt2);
-                                v.setVelocity(Celutis.getVectorBetweenLocations(v.getLocation(), bt.getLocation()));
+                                    if (!makeBoom(p, bt.getLocation()))
+                                        break;
+
+                                    executed = true;
+                                }
+                            }
+
+                            var--;
+                            if (var <= 0) {
+                                makeBoom(p, bt.getLocation());
+                                executed = true;
+                            }
+
+                            if (executed) {
+
+                                this.cancel();
 
                             }
 
-
-                            executed = false;
-                            Bukkit.getServer().getScheduler().runTaskTimer(Main.getPluginInstance(), new Runnable() {
-                                @Override
-                                public void run() {
-
-
-                                    for (FallingBlock v : valuesForKey) {
-                                        if (v.getLocation().distance(bt.getLocation()) < 10 && !executed) {
-                                            executed = true;
-                                            makeBoom(p, bt.getLocation());
-
-                                        }
-                                    }
-
-
-                                    if (executed) {
-
-                                        Thread.currentThread().interrupt();
-
-                                    }
-                                }
-                            }, 0, 1);
-
                         }
-                    }
+                    };
+
+                    colChecker.runTaskTimer(Main.getInstance(), 0, 1);
 
                 }
-
-
             }
+
         }
+
+
     }
 
 
-    public void makeBoom(Player p, Location btl) {
+    public static boolean makeBoom(Player p, Location blockTarget) {
 
+        String kti = p.getName().toString();
+        List<FallingBlock> vfk = WandOfBlocks.PlayersBlocks.get(kti);
+
+        if (vfk == null) {
+            return false;
+        }
 
         Bukkit.getServer().getScheduler().runTaskLater(Main.getPluginInstance(), () -> {
 
-            String kti = p.getName().toString();
-            List<FallingBlock> vfk = WandOfBlocks.PlayersBlocks.get(kti);
+            Random random = new Random();
 
-            double dist = p.getLocation().distance(btl);
+
+            double dist = p.getLocation().distance(blockTarget);
 
             for (FallingBlock v : vfk) {
 
-                Location rl = btl;
-                rl.setX(btl.getX() + (Celutis.randomRangeDouble(-dist, dist) / 4));
-                rl.setZ(btl.getZ() + (Celutis.randomRangeDouble(-dist, dist) / 4));
-                rl.setY(btl.getWorld().getHighestBlockYAt(rl));
+                if (v == null)
+                    break;
+
+                Location rl = blockTarget;
+                rl.setX(blockTarget.getX() + random.nextDouble(-0.5) * 0.1 * vfk.size());
+                rl.setZ(blockTarget.getZ() + (random.nextDouble() - 0.5) * 0.1 * vfk.size());
+                rl.setY(blockTarget.getY());
+
+                if (random.nextBoolean()) {
+                    rl.setX(blockTarget.getX());
+                    rl.setZ(blockTarget.getZ());
+                }
 
                 v.teleport(rl);
 
-                v.getWorld().createExplosion(v.getLocation(), 3);
+                v.getWorld().createExplosion(rl, 4);
 
                 v.setTicksLived(599);
 
@@ -148,6 +174,9 @@ public class WandOfBlocks implements Listener {
             WandOfBlocks.PlayersBlocks.remove(p.getName().toString());
 
         }, 5);
+
+
+        return true;
 
     }
 }

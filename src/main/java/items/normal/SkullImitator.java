@@ -12,63 +12,46 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-public class SkullImitator implements Listener {
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final BlockPlaceEvent e) {
+public class SkullImitator {
+
+    public static void event(final BlockPlaceEvent e) {
         final Player p = e.getPlayer();
+
+        if (!(p.isSneaking())) {
+
+            p.sendMessage(ChatColor.RED + "Do you really want to place this head and lock its texture?");
+            p.sendMessage(ChatColor.RED + "If yes: Sneak + Place");
+            e.setCancelled(true);
+        }
+
+
+    }
+
+
+    public static void event(final PlayerInteractEvent e) {
+        final Player p = e.getPlayer();
+
+
         final ItemStack item = p.getInventory().getItemInMainHand();
         if (item.getItemMeta() == null) {
             return;
         }
-        if (item.getType() == Material.PLAYER_HEAD && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Skull Imitator")) {
+        if (item.getType() == Material.PLAYER_HEAD) {
 
-            if(item.getItemMeta().getLore() == null || item.getItemMeta().getLore().isEmpty()){
 
-            }else{
-                if (!(p.isSneaking())) {
+            if (e.getAction() == Action.RIGHT_CLICK_AIR) {
 
-                    p.sendMessage(ChatColor.RED + "Do you really want to place this head and lock its texture?");
-                    p.sendMessage(ChatColor.RED + "If yes: Sneak + Place");
-                    e.setCancelled(true);
+                SkullMeta sm = (SkullMeta) item.getItemMeta();
+                try {
+                    sm.setOwner(p.getPlayer().getName());
+                    item.setItemMeta(sm);
+                } catch (NullPointerException ignored1) {
                 }
             }
 
 
         }
-    }
 
-
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final PlayerInteractEvent e) {
-        if (e.getPlayer() instanceof Player) {
-            final Player p = e.getPlayer();
-
-
-            final ItemStack item = p.getInventory().getItemInMainHand();
-            if (item.getItemMeta() == null) {
-                return;
-            }
-
-            if(item.getItemMeta().getLore() == null || item.getItemMeta().getLore().isEmpty()){
-                return;
-            }
-
-            if (item.getType() == Material.PLAYER_HEAD && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Skull Imitator")) {
-
-
-                if (e.getAction() == Action.RIGHT_CLICK_AIR) {
-
-                    SkullMeta sm = (SkullMeta) item.getItemMeta();
-                    try {
-                        sm.setOwner(p.getPlayer().getName());
-                        item.setItemMeta(sm);
-                    } catch (NullPointerException ignored1) {
-                    }
-                }
-
-
-            }
-        }
 
     }
 }

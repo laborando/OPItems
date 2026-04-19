@@ -1,6 +1,7 @@
 package cel20.op;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.plugin.Plugin;
 
 public class GlobalVars {
 
@@ -25,8 +26,5 @@ public class GlobalVars {
     public static String itemVersionLevel = "1.0";
     public static int spongeClearRange = 1;
 
-    public static NamespacedKey opitemsMarker = new NamespacedKey(Main.getPluginInstance(), "opitemsMarker");
-    public static NamespacedKey opitemsAbilities = new NamespacedKey(Main.getPluginInstance(), "opitemsAbilities");
-    public static NamespacedKey opitemsCosmetic = new NamespacedKey(Main.getPluginInstance(), "opitemsCosmetic");
-    public static NamespacedKey opitemsGui = new NamespacedKey(Main.getPluginInstance(), "opitemsGui");
+
 }

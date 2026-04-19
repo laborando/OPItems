@@ -2,6 +2,7 @@
 package items.normal.ws;
 
 import cel20.op.GlobalVars;
+import items.NameSpaces;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -21,7 +22,7 @@ public class WsGUICreator
 
         //Nonused Slots
         im.setDisplayName(ChatColor.BOLD + "");
-        im.getPersistentDataContainer().set(GlobalVars.opitemsGui, PersistentDataType.STRING, "ws_locked");
+        im.getPersistentDataContainer().set(NameSpaces.opitemsGui, PersistentDataType.STRING, "ws_locked");
 
         is.setItemMeta(im);
 

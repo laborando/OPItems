@@ -1,10 +1,13 @@
+Anmerkungen:
+ - Item 40 unbelegt
+
 TODO
- - Change usage to check for PDC not enchantments
  - Disable crafting via checking for opitems marker in PDC
-    --> See RawItemsGenerator
+ - Deconstruct OldItems.java
  - Inhouse recipe viewer
 
-IN WOKR
+IN WORK
+ - Change usage to check for PDC not enchantments
 
 DONE
  - Switched API to Paper
@@ -12,7 +15,26 @@ DONE
  - Changed warden-spawing from using commands to using the API
  - 'Gluecoded' old command logic to new Paper Command API replacing old Bukkit logic
 
+ - Created new NameSpaceManager
+ - Items will now be properly marked with an OPItems mark
+ - Created new EventManager
+ - Switched [WandOfHome, WandOfBlocks, TNTDetonator, TNTBow, SkullImitator] Events to EventManager
+
  - Added Cashing to Updater retrieving information regarding the author
  - Updater now checks if newest version is compatible with mc-version
 
  - Removed EnableItemsForNewerVersions config (no longer needed)
+ - Changed AllowCraftAndActivate WandOfHome to AllowCraftWandOfHome
+ - Removed EnableRiptider - no longer needed
+
+ - The Wand of Blocks Projectiles will now auto-explode after 2000 ticks after being fired
+ - Removed unused Riptider code
+
+ - Fixed OPItems not being marked
+ - Fixed Wand of Home always explaining itself
+ - Removed unused Listeners
+ - The Task to check for collision of the wand of blocks now should really cancel itself
+ - Wand of Blocks blocks will not form Blocks after landing anymore
+ - Removed HorriblePaperMessageEvenIfNotCircumventableWarning - is fixed with the API change
+ - WandOfBlocks projectiles now explode at the target
+ - Fixed TNT Detonator
