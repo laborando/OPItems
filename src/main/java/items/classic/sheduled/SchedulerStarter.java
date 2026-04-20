@@ -3,7 +3,8 @@ package items.classic.sheduled;
 import cel20.op.Main;
 import items.classic.sheduled.cosmetic.FireShoe;
 import items.classic.sheduled.cosmetic.NightHelmet;
-import items.classic.sheduled.cosmetic.WaterHelmet;
+import items.classic.sheduled.effects.SpeedLeggings;
+import items.classic.sheduled.effects.WaterHelmet;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class SchedulerStarter {
         scheduleList.add(new FireShoe());
         scheduleList.add(new WaterHelmet());
         scheduleList.add(new NightHelmet());
+        scheduleList.add(new SpeedLeggings());
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(),
                 () -> scheduleList.forEach(BasicSchedule::execute)

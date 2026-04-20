@@ -1,7 +1,6 @@
 
-package items.classic.sheduled.cosmetic;
+package items.classic.sheduled.effects;
 
-import cel20.op.GlobalVars;
 import items.NameSpaces;
 import items.classic.sheduled.BasicSchedule;
 import org.bukkit.Bukkit;

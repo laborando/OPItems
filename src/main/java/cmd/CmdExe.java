@@ -6,7 +6,6 @@ import cmd.cmds.Give;
 import cmd.cmds.Help;
 import cmd.cmds.Recipe;
 import cmd.cmds.Version;
-import io.papermc.paper.command.brigadier.BasicCommand;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import items.classic.Sponges.SuperSponge;
 import items.managers.RecipeAdder;
@@ -28,7 +27,6 @@ import utis.Celutis;
 import utis.Logutis;
 
 import java.io.File;
-import java.util.Collection;
 
 import static utis.Celutis.deleteDirectory;
 
@@ -166,7 +164,7 @@ public class CmdExe {
                     if (sender.isOp()) {
                         final Player p = (Player) sender;
                         final Block block = p.getLocation().getBlock();
-                        SuperSponge.run_sponge(block);
+                        SuperSponge.runSponge(block);
                     } else {
                         sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                     }

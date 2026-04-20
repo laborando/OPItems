@@ -5,12 +5,15 @@ TODO
  - Disable crafting via checking for opitems marker in PDC
  - Deconstruct OldItems.java
  - Inhouse recipe viewer
+ - Shedules unified checking for item strings
 
 IN WORK
  - Change usage to check for PDC not enchantments
- - Remove Jumpy boots überreste
+
 
 DONE
+ - Added Portable Work Station
+
  - Switched API to Paper
  - Updated API from 1.16 to 1.20.6
  - Changed warden-spawing from using commands to using the API
@@ -21,7 +24,7 @@ DONE
  - Created new EventManager
  - Switched all Items from Events to EventManager
 
- - Improved Lore of Cursed Sword
+ - Improved Lore of [Cursed Sword, Wand of Warden]
 
  - Added Cashing to Updater retrieving information regarding the author
  - Updater now checks if newest version is compatible with mc-version
@@ -30,9 +33,15 @@ DONE
  - Changed AllowCraftAndActivate WandOfHome to AllowCraftWandOfHome
  - Removed [CursedSwordEnabled, EnableRiptider, EnablePiercer, EnableJumpyBoots, ] - no longer needed
  - Removed unused Events
+ - Changed wand_of_(massive)_boom_cooldown_MilliSeconds to wandOfBoomsCDms
+ - Changed Wand_of_Boom_Explosion_Strength to WandOfBoomExplosionStrength
+ - Changed Wand_of_Massive_Boom_Explosion_Strength to WandOfMassive_BoomExplosionStrength
+
 
  - The Wand of Blocks Projectiles will now auto-explode after 2000 ticks after being fired
- - Removed unused Riptider code
+ - Endword teleporting is less junky now
+
+ - Removed unused Riptider & Jumpy Boots code
 
  - Fixed OPItems not being marked
  - Fixed Wand of Home always explaining itself
@@ -49,3 +58,6 @@ DONE
  - Fixed Infinite Water Bucket
  - Fixed Cursed Sword not working
  - Fixed Private Dimension Wand double teleporting
+ - Wand of Warden only summons one Warden now
+ - Wand if Booms now give seconds left for cooldown only in whole seconds
+ - Fixed Endsword not working

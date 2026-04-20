@@ -122,29 +122,13 @@ public class OldItems implements Listener {
             }
         }
         if (a == Material.BLAZE_ROD &&
-                item.containsEnchantment(Enchantment.CHANNELING)) {
-            WandOfBooms.handleBeta(mainRef, p);
-        }
-
-        if (a == Material.BLAZE_ROD &&
                 item.containsEnchantment(Enchantment.EFFICIENCY))
             if (p.isInvisible()) {
                 p.setInvisible(false);
             } else {
                 p.setInvisible(true);
             }
-        if (a == Material.BLAZE_ROD && item.containsEnchantment(Enchantment.LOOTING)) {
-            WandOfBooms.handleAlpha(mainRef, p);
-        }
-        if (a == Material.NETHERITE_SWORD &&
-                item.containsEnchantment(Enchantment.POWER))
-            if (mainRef.config.getBoolean("AllowEndsword")) {
 
-                TeleportSword.handleOld(p);
-
-            } else {
-                p.sendMessage(ChatColor.RED + "This Feature is currently disabled");
-            }
         if (a == Material.PRISMARINE_SHARD &&
                 item.containsEnchantment(Enchantment.RESPIRATION))
             if (mainRef.config.getBoolean("AllowBlitzer")) {

@@ -36,15 +36,11 @@ public class CursedSword {
         if (!(e.getDamager() instanceof Player p))
             return;
 
-        Bukkit.broadcastMessage("a");
-
         final ItemStack item = p.getInventory().getItemInMainHand();
 
         String inds = EventManager.getIDNSorNullIfNotOPItems(item);
         if (inds == null)
             return;
-
-        Bukkit.broadcastMessage("b");
 
         if (!inds.equals("opitems_28"))
             return;

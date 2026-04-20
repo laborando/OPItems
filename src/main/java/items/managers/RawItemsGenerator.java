@@ -305,6 +305,9 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.RED + "Speed Leggings");
                 itemMeta.setUnbreakable(true);
+
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "speed_effect");
+
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.PUNCH, 10, true);
                 break;
@@ -364,7 +367,6 @@ public class RawItemsGenerator {
                 itemMeta.addEnchant(Enchantment.PUNCH, 75, true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore28 = new ArrayList<>();
-                lore28.add(ChatColor.RED + " - Right-click to teleport towards the direction you're looking");
                 lore28.add(ChatColor.RED + " - Attacking enemies kills them instantly");
                 lore28.add(ChatColor.RED + " - What could be the downside?");
                 itemMeta.setLore(lore28);
@@ -523,8 +525,7 @@ public class RawItemsGenerator {
                 itemMeta.addEnchant(Enchantment.QUICK_CHARGE, 1, false);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore41 = new ArrayList<>();
-                lore41.add(ChatColor.RED + " - Click anywhere on the ground to spawn a warden!");
-                lore41.add(ChatColor.RED + " - Effect: -5 Hearts; Spawns Warden at the clicked position");
+                lore41.add(ChatColor.RED + " - Click a block to spawn a warden for 5 hearts");
                 itemMeta.setLore(lore41);
                 break;
 
@@ -557,7 +558,6 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.RED + "Portable Work Station");
                 lore = new ArrayList<>();
                 lore.add(ChatColor.RED + " - A portable multiuse workstation");
-                lore.add(ChatColor.RED + " - Wont work for now");
                 itemMeta.setLore(lore);
 
                 itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "workstation");

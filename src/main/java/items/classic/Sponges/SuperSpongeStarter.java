@@ -15,6 +15,24 @@ import org.bukkit.inventory.ItemStack;
 
 public class SuperSpongeStarter implements Listener
 {
+
+
+    public static void lavaEvent(final BlockPlaceEvent e) {
+
+        final Block block = e.getBlock();
+
+        SuperSponge.runSpongeLava(block);
+
+    }
+
+    public static void waterEvent(final BlockPlaceEvent e) {
+
+        final Block block = e.getBlock();
+
+        SuperSponge.runSponge(block);
+
+    }
+
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockPlaceEvent e) {
         final Player p = e.getPlayer();
@@ -38,14 +56,14 @@ public class SuperSpongeStarter implements Listener
 
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), r, 1L);
 
-            SuperSponge.run_sponge(block);
+            SuperSponge.runSponge(block);
 
             e.setCancelled(true);
 
         }
         if (p.getPlayer().getItemInHand().containsEnchantment(Enchantment.FLAME)) {
             final Block block = e.getBlock();
-            SuperSponge.run_sponge_lava(block);
+            SuperSponge.runSpongeLava(block);
         }
     }
 }

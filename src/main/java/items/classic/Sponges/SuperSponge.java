@@ -13,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SuperSponge
 {
-    public static void run_sponge(final Block block) {
+    public static void runSponge(final Block block) {
         final List<Block> b = new CopyOnWriteArrayList<Block>();
         b.add(block);
 
@@ -59,13 +59,15 @@ public class SuperSponge
     }
 
 
-    public static void run_sponge_lava(final Block block) {
+    public static void runSpongeLava(final Block block) {
         final List<Block> b = new CopyOnWriteArrayList<Block>();
         b.add(block);
+
         get_face_block(b);
         get_face_block(b);
         get_face_block(b);
         get_face_block(b);
+
         for (final Block bb : b) {
             if (bb.getType() == Material.LAVA) {
                 bb.setType(Material.AIR);

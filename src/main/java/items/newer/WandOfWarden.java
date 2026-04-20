@@ -22,36 +22,31 @@ public class WandOfWarden implements Listener {
 
     static Map<String, Long> Cooldown = new HashMap<>();
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final PlayerInteractEvent e) {
+    public static void event(final PlayerInteractEvent e) {
 
         final Player p = e.getPlayer();
-        final ItemStack item = p.getInventory().getItemInMainHand();
-        if (item.getType() == Material.BLAZE_ROD && item.containsEnchantment(Enchantment.POWER) && item.containsEnchantment(Enchantment.QUICK_CHARGE)) {
 
-            if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                final Block b = e.getClickedBlock();
+        if (!(e.getAction() == Action.RIGHT_CLICK_BLOCK))
+            return;
 
-
-
-                Cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
-
-                if(!((System.currentTimeMillis() - Cooldown.get(p.getName())) >= 90000)) {
-                    p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Still on cooldown...");
-                    return;
-                }
+        final Block b = e.getClickedBlock();
 
 
-                Cooldown.put(p.getName(), System.currentTimeMillis());
+        Cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 
-                p.damage(10);
-
-
-                ParticleUtis.particleCircleWithWarden(b.getLocation().add(0, 1, 0), 3, 30, Particle.DUST, Color.AQUA, 0.5f, 2, 5, p);
-
-            }
+        if (!((System.currentTimeMillis() - Cooldown.get(p.getName())) >= 90000)) {
+            p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Still on cooldown...");
+            return;
         }
+
+
+        Cooldown.put(p.getName(), System.currentTimeMillis());
+
+        p.damage(10);
+
+
+        ParticleUtis.particleCircleWithWarden(b.getLocation().add(0, 1, 0), 3, 30, Particle.DUST, Color.AQUA, 0.5f, 2, 5, p);
+
     }
-
-
 }
+

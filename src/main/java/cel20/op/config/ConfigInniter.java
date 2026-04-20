@@ -89,10 +89,10 @@ public class ConfigInniter {
         config.addDefault("enderPearlSwordCDms", 1000L);
         config.addDefault("PiercerDamageLevel", 3);
         config.addDefault("PiercerKnockbackLevel", 3);
-        config.addDefault("wand_of_(massive)_boom_cooldown_MilliSeconds", 1000);
+        config.addDefault("wandOfBoomsCDms", 1000);
         config.addDefault("launcher_cooldown_MilliSeconds", 4000);
-        config.addDefault("Wand_of_Boom_Explosion_Strength", 10);
-        config.addDefault("Wand_of_Massive_Boom_Explosion_Strength", 20);
+        config.addDefault("WandOfBoomExplosionStrength", 10);
+        config.addDefault("WandOfMassive_BoomExplosionStrength", 20);
         config.addDefault("CraftedKnockyTheStickKnockbackEnchantmentLevel", 10);
         config.addDefault("CraftedBlockySwordDamageAllEnchantmentLevel", 17);
         config.addDefault("CraftedTheAntiDamageProtectionEnchantmentLevel", 75);

@@ -11,34 +11,17 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-public class Workstation implements Listener {
+public class Workstation {
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(PlayerInteractEvent e) {
+    public static void event(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
-        Action action = e.getAction();
+        e.setCancelled(true);
+        openWSMenu(p);
 
-
-        if (!(action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK))
-            return;
-
-
-        final ItemStack item = p.getInventory().getItemInMainHand();
-        if (item == null || item.getItemMeta() == null) {
-            return;
-        }
-
-        String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsAbilities, PersistentDataType.STRING);
-        if (abl != null && abl.contains("workstation")) {
-
-            e.setCancelled(true);
-            openWSMenu(p);
-
-        }
     }
 
-    private void openWSMenu(Player p) {
+    private static void openWSMenu(Player p) {
 
         WsGUICreator.showWSMenu(p);
 

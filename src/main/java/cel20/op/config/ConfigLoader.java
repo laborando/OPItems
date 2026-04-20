@@ -191,7 +191,6 @@ public class ConfigLoader {
 
         //ActivateWorkstation
         if (config.getBoolean("ActivateWorkstation")) {
-            m.getServer().getPluginManager().registerEvents(new Workstation(), m);
             m.getServer().getPluginManager().registerEvents(new WsGUIHandler(), m);
             RecipeAdder.addRecipe44(plugin);
         }
@@ -213,7 +212,9 @@ public class ConfigLoader {
         //Global Settings
         GlobalVars.craftingDisabled = config.getBoolean("DisableOPItemsCrafting");
 
-
+        GlobalVars.WandOfMassiveBoomsCD = config.getDouble("wandOfBoomsCDms");
+        GlobalVars.WandOfMassiveBoomExploStrenght = config.getInt("WandOfMassive_BoomExplosionStrength");
+        GlobalVars.WandOfBoomExploStrenght = config.getInt("WandOfBoomExplosionStrength");
     }
 
 }

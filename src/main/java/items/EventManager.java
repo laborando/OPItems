@@ -1,6 +1,13 @@
 package items;
 
+import items.classic.Sponges.SuperSponge;
+import items.classic.Sponges.SuperSpongeStarter;
+import items.classic.TeleportSword;
+import items.classic.WandOfBoom;
+import items.classic.WandOfMassiveBoom;
+import items.newer.WandOfWarden;
 import items.normal.*;
+import items.normal.ws.Workstation;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -48,14 +55,21 @@ public class EventManager implements Listener {
     public static void innitEventManager(Plugin p) {
 
         //MainHandPlayerInteractionEvents
+        PlayerInteractEventMap.put("opitems_10", TeleportSword::event);
+        PlayerInteractEventMap.put("opitems_20", WandOfBoom::event);
+        PlayerInteractEventMap.put("opitems_21", WandOfMassiveBoom::event);
         PlayerInteractEventMap.put("opitems_27", TntLayer::event);
         PlayerInteractEventMap.put("opitems_29", DimensionWand::event);
         PlayerInteractEventMap.put("opitems_31", WandOfHome::event);
         PlayerInteractEventMap.put("opitems_33", WandOfBlocks::event);
         PlayerInteractEventMap.put("opitems_34", Portal2go::event);
         PlayerInteractEventMap.put("opitems_35", SkullImitator::event);
+        PlayerInteractEventMap.put("opitems_41", WandOfWarden::event);
+        PlayerInteractEventMap.put("opitems_44", Workstation::event);
 
         //BlockPlaceEvent
+        BlockPlaceEventMap.put("opitems_24", SuperSpongeStarter::waterEvent);
+        BlockPlaceEventMap.put("opitems_25", SuperSpongeStarter::lavaEvent);
         BlockPlaceEventMap.put("opitems_35", SkullImitator::event);
         BlockPlaceEventMap.put("opitems_36", Landmine::event);
 

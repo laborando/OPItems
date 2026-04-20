@@ -19,7 +19,6 @@ public class WsGUIHandler implements Listener
     public void onInventoryClick(final InventoryClickEvent event) {
         final HumanEntity player = event.getWhoClicked();
         final ItemStack item = event.getCurrentItem();
-        final Inventory inv = event.getClickedInventory();
 
         if (item == null || item.getItemMeta() == null) {
             return;
@@ -30,7 +29,6 @@ public class WsGUIHandler implements Listener
 
             event.setCancelled(true);
 
-            Inventory i;
 
             switch (item.getType()){
                 case BARRIER:
@@ -40,24 +38,19 @@ public class WsGUIHandler implements Listener
                     player.openWorkbench(null, true);
                     break;
                 case STONECUTTER:
-                    i = Bukkit.createInventory(player, InventoryType.GRINDSTONE);
-                    player.openInventory(i);
+                    player.openStonecutter(null, true);
                     break;
                 case LOOM:
-                    i = Bukkit.createInventory(player, InventoryType.LOOM);
-                    player.openInventory(i);
+                    player.openLoom(null, true);
                     break;
                 case ANVIL:
-                    i = Bukkit.createInventory(player, InventoryType.ANVIL);
-                    player.openInventory(i);
+                    player.openAnvil(null, true);
                     break;
                 case CARTOGRAPHY_TABLE:
-                    i = Bukkit.createInventory(player, InventoryType.CARTOGRAPHY);
-                    player.openInventory(i);
+                    player.openCartographyTable(null, true);
                     break;
                 case SMITHING_TABLE:
-                    i = Bukkit.createInventory(player, InventoryType.SMITHING);
-                    player.openInventory(i);
+                    player.openSmithingTable(null, true);
                     break;
             }
 

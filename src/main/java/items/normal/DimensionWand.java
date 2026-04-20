@@ -95,9 +95,10 @@ public class DimensionWand {
         int currentTick = Bukkit.getCurrentTick();
 
         //Anti Doppelclick --> bei dimensionswechsel
-        if (lastClickTick.getOrDefault(id, -1) == currentTick) {
+        if (lastClickTick.getOrDefault(id, 0) > currentTick - 20) {
             return;
         }
+
         lastClickTick.put(id, currentTick);
 
         if (!Main.isprivatedimenableled) {

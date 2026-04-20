@@ -52,11 +52,6 @@ public class ParticleUtis {
         Queue<Location> ll = Celutis.getCircleLocationsQue(location, radius, amount);
         Queue<Location> copyLl = new ArrayDeque<>();
 
-        Warden w = location.getWorld().spawn(location, Warden.class);
-
-        w.setPose(Pose.EMERGING);
-
-
         copyLl.addAll(ll);
 
         for (int i = 0; i < timesX; i++) {

@@ -26,5 +26,10 @@ public class GlobalVars {
     public static String itemVersionLevel = "1.0";
     public static int spongeClearRange = 1;
 
+    public static int WandOfBoomExploStrenght = 0;
+    public static int WandOfMassiveBoomExploStrenght = 0;
+    public static double WandOfMassiveBoomsCD = 0;
+
+
 
 }

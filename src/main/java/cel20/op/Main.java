@@ -38,7 +38,6 @@ public class Main extends JavaPlugin {
     }
 
     public static boolean landminePerfModeEnabeled = false;
-    public HashMap<String, Long> cooldown_wand_boom;
     public HashMap<String, Long> Launcher_Cooldown;
     public static int ore_gen_chance_private_dim;
     public static int config_anti_explo_helmet_lvl;
@@ -63,7 +62,6 @@ public class Main extends JavaPlugin {
     }
 
     public Main() {
-        this.cooldown_wand_boom = new HashMap<>();
         this.Launcher_Cooldown = new HashMap<>();
         this.config = this.getConfig();
         data_save_cursed_sword = null;
