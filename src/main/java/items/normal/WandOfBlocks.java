@@ -75,7 +75,9 @@ public class WandOfBlocks {
 
                 Cooldown.put(p.getName(), System.currentTimeMillis());
                 String keyToIterate = p.getName();
+
                 List<FallingBlock> valuesForKey = PlayersBlocks.get(keyToIterate);
+
                 if (valuesForKey != null) {
                     for (FallingBlock v : valuesForKey) {
                         Location lt2 = v.getLocation();
@@ -87,28 +89,21 @@ public class WandOfBlocks {
                     }
 
 
+
                     BukkitRunnable colChecker = new BukkitRunnable() {
 
-                        int var = 2000;
+
+
+                        int var = 5;
                         boolean executed = false;
 
                         @Override
                         public void run() {
 
-
-                            for (FallingBlock v : valuesForKey) {
-                                if (v.getLocation().distance(bt.getLocation()) < 10 && !executed) {
-
-                                    if (!makeBoom(p, bt.getLocation()))
-                                        break;
-
-                                    executed = true;
-                                }
-                            }
-
                             var--;
                             if (var <= 0) {
                                 makeBoom(p, bt.getLocation());
+
                                 executed = true;
                             }
 
@@ -154,7 +149,7 @@ public class WandOfBlocks {
                     break;
 
                 Location rl = blockTarget;
-                rl.setX(blockTarget.getX() + random.nextDouble(-0.5) * 0.1 * vfk.size());
+                rl.setX(blockTarget.getX() + (random.nextDouble()-0.5) * 0.1 * vfk.size());
                 rl.setZ(blockTarget.getZ() + (random.nextDouble() - 0.5) * 0.1 * vfk.size());
                 rl.setY(blockTarget.getY());
 

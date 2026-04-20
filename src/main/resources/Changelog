@@ -8,24 +8,25 @@ TODO
 
 IN WORK
  - Change usage to check for PDC not enchantments
+ - Remove Jumpy boots überreste
 
 DONE
  - Switched API to Paper
- - Updated from 1.16 to 1.20.6
+ - Updated API from 1.16 to 1.20.6
  - Changed warden-spawing from using commands to using the API
  - 'Gluecoded' old command logic to new Paper Command API replacing old Bukkit logic
 
  - Created new NameSpaceManager
  - Items will now be properly marked with an OPItems mark
  - Created new EventManager
- - Switched [WandOfHome, WandOfBlocks, TNTDetonator, TNTBow, SkullImitator] Events to EventManager
+ - Switched all Items from Events to EventManager
 
  - Added Cashing to Updater retrieving information regarding the author
  - Updater now checks if newest version is compatible with mc-version
 
  - Removed EnableItemsForNewerVersions config (no longer needed)
  - Changed AllowCraftAndActivate WandOfHome to AllowCraftWandOfHome
- - Removed EnableRiptider - no longer needed
+ - Removed [EnableRiptider, EnablePiercer] - no longer needed
 
  - The Wand of Blocks Projectiles will now auto-explode after 2000 ticks after being fired
  - Removed unused Riptider code
@@ -38,3 +39,7 @@ DONE
  - Removed HorriblePaperMessageEvenIfNotCircumventableWarning - is fixed with the API change
  - WandOfBlocks projectiles now explode at the target
  - Fixed TNT Detonator
+ - Portal2Go now also fires if clicking a block
+ - Piercer Arrows now behave normal, after hitting a block
+ - Portal2Go now teleports with pitch and yaw
+ - Wand of Blocks now explodes every time when fired

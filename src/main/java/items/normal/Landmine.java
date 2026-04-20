@@ -26,17 +26,17 @@ import java.util.*;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class Landmine implements Listener {
+public class Landmine {
 
     private static List<Location> lml = new ArrayList<>();
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final BlockDropItemEvent e) {
+    public static void event(final BlockDropItemEvent e) {
         if (e.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
             if (lml.contains(e.getBlock().getLocation())) {
                 e.setCancelled(true);
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPluginInstance(), () -> {
                     if (!(e.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE)) {
+
                         lml.remove(e.getBlock().getLocation());
                     }
                 });
@@ -45,8 +45,7 @@ public class Landmine implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final BlockPhysicsEvent e) {
+    public static void event(final BlockPhysicsEvent e) {
         if (e.getChangedType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
             if (lml.contains(e.getBlock().getLocation())) {
                 e.setCancelled(true);
@@ -62,25 +61,15 @@ public class Landmine implements Listener {
 
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final BlockPlaceEvent e) {
-        final Player p = e.getPlayer();
-        final ItemStack item = p.getInventory().getItemInMainHand();
-        if (item.getItemMeta() == null) {
-            return;
-        }
-        String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsAbilities, PersistentDataType.STRING);
-        if (abl != null && abl.contains("landmine")) {
+    public static void event(final BlockPlaceEvent e) {
 
-            Block b = e.getBlock();
+        Block b = e.getBlock();
 
-            lml.add(b.getLocation());
+        lml.add(b.getLocation());
 
-        }
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(PlayerInteractEvent e) {
+    public static void event(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         if (e.getAction().equals(Action.PHYSICAL)) {
             if (e.getClickedBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
@@ -125,8 +114,7 @@ public class Landmine implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(BlockBreakEvent e) {
+    public static void event(BlockBreakEvent e) {
         if (e.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
             Block b = e.getBlock();
             if (lml.contains(b.getLocation())) {
@@ -158,8 +146,8 @@ public class Landmine implements Listener {
                     try {
                         WorldCreator creator = new WorldCreator(world);
                         creator.createWorld();
-                    }catch (Exception e){
-                        if(!world.isEmpty())
+                    } catch (Exception e) {
+                        if (!world.isEmpty())
                             Bukkit.getLogger().info("The Landmine file for " + world + "was non existent or corrupted");
                     }
                 }
@@ -214,7 +202,8 @@ public class Landmine implements Listener {
                             ltmp.add(0.5, 0.2, 0.5);
                             try {
                                 loc.getWorld().spawnParticle(Particle.DUST, ltmp, 20, 0.3, 0.2, 0.3, dustOptions);
-                            } catch (Exception exception){}
+                            } catch (Exception exception) {
+                            }
                         }
                     }
                 } catch (ConcurrentModificationException ignored) {

@@ -9,28 +9,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class InfWaterBucket implements Listener {
+public class InfWaterBucket {
 
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final PlayerBucketEmptyEvent e) {
-        final Player p = e.getPlayer();
-        final ItemStack item = p.getInventory().getItemInMainHand();
-        if (item.getItemMeta() == null) {
-            return;
-        }
-        if (item.getType() == Material.WATER_BUCKET && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Infinitive Water Bucket")) {
+    public static void event(final PlayerBucketEmptyEvent e) {
 
-            e.setCancelled(true);
-            e.getBlock().setType(Material.WATER);
-
-        } else if (item.getType() == Material.WATER_BUCKET && item.getItemMeta().getDisplayName().equals(ChatColor.DARK_RED + "Infinite Water Bucket")) {
 
             e.setCancelled(true);
             e.getBlock().setType(Material.WATER);
 
 
-        }
+
 
     }
 }

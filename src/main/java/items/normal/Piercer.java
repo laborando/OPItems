@@ -13,12 +13,12 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-public class Piercer  implements Listener {
+public class Piercer  {
 
-    private ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
+    private static ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
 
     @EventHandler
-    public void onProjectileLaunch(ProjectileLaunchEvent event) {
+    public static void onProjectileLaunch(ProjectileLaunchEvent event) {
 
         if (event.getEntity() instanceof Arrow) {
             Arrow arrow = (Arrow) event.getEntity();
@@ -36,15 +36,19 @@ public class Piercer  implements Listener {
     }
 
     @EventHandler
-    public void onProjectileHit(ProjectileHitEvent event) {
+    public static void onProjectileHit(ProjectileHitEvent event) {
         if (event.getEntity() instanceof Arrow) {
             Arrow arrow = (Arrow) event.getEntity();
             if (firedArrows.contains(arrow)) {
 
                 Entity e = event.getHitEntity();
 
-                if (e == null)
+                if (e == null){
+
+                    firedArrows.remove(arrow);
                     return;
+
+                }
 
                 if (e instanceof LivingEntity) {
                     ((LivingEntity)e).damage(10.0);

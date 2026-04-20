@@ -24,7 +24,6 @@ public class Events {
         m.getServer().getPluginManager().registerEvents(new SuperSpongeStarter(), m);
         m.getServer().getPluginManager().registerEvents(new DimensionWand(), m);
         m.getServer().getPluginManager().registerEvents(new TntBow(), m);
-        m.getServer().getPluginManager().registerEvents(new InfWaterBucket(), m);
         m.getServer().getPluginManager().registerEvents(new OldItems(), m);
         m.getServer().getPluginManager().registerEvents(new NoDisenchanting(), m);
 

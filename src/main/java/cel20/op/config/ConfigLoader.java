@@ -151,7 +151,6 @@ public class ConfigLoader {
         //EnablePortal2Go
         if (config.getBoolean("EnablePortal2Go")) {
             RecipeAdder.addRecipe34(plugin);
-            m.getServer().getPluginManager().registerEvents(new Portal2go(), m);
         }
 
         //config.addDefault("EnableCraftSkullImitator", (Object)true);
@@ -166,7 +165,6 @@ public class ConfigLoader {
         if (config.getBoolean("EnableLandmine")) {
             RecipeAdder.addRecipe36(plugin);
             RecipeAdder.addRecipe37(plugin);
-            m.getServer().getPluginManager().registerEvents(new Landmine(), m);
         }
         //AllowCraftInfWaterBucket
         if (config.getBoolean("AllowCraftInfWaterBucket")) {
@@ -189,15 +187,10 @@ public class ConfigLoader {
 
         //EnableJumpyBoots
         if (config.getBoolean("EnableJumpyBoots")) {
-            m.getServer().getPluginManager().registerEvents(new JumpyBoots(), m);
             RecipeAdder.addRecipe42(plugin);
         }
 
         //Piercer
-
-        if (config.getBoolean("EnablePiercer")) {
-            m.getServer().getPluginManager().registerEvents(new Piercer(), m);
-        }
 
         if (config.getBoolean("AllowCraftPiercer")) {
             GlobalVars.piercerDamageLevel = config.getInt("PiercerDamageLevel", 3);

@@ -22,9 +22,16 @@ public class CUpdater
     public CVersion highestVersion;
     public boolean shouldUpdate = false;
     private String slug = "opitems";
+    private static final boolean disable = true;
 
     public CUpdater(String cVersion, String slug){
         this.slug = slug;
+
+        if(disable){
+            shouldUpdate = false;
+            highestVersion = new CVersion();
+        }
+
         checkVersion(cVersion);
     }
 

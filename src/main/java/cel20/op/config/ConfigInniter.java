@@ -61,7 +61,6 @@ public class ConfigInniter {
 
         config.addDefault("CursedSwordEnabled", Boolean.TRUE);
         config.addDefault("EnableCraftWandOfWarden", Boolean.TRUE);
-        config.addDefault("EnablePiercer", Boolean.TRUE);
         config.addDefault("EnableJumpyBoots", Boolean.TRUE);
         config.addDefault("PrivatePocketDimensionEnabled", Boolean.TRUE);
         config.addDefault("EnablePortal2Go", Boolean.TRUE);

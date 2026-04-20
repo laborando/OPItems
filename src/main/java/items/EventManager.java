@@ -5,10 +5,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.block.EntityBlockFormEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -24,54 +24,119 @@ import java.util.function.Consumer;
 public class EventManager implements Listener {
 
     //Maps
-    public static Map<String, Consumer<PlayerInteractEvent>> PlayerInteractEventMap = new HashMap<>();
+    public static Map<String, Consumer<PlayerInteractEvent>> BlockPlayerInteractEventMap = new HashMap<>();
+    public static Map<String, Consumer<PlayerInteractEvent>> WithBlockPlayerInteractEventMap = new HashMap<>();
     public static Map<String, Consumer<ProjectileLaunchEvent>> ProjectileLaunchEventMap = new HashMap<>();
     public static Map<String, Consumer<BlockPlaceEvent>> BlockPlaceEventMap = new HashMap<>();
-
+    public static Map<String, Consumer<PlayerBucketEmptyEvent>> PlayerBucketEmptyEventMap = new HashMap<>();
 
 
     //Lists
     public static List<Consumer<EntityBlockFormEvent>> EntityBlockFormEventList = new ArrayList<>();
     public static List<Consumer<ProjectileHitEvent>> ProjectileHitEventList = new ArrayList<>();
+    public static List<Consumer<BlockDropItemEvent>> BlockDropItemEventList = new ArrayList<>();
+    public static List<Consumer<BlockPhysicsEvent>> BlockPhysicsEventList = new ArrayList<>();
+    public static List<Consumer<PlayerInteractEvent>> PlayerInteractEventList = new ArrayList<>();
+    public static List<Consumer<BlockBreakEvent>> BlockBreakEventList = new ArrayList<>();
+
 
 
 
     public static void innitEventManager(Plugin p) {
 
         //MainHandPlayerInteractionEvents
-        PlayerInteractEventMap.put("opitems_27", TntLayer::event);
-        PlayerInteractEventMap.put("opitems_31", WandOfHome::event);
-        PlayerInteractEventMap.put("opitems_33", WandOfBlocks::event);
-        PlayerInteractEventMap.put("opitems_35", SkullImitator::event);
+        BlockPlayerInteractEventMap.put("opitems_27", TntLayer::event);
+        BlockPlayerInteractEventMap.put("opitems_31", WandOfHome::event);
+        BlockPlayerInteractEventMap.put("opitems_33", WandOfBlocks::event);
+        BlockPlayerInteractEventMap.put("opitems_34", Portal2go::event);
+        BlockPlayerInteractEventMap.put("opitems_35", SkullImitator::event);
 
         //BlockPlaceEvent
         BlockPlaceEventMap.put("opitems_35", SkullImitator::event);
+        BlockPlaceEventMap.put("opitems_36", Landmine::event);
 
         //ProjectileLaunchEvent
         ProjectileLaunchEventMap.put("opitems_32", TntBow::onProjectileLaunch);
+        ProjectileLaunchEventMap.put("opitems_43", Piercer::onProjectileLaunch);
+
+        //PlayerBucketEmptyEvent
+        PlayerBucketEmptyEventMap.put("opitems_38", InfWaterBucket::event);
 
         //ProjectileHitEvent
         ProjectileHitEventList.add(TntBow::onProjectileHit);
+        ProjectileHitEventList.add(Piercer::onProjectileHit);
+
+        //BlockDropItemEvent
+        BlockDropItemEventList.add(Landmine::event);
+
+        //BlockPhysicsEvent
+        BlockPhysicsEventList.add(Landmine::event);
+
+        //PlayerInteractEventList
+        PlayerInteractEventList.add(Landmine::event);
+
+        //BlockBreakEvent
+        BlockBreakEventList.add(Landmine::event);
     }
+
+
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerInteractEvent e) {
+
+        //List
+
+        PlayerInteractEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+
+        //Map
 
         ItemStack item = e.getItem();
         if (item == null) return;
 
         if (e.getAction().isLeftClick()) return;
 
+
+
         String idns = getIDNSorNullIfNotOPItems(item);
         if (idns == null) return;
 
-        Consumer<PlayerInteractEvent> eventer = PlayerInteractEventMap.get(idns);
+        Consumer<PlayerInteractEvent> eventer;
 
-        if(eventer == null) return;
+
+        eventer = BlockPlayerInteractEventMap.get(idns);
+
+        if (eventer == null) return;
 
         eventer.accept(e);
 
     }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerBucketEmptyEvent e) {
+
+        System.out.println("a");
+
+        ItemStack item = e.getPlayer().getItemInHand();
+        if (item == null) return;
+
+        String idns = getIDNSorNullIfNotOPItems(item);
+        if (idns == null) return;
+
+        System.out.println("c");
+        Consumer<PlayerBucketEmptyEvent> eventer;
+
+
+        eventer = PlayerBucketEmptyEventMap.get(idns);
+
+        if (eventer == null) return;
+
+        eventer.accept(e);
+
+        System.out.println("d");
+    }
+
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockPlaceEvent e) {
@@ -122,6 +187,26 @@ public class EventManager implements Listener {
         });
     }
 
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final BlockDropItemEvent e) {
+        BlockDropItemEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final BlockPhysicsEvent e) {
+        BlockPhysicsEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final BlockBreakEvent e) {
+        BlockBreakEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
 
     public static String getIDNSorNullIfNotOPItems(ItemStack item){
         PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
