@@ -21,12 +21,15 @@ DONE
  - Created new EventManager
  - Switched all Items from Events to EventManager
 
+ - Improved Lore of Cursed Sword
+
  - Added Cashing to Updater retrieving information regarding the author
  - Updater now checks if newest version is compatible with mc-version
 
  - Removed EnableItemsForNewerVersions config (no longer needed)
  - Changed AllowCraftAndActivate WandOfHome to AllowCraftWandOfHome
- - Removed [EnableRiptider, EnablePiercer] - no longer needed
+ - Removed [CursedSwordEnabled, EnableRiptider, EnablePiercer, EnableJumpyBoots, ] - no longer needed
+ - Removed unused Events
 
  - The Wand of Blocks Projectiles will now auto-explode after 2000 ticks after being fired
  - Removed unused Riptider code
@@ -43,3 +46,6 @@ DONE
  - Piercer Arrows now behave normal, after hitting a block
  - Portal2Go now teleports with pitch and yaw
  - Wand of Blocks now explodes every time when fired
+ - Fixed Infinite Water Bucket
+ - Fixed Cursed Sword not working
+ - Fixed Private Dimension Wand double teleporting

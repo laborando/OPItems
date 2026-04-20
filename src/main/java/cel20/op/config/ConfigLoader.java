@@ -40,9 +40,6 @@ public class ConfigLoader {
         if (config.getBoolean("ActivateWandofBlocks")) {
         }
 
-        if (config.getBoolean("CursedSwordEnabled")) {
-            m.getServer().getPluginManager().registerEvents(new CursedSword(), m);
-        }
         if (config.getBoolean("AllowCraftKnockyTheStick")) {
             RecipeAdder.addRecipe1(plugin, config.getInt("CraftedKnockyTheStickKnockbackEnchantmentLevel"));
         }
@@ -184,12 +181,6 @@ public class ConfigLoader {
         if (config.getBoolean("EnableCraftWandOfWarden")) {
             RecipeAdder.addRecipe41(plugin);
         }
-
-        //EnableJumpyBoots
-        if (config.getBoolean("EnableJumpyBoots")) {
-            RecipeAdder.addRecipe42(plugin);
-        }
-
         //Piercer
 
         if (config.getBoolean("AllowCraftPiercer")) {

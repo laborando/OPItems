@@ -22,7 +22,6 @@ public class Events {
         m.getServer().getPluginManager().registerEvents(new AntiFall(), m);
         m.getServer().getPluginManager().registerEvents(new SpeedLeggings(), m);
         m.getServer().getPluginManager().registerEvents(new SuperSpongeStarter(), m);
-        m.getServer().getPluginManager().registerEvents(new DimensionWand(), m);
         m.getServer().getPluginManager().registerEvents(new TntBow(), m);
         m.getServer().getPluginManager().registerEvents(new OldItems(), m);
         m.getServer().getPluginManager().registerEvents(new NoDisenchanting(), m);

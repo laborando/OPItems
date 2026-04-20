@@ -365,8 +365,8 @@ public class RawItemsGenerator {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore28 = new ArrayList<>();
                 lore28.add(ChatColor.RED + " - Right-click to teleport towards the direction you're looking");
-                lore28.add(ChatColor.RED + " - Attacking enemies removes them instantly");
-                lore28.add(ChatColor.RED + " - What could the downside be?");
+                lore28.add(ChatColor.RED + " - Attacking enemies kills them instantly");
+                lore28.add(ChatColor.RED + " - What could be the downside?");
                 itemMeta.setLore(lore28);
                 break;
 
@@ -531,7 +531,7 @@ public class RawItemsGenerator {
             case 42:
                 itemStack = new ItemStack(Material.DIAMOND_BOOTS, 1);
                 itemMeta = itemStack.getItemMeta();
-                itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Jumpy Boots");
+                itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Not Implemented");
                 List<String> lore42 = new ArrayList<>();
                 lore42.add(ChatColor.RED + " - Currently not implemented!");
                 lore42.add(ChatColor.RED + " - Enables one to triple jump");

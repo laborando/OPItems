@@ -6,10 +6,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.event.player.PlayerBucketEmptyEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -24,8 +24,7 @@ import java.util.function.Consumer;
 public class EventManager implements Listener {
 
     //Maps
-    public static Map<String, Consumer<PlayerInteractEvent>> BlockPlayerInteractEventMap = new HashMap<>();
-    public static Map<String, Consumer<PlayerInteractEvent>> WithBlockPlayerInteractEventMap = new HashMap<>();
+    public static Map<String, Consumer<PlayerInteractEvent>> PlayerInteractEventMap = new HashMap<>();
     public static Map<String, Consumer<ProjectileLaunchEvent>> ProjectileLaunchEventMap = new HashMap<>();
     public static Map<String, Consumer<BlockPlaceEvent>> BlockPlaceEventMap = new HashMap<>();
     public static Map<String, Consumer<PlayerBucketEmptyEvent>> PlayerBucketEmptyEventMap = new HashMap<>();
@@ -38,6 +37,10 @@ public class EventManager implements Listener {
     public static List<Consumer<BlockPhysicsEvent>> BlockPhysicsEventList = new ArrayList<>();
     public static List<Consumer<PlayerInteractEvent>> PlayerInteractEventList = new ArrayList<>();
     public static List<Consumer<BlockBreakEvent>> BlockBreakEventList = new ArrayList<>();
+    public static List<Consumer<PlayerChangedWorldEvent>> PlayerChangedWorldEventList = new ArrayList<>();
+    public static List<Consumer<PlayerPreLoginEvent>> PlayerPreLoginEventList = new ArrayList<>();
+    public static List<Consumer<PlayerQuitEvent>> PlayerQuitEventList = new ArrayList<>();
+    public static List<Consumer<EntityDamageByEntityEvent>> EntityDamageByEntityEventList = new ArrayList<>();
 
 
 
@@ -45,11 +48,12 @@ public class EventManager implements Listener {
     public static void innitEventManager(Plugin p) {
 
         //MainHandPlayerInteractionEvents
-        BlockPlayerInteractEventMap.put("opitems_27", TntLayer::event);
-        BlockPlayerInteractEventMap.put("opitems_31", WandOfHome::event);
-        BlockPlayerInteractEventMap.put("opitems_33", WandOfBlocks::event);
-        BlockPlayerInteractEventMap.put("opitems_34", Portal2go::event);
-        BlockPlayerInteractEventMap.put("opitems_35", SkullImitator::event);
+        PlayerInteractEventMap.put("opitems_27", TntLayer::event);
+        PlayerInteractEventMap.put("opitems_29", DimensionWand::event);
+        PlayerInteractEventMap.put("opitems_31", WandOfHome::event);
+        PlayerInteractEventMap.put("opitems_33", WandOfBlocks::event);
+        PlayerInteractEventMap.put("opitems_34", Portal2go::event);
+        PlayerInteractEventMap.put("opitems_35", SkullImitator::event);
 
         //BlockPlaceEvent
         BlockPlaceEventMap.put("opitems_35", SkullImitator::event);
@@ -77,6 +81,20 @@ public class EventManager implements Listener {
 
         //BlockBreakEvent
         BlockBreakEventList.add(Landmine::event);
+
+        //PlayerChangedWorldEvent
+        PlayerChangedWorldEventList.add(DimensionWand::event);
+        PlayerChangedWorldEventList.add(CursedSword::event);
+
+
+        //PlayerPreLoginEvent
+        PlayerPreLoginEventList.add(DimensionWand::event);
+
+        //PlayerQuitEvent
+        PlayerQuitEventList.add(DimensionWand::event);
+
+        //EntityDamageByEntityEvent
+        EntityDamageByEntityEventList.add(CursedSword::event);
     }
 
 
@@ -105,7 +123,7 @@ public class EventManager implements Listener {
         Consumer<PlayerInteractEvent> eventer;
 
 
-        eventer = BlockPlayerInteractEventMap.get(idns);
+        eventer = PlayerInteractEventMap.get(idns);
 
         if (eventer == null) return;
 
@@ -116,15 +134,11 @@ public class EventManager implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerBucketEmptyEvent e) {
 
-        System.out.println("a");
-
-        ItemStack item = e.getPlayer().getItemInHand();
-        if (item == null) return;
+        ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
 
         String idns = getIDNSorNullIfNotOPItems(item);
         if (idns == null) return;
 
-        System.out.println("c");
         Consumer<PlayerBucketEmptyEvent> eventer;
 
 
@@ -133,8 +147,6 @@ public class EventManager implements Listener {
         if (eventer == null) return;
 
         eventer.accept(e);
-
-        System.out.println("d");
     }
 
 
@@ -207,6 +219,36 @@ public class EventManager implements Listener {
             consumer.accept(e);
         });
     }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerChangedWorldEvent e) {
+        PlayerChangedWorldEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerPreLoginEvent e) {
+        PlayerPreLoginEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerQuitEvent e) {
+        PlayerQuitEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final EntityDamageByEntityEvent e) {
+        EntityDamageByEntityEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+
 
     public static String getIDNSorNullIfNotOPItems(ItemStack item){
         PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();

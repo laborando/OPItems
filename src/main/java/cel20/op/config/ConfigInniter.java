@@ -57,11 +57,7 @@ public class ConfigInniter {
 
         config.addDefault("AllowCraftOtherItems", Boolean.TRUE);
 
-
-
-        config.addDefault("CursedSwordEnabled", Boolean.TRUE);
         config.addDefault("EnableCraftWandOfWarden", Boolean.TRUE);
-        config.addDefault("EnableJumpyBoots", Boolean.TRUE);
         config.addDefault("PrivatePocketDimensionEnabled", Boolean.TRUE);
         config.addDefault("EnablePortal2Go", Boolean.TRUE);
         config.addDefault("EnableSkullImitator", Boolean.TRUE);
