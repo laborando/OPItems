@@ -1077,12 +1077,12 @@ public class RecipeAdder {
         RecipeAdder.map.put(40, key);
         final ItemStack itemStack = getItem(40);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
-        shapedRecipe.shape(new String[]{"ccc", "xax", "bdb"});
+        shapedRecipe.shape("ccc", "xax", "bdb");
         shapedRecipe.setIngredient('a', Material.HEART_OF_THE_SEA);
         shapedRecipe.setIngredient('x', Material.DIAMOND);
-        shapedRecipe.setIngredient('b', Material.FEATHER);
-        shapedRecipe.setIngredient('c', Material.QUARTZ);
-        shapedRecipe.setIngredient('d', Material.TRIDENT);
+        shapedRecipe.setIngredient('b', Material.APPLE);
+        shapedRecipe.setIngredient('c', Material.COOKED_BEEF);
+        shapedRecipe.setIngredient('d', Material.GOLD_BLOCK);
 
         try {
             Bukkit.getServer().addRecipe(shapedRecipe);

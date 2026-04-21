@@ -1,8 +1,5 @@
 package cel20.op;
 
-import org.bukkit.NamespacedKey;
-import org.bukkit.plugin.Plugin;
-
 public class GlobalVars {
 
     public static String uuid = ";";

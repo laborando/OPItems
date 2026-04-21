@@ -3,6 +3,7 @@ package items.classic;
 import cel20.op.GlobalVars;
 import org.bukkit.entity.EnderPearl;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,9 @@ public class EnderpearlSword {
 
     static Map<String, Long> cooldown = new HashMap<>();
 
-    public static void handle(Player p){
+    public static void handle(PlayerInteractEvent e){
+
+        Player p =  e.getPlayer();
 
         cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 

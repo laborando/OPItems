@@ -1,10 +1,10 @@
-package items.classic.sheduled;
+package items.sheduled;
 
 import cel20.op.Main;
-import items.classic.sheduled.cosmetic.FireShoe;
-import items.classic.sheduled.cosmetic.NightHelmet;
-import items.classic.sheduled.effects.SpeedLeggings;
-import items.classic.sheduled.effects.WaterHelmet;
+import items.sheduled.cosmetic.FireShoe;
+import items.sheduled.cosmetic.NightHelmet;
+import items.sheduled.effects.SpeedLeggings;
+import items.sheduled.effects.WaterHelmet;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package items;
 
-import cel20.op.Main;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 

@@ -1,8 +1,8 @@
 
-package items.classic.sheduled.effects;
+package items.sheduled.effects;
 
 import items.NameSpaces;
-import items.classic.sheduled.BasicSchedule;
+import items.sheduled.BasicSchedule;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;

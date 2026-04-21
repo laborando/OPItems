@@ -1,10 +1,9 @@
 package items;
 
-import items.classic.Sponges.SuperSponge;
+import items.classic.*;
 import items.classic.Sponges.SuperSpongeStarter;
-import items.classic.TeleportSword;
-import items.classic.WandOfBoom;
-import items.classic.WandOfMassiveBoom;
+import items.managers.NoCrafting;
+import items.managers.NoDeopify;
 import items.newer.WandOfWarden;
 import items.normal.*;
 import items.normal.ws.Workstation;
@@ -14,8 +13,11 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -35,6 +37,9 @@ public class EventManager implements Listener {
     public static Map<String, Consumer<ProjectileLaunchEvent>> ProjectileLaunchEventMap = new HashMap<>();
     public static Map<String, Consumer<BlockPlaceEvent>> BlockPlaceEventMap = new HashMap<>();
     public static Map<String, Consumer<PlayerBucketEmptyEvent>> PlayerBucketEmptyEventMap = new HashMap<>();
+    public static Map<String, Consumer<PlayerFishEvent>> PlayerFishEventMap = new HashMap<>();
+    public static Map<String, Consumer<PlayerItemConsumeEvent>> PlayerItemConsumeEventMap = new HashMap<>();
+
 
 
     //Lists
@@ -48,6 +53,11 @@ public class EventManager implements Listener {
     public static List<Consumer<PlayerPreLoginEvent>> PlayerPreLoginEventList = new ArrayList<>();
     public static List<Consumer<PlayerQuitEvent>> PlayerQuitEventList = new ArrayList<>();
     public static List<Consumer<EntityDamageByEntityEvent>> EntityDamageByEntityEventList = new ArrayList<>();
+    public static List<Consumer<EntityDamageEvent>> EntityDamageEventList = new ArrayList<>();
+    public static List<Consumer<PlayerDropItemEvent>> PlayerDropItemEventList = new ArrayList<>();
+    public static List<Consumer<PlayerRespawnEvent>> PlayerRespawnEventList = new ArrayList<>();
+    public static List<Consumer<InventoryClickEvent>> InventoryClickEventList = new ArrayList<>();
+    public static List<Consumer<CraftItemEvent>> CraftItemEventList = new ArrayList<>();
 
 
 
@@ -55,9 +65,18 @@ public class EventManager implements Listener {
     public static void innitEventManager(Plugin p) {
 
         //MainHandPlayerInteractionEvents
+        PlayerInteractEventMap.put("opitems_4", Bower::handle);
+        PlayerInteractEventMap.put("opitems_5", Blazer::event);
+        PlayerInteractEventMap.put("opitems_6", Boomer::event);
+        PlayerInteractEventMap.put("opitems_8", PigCannon::handle);
         PlayerInteractEventMap.put("opitems_10", TeleportSword::event);
+        PlayerInteractEventMap.put("opitems_12", Crafter::event);
+        PlayerInteractEventMap.put("opitems_13", FlyingStick::event);
+        PlayerInteractEventMap.put("opitems_11", Blitzer::handle);
         PlayerInteractEventMap.put("opitems_20", WandOfBoom::event);
         PlayerInteractEventMap.put("opitems_21", WandOfMassiveBoom::event);
+        PlayerInteractEventMap.put("opitems_22", InvisibilityStick::event);
+        PlayerInteractEventMap.put("opitems_26", EnderpearlSword::handle);
         PlayerInteractEventMap.put("opitems_27", TntLayer::event);
         PlayerInteractEventMap.put("opitems_29", DimensionWand::event);
         PlayerInteractEventMap.put("opitems_31", WandOfHome::event);
@@ -79,6 +98,12 @@ public class EventManager implements Listener {
 
         //PlayerBucketEmptyEvent
         PlayerBucketEmptyEventMap.put("opitems_38", InfWaterBucket::event);
+
+        //PlayerFishEventMap
+        PlayerFishEventMap.put("opitems_15", HookOfVelectory::onFish);
+
+        //PlayerItemConsumeEvent
+        PlayerItemConsumeEventMap.put("opitems_40" , EternalSteak::event);
 
         //ProjectileHitEvent
         ProjectileHitEventList.add(TntBow::onProjectileHit);
@@ -109,6 +134,23 @@ public class EventManager implements Listener {
 
         //EntityDamageByEntityEvent
         EntityDamageByEntityEventList.add(CursedSword::event);
+
+        //EntityDamageEvent
+        EntityDamageEventList.add(AntiFall::event);
+
+        //PlayerDropItemEvent
+        PlayerDropItemEventList.add(InvisibilityStick::event);
+        PlayerDropItemEventList.add(FlyingStick::event);
+
+        //PlayerRespawnEvent
+        PlayerRespawnEventList.add(InvisibilityStick::event);
+        PlayerRespawnEventList.add(FlyingStick::event);
+
+        //InventoryClickEvent
+        InventoryClickEventList.add(NoDeopify::event);
+
+        //CraftItemEvent
+        CraftItemEventList.add(NoCrafting::event);
     }
 
 
@@ -165,6 +207,24 @@ public class EventManager implements Listener {
 
 
     @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerItemConsumeEvent e) {
+
+        ItemStack item = e.getItem();
+
+        String idns = getIDNSorNullIfNotOPItems(item);
+        if (idns == null) return;
+
+        Consumer<PlayerItemConsumeEvent> eventer;
+
+        eventer = PlayerItemConsumeEventMap.get(idns);
+
+        if (eventer == null) return;
+
+        eventer.accept(e);
+
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockPlaceEvent e) {
 
         Player p = e.getPlayer();
@@ -197,6 +257,22 @@ public class EventManager implements Listener {
         if (idns == null) return;
 
         Consumer<ProjectileLaunchEvent> eventer = ProjectileLaunchEventMap.get(idns);
+
+        if(eventer == null) return;
+
+        eventer.accept(e);
+
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerFishEvent e) {
+
+        ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
+
+        String idns = getIDNSorNullIfNotOPItems(item);
+        if (idns == null) return;
+
+        Consumer<PlayerFishEvent> eventer = PlayerFishEventMap.get(idns);
 
         if(eventer == null) return;
 
@@ -262,6 +338,40 @@ public class EventManager implements Listener {
         });
     }
 
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final EntityDamageEvent e) {
+        EntityDamageEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerDropItemEvent e) {
+        PlayerDropItemEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerRespawnEvent e) {
+        PlayerRespawnEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final InventoryClickEvent e) {
+        InventoryClickEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final CraftItemEvent e) {
+        CraftItemEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
 
 
     public static String getIDNSorNullIfNotOPItems(ItemStack item){

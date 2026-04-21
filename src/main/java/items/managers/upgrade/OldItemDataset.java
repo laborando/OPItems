@@ -1,9 +1,7 @@
 package items.managers.upgrade;
 
-import items.managers.RawItemsGenerator;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;

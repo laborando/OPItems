@@ -18,21 +18,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class HookOfVelectory implements Listener
-{
+public class HookOfVelectory {
 
     static Map<String, Long> cooldown = new HashMap<>();
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onFish(final PlayerFishEvent e) {
+    public static void onFish(final PlayerFishEvent e) {
 
         Player p = e.getPlayer();
 
 
-
         cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 
-        if(!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.hookOfVelectoryCD)) {
+        if (!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.hookOfVelectoryCD)) {
             return;
         }
 
@@ -44,67 +41,54 @@ public class HookOfVelectory implements Listener
 
         if (e.getState() == PlayerFishEvent.State.REEL_IN) {
 
-            final ItemStack item = p.getInventory().getItemInMainHand();
-            if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.PUNCH)) {
 
+            final Location pl = p.getLocation();
+            final Location hl = e.getHook().getLocation();
+            final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
+            p.setVelocity(vec);
 
-
-                final Location pl = p.getLocation();
-                final Location hl = e.getHook().getLocation();
-                final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
-                p.setVelocity(vec);
-            }
         }
 
         if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
-            
-            final ItemStack item = p.getInventory().getItemInMainHand();
-            if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.PUNCH)) {
-                final Location pl = p.getLocation();
-                final Location hl = e.getHook().getLocation();
-                final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
-                p.setVelocity(vec);
-            }
+
+            final Location pl = p.getLocation();
+            final Location hl = e.getHook().getLocation();
+            final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
+            p.setVelocity(vec);
+
         }
         if (e.getState() == PlayerFishEvent.State.IN_GROUND) {
-            
-            final ItemStack item = p.getInventory().getItemInMainHand();
-            if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.PUNCH)) {
-                final Location pl = p.getLocation();
-                final Location hl = e.getHook().getLocation();
-                final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
-                p.setVelocity(vec);
-            }
+
+            final Location pl = p.getLocation();
+            final Location hl = e.getHook().getLocation();
+            final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
+            p.setVelocity(vec);
+
         }
         if (e.getState() == PlayerFishEvent.State.BITE) {
-            
-            final ItemStack item = p.getInventory().getItemInMainHand();
-            if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.PUNCH)) {
-                final Location pl = p.getLocation();
-                final Location hl = e.getHook().getLocation();
-                final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
-                p.setVelocity(vec);
-            }
+
+            final Location pl = p.getLocation();
+            final Location hl = e.getHook().getLocation();
+            final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
+            p.setVelocity(vec);
+
         }
         if (e.getState() == PlayerFishEvent.State.CAUGHT_ENTITY) {
-            
-            final ItemStack item = p.getInventory().getItemInMainHand();
-            if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.PUNCH)) {
-                final Location pl = p.getLocation();
-                final Location hl = e.getHook().getLocation();
-                final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
-                p.setVelocity(vec);
-            }
+
+            final Location pl = p.getLocation();
+            final Location hl = e.getHook().getLocation();
+            final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
+            p.setVelocity(vec);
+
         }
         if (e.getState() == PlayerFishEvent.State.FAILED_ATTEMPT) {
-            
-            final ItemStack item = p.getInventory().getItemInMainHand();
-            if (item.getType() == Material.FISHING_ROD && item.containsEnchantment(Enchantment.PUNCH)) {
-                final Location pl = p.getLocation();
-                final Location hl = e.getHook().getLocation();
-                final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
-                p.setVelocity(vec);
-            }
+
+
+            final Location pl = p.getLocation();
+            final Location hl = e.getHook().getLocation();
+            final Vector vec = new Vector(hl.getX() - pl.getX(), 1.0, hl.getZ() - pl.getZ());
+            p.setVelocity(vec);
+
         }
     }
 }

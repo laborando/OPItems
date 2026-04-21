@@ -508,12 +508,11 @@ public class RawItemsGenerator {
                 break;
 
             case 40:
-                itemStack = new ItemStack(Material.TRIDENT, 1);
+                itemStack = new ItemStack(Material.COOKED_BEEF, 1);
                 itemMeta = itemStack.getItemMeta();
-                itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Unused OPItems itemslot 40");
+                itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Eternal Steak");
                 List<String> lore40 = new ArrayList<>();
-                lore40.add(ChatColor.RED + " - !");
-                lore40.add(ChatColor.RED + " - !");
+                lore40.add(ChatColor.RED + " - An eternal steak...");
                 itemMeta.setLore(lore40);
                 break;
 

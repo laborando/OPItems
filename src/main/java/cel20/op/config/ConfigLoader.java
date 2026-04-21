@@ -4,8 +4,6 @@ import cel20.op.GlobalVars;
 import cel20.op.Main;
 import items.classic.HookOfVelectory;
 import items.managers.RecipeAdder;
-import items.normal.*;
-import items.normal.ws.Workstation;
 import items.normal.ws.WsGUIHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -86,7 +84,6 @@ public class ConfigLoader {
         }
         if (config.getBoolean("AllowHookOfVelectory")) {
             RecipeAdder.addRecipe15(plugin);
-            m.getServer().getPluginManager().registerEvents(new HookOfVelectory(), m);
         }
         if (config.getBoolean("AllowCraftNightVisor")) {
             RecipeAdder.addRecipe16(plugin);
@@ -177,6 +174,7 @@ public class ConfigLoader {
             RecipeAdder.addRecipe39(plugin);
         }
 
+        RecipeAdder.addRecipe40(plugin);
 
         if (config.getBoolean("EnableCraftWandOfWarden")) {
             RecipeAdder.addRecipe41(plugin);

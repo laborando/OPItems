@@ -1,9 +1,8 @@
 
-package items.classic.sheduled.cosmetic;
+package items.sheduled.cosmetic;
 
-import cel20.op.GlobalVars;
 import items.NameSpaces;
-import items.classic.sheduled.BasicSchedule;
+import items.sheduled.BasicSchedule;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.inventory.ItemStack;

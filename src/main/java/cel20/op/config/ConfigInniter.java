@@ -90,7 +90,7 @@ public class ConfigInniter {
         config.addDefault("PiercerDamageLevel", 3);
         config.addDefault("PiercerKnockbackLevel", 3);
         config.addDefault("wandOfBoomsCDms", 1000);
-        config.addDefault("launcher_cooldown_MilliSeconds", 4000);
+        config.addDefault("launcherCDms", 4000);
         config.addDefault("WandOfBoomExplosionStrength", 10);
         config.addDefault("WandOfMassive_BoomExplosionStrength", 20);
         config.addDefault("CraftedKnockyTheStickKnockbackEnchantmentLevel", 10);

@@ -1,15 +1,9 @@
 
-package items.classic.sheduled.effects;
+package items.sheduled.effects;
 
 import items.NameSpaces;
-import items.classic.sheduled.BasicSchedule;
+import items.sheduled.BasicSchedule;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;

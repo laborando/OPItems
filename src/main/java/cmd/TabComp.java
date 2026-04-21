@@ -1,9 +1,7 @@
 package cmd;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +72,7 @@ public class TabComp {
                     completions.add("JumpyBoots");
                     completions.add("Piercer");
                     completions.add("Workstation");
+                    completions.add("EternalSteak");
                     if(args[1] == null || args[1].trim().isEmpty()){
 
                         completions.add("help");

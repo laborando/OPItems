@@ -1,7 +1,6 @@
 
 package items.normal.ws;
 
-import cel20.op.GlobalVars;
 import items.NameSpaces;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

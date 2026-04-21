@@ -1,21 +1,16 @@
 package items.managers;
 
-import cel20.op.GlobalVars;
 import items.NameSpaces;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-public class NoDisenchanting implements Listener {
+public class NoDeopify {
 
 
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final InventoryClickEvent e) {
+    public static void event(final InventoryClickEvent e) {
 
         if(e.getWhoClicked().getOpenInventory().getType() == InventoryType.GRINDSTONE && e.isShiftClick()){
             final ItemStack item = e.getCurrentItem();
@@ -26,6 +21,7 @@ public class NoDisenchanting implements Listener {
             String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsMarker, PersistentDataType.STRING);
             if (abl != null && abl.contains("true")) {
 
+                e.getViewers().getFirst().sendMessage("OPItems cannot be disenchanted!");
                 e.setCancelled(true);
 
             }
@@ -42,6 +38,7 @@ public class NoDisenchanting implements Listener {
         String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsMarker, PersistentDataType.STRING);
         if (abl != null && abl.contains("true")) {
 
+            e.getViewers().getFirst().sendMessage("OPItems cannot be grindstoned!");
             e.setCancelled(true);
 
         }

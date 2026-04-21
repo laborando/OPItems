@@ -1,4 +1,4 @@
-package items.classic.sheduled;
+package items.sheduled;
 
 public abstract class BasicSchedule {
 

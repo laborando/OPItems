@@ -1,7 +1,6 @@
 
 package items.classic;
 
-import cel20.op.GlobalVars;
 import items.NameSpaces;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -11,10 +10,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.persistence.PersistentDataType;
 
-public class AntiFall implements Listener
+public class AntiFall
 {
-    @EventHandler(priority = EventPriority.HIGH)
-    public void event(final EntityDamageEvent e) {
+    public static void event(final EntityDamageEvent e) {
 
         if(!(e.getEntityType() == EntityType.PLAYER))
             return;

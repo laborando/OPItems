@@ -3,7 +3,9 @@ package utis.update;
 import cel20.op.Main;
 import io.papermc.paper.ServerBuildInfo;
 import org.bukkit.Bukkit;
-import org.json.simple.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -22,7 +24,7 @@ public class CUpdater
     public CVersion highestVersion;
     public boolean shouldUpdate = false;
     private String slug = "opitems";
-    private static final boolean disable = true;
+    private static final boolean disable = false;
 
     public CUpdater(String cVersion, String slug){
         this.slug = slug;
@@ -30,6 +32,7 @@ public class CUpdater
         if(disable){
             shouldUpdate = false;
             highestVersion = new CVersion();
+            return;
         }
 
         checkVersion(cVersion);

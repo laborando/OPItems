@@ -1,63 +1,11 @@
 Anmerkungen:
- - Item 40 unbelegt
 
 TODO
- - Disable crafting via checking for opitems marker in PDC
- - Deconstruct OldItems.java
  - Inhouse recipe viewer
  - Shedules unified checking for item strings
+ - Crafting recipe for Workbench
 
 IN WORK
- - Change usage to check for PDC not enchantments
 
 
 DONE
- - Added Portable Work Station
-
- - Switched API to Paper
- - Updated API from 1.16 to 1.20.6
- - Changed warden-spawing from using commands to using the API
- - 'Gluecoded' old command logic to new Paper Command API replacing old Bukkit logic
-
- - Created new NameSpaceManager
- - Items will now be properly marked with an OPItems mark
- - Created new EventManager
- - Switched all Items from Events to EventManager
-
- - Improved Lore of [Cursed Sword, Wand of Warden]
-
- - Added Cashing to Updater retrieving information regarding the author
- - Updater now checks if newest version is compatible with mc-version
-
- - Removed EnableItemsForNewerVersions config (no longer needed)
- - Changed AllowCraftAndActivate WandOfHome to AllowCraftWandOfHome
- - Removed [CursedSwordEnabled, EnableRiptider, EnablePiercer, EnableJumpyBoots, ] - no longer needed
- - Removed unused Events
- - Changed wand_of_(massive)_boom_cooldown_MilliSeconds to wandOfBoomsCDms
- - Changed Wand_of_Boom_Explosion_Strength to WandOfBoomExplosionStrength
- - Changed Wand_of_Massive_Boom_Explosion_Strength to WandOfMassive_BoomExplosionStrength
-
-
- - The Wand of Blocks Projectiles will now auto-explode after 2000 ticks after being fired
- - Endword teleporting is less junky now
-
- - Removed unused Riptider & Jumpy Boots code
-
- - Fixed OPItems not being marked
- - Fixed Wand of Home always explaining itself
- - Removed unused Listeners
- - The Task to check for collision of the wand of blocks now should really cancel itself
- - Wand of Blocks blocks will not form Blocks after landing anymore
- - Removed HorriblePaperMessageEvenIfNotCircumventableWarning - is fixed with the API change
- - WandOfBlocks projectiles now explode at the target
- - Fixed TNT Detonator
- - Portal2Go now also fires if clicking a block
- - Piercer Arrows now behave normal, after hitting a block
- - Portal2Go now teleports with pitch and yaw
- - Wand of Blocks now explodes every time when fired
- - Fixed Infinite Water Bucket
- - Fixed Cursed Sword not working
- - Fixed Private Dimension Wand double teleporting
- - Wand of Warden only summons one Warden now
- - Wand if Booms now give seconds left for cooldown only in whole seconds
- - Fixed Endsword not working

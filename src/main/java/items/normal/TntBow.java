@@ -1,24 +1,19 @@
 package items.normal;
 
 import cel20.op.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import utis.Celutis;
 
 import java.util.ArrayList;
 
-public class TntBow implements Listener {
+public class TntBow {
 
     private static ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
 

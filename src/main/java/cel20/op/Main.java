@@ -5,12 +5,10 @@ import cel20.op.config.ConfigInniter;
 import cel20.op.config.ConfigLoader;
 import cel20.op.data.ItemData;
 import cel20.op.load.Commands;
-import cel20.op.load.Events;
 import cel20.op.load.VersionDependent;
 import items.EventManager;
 import items.NameSpaces;
-import items.classic.FlyingInvisibilitySticks;
-import items.classic.sheduled.SchedulerStarter;
+import items.sheduled.SchedulerStarter;
 import items.managers.RecipeAdder;
 import metrics.Metrics;
 import metrics.WorkerLogger;
@@ -26,7 +24,6 @@ import utis.Celutis;
 import utis.update.CUpdater;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 public class Main extends JavaPlugin {
@@ -38,7 +35,6 @@ public class Main extends JavaPlugin {
     }
 
     public static boolean landminePerfModeEnabeled = false;
-    public HashMap<String, Long> Launcher_Cooldown;
     public static int ore_gen_chance_private_dim;
     public static int config_anti_explo_helmet_lvl;
     public static boolean isprivatedimenableled;
@@ -62,7 +58,6 @@ public class Main extends JavaPlugin {
     }
 
     public Main() {
-        this.Launcher_Cooldown = new HashMap<>();
         this.config = this.getConfig();
         data_save_cursed_sword = null;
         data_save_homes = null;
@@ -100,8 +95,6 @@ public class Main extends JavaPlugin {
         }
 
         //EVENTS
-        Events.registerAllEvents(this, plugin);
-
         EventManager.innitEventManager(this);
         getServer().getPluginManager().registerEvents(new EventManager(), this);
 
