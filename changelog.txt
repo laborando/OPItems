@@ -11,18 +11,8 @@ Holo display
 fake player?
 
 IN  WORK:
-DONE:
 
- - Versions check work with modern version numbering systems
- - Recipe 41 blocking reload
- - Removed usage of ANSI coloring in the console, using integrated methods
- - Writing new autoupdater, switching to modrinth
- - Removed /updateopitems --> /opitems update
- - Removed /opitems give old
- - Removed unused code
- - Removed nominal support for Bukkit and Spigot. Still working, but will not check, if future updates are compatible
- - Updated wrong message from Private Dimension Wand
- - Added update information to /opitems version
+DONE:
 
 IT:
 

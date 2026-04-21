@@ -10,7 +10,6 @@ import items.classic.Sponges.SuperSponge;
 import items.managers.RecipeAdder;
 import items.managers.upgrade.ItemUpgrader;
 import items.normal.CursedSword;
-import items.normal.FakePlayer;
 import items.normal.Landmine;
 import manage.Items;
 import o_guis.OpGui;
@@ -151,23 +150,6 @@ public class CmdExe implements CommandExecutor {
                 }
 
 
-            } else if (arg.equalsIgnoreCase("playerspawntest")) {
-                if (sender instanceof Player) {
-                    if (sender.isOp() && sender instanceof Player) {
-                        final Player p = (Player) sender;
-                        final String angst = "temp";
-                        try {
-                            FakePlayer fp = new FakePlayer(p.getLocation(), "test");
-                            fp.spawn();
-                        } catch (Error e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("You don't have the permission to perform this command!").toString());
-                    }
-                } else {
-                    sender.sendMessage(ChatColor.DARK_RED + "This Command cannot be executed in the console");
-                }
             } else if (arg.equalsIgnoreCase("gui")) {
                 if (sender instanceof Player) {
                     if (sender.isOp()) {

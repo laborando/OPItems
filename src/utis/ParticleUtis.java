@@ -1,17 +1,18 @@
 package utis;
 
 import cel20.op.Main;
-import cmd.filters.SummonFilter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Pose;
+import org.bukkit.entity.Warden;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Objects;
+import java.util.Queue;
 
 public class ParticleUtis {
 
@@ -38,9 +39,6 @@ public class ParticleUtis {
                         Particle.DustOptions dustOptions = new Particle.DustOptions(color, particleSize);
                         Objects.requireNonNull(loc.getWorld()).spawnParticle(particleType, loc, 20, 0.3, 0.2, 0.3, dustOptions);
                     }else{
-
-
-
                         this.cancel();
                     }
                 }
@@ -49,14 +47,12 @@ public class ParticleUtis {
     }
 
 
-    //summon minecraft:warden ~ ~ ~ {Brain: {memories: {"minecraft:dig_cooldown":{value: {}, ttl: 1200L}, "minecraft:is_emerging": {value: {}, ttl: 85L}}}}
     public static void particleCircleWithWarden(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX, Player player){
 
         Queue<Location> ll = Celutis.getCircleLocationsQue(location, radius, amount);
         Queue<Location> copyLl = new ArrayDeque<>();
 
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:" + location.getWorld().getName() + " run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
-
 
         copyLl.addAll(ll);
 
@@ -80,48 +76,16 @@ public class ParticleUtis {
 
 
 
-                        //Summons warden, but with no message! :O
-                        ((Logger) LogManager.getRootLogger()).addFilter(new SummonFilter());
-
-                        List<Player> ops = new ArrayList<>();
-
-                        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                            if (onlinePlayer.isOp()){
-                                onlinePlayer.setOp(false);
-                                ops.add(onlinePlayer);
-                            }
-                        }
-
 
                         if(!hasDone){
 
-                            if(location.getWorld().getName().equalsIgnoreCase("world")){
-                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:overworld run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
-                            }else if(location.getWorld().getName().equalsIgnoreCase("world_nether")) {
-                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:the_nether run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
-                            }else if(location.getWorld().getName().equalsIgnoreCase("world_the_end")) {
-                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:the_end run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
-                            }else{
-                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:" + location.getWorld().getName() + " run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
-                            }
+                            Warden w = location.getWorld().spawn(location, Warden.class);
 
-                            //player.performCommand( "execute in minecraft:" + location.getWorld().getName() + " run summon minecraft:warden " + location.getX() + " " + location.getY() + " " + location.getZ() + " {Brain: {memories: {\"minecraft:dig_cooldown\":{value: {}, ttl: 1200L}, \"minecraft:is_emerging\": {value: {}, ttl: 85L}}}}");
-
+                            w.setPose(Pose.EMERGING);
 
                             hasDone = true;
                         }
 
-                        ops.forEach(e -> e.setOp(true));
-
-
-
-                        ((Logger) LogManager.getRootLogger()).getFilters().forEachRemaining(e ->{
-
-                            if(e instanceof SummonFilter){
-                                ((SummonFilter) e).isEnabled = false;
-                            }
-
-                        });
 
 
                         this.cancel();

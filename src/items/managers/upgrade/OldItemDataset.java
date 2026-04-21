@@ -28,14 +28,14 @@ public class OldItemDataset {
 
             ItemStack item = RawItemsGenerator.getItem(i, 1, 1);
 
-            if (!item.getItemMeta().getDisplayName().contains("error")) {
+            if (!item.getItemMeta().displayName().contains("error")) {
                 itemList.add(new OldItem(i, item.getType(), new ArrayList<>(item.getEnchantments().keySet())));
             }
         }
 
-        itemList.add(new OldItem(14, Material.FEATHER, Arrays.asList(Enchantment.ARROW_FIRE)));
-        itemList.add(new OldItem(16, Material.IRON_HELMET, Arrays.asList(Enchantment.ARROW_DAMAGE)));
-        itemList.add(new OldItem(17, Material.IRON_HELMET, Arrays.asList(Enchantment.ARROW_FIRE)));
+        itemList.add(new OldItem(14, Material.FEATHER, Arrays.asList(Enchantment.FLAME)));
+        itemList.add(new OldItem(16, Material.IRON_HELMET, Arrays.asList(Enchantment.POWER)));
+        itemList.add(new OldItem(17, Material.IRON_HELMET, Arrays.asList(Enchantment.FLAME)));
         itemList.add(new OldItem(37, Material.BLAZE_ROD, Arrays.asList(Enchantment.SWEEPING_EDGE)));
 
         isCreated = true;

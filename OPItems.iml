@@ -35,6 +35,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="craftbukkit-1.16.5" level="project" />
   </component>
 </module>

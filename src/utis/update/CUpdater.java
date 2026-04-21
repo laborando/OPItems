@@ -2,16 +2,15 @@ package utis.update;
 
 import cel20.op.Main;
 import org.bukkit.Bukkit;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import utis.json.simple.JSONArray;
+import utis.json.simple.JSONObject;
+import utis.json.simple.JSONValue;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;
-import java.util.stream.Stream;
 
 /*
 CUpdater for MC plugins via the Modrinth API

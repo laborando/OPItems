@@ -45,7 +45,7 @@ public class OldItems implements Listener {
 
 
         if (a == Material.FEATHER &&
-                item.containsEnchantment(Enchantment.ARROW_DAMAGE))
+                item.containsEnchantment(Enchantment.POWER))
             if (mainRef.config.getBoolean("AllowFlyFeather")) {
                 if (p.getGameMode() == GameMode.CREATIVE) {
                     p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "This item is not usable in creative mode");
@@ -103,7 +103,7 @@ public class OldItems implements Listener {
                 Fireball f = (Fireball) e.getPlayer().launchProjectile(Fireball.class);
                 f.setYield(0.0F);
                 f.setVelocity(f.getVelocity().multiply(3));
-                f.addPassenger(p.getLocation().getWorld().spawnEntity(p.getLocation(), EntityType.PRIMED_TNT));
+                f.addPassenger(p.getLocation().getWorld().spawnEntity(p.getLocation(), EntityType.TNT));
                 p.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1.0F, 1.0F);
             } else {
                 p.sendMessage(ChatColor.RED +
@@ -127,17 +127,17 @@ public class OldItems implements Listener {
         }
 
         if (a == Material.BLAZE_ROD &&
-                item.containsEnchantment(Enchantment.DIG_SPEED))
+                item.containsEnchantment(Enchantment.EFFICIENCY))
             if (p.isInvisible()) {
                 p.setInvisible(false);
             } else {
                 p.setInvisible(true);
             }
-        if (a == Material.BLAZE_ROD && item.containsEnchantment(Enchantment.LUCK)) {
+        if (a == Material.BLAZE_ROD && item.containsEnchantment(Enchantment.LOOTING)) {
             WandOfBooms.handleAlpha(mainRef, p);
         }
         if (a == Material.NETHERITE_SWORD &&
-                item.containsEnchantment(Enchantment.ARROW_DAMAGE))
+                item.containsEnchantment(Enchantment.POWER))
             if (mainRef.config.getBoolean("AllowEndsword")) {
 
                 TeleportSword.handleOld(p);
@@ -146,7 +146,7 @@ public class OldItems implements Listener {
                 p.sendMessage(ChatColor.RED + "This Feature is currently disabled");
             }
         if (a == Material.PRISMARINE_SHARD &&
-                item.containsEnchantment(Enchantment.OXYGEN))
+                item.containsEnchantment(Enchantment.RESPIRATION))
             if (mainRef.config.getBoolean("AllowBlitzer")) {
                Blitzer.handle(p);
             } else {
