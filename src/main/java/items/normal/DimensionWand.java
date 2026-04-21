@@ -53,7 +53,7 @@ public class DimensionWand {
 
             worldCreator2.generator(new ChunkGen());
 
-            Bukkit.createWorld(worldCreator2);
+            Objects.requireNonNull(Bukkit.createWorld(worldCreator2)).setSpawnFlags(false, false);
 
 //        }
         }
@@ -65,6 +65,8 @@ public class DimensionWand {
         try {
             final String wn = "pocket-world-" + e.getPlayer().getUniqueId();
             World world = Bukkit.getWorld(wn);
+            assert world != null;
+            world.setSpawnFlags(false, false);
 
 
             if (world != null) {
@@ -108,6 +110,8 @@ public class DimensionWand {
         }
         final World playerWorld = e.getPlayer().getWorld();
         final World targetWorld = Bukkit.getWorld(wn);
+        assert targetWorld != null;
+        targetWorld.setSpawnFlags(false, false);
 
         if (targetWorld == null) {
 

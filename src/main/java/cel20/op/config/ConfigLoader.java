@@ -2,7 +2,6 @@ package cel20.op.config;
 
 import cel20.op.GlobalVars;
 import cel20.op.Main;
-import items.classic.HookOfVelectory;
 import items.managers.RecipeAdder;
 import items.normal.ws.WsGUIHandler;
 import org.bukkit.Bukkit;
@@ -196,7 +195,7 @@ public class ConfigLoader {
         Main.ore_gen_chance_private_dim = config.getInt("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock");
         Main.isprivatedimenableled = config.getBoolean("PrivatePocketDimensionEnabled");
         Main.config_anti_explo_helmet_lvl = config.getInt("AntiExplosionHelmetAntiExploEnchLevel");
-        Main.tntbowamount = config.getInt("TNTBowTNTAmount");
+        Main.tntBowAmount = config.getInt("TNTBowTNTAmount");
         GlobalVars.spongeClearRange = config.getInt("SuperSpongeClearRadius");
 
         //CDs

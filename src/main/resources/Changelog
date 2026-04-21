@@ -4,8 +4,22 @@ TODO
  - Inhouse recipe viewer
  - Shedules unified checking for item strings
  - Crafting recipe for Workbench
+ - See changelog inhouse
 
 IN WORK
 
 
 DONE
+ - Fixed compability issues with mc v26.x
+ - Can now disenchant OPItems
+ - Fixed IncompatibleClassChangeErrors
+ - Fixed Updater Messages
+ - Added Update Message for Operators upon joining (can be disabled via /opitems um)
+ - Fixed some OPItems being breakable
+ - Improved Lore of Pig Spawn Egg
+ - Pig spawn egg is now normally usable
+ - Renamed Pig Spawn Egg to ''Pig''
+ - Fixed some NullPointerExceptions
+ - Hitting Entities with ''Pig'' wont set them on fire anymore
+ - All OPItems now look enchanted
+ - Fixed Entities spawning in the Pocket Dimension

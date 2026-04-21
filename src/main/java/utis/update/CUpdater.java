@@ -99,7 +99,7 @@ public class CUpdater
         String runningVer = ServerBuildInfo.buildInfo().minecraftVersionName();
         boolean isCompatible = highestVersion.isCompatible(runningVer);
 
-        Bukkit.getLogger().info("Running MC Version: " + runningVer + "; Is compatible with" + highest + ": " + isCompatible);
+        Bukkit.getLogger().info("Running MC Version: " + runningVer + "; Is compatible with " + highest + ": " + isCompatible);
 
         if(shouldUpdate && !isCompatible)
         {
@@ -195,15 +195,15 @@ public class CUpdater
     }
 
     public boolean executeUpdate(Main instance) {
-        Bukkit.getLogger().warning("Starting update");
+        Main.getInstance().getLogger().warning("Starting update");
         File toUpdate = instance.getFileNonProt();
 
         //Make file empty
         try {
             new FileOutputStream(toUpdate).close();
         } catch (IOException e) {
-            Bukkit.getLogger().warning("Could not delete file to update: " + toUpdate.getAbsolutePath());
-            Bukkit.getLogger().warning("Aborting update");
+            Main.getInstance().getLogger().warning("Could not delete file to update: " + toUpdate.getAbsolutePath());
+            Main.getInstance().getLogger().warning("Aborting update");
             return false;
         }
 

@@ -10,7 +10,7 @@ public class Version {
 
     public static void execute(CommandSender sender){
 
-        sender.sendMessage(ChatColor.GOLD + "Current Version: " + Main.opitems_version);
+        sender.sendMessage(ChatColor.GOLD + "Current Version: " + Main.opitemsVersion);
         sender.sendMessage(ChatColor.BLUE + "Changelog: https://modrinth.com/plugin/opitems/changelog");
 
         CUpdater updater = Main.cUpdater;

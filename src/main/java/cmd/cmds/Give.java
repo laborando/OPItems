@@ -1,6 +1,6 @@
 package cmd.cmds;
 
-import items.managers.giveItems;
+import items.managers.GiveItems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -27,9 +27,9 @@ public class Give {
 
                 } else {
                     try {
-                        giveItems.giveItems(p, recipeStringToNum(arg), n1, n2);
+                        GiveItems.giveItems(p, recipeStringToNum(arg), n1, n2);
                     } catch (NumberFormatException e) {
-                        giveItems.giveItemsMessage(p);
+                        GiveItems.giveItemsMessage(p);
                     }
                 }
             } else {
@@ -65,9 +65,9 @@ public class Give {
             } else {
                 try {
 
-                    giveItems.giveItems(p, recipeStringToNum(arg), n1, n2);
+                    GiveItems.giveItems(p, recipeStringToNum(arg), n1, n2);
                 } catch (NumberFormatException e) {
-                    giveItems.giveItemsMessage(p);
+                    GiveItems.giveItemsMessage(p);
                 }
             }
 

@@ -21,6 +21,7 @@ public class TabComp {
                     completions.add("give");
                     completions.add("update");
                     completions.add("skull");
+                    completions.add("um");
                 }
 
                 return completions;
@@ -84,6 +85,7 @@ public class TabComp {
                             completions.add("give");
                             completions.add("update");
                             completions.add("skull");
+                            completions.add("um");
                         }
 
                         return completions;

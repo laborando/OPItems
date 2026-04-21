@@ -8,6 +8,7 @@ import cel20.op.load.Commands;
 import cel20.op.load.VersionDependent;
 import items.EventManager;
 import items.NameSpaces;
+import items.managers.NoCrafting;
 import items.sheduled.SchedulerStarter;
 import items.managers.RecipeAdder;
 import metrics.Metrics;
@@ -22,6 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import utis.CLogger;
 import utis.Celutis;
 import utis.update.CUpdater;
+import utis.update.UpdateNotify;
 
 import java.io.File;
 import java.util.logging.Logger;
@@ -34,6 +36,7 @@ public class Main extends JavaPlugin {
         return super.getFile();
     }
 
+    public static boolean priDimPerformMode = false;
     public static boolean landminePerfModeEnabeled = false;
     public static int ore_gen_chance_private_dim;
     public static int config_anti_explo_helmet_lvl;
@@ -43,30 +46,26 @@ public class Main extends JavaPlugin {
     public static String data_save_cursed_sword;
     public static String data_save_homes;
     public static String data_save_play_dim;
-    public static int tntbowamount;
-    public static String opitems_version = "Not innited";
+    public static int tntBowAmount;
+    public static String opitemsVersion = "Not innited";
     public static Metrics metrics;
     public static CUpdater cUpdater;
 
-    public static boolean priDimPerformMode = false;
 
     static {
         Main.ore_gen_chance_private_dim = 100;
         Main.config_anti_explo_helmet_lvl = 75;
         Main.isprivatedimenableled = true;
-        Main.tntbowamount = 50;
+        Main.tntBowAmount = 50;
     }
 
     public Main() {
         this.config = this.getConfig();
-        data_save_cursed_sword = null;
-        data_save_homes = null;
-        data_save_play_dim = null;
     }
 
     public void onEnable() {
 
-        opitems_version = "1.11.0";
+        opitemsVersion = "1.11.1";
         Main.p = this;
         instance = this;
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");
@@ -154,18 +153,21 @@ public class Main extends JavaPlugin {
             }
         }
 
+        //Update Notifier
+        UpdateNotify.innit(this);
+
         //Schedules
         SchedulerStarter.startSchedulers();
 
         //Updater
         Bukkit.getLogger().info("Retrieving version information...");
-        cUpdater = new CUpdater(opitems_version, "opitems");
+        cUpdater = new CUpdater(opitemsVersion, "opitems");
 
         Bukkit.getLogger().info("");
 
 
         Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems " + opitems_version + "       |");
+        Bukkit.getLogger().info("|        OPItems " + opitemsVersion + "       |");
         Bukkit.getLogger().info("|             by              |");
         Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
@@ -176,11 +178,13 @@ public class Main extends JavaPlugin {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
         }
 
-         logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitems_version);
+         logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitemsVersion);
     }
 
     public void onDisable() {
         Bukkit.getLogger().warning("[OPItems] Disabling. Saving Data...");
+
+        UpdateNotify.save();
 
         ItemData.saveItemData(this);
 
@@ -200,22 +204,14 @@ public class Main extends JavaPlugin {
         return Main.p;
     }
 
-    public Logger getLoggerClass() {
-        return super.getLogger();
-    }
-
-    private static int randomrange(final int min, final int max) {
-        return (int) Celutis.randomRangeDouble(min, max);
-    }
-
     public static void executeUpdate(CommandSender sender) {
 
         if(!cUpdater.shouldUpdate){
-            sender.sendMessage(ChatColor.GREEN + "Version " + opitems_version + " is already up-to-date. The most recent online version is: " + cUpdater.highestVersion.version);
+            sender.sendMessage(ChatColor.GREEN + "Version " + opitemsVersion + " is already up-to-date. The most recent online version is: " + cUpdater.highestVersion.version);
             return;
         }
 
-        sender.sendMessage(ChatColor.GREEN + "Starting update from v" + opitems_version + " to v" + cUpdater.highestVersion.version);
+        sender.sendMessage(ChatColor.GREEN + "Starting update from v" + opitemsVersion + " to v" + cUpdater.highestVersion.version);
 
         boolean success = cUpdater.executeUpdate(Main.getInstance());
 

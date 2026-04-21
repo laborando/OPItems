@@ -15,6 +15,7 @@ public class NormalPop extends BlockPopulator {
     @Override
     public void populate(World world, Random random, Chunk chunk) {
 
+        world.setSpawnFlags(false, false);
 
         //TREES
         int amount = random.nextInt(5)+1; //GRASS-AMOUNT
@@ -55,6 +56,7 @@ public class NormalPop extends BlockPopulator {
             int Z = random.nextInt(15);
             int Y = 1;
 
+            /*
             if(chunk.getBlock(X, 20, Z).getBiome().equals(Biome.SWAMP)){
                 for(Y = world.getMaxHeight()-1; Y>0 ; Y--){
                     if(chunk.getBlock(X, Y, Z).getType() == Material.GRASS_BLOCK){
@@ -66,7 +68,7 @@ public class NormalPop extends BlockPopulator {
                         break;
                     }
                 }
-            }
+            }*/
         }
         //--------------------------------
 

@@ -3,7 +3,6 @@ package items;
 import items.classic.*;
 import items.classic.Sponges.SuperSpongeStarter;
 import items.managers.NoCrafting;
-import items.managers.NoDeopify;
 import items.newer.WandOfWarden;
 import items.normal.*;
 import items.normal.ws.Workstation;
@@ -23,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+import utis.update.UpdateNotify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +58,7 @@ public class EventManager implements Listener {
     public static List<Consumer<PlayerRespawnEvent>> PlayerRespawnEventList = new ArrayList<>();
     public static List<Consumer<InventoryClickEvent>> InventoryClickEventList = new ArrayList<>();
     public static List<Consumer<CraftItemEvent>> CraftItemEventList = new ArrayList<>();
+    public static List<Consumer<PlayerJoinEvent>> PlayerJoinEventList = new ArrayList<>();
 
 
 
@@ -147,10 +148,13 @@ public class EventManager implements Listener {
         PlayerRespawnEventList.add(FlyingStick::event);
 
         //InventoryClickEvent
-        InventoryClickEventList.add(NoDeopify::event);
+        //InventoryClickEventList.add(NoDeopify::event);
 
         //CraftItemEvent
         CraftItemEventList.add(NoCrafting::event);
+
+        //PlayerJoinEvent
+        PlayerJoinEventList.add(UpdateNotify::event);
     }
 
 
@@ -373,8 +377,17 @@ public class EventManager implements Listener {
         });
     }
 
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerJoinEvent e) {
+        PlayerJoinEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
 
     public static String getIDNSorNullIfNotOPItems(ItemStack item){
+        if(item == null) return null;
+
         PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
 
         if(!(pdc.has(NameSpaces.opitemsMarker) || pdc.has(NameSpaces.itemTypeIDNS))) return null;

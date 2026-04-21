@@ -25,6 +25,7 @@ import org.jspecify.annotations.NonNull;
 import utis.CLogger;
 import utis.Celutis;
 import utis.Logutis;
+import utis.update.UpdateNotify;
 
 import java.io.File;
 
@@ -103,6 +104,12 @@ public class CmdExe {
                     Test.runCurrentTest((Player) sender);
                 }
             }
+
+            if (arg.equalsIgnoreCase("um")) {
+                if (sender.isOp()) {
+                    UpdateNotify.toggle(sender);
+                }
+            }else
 
             if (arg.equalsIgnoreCase("upgradeItems")) {
                 if (sender instanceof Player)

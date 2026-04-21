@@ -4,7 +4,7 @@ package items.managers;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class giveItems
+public class GiveItems
 {
 
     public static void giveItemsMessage(final Player player) {

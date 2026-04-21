@@ -5,7 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.util.Vector;
@@ -43,7 +42,7 @@ public class TntBow {
     }
 
     public static void spawnExplosiveTNT(Location location) {
-        for (int i = 0; i < Main.tntbowamount; i++) {
+        for (int i = 0; i < Main.tntBowAmount; i++) {
             Location spawnLocation = location.clone().add(0.5, 0, 0.5);
             TNTPrimed tnt = (TNTPrimed) location.getWorld().spawnEntity(spawnLocation, EntityType.TNT);
 
