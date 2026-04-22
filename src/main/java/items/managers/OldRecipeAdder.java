@@ -15,17 +15,17 @@ import java.util.HashMap;
 
 import static items.managers.RawItemsGenerator.getItem;
 
-public class RecipeAdder {
+public class OldRecipeAdder {
     static HashMap<Integer, NamespacedKey> map;
 
     static {
-        RecipeAdder.map = new HashMap<>();
+        OldRecipeAdder.map = new HashMap<>();
     }
 
     public static void removeRecipes() {
 
         try {
-            for (final NamespacedKey p : RecipeAdder.map.values()) {
+            for (final NamespacedKey p : OldRecipeAdder.map.values()) {
                 Bukkit.removeRecipe(p);
             }
 
@@ -35,89 +35,12 @@ public class RecipeAdder {
     }
 
 
-    private static void addRecipeWithItem(Main plugin, int id, Integer param1, Integer param2, Integer param3, String[] shape, char[] keys, Material[] materials) {
-        if (GlobalVars.craftingDisabled) return;
-
-        NamespacedKey key = new NamespacedKey(plugin, "opitems_recipe_" + id);
-        map.put(id, key);
-
-        ItemStack item;
-        if (param1 != null && param2 != null && param3 != null) item = getItem(id, param1, param2, param3);
-        else if (param1 != null && param2 != null) item = getItem(id, param1, param2);
-        else if (param1 != null) item = getItem(id, param1);
-        else item = getItem(id);
-
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
-        recipe.shape(shape);
-
-        for (int i = 0; i < keys.length; i++) {
-            recipe.setIngredient(keys[i], materials[i]);
-        }
-
-        try {
-            Bukkit.addRecipe(recipe);
-        } catch (Error e) {
-            System.err.println("Error adding recipe " + id + ": " + e.getMessage());
-        }
-    }
-
-    public static void addRecipe1(final Main pluginint, final int level) {
-        if (GlobalVars.craftingDisabled)
-            return;
-
-        final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_1");
-        RecipeAdder.map.put(1, key);
-
-        ItemStack itemStack = getItem(1, level);
-
-        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
-        shapedRecipe.shape(new String[]{"a!a", "a@a", "a@a"});
-        shapedRecipe.setIngredient('@', Material.BAMBOO);
-        shapedRecipe.setIngredient('!', Material.SLIME_BLOCK);
-        try {
-            Bukkit.getServer().addRecipe(shapedRecipe);
-        } catch (Error e) {
-            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
-            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
-            if(!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
-
-            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
-            CLogger.logAndFlush(e.getMessage());
-
-        }
-    }
-
-    public static void addRecipe2(final Main pluginint, final int level) {
-        if (GlobalVars.craftingDisabled)
-            return;
-
-        final NamespacedKey key = new NamespacedKey( pluginint, "opitems_desc_2");
-        RecipeAdder.map.put(2, key);
-        final ItemStack itemStack = getItem(2, level);
-        final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
-        shapedRecipe.shape("a!a", "!!!", "a@a");
-        shapedRecipe.setIngredient('@', Material.BAMBOO);
-        shapedRecipe.setIngredient('!', Material.NETHERITE_BLOCK);
-
-        try {
-            Bukkit.getServer().addRecipe(shapedRecipe);
-        }catch (Error e){
-            Bukkit.getLogger().severe("There was an error adding an recipe! Is this a reload? Please try again.");
-            Bukkit.getLogger().warning("The Error was logged in: $DATAFOLDER/opitems/logs/log_$CURRENTTIMEMILLIS.cel20!");
-            if (!(CLogger.isEnabled())) CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
-
-            CLogger.log("ERROR! Adding Recipe " + shapedRecipe.getKey() + "! Error Message:");
-            CLogger.logAndFlush(e.getMessage());
-
-        }
-    }
-
     public static void addRecipe3(final Main pluginint, int protLevel) {
         if (GlobalVars.craftingDisabled)
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_3");
-        RecipeAdder.map.put(3, key);
+        OldRecipeAdder.map.put(3, key);
         final ItemStack itemStack = getItem(3, protLevel);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"!a!", "!!!", "!!!"});
@@ -141,7 +64,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_4");
-        RecipeAdder.map.put(4, key);
+        OldRecipeAdder.map.put(4, key);
         final ItemStack itemStack = getItem(4);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"a!a", "b!b", "@!@"});
@@ -167,7 +90,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_5");
-        RecipeAdder.map.put(5, key);
+        OldRecipeAdder.map.put(5, key);
         final ItemStack itemStack = getItem(5);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"a!a", "aba", "a@a"});
@@ -193,7 +116,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_6");
-        RecipeAdder.map.put(6, key);
+        OldRecipeAdder.map.put(6, key);
         final ItemStack itemStack = getItem(6);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{" ! ", " b ", " @ "});
@@ -218,7 +141,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_7");
-        RecipeAdder.map.put(7, key);
+        OldRecipeAdder.map.put(7, key);
         final ItemStack itemStack = getItem(7, speed, loot);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"!!!", "a@a", "a@a"});
@@ -243,7 +166,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_8");
-        RecipeAdder.map.put(8, key);
+        OldRecipeAdder.map.put(8, key);
         final ItemStack itemStack = getItem(8);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"b@b", "@!@", "a@a"});
@@ -269,7 +192,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_9");
-        RecipeAdder.map.put(9, key);
+        OldRecipeAdder.map.put(9, key);
         final ItemStack itemStack = getItem(9);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"a@a", "@!@", "a@a"});
@@ -294,7 +217,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_10");
-        RecipeAdder.map.put(10, key);
+        OldRecipeAdder.map.put(10, key);
         final ItemStack itemStack = getItem(10);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"b@b", "@!@", "a@a"});
@@ -320,7 +243,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_11");
-        RecipeAdder.map.put(11, key);
+        OldRecipeAdder.map.put(11, key);
         final ItemStack itemStack = getItem(11);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"b@b", "@!@", "aca"});
@@ -347,7 +270,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_12");
-        RecipeAdder.map.put(12, key);
+        OldRecipeAdder.map.put(12, key);
         final ItemStack itemStack = getItem(12);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"a@a", "@!@", "a@a"});
@@ -372,7 +295,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_13");
-        RecipeAdder.map.put(13, key);
+        OldRecipeAdder.map.put(13, key);
         final ItemStack itemStack = getItem(13);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"a@a", "a!a", "aaa"});
@@ -397,7 +320,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_14");
-        RecipeAdder.map.put(14, key);
+        OldRecipeAdder.map.put(14, key);
         final ItemStack itemStack = getItem(14);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"aba", "!@!", "aaa"});
@@ -423,7 +346,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_15");
-        RecipeAdder.map.put(15, key);
+        OldRecipeAdder.map.put(15, key);
         final ItemStack itemStack = getItem(15);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"aa@", "a@b", "@ab"});
@@ -448,7 +371,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_16");
-        RecipeAdder.map.put(16, key);
+        OldRecipeAdder.map.put(16, key);
         final ItemStack itemStack = getItem(16);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bbb", "b@b", "aca"});
@@ -474,7 +397,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_17");
-        RecipeAdder.map.put(17, key);
+        OldRecipeAdder.map.put(17, key);
         final ItemStack itemStack = getItem(17);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bbb", "b@b", "aca"});
@@ -500,7 +423,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_18");
-        RecipeAdder.map.put(18, key);
+        OldRecipeAdder.map.put(18, key);
         final ItemStack itemStack = getItem(18);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"aaa", "b@b", "bcb"});
@@ -526,7 +449,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_19");
-        RecipeAdder.map.put(19, key);
+        OldRecipeAdder.map.put(19, key);
         final ItemStack itemStack = getItem(19);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"aba", "b@b", "aba"});
@@ -551,7 +474,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_20");
-        RecipeAdder.map.put(20, key);
+        OldRecipeAdder.map.put(20, key);
         final ItemStack itemStack = getItem(20);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"@a@", "tbt", "@t@"});
@@ -577,7 +500,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_21");
-        RecipeAdder.map.put(21, key);
+        OldRecipeAdder.map.put(21, key);
         final ItemStack itemStack = getItem(21);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"@a@", "tbt", "@t@"});
@@ -603,7 +526,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_22");
-        RecipeAdder.map.put(22, key);
+        OldRecipeAdder.map.put(22, key);
         final ItemStack itemStack = getItem(22);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bbb", "btb", "bab"});
@@ -628,7 +551,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_23");
-        RecipeAdder.map.put(23, key);
+        OldRecipeAdder.map.put(23, key);
         final ItemStack itemStack = getItem(23);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bab", "beb", "btb"});
@@ -653,7 +576,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_24");
-        RecipeAdder.map.put(24, key);
+        OldRecipeAdder.map.put(24, key);
         final ItemStack itemStack = getItem(24);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bab", "aba", "bab"});
@@ -677,7 +600,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_25");
-        RecipeAdder.map.put(25, key);
+        OldRecipeAdder.map.put(25, key);
         final ItemStack itemStack = getItem(25);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bab", "aca", "bab"});
@@ -706,7 +629,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_26");
-        RecipeAdder.map.put(26, key);
+        OldRecipeAdder.map.put(26, key);
         final ItemStack itemStack = getItem(26);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape("dcd", "cac", "cbc");
@@ -736,7 +659,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_27");
-        RecipeAdder.map.put(27, key);
+        OldRecipeAdder.map.put(27, key);
         final ItemStack itemStack = getItem(27);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"a!a", "aba", "a@a"});
@@ -762,7 +685,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_28");
-        RecipeAdder.map.put(28, key);
+        OldRecipeAdder.map.put(28, key);
         final ItemStack itemStack = getItem(28);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"b!b", "bxb", "a@a"});
@@ -789,7 +712,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_29");
-        RecipeAdder.map.put(29, key);
+        OldRecipeAdder.map.put(29, key);
         final ItemStack itemStack = getItem(29);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bbb", "cxc", "a@a"});
@@ -816,7 +739,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_30");
-        RecipeAdder.map.put(30, key);
+        OldRecipeAdder.map.put(30, key);
         final ItemStack itemStack = getItem(30);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bcb", "bab", "aaa"});
@@ -841,7 +764,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_31");
-        RecipeAdder.map.put(31, key);
+        OldRecipeAdder.map.put(31, key);
         final ItemStack itemStack = getItem(31);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bbb", "ada", "aca"});
@@ -867,7 +790,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_32");
-        RecipeAdder.map.put(32, key);
+        OldRecipeAdder.map.put(32, key);
         final ItemStack itemStack = getItem(32);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"bbb", "ada", "ccc"});
@@ -893,7 +816,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_33");
-        RecipeAdder.map.put(33, key);
+        OldRecipeAdder.map.put(33, key);
         final ItemStack itemStack = getItem(33);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"ebe", "ada", "aca"});
@@ -921,7 +844,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_34");
-        RecipeAdder.map.put(34, key);
+        OldRecipeAdder.map.put(34, key);
         final ItemStack itemStack = getItem(34);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"aaa", "aba", "aaa"});
@@ -945,7 +868,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_35");
-        RecipeAdder.map.put(35, key);
+        OldRecipeAdder.map.put(35, key);
         final ItemStack itemStack = getItem(35);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"aaa", "aba", "aaa"});
@@ -969,7 +892,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_36");
-        RecipeAdder.map.put(36, key);
+        OldRecipeAdder.map.put(36, key);
         final ItemStack itemStack = getItem(36);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"aba", "bab", "aba"});
@@ -993,7 +916,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_37");
-        RecipeAdder.map.put(37, key);
+        OldRecipeAdder.map.put(37, key);
         final ItemStack itemStack = getItem(37);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"aba", "xcx", "xcx"});
@@ -1019,7 +942,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_38");
-        RecipeAdder.map.put(38, key);
+        OldRecipeAdder.map.put(38, key);
         final ItemStack itemStack = getItem(38);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"xcx", "xax", "bbb"});
@@ -1045,7 +968,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey((Plugin) pluginint, "opitems_desc_39");
-        RecipeAdder.map.put(39, key);
+        OldRecipeAdder.map.put(39, key);
         final ItemStack itemStack = getItem(39);
 
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
@@ -1074,7 +997,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_40");
-        RecipeAdder.map.put(40, key);
+        OldRecipeAdder.map.put(40, key);
         final ItemStack itemStack = getItem(40);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape("ccc", "xax", "bdb");
@@ -1103,7 +1026,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_41");
-        RecipeAdder.map.put(41, key);
+        OldRecipeAdder.map.put(41, key);
 
         Bukkit.removeRecipe(key);
         //Dont know why this has to be, but it has to be fff
@@ -1135,7 +1058,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_42");
-        RecipeAdder.map.put(42, key);
+        OldRecipeAdder.map.put(42, key);
         final ItemStack itemStack = getItem(42);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[]{"xbx", "xcx", "xax"});
@@ -1161,7 +1084,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_43");
-        RecipeAdder.map.put(43, key);
+        OldRecipeAdder.map.put(43, key);
         final ItemStack itemStack = getItem(43);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape(new String[] { "xbx", "xcx", "xax" });
@@ -1187,7 +1110,7 @@ public class RecipeAdder {
             return;
 
         final NamespacedKey key = new NamespacedKey(pluginint, "opitems_desc_44");
-        RecipeAdder.map.put(44, key);
+        OldRecipeAdder.map.put(44, key);
         final ItemStack itemStack = getItem(44);
         final ShapedRecipe shapedRecipe = new ShapedRecipe(key, itemStack);
         shapedRecipe.shape("abc", "xxx", "def");

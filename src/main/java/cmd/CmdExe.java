@@ -4,11 +4,11 @@ import cel20.op.Main;
 import cel20.op.Test;
 import cmd.cmds.Give;
 import cmd.cmds.Help;
-import cmd.cmds.Recipe;
+import cmd.cmds.GetRecipe;
 import cmd.cmds.Version;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import items.classic.Sponges.SuperSponge;
-import items.managers.RecipeAdder;
+import items.managers.OldRecipeAdder;
 import items.managers.upgrade.ItemUpgrader;
 import items.normal.CursedSword;
 import items.normal.Landmine;
@@ -274,11 +274,11 @@ public class CmdExe {
             //RECIPIES
             else if (arg.equalsIgnoreCase("recipes")) {
 
-                Recipe.execute(sender);
+                GetRecipe.execute(sender);
 
             } else if (arg.equalsIgnoreCase("remove_recipes")) {
                 if (sender.isOp()) {
-                    RecipeAdder.removeRecipes();
+                    OldRecipeAdder.removeRecipes();
                     sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
                 }
             } else if (arg.equalsIgnoreCase("remove_recipes_all")) {

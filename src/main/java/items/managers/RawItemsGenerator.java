@@ -46,7 +46,7 @@ public class RawItemsGenerator {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
                 if(param1 == -5){
-                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedKnockyTheStickKnockbackEnchantmentLevel");
+                    param1 = 10;
                 }
                     itemMeta.addEnchant(Enchantment.KNOCKBACK, param1, true);
 
@@ -62,7 +62,7 @@ public class RawItemsGenerator {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
                 if(param1 == -5){
-                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedBlockySwordDamageAllEnchantmentLevel");
+                    param1 = 10;
                 }
                     itemMeta.addEnchant(Enchantment.SHARPNESS, param1, true);
 

@@ -8,9 +8,10 @@ import cel20.op.load.Commands;
 import cel20.op.load.VersionDependent;
 import items.EventManager;
 import items.NameSpaces;
-import items.managers.NoCrafting;
+import items.abracator.TotalItems;
+import items.allRecipes.RecipeAdder;
 import items.sheduled.SchedulerStarter;
-import items.managers.RecipeAdder;
+import items.managers.OldRecipeAdder;
 import metrics.Metrics;
 import metrics.WorkerLogger;
 import org.bukkit.Bukkit;
@@ -21,12 +22,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import utis.CLogger;
-import utis.Celutis;
 import utis.update.CUpdater;
 import utis.update.UpdateNotify;
 
 import java.io.File;
-import java.util.logging.Logger;
 
 public class Main extends JavaPlugin {
 
@@ -65,33 +64,14 @@ public class Main extends JavaPlugin {
 
     public void onEnable() {
 
-        opitemsVersion = "1.11.1";
+        opitemsVersion = "1.11.2";
         Main.p = this;
         instance = this;
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");
         final Main plugin = this;
 
-        String mcVer = Bukkit.getVersion();
-
-        boolean sheduleNewerFeatures = false;
-
-        //Must be first!
         NameSpaces.innitNameSpaces(this);
 
-        try {
-            String modernVersion = mcVer.split("\\.")[0];
-            Bukkit.getLogger().info("Server is running modern version " + modernVersion);
-
-            String majVer = mcVer.split("\\.")[1];
-            Bukkit.getLogger().info("Server is running major version " + majVer);
-
-            if (Integer.parseInt(majVer) > 19) {
-                sheduleNewerFeatures = true;
-            }else if(Integer.parseInt(modernVersion) > 1){
-                sheduleNewerFeatures = true;
-            }
-        } catch (Exception ignored) {
-        }
 
         //EVENTS
         EventManager.innitEventManager(this);
@@ -109,46 +89,32 @@ public class Main extends JavaPlugin {
         Commands.setAllexecutors(this);
 
 
-
         //CONTENT
         //items
         ItemData.loadItems(plugin);
 
+        RecipeAdder.addOPItemsRecipes();
+        TotalItems.addAllRecipes();
+
         //Newer Content
-        /*
-        if (config.getBoolean("EnableItemsForNewerVersions")) {
-            if (sheduleNewerFeatures) {
-                VersionDependent.loadNewerItems(this);
-                GlobalVars.newerFeaturesEnabled = true;
-                Bukkit.getLogger().info("Features for newer Versions enabled.");
-            } else {
-                Bukkit.getLogger().info("Features for newer Versions not enabled. Please use Mc1.20+");
-            }
-        }
-        */
-        if (sheduleNewerFeatures) {
-            VersionDependent.loadNewerItems(this);
-            GlobalVars.newerFeaturesEnabled = true;
-            Bukkit.getLogger().info("Features for newer Versions (1.20+) enabled.");
-        }
+        VersionDependent.loadNewerItems(this);
+        GlobalVars.newerFeaturesEnabled = true;
+
 
         //Cloudflare worker
         WorkerLogger logger = new WorkerLogger("https://plugins.opitems.workers.dev/");
 
 
         //bStats
-        if(!config.getBoolean("OPItemsSpecificBStatsDisable")){
+        if (!config.getBoolean("OPItemsSpecificBStatsDisable")) {
             metrics = new Metrics(this, 27611);
 
-            if(GlobalVars.newerFeaturesEnabled){
-                metrics.addCustomChart(new Metrics.SimplePie("newer_version_enabled", () -> "true"));
-            }else{
-                metrics.addCustomChart(new Metrics.SimplePie("newer_version_enabled", () -> "false"));
-            }
+            metrics.addCustomChart(new Metrics.SimplePie("newer_version_enabled", () -> "true"));
 
-            if(GlobalVars.craftingDisabled){
+
+            if (GlobalVars.craftingDisabled) {
                 metrics.addCustomChart(new Metrics.SimplePie("crafting_disabled", () -> "true"));
-            }else{
+            } else {
                 metrics.addCustomChart(new Metrics.SimplePie("crafting_disabled", () -> "false"));
             }
         }
@@ -174,11 +140,11 @@ public class Main extends JavaPlugin {
         //Bukkit.getLogger().info("This is a BETA Version of OPItems!");
         Bukkit.getLogger().info("");
 
-        if(GlobalVars.craftingDisabled) {
+        if (GlobalVars.craftingDisabled) {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
         }
 
-         logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitemsVersion);
+        logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitemsVersion);
     }
 
     public void onDisable() {
@@ -188,7 +154,7 @@ public class Main extends JavaPlugin {
 
         ItemData.saveItemData(this);
 
-        RecipeAdder.removeRecipes();
+        OldRecipeAdder.removeRecipes();
 
         try {
             CLogger.flushNow();
@@ -206,7 +172,7 @@ public class Main extends JavaPlugin {
 
     public static void executeUpdate(CommandSender sender) {
 
-        if(!cUpdater.shouldUpdate){
+        if (!cUpdater.shouldUpdate) {
             sender.sendMessage(ChatColor.GREEN + "Version " + opitemsVersion + " is already up-to-date. The most recent online version is: " + cUpdater.highestVersion.version);
             return;
         }
@@ -215,12 +181,12 @@ public class Main extends JavaPlugin {
 
         boolean success = cUpdater.executeUpdate(Main.getInstance());
 
-        if(success){
+        if (success) {
             sender.sendMessage(ChatColor.GREEN + "Successfully updated! Please restart the server! There could be errors in changed classes if not restarted!");
-        }else{
+        } else {
             sender.sendMessage(ChatColor.RED + "Failed updating!");
 
-            if(!(sender instanceof ConsoleCommandSender)){
+            if (!(sender instanceof ConsoleCommandSender)) {
                 sender.sendMessage(ChatColor.RED + "Please refer to the error log in the console");
             }
         }

@@ -2,7 +2,7 @@ package cel20.op.config;
 
 import cel20.op.GlobalVars;
 import cel20.op.Main;
-import items.managers.RecipeAdder;
+import items.managers.OldRecipeAdder;
 import items.normal.ws.WsGUIHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,122 +33,112 @@ public class ConfigLoader {
             Bukkit.getLogger().info("[OPItems] AutoItemRemove Started!");
         }
 
-        //ActivateWandofBlocks
-        if (config.getBoolean("ActivateWandofBlocks")) {
-        }
-
-        if (config.getBoolean("AllowCraftKnockyTheStick")) {
-            RecipeAdder.addRecipe1(plugin, config.getInt("CraftedKnockyTheStickKnockbackEnchantmentLevel"));
-        }
-        if (config.getBoolean("AllowCraftBlockySword")) {
-            RecipeAdder.addRecipe2(plugin, config.getInt("CraftedBlockySwordDamageAllEnchantmentLevel"));
-        }
         if (config.getBoolean("AllowCraftTheAntiDamage")) {
-            RecipeAdder.addRecipe3(plugin, config.getInt("CraftedTheAntiDamageProtectionEnchantmentLevel"));
+            OldRecipeAdder.addRecipe3(plugin, config.getInt("CraftedTheAntiDamageProtectionEnchantmentLevel"));
         }
         if (config.getBoolean("AllowBower")) {
-            RecipeAdder.addRecipe4(plugin);
+            OldRecipeAdder.addRecipe4(plugin);
         }
         if (config.getBoolean("AllowBlazer")) {
-            RecipeAdder.addRecipe5(plugin);
+            OldRecipeAdder.addRecipe5(plugin);
         }
         if (config.getBoolean("AllowBoomer")) {
-            RecipeAdder.addRecipe6(plugin);
+            OldRecipeAdder.addRecipe6(plugin);
         }
         if (config.getBoolean("AllowCraftPickyPick")) {
             final int speed = config.getInt("CraftedPickyPickDigSpeedEnchantmentLevel");
             final int loot = config.getInt("CraftedPickyPickLootBonusBlocksEnchantmentLevel");
-            RecipeAdder.addRecipe7(plugin, speed, loot);
+            OldRecipeAdder.addRecipe7(plugin, speed, loot);
         }
         if (config.getBoolean("AllowPigCannon")) {
-            RecipeAdder.addRecipe8(plugin);
+            OldRecipeAdder.addRecipe8(plugin);
         }
         if (config.getBoolean("AllowPigCannon")) {
-            RecipeAdder.addRecipe9(plugin);
+            OldRecipeAdder.addRecipe9(plugin);
         }
         if (config.getBoolean("AllowEndsword")) {
-            RecipeAdder.addRecipe10(plugin);
+            OldRecipeAdder.addRecipe10(plugin);
         }
         if (config.getBoolean("AllowBlitzer")) {
-            RecipeAdder.addRecipe11(plugin);
+            OldRecipeAdder.addRecipe11(plugin);
         }
         if (config.getBoolean("AllowCrafter")) {
-            RecipeAdder.addRecipe12(plugin);
+            OldRecipeAdder.addRecipe12(plugin);
         }
         if (config.getBoolean("AllowFlyFeather")) {
-            RecipeAdder.addRecipe13(plugin);
+            OldRecipeAdder.addRecipe13(plugin);
         }
         if (config.getBoolean("AllowAntiFall")) {
-            RecipeAdder.addRecipe14(plugin);
+            OldRecipeAdder.addRecipe14(plugin);
         }
         if (config.getBoolean("AllowHookOfVelectory")) {
-            RecipeAdder.addRecipe15(plugin);
+            OldRecipeAdder.addRecipe15(plugin);
         }
         if (config.getBoolean("AllowCraftNightVisor")) {
-            RecipeAdder.addRecipe16(plugin);
+            OldRecipeAdder.addRecipe16(plugin);
         }
         if (config.getBoolean("AllowCraftWaterHelmet")) {
-            RecipeAdder.addRecipe17(plugin);
+            OldRecipeAdder.addRecipe17(plugin);
         }
         if (config.getBoolean("AllowCraftFireShoes")) {
-            RecipeAdder.addRecipe18(plugin);
+            OldRecipeAdder.addRecipe18(plugin);
         }
         if (config.getBoolean("AllowCraftLauncher")) {
-            RecipeAdder.addRecipe19(plugin);
+            OldRecipeAdder.addRecipe19(plugin);
         }
         if (config.getBoolean("AllowCraftWandOfBoom")) {
-            RecipeAdder.addRecipe20(plugin);
+            OldRecipeAdder.addRecipe20(plugin);
         }
         if (config.getBoolean("AllowCraftWandOfMassiveBoom")) {
-            RecipeAdder.addRecipe21(plugin);
+            OldRecipeAdder.addRecipe21(plugin);
         }
         if (config.getBoolean("AllowCraftWandOfInvisibility")) {
-            RecipeAdder.addRecipe22(plugin);
+            OldRecipeAdder.addRecipe22(plugin);
         }
         if (config.getBoolean("AllowCraftSpeedLeggings")) {
-            RecipeAdder.addRecipe23(plugin);
+            OldRecipeAdder.addRecipe23(plugin);
         }
         if (config.getBoolean("AllowCraftSuperSponge")) {
-            RecipeAdder.addRecipe24(plugin);
+            OldRecipeAdder.addRecipe24(plugin);
         }
         if (config.getBoolean("AllowCraftLavaSponge")) {
-            RecipeAdder.addRecipe25(plugin);
+            OldRecipeAdder.addRecipe25(plugin);
         }
         if (config.getBoolean("AllowCraftEnderpealer")) {
-            RecipeAdder.addRecipe26(plugin);
+            OldRecipeAdder.addRecipe26(plugin);
         }
         if (config.getBoolean("AllowCraftTNTDetonator")) {
-            RecipeAdder.addRecipe27(plugin);
+            OldRecipeAdder.addRecipe27(plugin);
         }
         if (config.getBoolean("AllowCraftCursedSword")) {
-            RecipeAdder.addRecipe28(plugin);
+            OldRecipeAdder.addRecipe28(plugin);
         }
         if (config.getBoolean("AllowCraftPrivatePocketDimension")) {
-            RecipeAdder.addRecipe29(plugin);
+            OldRecipeAdder.addRecipe29(plugin);
         }
         if (config.getBoolean("AllowCraftAntiExplosionHelmet")) {
-            RecipeAdder.addRecipe30(plugin);
+            OldRecipeAdder.addRecipe30(plugin);
         }
 //AllowCraftandActivatedWandofHome
         if (config.getBoolean("AllowCraftWandOfHome")) {
-            RecipeAdder.addRecipe31(plugin);
+            OldRecipeAdder.addRecipe31(plugin);
         }
 //AllowCraftTNTBow        
         if (config.getBoolean("AllowCraftTNTBow")) {
-            RecipeAdder.addRecipe32(plugin);
+            OldRecipeAdder.addRecipe32(plugin);
         }
         //AllowCraftWandofBlocks
         if (config.getBoolean("AllowCraftWandofBlocks")) {
-            RecipeAdder.addRecipe33(plugin);
+            OldRecipeAdder.addRecipe33(plugin);
         }
         //EnablePortal2Go
         if (config.getBoolean("EnablePortal2Go")) {
-            RecipeAdder.addRecipe34(plugin);
+            OldRecipeAdder.addRecipe34(plugin);
         }
 
         //config.addDefault("EnableCraftSkullImitator", (Object)true);
         if (config.getBoolean("EnableSkullImitator")) {
-            RecipeAdder.addRecipe35(plugin);
+            OldRecipeAdder.addRecipe35(plugin);
         }
         //PrivatePocketDimensionPerformanceModeActivated
         if (config.getBoolean("PrivatePocketDimensionPerformanceModeActivated")) {
@@ -156,12 +146,12 @@ public class ConfigLoader {
         }
         //EnableLandmine
         if (config.getBoolean("EnableLandmine")) {
-            RecipeAdder.addRecipe36(plugin);
-            RecipeAdder.addRecipe37(plugin);
+            OldRecipeAdder.addRecipe36(plugin);
+            OldRecipeAdder.addRecipe37(plugin);
         }
         //AllowCraftInfWaterBucket
         if (config.getBoolean("AllowCraftInfWaterBucket")) {
-            RecipeAdder.addRecipe38(plugin);
+            OldRecipeAdder.addRecipe38(plugin);
         }
         //EnableLandminePerformanceMode
         if (config.getBoolean("EnableLandminePerformanceMode")) {
@@ -170,26 +160,26 @@ public class ConfigLoader {
 
         //AllowCraftProtectiveElytra
         if (config.getBoolean("AllowCraftInfWaterBucket")) {
-            RecipeAdder.addRecipe39(plugin);
+            OldRecipeAdder.addRecipe39(plugin);
         }
 
-        RecipeAdder.addRecipe40(plugin);
+        OldRecipeAdder.addRecipe40(plugin);
 
         if (config.getBoolean("EnableCraftWandOfWarden")) {
-            RecipeAdder.addRecipe41(plugin);
+            OldRecipeAdder.addRecipe41(plugin);
         }
         //Piercer
 
         if (config.getBoolean("AllowCraftPiercer")) {
             GlobalVars.piercerDamageLevel = config.getInt("PiercerDamageLevel", 3);
             GlobalVars.piercerKnockbackLevel = config.getInt("PiercerKnockbackLevel", 3);
-            RecipeAdder.addRecipe43(plugin);
+            OldRecipeAdder.addRecipe43(plugin);
         }
 
         //ActivateWorkstation
         if (config.getBoolean("ActivateWorkstation")) {
             m.getServer().getPluginManager().registerEvents(new WsGUIHandler(), m);
-            RecipeAdder.addRecipe44(plugin);
+            OldRecipeAdder.addRecipe44(plugin);
         }
 
         Main.ore_gen_chance_private_dim = config.getInt("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock");
