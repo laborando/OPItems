@@ -154,7 +154,7 @@ public class Main extends JavaPlugin {
 
         ItemData.saveItemData(this);
 
-        OldRecipeAdder.removeRecipes();
+        TotalItems.removeAllRecipes();
 
         try {
             CLogger.flushNow();

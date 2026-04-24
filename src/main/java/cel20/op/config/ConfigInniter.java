@@ -96,15 +96,10 @@ public class ConfigInniter {
         config.addDefault("CraftedKnockyTheStickKnockbackEnchantmentLevel", 10);
         config.addDefault("CraftedBlockySwordDamageAllEnchantmentLevel", 17);
         config.addDefault("CraftedTheAntiDamageProtectionEnchantmentLevel", 75);
-        config.addDefault("CraftedPickyPickDigSpeedEnchantmentLevel", 1200);
-        config.addDefault("CraftedPickyPickLootBonusBlocksEnchantmentLevel", 5);
-
 
         config.addDefault("SuperSpongeClearRadius", 20);
 
-
         config.addDefault("UUID-DoNotChange", newUUID);
-
 
         //AUTOITEMSREMOVE
         config.addDefault("EnableAutomaticPeriodicItemsRemove", Boolean.FALSE);

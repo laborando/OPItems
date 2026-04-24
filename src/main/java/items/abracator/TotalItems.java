@@ -17,4 +17,12 @@ public class TotalItems {
 
     }
 
+    public static void removeAllRecipes() {
+
+        for (CItem item : items) {
+            Bukkit.getServer().removeRecipe(item.key);
+        }
+
+    }
+
 }

@@ -17,6 +17,7 @@ public class CItem {
     ItemStack result;
     boolean finished;
     Material[] materials = new Material[9];
+    public NamespacedKey key;
 
     /***
      * Creates CItem and adds itself to Total Items
@@ -128,7 +129,7 @@ public class CItem {
         }
 
 
-        final NamespacedKey key = new NamespacedKey(Main.getInstance(), "opitems_" + id);
+        key = new NamespacedKey(Main.getInstance(), "opitems_" + id);
 
         recipe = new ShapedRecipe(key, result);
 

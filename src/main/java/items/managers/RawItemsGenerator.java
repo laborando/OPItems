@@ -80,7 +80,7 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.RED + "The Anti Damage");
 
                 if(param1 == -5){
-                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedTheAntiDamageProtectionEnchantmentLevel");
+                    param1 = 10;
                 }
 
 
@@ -128,11 +128,11 @@ public class RawItemsGenerator {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
                 if(param1 == -5){
-                    param1 = (int) Main.getPluginInstance().getConfig().get("CraftedPickyPickDigSpeedEnchantmentLevel");
+                    param1 = 100;
                 }
 
                 if(param2 == -5){
-                    param2 = (int) Main.getPluginInstance().getConfig().get("CraftedPickyPickLootBonusBlocksEnchantmentLevel");
+                    param2 =  6;
                 }
 
                 itemMeta.addEnchant(Enchantment.FORTUNE, param2, true); // loot
@@ -203,7 +203,7 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.RED + "FlyFeather");
                 lore = new ArrayList<>();
-                lore.add(ChatColor.RED + " - Enables flying");
+                lore.add(ChatColor.RED + " - Click to enables flying");
                 itemMeta.setLore(lore);
                 itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -269,7 +269,7 @@ public class RawItemsGenerator {
             case 19:
                 itemStack = new ItemStack(Material.FEATHER, 1);
                 itemMeta = itemStack.getItemMeta();
-                itemMeta.setDisplayName(ChatColor.RED + "Laucher");
+                itemMeta.setDisplayName(ChatColor.RED + "Launcher");
                 itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.SOUL_SPEED, 10, true);
@@ -430,19 +430,19 @@ public class RawItemsGenerator {
             case 34:
                 itemStack = new ItemStack(Material.STICK, 1);
                 itemMeta = itemStack.getItemMeta();
-                itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Portal2Go");
+                itemMeta.setDisplayName(ChatColor.DARK_RED + "Portal2Go");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
                 itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore34 = new ArrayList<>();
-                lore34.add(ChatColor.RED + " - Right-click in the air to travel between the overworld and the nether");
+                lore34.add(ChatColor.RED + " - Right-click to travel between the overworld and the nether");
                 itemMeta.setLore(lore34);
                 break;
 
             case 35:
                 itemStack = new ItemStack(Material.PLAYER_HEAD, 1);
                 itemMeta = itemStack.getItemMeta();
-                itemMeta.setDisplayName(ChatColor.RED + "" + ChatColor.DARK_RED + "Skull Imitator");
+                itemMeta.setDisplayName(ChatColor.DARK_RED + "Skull Imitator");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
                 itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

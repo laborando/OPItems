@@ -7,6 +7,7 @@ import cmd.cmds.Help;
 import cmd.cmds.GetRecipe;
 import cmd.cmds.Version;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
+import items.abracator.TotalItems;
 import items.classic.Sponges.SuperSponge;
 import items.managers.OldRecipeAdder;
 import items.managers.upgrade.ItemUpgrader;
@@ -278,7 +279,7 @@ public class CmdExe {
 
             } else if (arg.equalsIgnoreCase("remove_recipes")) {
                 if (sender.isOp()) {
-                    OldRecipeAdder.removeRecipes();
+                    TotalItems.removeAllRecipes();
                     sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
                 }
             } else if (arg.equalsIgnoreCase("remove_recipes_all")) {
