@@ -2,10 +2,7 @@ package cmd;
 
 import cel20.op.Main;
 import cel20.op.Test;
-import cmd.cmds.Give;
-import cmd.cmds.Help;
-import cmd.cmds.GetRecipe;
-import cmd.cmds.Version;
+import cmd.cmds.*;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import items.abracator.TotalItems;
 import items.classic.Sponges.SuperSponge;
@@ -105,6 +102,14 @@ public class CmdExe {
                     Test.runCurrentTest((Player) sender);
                 }
             }
+
+            if (arg.equalsIgnoreCase("config")) {
+                OpenConfig.execute(sender);
+            }else
+
+            if (arg.equalsIgnoreCase("changelog")) {
+                GetChangelog.execute(sender);
+            }else
 
             if (arg.equalsIgnoreCase("um")) {
                 if (sender.isOp()) {

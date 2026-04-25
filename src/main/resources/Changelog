@@ -1,7 +1,6 @@
 Anmerkungen:
 
 TODO
- - Inhouse recipe viewer
  - Shedules unified checking for item strings
  - See changelog inhouse
 
@@ -10,7 +9,13 @@ IN WORK
 
 DONE
  - Payed off some generational technical debt
+ - Inhouse recipe viewer
+ - In-Game config setter for some configs --> Doesnt even need a restart wow
+ - Super Sponge should not be laggy any longer
+ - Increased readius of super sponge
  - Redone the crafting recipes
  - Removed many Configs
  - Removed the ability to set the enchantment levels of items from crafting for now
  - Fixed Spellings on some items (and their lore)
+ - Every OPItems now has a description
+ - Added /opitems changelog

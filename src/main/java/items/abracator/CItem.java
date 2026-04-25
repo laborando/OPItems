@@ -13,10 +13,11 @@ import java.io.BufferedWriter;
 public class CItem {
 
     public int id;
-    ShapedRecipe recipe;
-    ItemStack result;
-    boolean finished;
-    Material[] materials = new Material[9];
+    public ShapedRecipe recipe;
+    public ItemStack result;
+    public boolean finished;
+    public boolean enabled = true;
+    public Material[] materials = new Material[9];
     public NamespacedKey key;
 
     /***

@@ -66,7 +66,8 @@ public class DimensionWand {
             final String wn = "pocket-world-" + e.getPlayer().getUniqueId();
             World world = Bukkit.getWorld(wn);
             assert world != null;
-            world.setSpawnFlags(false, false);
+
+            //world.setSpawnFlags(false, false);
 
 
             if (world != null) {

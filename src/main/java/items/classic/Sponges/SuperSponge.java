@@ -8,19 +8,24 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SuperSponge
 {
     public static void runSponge(final Block block) {
-        final List<Block> b = new CopyOnWriteArrayList<Block>();
+        final List<Block> b = new ArrayList<>();
+        Queue<Block> q = new ArrayDeque<Block>();
         b.add(block);
+        q.add(block);
 
-        recursiveSpongeRunner(0, b);
+        recursiveSpongeRunner(0, b, q);
     }
 
-    public static void recursiveSpongeRunner(int cStep, List<Block> b){
+    public static void recursiveSpongeRunner(int cStep, List<Block> b, Queue<Block> q){
 
         if(cStep == GlobalVars.spongeClearRange){
             recursiveWaterRemoval(0, b);
@@ -28,15 +33,48 @@ public class SuperSponge
         }
 
 
-        get_face_block(b);
+        for (int i = 0; i < 500; i++) {
+            addFace(b, q);
+        }
 
-        Runnable r = () -> SuperSponge.recursiveSpongeRunner(cStep + 1, b);
+        Runnable r = () -> SuperSponge.recursiveSpongeRunner(cStep + 1, b, q);
         Bukkit.getScheduler().runTaskLater(Main.getPluginInstance(), r, 1L);
 
     }
 
-    public static void recursiveWaterRemoval(int cStep, List<Block> b){
+    private static void addFace(List<Block> b, Queue<Block> q) {
 
+        Block block = q.poll();
+
+        if (!b.contains(block.getRelative(BlockFace.DOWN, 1))) {
+            b.add(block.getRelative(BlockFace.DOWN, 1));
+            q.add(block.getRelative(BlockFace.DOWN, 1));
+        }
+        if (!b.contains(block.getRelative(BlockFace.UP, 1))) {
+            b.add(block.getRelative(BlockFace.UP, 1));
+            q.add(block.getRelative(BlockFace.UP, 1));
+        }
+        if (!b.contains(block.getRelative(BlockFace.EAST, 1))) {
+            b.add(block.getRelative(BlockFace.EAST, 1));
+            q.add(block.getRelative(BlockFace.EAST, 1));
+        }
+        if (!b.contains(block.getRelative(BlockFace.NORTH, 1))) {
+            b.add(block.getRelative(BlockFace.NORTH, 1));
+            q.add(block.getRelative(BlockFace.NORTH, 1));
+        }
+        if (!b.contains(block.getRelative(BlockFace.SOUTH, 1))) {
+            b.add(block.getRelative(BlockFace.SOUTH, 1));
+            q.add(block.getRelative(BlockFace.SOUTH, 1));
+        }
+        if (!b.contains(block.getRelative(BlockFace.WEST, 1))) {
+            b.add(block.getRelative(BlockFace.WEST, 1));
+            q.add(block.getRelative(BlockFace.WEST, 1));
+        }
+
+
+    }
+
+    public static void recursiveWaterRemoval(int cStep, List<Block> b){
 
         if(!b.isEmpty()){
             Block block = b.get(0);

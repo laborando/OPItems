@@ -5,13 +5,11 @@ import cel20.op.config.ConfigInniter;
 import cel20.op.config.ConfigLoader;
 import cel20.op.data.ItemData;
 import cel20.op.load.Commands;
-import cel20.op.load.VersionDependent;
 import items.EventManager;
 import items.NameSpaces;
 import items.abracator.TotalItems;
 import items.allRecipes.RecipeAdder;
 import items.sheduled.SchedulerStarter;
-import items.managers.OldRecipeAdder;
 import metrics.Metrics;
 import metrics.WorkerLogger;
 import org.bukkit.Bukkit;
@@ -38,7 +36,6 @@ public class Main extends JavaPlugin {
     public static boolean priDimPerformMode = false;
     public static boolean landminePerfModeEnabeled = false;
     public static int ore_gen_chance_private_dim;
-    public static int config_anti_explo_helmet_lvl;
     public static boolean isprivatedimenableled;
     public FileConfiguration config;
     static Plugin p;
@@ -53,7 +50,6 @@ public class Main extends JavaPlugin {
 
     static {
         Main.ore_gen_chance_private_dim = 100;
-        Main.config_anti_explo_helmet_lvl = 75;
         Main.isprivatedimenableled = true;
         Main.tntBowAmount = 50;
     }
@@ -95,9 +91,12 @@ public class Main extends JavaPlugin {
 
         RecipeAdder.addOPItemsRecipes();
         TotalItems.addAllRecipes();
+        TotalItems.innit(this);
+
+        if(GlobalVars.craftingDisabled)
+            TotalItems.disableCrafting();
 
         //Newer Content
-        VersionDependent.loadNewerItems(this);
         GlobalVars.newerFeaturesEnabled = true;
 
 
@@ -154,7 +153,9 @@ public class Main extends JavaPlugin {
 
         ItemData.saveItemData(this);
 
+        TotalItems.save();
         TotalItems.removeAllRecipes();
+
 
         try {
             CLogger.flushNow();

@@ -9,10 +9,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-public class WsGUIHandler implements Listener
+public class WsGUIHandler
 {
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onInventoryClick(final InventoryClickEvent event) {
+    public static void onInventoryClick(final InventoryClickEvent event) {
         final HumanEntity player = event.getWhoClicked();
         final ItemStack item = event.getCurrentItem();
 

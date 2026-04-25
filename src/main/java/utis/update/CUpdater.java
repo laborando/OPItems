@@ -3,6 +3,7 @@ package utis.update;
 import cel20.op.Main;
 import io.papermc.paper.ServerBuildInfo;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -115,7 +116,7 @@ public class CUpdater
 
         ver.authorID = (String)version.get("author_id");
         ver.id = (String)version.get("id");
-        ver.changelog = (String)version.get("changelog");
+        ver.changelog = ((String)version.get("changelog"));
         ver.verName = (String)version.get("name");
 
         StringBuilder loader = new StringBuilder();

@@ -45,7 +45,6 @@ public class ConfigLoader {
 
         Main.ore_gen_chance_private_dim = config.getInt("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock");
         Main.isprivatedimenableled = config.getBoolean("PrivatePocketDimensionEnabled");
-        Main.config_anti_explo_helmet_lvl = config.getInt("AntiExplosionHelmetAntiExploEnchLevel");
         Main.tntBowAmount = config.getInt("TNTBowTNTAmount");
         GlobalVars.spongeClearRange = config.getInt("SuperSpongeClearRadius");
 
@@ -61,7 +60,7 @@ public class ConfigLoader {
         GlobalVars.craftingDisabled = config.getBoolean("DisableOPItemsCrafting");
 
         GlobalVars.WandOfMassiveBoomsCD = config.getDouble("wandOfBoomsCDms");
-        GlobalVars.WandOfMassiveBoomExploStrenght = config.getInt("WandOfMassive_BoomExplosionStrength");
+        GlobalVars.WandOfMassiveBoomExploStrenght = config.getInt("WandOfMassiveBoomExplosionStrength");
         GlobalVars.WandOfBoomExploStrenght = config.getInt("WandOfBoomExplosionStrength");
     }
 

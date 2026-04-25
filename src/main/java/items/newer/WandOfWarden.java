@@ -13,7 +13,7 @@ import utis.ParticleUtis;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WandOfWarden implements Listener {
+public class WandOfWarden {
 
     static Map<String, Long> Cooldown = new HashMap<>();
 

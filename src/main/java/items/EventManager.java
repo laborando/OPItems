@@ -1,11 +1,14 @@
 package items;
 
+import gui.itemEnableUI.EnableClickHandler;
+import gui.recipiesUI.RUIClickHandler;
 import items.classic.*;
 import items.classic.Sponges.SuperSpongeStarter;
 import items.managers.NoCrafting;
 import items.newer.WandOfWarden;
 import items.normal.*;
 import items.normal.ws.Workstation;
+import items.normal.ws.WsGUIHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -148,7 +151,10 @@ public class EventManager implements Listener {
         PlayerRespawnEventList.add(FlyingStick::event);
 
         //InventoryClickEvent
-        //InventoryClickEventList.add(NoDeopify::event);
+        InventoryClickEventList.add(WsGUIHandler::onInventoryClick);
+        InventoryClickEventList.add(RUIClickHandler::onInventoryClick);
+        InventoryClickEventList.add(EnableClickHandler::onInventoryClick);
+
 
         //CraftItemEvent
         CraftItemEventList.add(NoCrafting::event);

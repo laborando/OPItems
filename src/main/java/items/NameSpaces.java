@@ -9,6 +9,9 @@ public class NameSpaces {
     public static NamespacedKey opitemsAbilities;
     public static NamespacedKey opitemsCosmetic;
     public static NamespacedKey opitemsGui;
+    public static NamespacedKey opitemsGuiPage;
+    public static NamespacedKey opitemsGuiID;
+    public static NamespacedKey opitemsGuiFunction;
     public static NamespacedKey itemTypeIDNS;
     public static NamespacedKey itemTypeVL;
 
@@ -18,6 +21,9 @@ public class NameSpaces {
         opitemsAbilities = new NamespacedKey(p, "opitemsAbilities");
         opitemsCosmetic = new NamespacedKey(p, "opitemsCosmetic");
         opitemsGui = new NamespacedKey(p, "opitemsGui");
+        opitemsGuiPage = new NamespacedKey(p, "opitemsGuiPage");
+        opitemsGuiID = new NamespacedKey(p, "opitemsGuiID");
+        opitemsGuiFunction = new NamespacedKey(p, "opitemsGuiFunction");
 
         itemTypeIDNS = new NamespacedKey(p, "itemTypeID");
         itemTypeVL = new NamespacedKey(p, "itemVersionLevel");

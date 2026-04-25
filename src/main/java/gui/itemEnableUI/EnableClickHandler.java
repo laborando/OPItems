@@ -1,6 +1,8 @@
-package gui.recipiesUI;
+package gui.itemEnableUI;
 
+import gui.recipiesUI.RecipeGuiCreator;
 import items.NameSpaces;
+import items.abracator.TotalItems;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -10,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-public class RUIClickHandler {
+public class EnableClickHandler {
     public static void onInventoryClick(InventoryClickEvent event) {
 
         final HumanEntity entity = event.getWhoClicked();
@@ -25,7 +27,7 @@ public class RUIClickHandler {
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         String abl = container.get(NameSpaces.opitemsGui, PersistentDataType.STRING);
-        if (abl != null && abl.contains("r_gui_locked")) {
+        if (abl != null && abl.contains("e_gui_locked")) {
 
             event.setCancelled(true);
 
@@ -50,7 +52,7 @@ public class RUIClickHandler {
                         targetPageRight = 0;
                     }
 
-                    RecipeGuiCreator.generateInventory(player, targetPageRight);
+                    EnableGuiCreator.generateInventory(player, targetPageRight);
 
                     return;
                 case "left":
@@ -66,11 +68,43 @@ public class RUIClickHandler {
                     if (targetPageLeft < 0)
                         targetPageLeft = 0;
 
-                    RecipeGuiCreator.generateInventory(player, targetPageLeft);
+                    EnableGuiCreator.generateInventory(player, targetPageLeft);
                     return;
 
                 case "close":
+
                     player.closeInventory();
+                    return;
+
+                case "enable":
+
+                    int toEnable = -1;
+
+                    try {
+                        toEnable = container.get(NameSpaces.opitemsGuiID, PersistentDataType.INTEGER);
+                    } catch (Exception ignored) {
+                    }
+
+                    TotalItems.enable(toEnable);
+
+                    player.closeInventory();
+                    EnableSoloGUI.showSoloRecipe(player, toEnable, 0);
+
+                    return;
+
+                case "disable":
+
+                    int toDisable = -1;
+
+                    try {
+                        toDisable = container.get(NameSpaces.opitemsGuiID, PersistentDataType.INTEGER);
+                    } catch (Exception ignored) {
+                    }
+
+                    TotalItems.disable(toDisable);
+
+                    player.closeInventory();
+                    EnableSoloGUI.showSoloRecipe(player, toDisable, 0);
                     return;
 
             }
@@ -93,6 +127,12 @@ public class RUIClickHandler {
             if (item.getType() == Material.GRAY_STAINED_GLASS_PANE)
                 return;
 
+            if (item.getType() == Material.GREEN_CONCRETE)
+                return;
+
+            if (item.getType() == Material.RED_CONCRETE)
+                return;
+
             player.closeInventory();
             int toPage = 0;
 
@@ -102,7 +142,7 @@ public class RUIClickHandler {
             }
 
 
-            RecipeSoloGUI.showSoloRecipe(player, id, toPage);
+            EnableSoloGUI.showSoloRecipe(player, id, toPage);
 
 
         }

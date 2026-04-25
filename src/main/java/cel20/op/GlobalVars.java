@@ -18,9 +18,6 @@ public class GlobalVars {
 
     public static boolean craftingDisabled = false;
 
-    public static int piercerDamageLevel;
-    public static int piercerKnockbackLevel;
-    public static String itemVersionLevel = "1.0";
     public static int spongeClearRange = 1;
 
     public static int WandOfBoomExploStrenght = 0;

@@ -22,6 +22,8 @@ public class TabComp {
                     completions.add("update");
                     completions.add("skull");
                     completions.add("um");
+                    completions.add("changelog");
+                    completions.add("config");
                 }
 
                 return completions;
@@ -86,6 +88,8 @@ public class TabComp {
                             completions.add("update");
                             completions.add("skull");
                             completions.add("um");
+                            completions.add("config");
+                            completions.add("changelog");
                         }
 
                         return completions;
