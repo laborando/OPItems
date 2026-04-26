@@ -16,11 +16,14 @@ public class RUIClickHandler {
         final HumanEntity entity = event.getWhoClicked();
         final ItemStack item = event.getCurrentItem();
 
+        if(item == null)
+            return;
+
         ItemMeta meta = item.getItemMeta();
 
-        if (item == null || meta == null) {
+        if (meta == null)
             return;
-        }
+
 
         PersistentDataContainer container = meta.getPersistentDataContainer();
 

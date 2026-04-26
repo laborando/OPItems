@@ -242,8 +242,11 @@ public class RecipeAdder {
                 .setMaterialAt(Material.NETHER_STAR, 4)
                 .build();
 
-
-        //42: Not used !!!
+        CItem.getOPBuilder(42)
+                .setMaterialAt(Material.FIREWORK_ROCKET, 1, 3, 5, 7)
+                .setMaterialAt(Material.WIND_CHARGE, 0, 2, 6, 8)
+                .setMaterialAt(Material.NETHER_STAR, 4)
+                .build();
 
         CItem.getOPBuilder(43)
                 .setMaterialAt(Material.BLAZE_ROD, 1, 3, 5, 7)
@@ -261,7 +264,13 @@ public class RecipeAdder {
                 .setMaterialAt(Material.LOOM, 8)
                 .build();
 
-
+        CItem.getOPBuilder(45)
+                .setMaterialAt(Material.HONEYCOMB, 3, 5, 7)
+                .setMaterialAt(Material.SPIDER_EYE, 0, 2)
+                .setMaterialAt(Material.SUGAR, 6, 8)
+                .setMaterialAt(Material.SLIME_BLOCK, 4)
+                .setMaterialAt(Material.GLASS_BOTTLE, 1)
+                .build();
 
     }
 

@@ -2,12 +2,15 @@ Anmerkungen:
 
 TODO
  - Shedules unified checking for item strings
- - See changelog inhouse
+ - Store XP Bottle
 
 IN WORK
 
 
 DONE
+ - Added Infinite Rocket
+ - Added Strange Bottle
+
  - Payed off some generational technical debt
  - Inhouse recipe viewer
  - In-Game config setter for some configs --> Doesnt even need a restart wow
@@ -19,3 +22,5 @@ DONE
  - Fixed Spellings on some items (and their lore)
  - Every OPItems now has a description
  - Added /opitems changelog
+ - All items now have a rarity
+ - All item-names have now the same color

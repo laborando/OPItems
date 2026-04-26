@@ -1,5 +1,6 @@
 package items;
 
+import com.destroystokyo.paper.event.player.PlayerElytraBoostEvent;
 import gui.itemEnableUI.EnableClickHandler;
 import gui.recipiesUI.RUIClickHandler;
 import items.classic.*;
@@ -42,6 +43,7 @@ public class EventManager implements Listener {
     public static Map<String, Consumer<PlayerBucketEmptyEvent>> PlayerBucketEmptyEventMap = new HashMap<>();
     public static Map<String, Consumer<PlayerFishEvent>> PlayerFishEventMap = new HashMap<>();
     public static Map<String, Consumer<PlayerItemConsumeEvent>> PlayerItemConsumeEventMap = new HashMap<>();
+    public static Map<String, Consumer<PlayerElytraBoostEvent>> PlayerElytraBoostEventMap = new HashMap<>();
 
 
 
@@ -88,7 +90,11 @@ public class EventManager implements Listener {
         PlayerInteractEventMap.put("opitems_34", Portal2go::event);
         PlayerInteractEventMap.put("opitems_35", SkullImitator::event);
         PlayerInteractEventMap.put("opitems_41", WandOfWarden::event);
+        PlayerInteractEventMap.put("opitems_42", InfRocket::event);
         PlayerInteractEventMap.put("opitems_44", Workstation::event);
+
+        //PlayerElytraBoostEvent
+        PlayerElytraBoostEventMap.put("opitems_42", InfRocket::event);
 
         //BlockPlaceEvent
         BlockPlaceEventMap.put("opitems_24", SuperSpongeStarter::waterEvent);
@@ -108,6 +114,7 @@ public class EventManager implements Listener {
 
         //PlayerItemConsumeEvent
         PlayerItemConsumeEventMap.put("opitems_40" , EternalSteak::event);
+        PlayerItemConsumeEventMap.put("opitems_45" , RandomBottle::event);
 
         //ProjectileHitEvent
         ProjectileHitEventList.add(TntBow::onProjectileHit);
@@ -196,6 +203,29 @@ public class EventManager implements Listener {
         eventer.accept(e);
 
     }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerElytraBoostEvent e) {
+        //Map
+
+        ItemStack item = e.getFirework().getItem();
+
+        if (item == null) return;
+
+        String idns = getIDNSorNullIfNotOPItems(item);
+        if (idns == null) return;
+
+        Consumer<PlayerElytraBoostEvent> eventer;
+
+
+        eventer = PlayerElytraBoostEventMap.get(idns);
+
+        if (eventer == null) return;
+
+        eventer.accept(e);
+
+    }
+
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerBucketEmptyEvent e) {

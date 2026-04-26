@@ -2,8 +2,6 @@ package cel20.op.config;
 
 import cel20.op.GlobalVars;
 import cel20.op.Main;
-import items.managers.OldRecipeAdder;
-import items.normal.ws.WsGUIHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import utis.CLogger;

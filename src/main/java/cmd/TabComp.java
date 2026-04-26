@@ -72,10 +72,12 @@ public class TabComp {
                     completions.add("InfiniteWaterBucket");
                     completions.add("ProtectivElytra");
                     completions.add("WandOfWarden");
-                    completions.add("JumpyBoots");
                     completions.add("Piercer");
                     completions.add("Workstation");
                     completions.add("EternalSteak");
+                    completions.add("InfiniteRocket");
+                    completions.add("StrangeBottle");
+
                     if(args[1] == null || args[1].trim().isEmpty()){
 
                         completions.add("help");

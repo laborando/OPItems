@@ -170,12 +170,14 @@ public class Give {
                 return 40;
             case "wandofwarden":
                 return 41;
-            case "jumpyboots":
+            case "infiniterocket":
                 return 42;
             case "piercer":
                 return 43;
             case "workstation":
                 return 44;
+            case "strangebottle":
+                return 45;
 
 
             default:

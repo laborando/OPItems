@@ -1,5 +1,6 @@
 package items.abracator;
 
+import cel20.op.GlobalVars;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -51,6 +52,7 @@ public class TotalItems {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public static void disable(int id){
@@ -99,7 +101,12 @@ public class TotalItems {
     public static void save(){
         try {
 
+            disabledFile.delete();
+            disabledFile.createNewFile();
+
             BufferedWriter writer = Files.newBufferedWriter(disabledFile.toPath(), StandardOpenOption.APPEND);
+
+
 
             StringBuilder toWrite = new StringBuilder();
 
