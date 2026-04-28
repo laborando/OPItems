@@ -112,7 +112,12 @@ public class DimensionWand {
         final World playerWorld = e.getPlayer().getWorld();
         final World targetWorld = Bukkit.getWorld(wn);
         assert targetWorld != null;
-        targetWorld.setSpawnFlags(false, false);
+
+        try {
+            targetWorld.setSpawnFlags(false, false);
+        } catch (Exception ignored) {
+
+        }
 
         if (targetWorld == null) {
 

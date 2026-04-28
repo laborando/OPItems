@@ -272,6 +272,14 @@ public class RecipeAdder {
                 .setMaterialAt(Material.GLASS_BOTTLE, 1)
                 .build();
 
+        CItem.getOPBuilder(46)
+                .setMaterialAt(Material.MILK_BUCKET, 3, 5, 7)
+                .setMaterialAt(Material.POWDER_SNOW_BUCKET, 0, 2)
+                .setMaterialAt(Material.ENDER_EYE, 6, 8)
+                .setMaterialAt(Material.SLIME_BLOCK, 4)
+                .setMaterialAt(Material.HONEYCOMB, 1)
+                .build();
+
     }
 
 }

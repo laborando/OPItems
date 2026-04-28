@@ -1,12 +1,10 @@
 package items.managers;
 
-import cel20.op.GlobalVars;
 import cel20.op.Main;
 import items.NameSpaces;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
@@ -621,6 +619,19 @@ public class RawItemsGenerator {
                 lore = new ArrayList<>();
                 lore.add(ChatColor.RED + " - A bottle with some substance that never empties");
                 lore.add(ChatColor.RED + " - Seems to have different effects");
+                itemMeta.setLore(lore);
+
+                itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+                itemMeta.setUnbreakable(true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                break;
+
+            case 46:
+                itemStack = new ItemStack(Material.MILK_BUCKET, 1);
+                itemMeta = itemStack.getItemMeta();
+                itemMeta.setDisplayName(ChatColor.DARK_RED + "Infinite Milk Bucket");
+                lore = new ArrayList<>();
+                lore.add(ChatColor.RED + " - A Bucket with quite an amount of milk to drink");
                 itemMeta.setLore(lore);
 
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);

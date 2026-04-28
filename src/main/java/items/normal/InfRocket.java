@@ -1,11 +1,8 @@
 package items.normal;
 
 import com.destroystokyo.paper.event.player.PlayerElytraBoostEvent;
-import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.FireworkExplodeEvent;
-import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class InfRocket {

@@ -27,8 +27,8 @@ public class WandOfBoom {
         }
         Block target = p.getTargetBlockExact(150);
         if (target != null) {
-            Location loc2345 = target.getLocation();
-            p.getWorld().createExplosion(loc2345, GlobalVars.WandOfBoomExploStrenght);
+            Location location = target.getLocation();
+            p.getWorld().createExplosion(location, GlobalVars.WandOfBoomExploStrenght);
             cooldown.put(p.getName(), System.currentTimeMillis());
         }
 

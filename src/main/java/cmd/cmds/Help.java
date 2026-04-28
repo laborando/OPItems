@@ -12,7 +12,7 @@ public class Help {
         sender.sendMessage(ChatColor.GOLD + "Important Commands: ");
 
         sender.sendMessage(ChatColor.GOLD + "/opitems upgradeItem | Upgrades items to their newest version");
-        sender.sendMessage(ChatColor.GOLD + "/opitems recipes | Provides a link to the recipes");
+        sender.sendMessage(ChatColor.GOLD + "/opitems recipes | Displays the recipes");
 
         if (sender.isOp()) {
 

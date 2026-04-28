@@ -7,7 +7,6 @@ import items.managers.RawItemsGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -85,12 +84,14 @@ public class RecipeSoloGUI {
         //Recipe
         CItem cItem = TotalItems.get(id);
 
+
         if(cItem == null){
 
             item.setType(Material.BARRIER);
             im.setDisplayName("There was an error fetching this recipe");
             im.getPersistentDataContainer().set(NameSpaces.opitemsGuiFunction, PersistentDataType.STRING, "right");
             im.getPersistentDataContainer().set(NameSpaces.opitemsGuiPage, PersistentDataType.INTEGER, retPage - 1);
+
             is.setItemMeta(im);
             gui.setItem(22, is);
 

@@ -17,21 +17,23 @@ public class WandOfMassiveBoom {
 
         Player p = e.getPlayer();
 
-            double cooldownTime = GlobalVars.WandOfMassiveBoomsCD;
-            if (cooldown.containsKey(p.getName())) {
+        double cooldownTime = GlobalVars.WandOfMassiveBoomsCD;
+        if (cooldown.containsKey(p.getName())) {
 
-                double secondsLeft = ((double) cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
+            double secondsLeft = ((double) cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
 
-                if (secondsLeft > 0.0D) {
-                    p.sendMessage(ChatColor.RED + "You cant use this Item for another " + ((int) secondsLeft + 1 ) + " seconds!");
-                    return;
-                }
+            if (secondsLeft > 0.0D) {
+                p.sendMessage(ChatColor.RED + "You cant use this Item for another " + ((int) secondsLeft + 1) + " seconds!");
+                return;
             }
-            Block target = p.getTargetBlockExact(150);
-            if (target != null) {
-                Location loc2345 = target.getLocation();
-                p.getWorld().createExplosion(loc2345, GlobalVars.WandOfMassiveBoomExploStrenght);
-                cooldown.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-            }
+        }
+
+        Block target = p.getTargetBlockExact(150);
+        if (target != null) {
+            Location location = target.getLocation();
+            p.getWorld().createExplosion(location, GlobalVars.WandOfMassiveBoomExploStrenght);
+            cooldown.put(p.getName(), System.currentTimeMillis());
+        }
+
     }
 }

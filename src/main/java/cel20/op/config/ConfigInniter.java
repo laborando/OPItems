@@ -2,9 +2,6 @@ package cel20.op.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.security.SecureRandom;
-import java.util.Base64;
-
 public class ConfigInniter {
 
     public static void innitConfig(FileConfiguration config) {
@@ -46,7 +43,7 @@ public class ConfigInniter {
 
 
 
-        config.addDefault("WandOfMassiveBoomExplosionStrength", 200);
+        config.addDefault("WandOfMassiveBoomExplosionStrength", 20);
         config.addDefault("WandOfBoomExplosionStrength", 10);
 
 

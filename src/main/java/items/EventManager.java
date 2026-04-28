@@ -79,6 +79,7 @@ public class EventManager implements Listener {
         PlayerInteractEventMap.put("opitems_12", Crafter::event);
         PlayerInteractEventMap.put("opitems_13", FlyingStick::event);
         PlayerInteractEventMap.put("opitems_11", Blitzer::handle);
+        PlayerInteractEventMap.put("opitems_19", Launcher::event);
         PlayerInteractEventMap.put("opitems_20", WandOfBoom::event);
         PlayerInteractEventMap.put("opitems_21", WandOfMassiveBoom::event);
         PlayerInteractEventMap.put("opitems_22", InvisibilityStick::event);
@@ -115,6 +116,7 @@ public class EventManager implements Listener {
         //PlayerItemConsumeEvent
         PlayerItemConsumeEventMap.put("opitems_40" , EternalSteak::event);
         PlayerItemConsumeEventMap.put("opitems_45" , RandomBottle::event);
+        PlayerItemConsumeEventMap.put("opitems_46" , InfMilk::event);
 
         //ProjectileHitEvent
         ProjectileHitEventList.add(TntBow::onProjectileHit);

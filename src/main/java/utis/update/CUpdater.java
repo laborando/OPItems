@@ -3,7 +3,6 @@ package utis.update;
 import cel20.op.Main;
 import io.papermc.paper.ServerBuildInfo;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;

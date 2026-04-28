@@ -1,6 +1,5 @@
 package items.normal;
 
-import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 
 public class EternalSteak {

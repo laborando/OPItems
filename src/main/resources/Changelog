@@ -10,6 +10,7 @@ IN WORK
 DONE
  - Added Infinite Rocket
  - Added Strange Bottle
+ - Added Infinite Milk Bucket
 
  - Payed off some generational technical debt
  - Inhouse recipe viewer
@@ -24,3 +25,7 @@ DONE
  - Added /opitems changelog
  - All items now have a rarity
  - All item-names have now the same color
+ - Fixed Launcher
+ - Fixed Wand of Massive Boom
+ - Added hint for the magic value for the /opitems give cmd
+

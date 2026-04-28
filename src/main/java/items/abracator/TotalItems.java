@@ -1,6 +1,5 @@
 package items.abracator;
 
-import cel20.op.GlobalVars;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -19,7 +18,20 @@ public class TotalItems {
     public static void addAllRecipes() {
 
         for (CItem item : items) {
-            Bukkit.getServer().addRecipe(item.recipe);
+            try{
+                Bukkit.getServer().addRecipe(item.recipe);
+            }catch(Exception e){
+
+                try {
+                    Bukkit.removeRecipe(item.key);
+
+                    Bukkit.getServer().addRecipe(item.recipe);
+                } catch (Exception ex) {
+                    Bukkit.getLogger().warning("Failed to add recipe " + item.key);
+                }
+
+            }
+
         }
 
     }

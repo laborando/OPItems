@@ -178,6 +178,8 @@ public class Give {
                 return 44;
             case "strangebottle":
                 return 45;
+            case "infinitemilkbucket":
+                return 46;
 
 
             default:

@@ -2,9 +2,6 @@ package items.normal.ws;
 
 import items.NameSpaces;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;

@@ -45,7 +45,7 @@ public class EnableGuiCreator {
             ItemStack item = RawItemsGenerator.getItem(cItem, -5, -5, true);
             ItemMeta meta = item.getItemMeta();
             meta.getPersistentDataContainer().set(NameSpaces.opitemsGui, PersistentDataType.STRING, "e_gui_locked");
-            im.getPersistentDataContainer().set(NameSpaces.opitemsGuiPage, PersistentDataType.INTEGER, page);
+            meta.getPersistentDataContainer().set(NameSpaces.opitemsGuiPage, PersistentDataType.INTEGER, page);
             meta.getPersistentDataContainer().set(NameSpaces.opitemsGuiID, PersistentDataType.INTEGER, cItem);
 
             item.setItemMeta(meta);
@@ -64,12 +64,12 @@ public class EnableGuiCreator {
 
         //Arrows
         is.setType(Material.ARROW);
-        im.setDisplayName("Previous");
+        im.setDisplayName("Previous Page");
         im.getPersistentDataContainer().set(NameSpaces.opitemsGuiFunction, PersistentDataType.STRING, "left");
         is.setItemMeta(im);
         gui.setItem(45, is);
 
-        im.setDisplayName("Next");
+        im.setDisplayName("Next Page");
         im.getPersistentDataContainer().set(NameSpaces.opitemsGuiFunction, PersistentDataType.STRING, "right");
         is.setItemMeta(im);
         gui.setItem(53, is);

@@ -76,6 +76,7 @@ public class TabComp {
                     completions.add("Workstation");
                     completions.add("EternalSteak");
                     completions.add("InfiniteRocket");
+                    completions.add("InfiniteMilkBucket");
                     completions.add("StrangeBottle");
 
                     if(args[1] == null || args[1].trim().isEmpty()){
