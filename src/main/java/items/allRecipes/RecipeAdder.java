@@ -280,6 +280,14 @@ public class RecipeAdder {
                 .setMaterialAt(Material.HONEYCOMB, 1)
                 .build();
 
+        CItem.getOPBuilder(47)
+                .setMaterialAt(Material.ENDER_EYE, 3, 5, 7)
+                .setMaterialAt(Material.DIAMOND, 0, 2)
+                .setMaterialAt(Material.CLOCK, 6, 8)
+                .setMaterialAt(Material.ENDER_CHEST, 4)
+                .setMaterialAt(Material.GOLD_BLOCK, 1)
+                .build();
+
     }
 
 }

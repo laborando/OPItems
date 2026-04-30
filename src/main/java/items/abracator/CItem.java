@@ -2,6 +2,9 @@ package items.abracator;
 
 import cel20.op.Main;
 import items.managers.RawItemsGenerator;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -16,6 +19,7 @@ public class CItem {
     public boolean enabled = true;
     public Material[] materials = new Material[9];
     public NamespacedKey key;
+    public String name;
 
     /***
      * Creates CItem and adds itself to Total Items
@@ -152,8 +156,13 @@ public class CItem {
         if(materials[8] != null)
             recipe.setIngredient('i', materials[8]);
 
+        name = PlainTextComponentSerializer.plainText().serialize(result.displayName()).replaceAll("\\[", "").replace("]", "");
+
+
         TotalItems.items.add(this);
         finished = true;
+
+
     }
 
     /**

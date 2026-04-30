@@ -1,5 +1,6 @@
 package items.abracator;
 
+import cel20.op.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -15,17 +16,29 @@ public class TotalItems {
 
     public static List<CItem> items = new ArrayList<>();
 
+    public static List<StringIDAssociator> itemIds = new ArrayList<>();
+
     public static void addAllRecipes() {
 
+        Main.getInstance().getLogger().info("Registered Recipes: " + items.size());
+
         for (CItem item : items) {
+
+            itemIds.add(new StringIDAssociator(item.id, item.name));
+
             try{
+
                 Bukkit.getServer().addRecipe(item.recipe);
+
             }catch(Exception e){
 
                 try {
                     Bukkit.removeRecipe(item.key);
 
                     Bukkit.getServer().addRecipe(item.recipe);
+
+                    System.out.println(item.name);
+
                 } catch (Exception ex) {
                     Bukkit.getLogger().warning("Failed to add recipe " + item.key);
                 }

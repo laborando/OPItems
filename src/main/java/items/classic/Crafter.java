@@ -12,6 +12,7 @@ public class Crafter {
         p.openWorkbench(null, true);
 
         e.setCancelled(true);
+
     }
 
 }

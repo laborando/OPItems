@@ -639,6 +639,19 @@ public class RawItemsGenerator {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
+            case 47:
+                itemStack = new ItemStack(Material.ENDER_CHEST, 1);
+                itemMeta = itemStack.getItemMeta();
+                itemMeta.setDisplayName(ChatColor.DARK_RED + "Portable Ender Chest");
+                lore = new ArrayList<>();
+                lore.add(ChatColor.RED + " - Click to open your ender chest");
+                itemMeta.setLore(lore);
+
+                itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+                itemMeta.setUnbreakable(true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                break;
+
             default:
 
                 if(isGUI){

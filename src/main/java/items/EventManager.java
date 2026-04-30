@@ -93,6 +93,7 @@ public class EventManager implements Listener {
         PlayerInteractEventMap.put("opitems_41", WandOfWarden::event);
         PlayerInteractEventMap.put("opitems_42", InfRocket::event);
         PlayerInteractEventMap.put("opitems_44", Workstation::event);
+        PlayerInteractEventMap.put("opitems_47", PortableEnderChest::event);
 
         //PlayerElytraBoostEvent
         PlayerElytraBoostEventMap.put("opitems_42", InfRocket::event);

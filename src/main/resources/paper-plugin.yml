@@ -14,7 +14,7 @@ commands:
     description: Lets you remove ALL loaded Items or gets the Amount of Items from all Players. Used for Lag Prevention and detecting if a Player is generating Lag on Purpose
     usage: /items <remove | player_hea
 
-##Load After:
+#Load After:
 softdepend: [Multiverse-Core]
 
 load: POSTWORLD
