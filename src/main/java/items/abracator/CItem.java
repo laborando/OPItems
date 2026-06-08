@@ -48,10 +48,20 @@ public class CItem {
         this.id = id;
     }
 
+    /***
+     * Gets new, empty buidler
+     * @param id
+     * @return
+     */
     public static CItem getBuilder(int id){
         return new CItem(id);
     }
 
+    /**
+     * Gets new builder with no recipe but preloaded OPItem from id
+     * @param id
+     * @return
+     */
     public static CItem getOPBuilder(int id){
         return new CItem(id).setResultFromOPItemsID(id);
     }
@@ -59,7 +69,7 @@ public class CItem {
     //------------------------------------
 
     /**
-     * Sets the Material at the Coords
+     * Sets the Material at the respective Coords
      *
      * @param material Material to set to
      * @param targets The ints which corresponds to the slots in the 3x3 crafting grids to set the material
@@ -115,7 +125,7 @@ public class CItem {
 
     //----------------------------
 
-    /***
+    /**
      * Finishes and adds to Total Recipes
      */
     public void finishCreation() {

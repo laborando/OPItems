@@ -31,6 +31,12 @@ import static utis.Celutis.deleteDirectory;
 public class CmdExe {
 
 
+    /***
+     * Main executor func for OPItems cmd
+     * @param label
+     * @param commandSourceStack
+     * @param args
+     */
     public static void execute(String label, @NotNull CommandSourceStack commandSourceStack, @NonNull @NotNull String[] args) {
 
         CommandSender sender = commandSourceStack.getSender();
@@ -41,36 +47,37 @@ public class CmdExe {
         } catch (ArrayIndexOutOfBoundsException e) {
             arg = "";
         }
-        String arg2 = null;
+        String arg2;
         try {
             arg2 = args[1];
         } catch (ArrayIndexOutOfBoundsException e) {
             arg2 = "";
         }
-        String arg3 = null;
+        String arg3;
         try {
             arg3 = args[2];
         } catch (ArrayIndexOutOfBoundsException e) {
             arg3 = "";
         }
-        String arg4 = null;
+        String arg4;
         try {
             arg4 = args[3];
         } catch (ArrayIndexOutOfBoundsException e) {
             arg4 = "";
         }
-        String arg5 = null;
+        String arg5;
         try {
             arg5 = args[4];
         } catch (ArrayIndexOutOfBoundsException e) {
             arg5 = "";
         }
+
         if (label.equalsIgnoreCase("items")) {
             if (sender.isOp()) {
                 if (arg.equalsIgnoreCase("remove")) {
                     final Items items = new Items();
-                    Bukkit.broadcastMessage(new StringBuilder().append(ChatColor.BOLD).append(ChatColor.RED).append("All Items will be removed in 10 sec.!").toString());
-                    Bukkit.getScheduler().runTaskLater((Plugin) Main.getPluginInstance(), () -> items.removeItems(), 200L);
+                    Bukkit.broadcastMessage(new StringBuilder().append(ChatColor.BOLD).append(ChatColor.RED).append("All dropped items will be removed in 10 seconds!").toString());
+                    Bukkit.getScheduler().runTaskLater(Main.getPluginInstance(), items::removeItems, 200L);
                 }
                 if (arg.equalsIgnoreCase("player_heap")) {
                     sender.sendMessage("Per-player item count:");
@@ -89,6 +96,8 @@ public class CmdExe {
                 sender.sendMessage(ChatColor.RED + "You don't have the permission to perform this command!");
             }
 
+
+            //--------------------------------------
 
         }
         if (label.equalsIgnoreCase("opitems")) {
@@ -247,6 +256,7 @@ public class CmdExe {
                 } else if (!(arg2.contains("confirm"))) {
                     sender.sendMessage(ChatColor.RED + "Confirm deletion? -> /opitems delete_pocket_world confirm");
                     sender.sendMessage(ChatColor.RED + "This deletes all worlds that contain 'pocket-world-' in their name!");
+                    sender.sendMessage(ChatColor.RED + "This cannot be undone without backups!");
                 } else {
                     for (World world : Bukkit.getWorlds()) {
                         if (world.getName().contains("pocket-world-")) {
@@ -284,10 +294,6 @@ public class CmdExe {
             } else if (arg.equalsIgnoreCase("remove_recipes")) {
                 if (sender.isOp()) {
                     TotalItems.removeAllRecipes();
-                    sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
-                }
-            } else if (arg.equalsIgnoreCase("remove_recipes_all")) {
-                if (sender.isOp()) {
                     sender.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "All Recipes Removed. Restart the Server to re-add them.");
                 }
             }

@@ -391,8 +391,8 @@ public class RawItemsGenerator {
                 itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore27 = new ArrayList<>();
-                lore27.add(ChatColor.RED + " - Right-click on a TNT-Block to add to the list");
-                lore27.add(ChatColor.RED + " - Right-click + sneak to activate all listed TNT-Blocks");
+                lore27.add(ChatColor.RED + " - Right-click on a TNT-Block to connect it to the detonator");
+                lore27.add(ChatColor.RED + " - Right-click air + sneak to activate the connected TNT-Blocks");
                 itemMeta.setLore(lore27);
                 break;
 

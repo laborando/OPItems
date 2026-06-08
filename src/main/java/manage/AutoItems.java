@@ -6,17 +6,18 @@ import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+/**
+ * Class for automated scheduled item remover
+ */
 public class AutoItems {
-    static BukkitTask otherTask = null;
+    static BukkitTask removalTask = null;
     public static void innitAutoRemove(int delay, int warning_sek){
 
-        //System.out.println(Main.getPluginInstance());
-
-        otherTask = new BukkitRunnable() {
+        removalTask = new BukkitRunnable() {
             @Override
             public void run() {
 
-                Bukkit.broadcastMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "WARNING: ALL LOADED DROPPED ITEMS WILL BE DELETED IN " + warning_sek + " SECS!");
+                Bukkit.broadcastMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "WARNING: All loaded an dropper items will be deleted in " + warning_sek + " seconds!");
 
                 new BukkitRunnable() {
                     @Override
@@ -38,8 +39,8 @@ public class AutoItems {
 
     public static void cancelAutomatedItemRemoval(){
 
-        if(otherTask != null){
-            otherTask.cancel();
+        if(removalTask != null){
+            removalTask.cancel();
         }
 
     }

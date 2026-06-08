@@ -63,7 +63,7 @@ public class Main extends JavaPlugin {
 
     public void onEnable() {
 
-        opitemsVersion = "1.11.2";
+        opitemsVersion = "1.11.3";
         Main.p = this;
         instance = this;
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");

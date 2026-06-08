@@ -26,6 +26,10 @@ public class Landmine {
 
     private static List<Location> lml = new ArrayList<>();
 
+    /**
+     * Landmine destroyed
+     * @param e
+     */
     public static void event(final BlockDropItemEvent e) {
         if (e.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
             if (lml.contains(e.getBlock().getLocation())) {
@@ -41,6 +45,10 @@ public class Landmine {
         }
     }
 
+    /**
+     * Stepping on landmine
+     * @param e
+     */
     public static void event(final BlockPhysicsEvent e) {
         if (e.getChangedType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
             if (lml.contains(e.getBlock().getLocation())) {
@@ -57,6 +65,10 @@ public class Landmine {
 
     }
 
+    /**
+     * Adds placed Landmines to the List
+     * @param e
+     */
     public static void event(final BlockPlaceEvent e) {
 
         Block b = e.getBlock();
@@ -65,6 +77,10 @@ public class Landmine {
 
     }
 
+    /**
+     * Physical -> Stepping on Landmine and defusing landmine
+     * @param e
+     */
     public static void event(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         if (e.getAction().equals(Action.PHYSICAL)) {
@@ -110,6 +126,10 @@ public class Landmine {
         }
     }
 
+    /**
+     * Breaking landmine
+     * @param e
+     */
     public static void event(BlockBreakEvent e) {
         if (e.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
             Block b = e.getBlock();
@@ -125,6 +145,9 @@ public class Landmine {
     }
 
 
+    /**
+     * Loads Landmine Data and starts its corresponding schedulers
+     */
     public static void load() {
 
 
@@ -149,8 +172,8 @@ public class Landmine {
                 }
 
             } else {
-                Bukkit.getLogger().severe("Your Landmines_worlds Data File is probably corrupted!");
-                Bukkit.getLogger().severe("An Error Could occur!");
+                Bukkit.getLogger().severe("Your landmine data is corrupted!");
+                Bukkit.getLogger().severe("An error could occur ... ");
                 lml = (List<Location>) o;
             }
 
@@ -170,8 +193,8 @@ public class Landmine {
             if (o instanceof List) {
                 lml = (List<Location>) o;
             } else {
-                Bukkit.getLogger().severe("Your Landmines Data File is probably corrupted!");
-                Bukkit.getLogger().severe("An Error Could occur!");
+                Bukkit.getLogger().severe("Your landmine data is corrupted!");
+                Bukkit.getLogger().severe("An error could occur ... ");
                 lml = (List<Location>) o;
             }
 
@@ -179,8 +202,9 @@ public class Landmine {
         } catch (ClassNotFoundException | IOException ignored) {
         }
 
-        //LOAD ENDE, INNIT TASKS
+        //Loading finished
 
+        //Landmine particle effects
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), new Runnable() {
             @Override
@@ -257,6 +281,9 @@ public class Landmine {
 
     }
 
+    /**
+     * Resets the List of Landmines
+     */
     public static void reset() {
         lml = new ArrayList<>();
     }

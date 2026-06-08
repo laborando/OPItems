@@ -84,7 +84,7 @@ public class EventManager implements Listener {
         PlayerInteractEventMap.put("opitems_21", WandOfMassiveBoom::event);
         PlayerInteractEventMap.put("opitems_22", InvisibilityStick::event);
         PlayerInteractEventMap.put("opitems_26", EnderpearlSword::handle);
-        PlayerInteractEventMap.put("opitems_27", TntLayer::event);
+        PlayerInteractEventMap.put("opitems_27", TntDetonator::event);
         PlayerInteractEventMap.put("opitems_29", DimensionWand::event);
         PlayerInteractEventMap.put("opitems_31", WandOfHome::event);
         PlayerInteractEventMap.put("opitems_33", WandOfBlocks::event);

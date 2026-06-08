@@ -134,7 +134,6 @@ public class WandOfBlocks {
             Random random = new Random();
 
 
-            double dist = p.getLocation().distance(blockTarget);
 
             for (FallingBlock v : vfk) {
 

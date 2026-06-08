@@ -44,12 +44,11 @@ public class WandOfHome {
                             p.sendMessage(ChatColor.RED + "The teleport has not been executed. You must stand still to teleport.");
                         }
                     }
-                }.runTaskLater(Main.getPluginInstance(), 40);
+                }.runTaskLater(Main.getPluginInstance(), 30);
 
 
             } else {
                 p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "No Home set!");
-                p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "You can set your home by Shift + Rightclicking in the air.");
             }
 
         } else {
@@ -65,7 +64,7 @@ public class WandOfHome {
                         p.sendMessage(ChatColor.RED + "The Home has not been set. You must stand still to set it.");
                     }
                 }
-            }.runTaskLater(Main.getPluginInstance(), 40);
+            }.runTaskLater(Main.getPluginInstance(), 20);
 
 
             p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Home set!");
@@ -101,14 +100,13 @@ public class WandOfHome {
             if (o instanceof HashMap<?, ?>) {
                 WandOfHome.map_home = (HashMap<String, Location>) o;
             } else {
-                Bukkit.getLogger().severe("Your Wand of Home Data File is Probably corrupted!");
-                Bukkit.getLogger().severe("An Error Could occur!");
+                Bukkit.getLogger().severe("The Wand of Home Data seems corrupted!");
+                Bukkit.getLogger().severe("An Error might occur ...");
                 WandOfHome.map_home = (HashMap<String, Location>) o;
             }
 
             in.close();
         } catch (ClassNotFoundException | IOException ex2) {
-            System.out.println("Probably first time starting... Creating new File. Do not report the following unless it is happening for more than two times");
             WandOfHome.map_home = new HashMap<>();
             File f = new File(filePath);
             try {
@@ -118,6 +116,7 @@ public class WandOfHome {
             } catch (IOException e) {
 
                 e.printStackTrace();
+
             }
         }
     }

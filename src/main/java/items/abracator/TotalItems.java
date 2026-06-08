@@ -57,6 +57,11 @@ public class TotalItems {
 
     }
 
+    /**
+     * Gets cItem from ID
+     * @param id
+     * @return
+     */
     public static CItem get(int id) {
         for (CItem item : items) {
             if(item.id == id)
@@ -65,6 +70,10 @@ public class TotalItems {
         return null;
     }
 
+    /**
+     * Enables crafting for a certain id
+     * @param id
+     */
     public static void enable(int id){
 
         CItem target = get(id);
@@ -80,6 +89,9 @@ public class TotalItems {
 
     }
 
+    /**
+     * Disables crafting for a certain id
+     */
     public static void disable(int id){
 
         CItem target = get(id);
@@ -103,8 +115,10 @@ public class TotalItems {
     static List<String> disabled = new ArrayList<>();
 
 
-
-
+    /**
+     * Inits - Must be called first
+     * @param p
+     */
     public static void innit(Plugin p) {
 
         disabledFile = new File(p.getDataFolder(), "disabledItems");
@@ -190,6 +204,9 @@ public class TotalItems {
         }
     }
 
+    /**
+     * Disables all crafting recipes registered here
+     */
     public static void disableCrafting() {
 
         Bukkit.getLogger().info("Crafting Disabled");

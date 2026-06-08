@@ -1,18 +1,18 @@
 name: OPItems
 description: The OPItems Plugin
 authors: [ cel20 ]
-version: '1.11.2'
+version: '1.11.3'
 
 main: cel20.op.Main
 api-version: '1.20.6'
 
 commands:
   opitems:
-    description: Main command for OPItems write after /opitems give/help/gui/update/skull
+    description: OPItems's main command
     usage: /opitems < help | gui | recipes | update | skull | upgradeItems>
   items:
-    description: Lets you remove ALL loaded Items or gets the Amount of Items from all Players. Used for Lag Prevention and detecting if a Player is generating Lag on Purpose
-    usage: /items <remove | player_hea
+    description: Lets you remove ALL loaded Items or gets the Amount of Items from all Players.
+    usage: /items <remove | player_heap >
 
 #Load After:
 softdepend: [Multiverse-Core]

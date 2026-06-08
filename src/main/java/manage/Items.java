@@ -38,11 +38,18 @@ public class Items
                 }
             }
         }
-        for (final Map.Entry<Player, Integer> entry : itemCounts.entrySet()) {
+        /*
+
+        -- Display player item-heap --
+
+         for (final Map.Entry<Player, Integer> entry : itemCounts.entrySet()) {
             final Player player2 = entry.getKey();
             final int itemCount = entry.getValue();
             Bukkit.broadcastMessage("Loaded Items by " + player2.getName() + ": " + itemCount);
         }
+
+         */
+
         for (final World world : Bukkit.getWorlds()) {
             Chunk[] loadedChunks2;
             for (int length3 = (loadedChunks2 = world.getLoadedChunks()).length, k = 0; k < length3; ++k) {
@@ -57,7 +64,11 @@ public class Items
             }
         }
     }
-    
+
+    /**
+     * Publicly displays a list of items loaded per player <br>
+     * An item is counted towards the nearest player
+     */
     public void ItemsPlayerHeap() {
         final Map<Player, Integer> itemCounts = new HashMap<Player, Integer>();
         for (final Player player : Bukkit.getOnlinePlayers()) {

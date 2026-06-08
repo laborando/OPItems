@@ -8,6 +8,9 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * Tab-completer for all opitems commands
+ */
 public class TabComp {
 
     public static List<String> onTabComplete(final CommandSender sender, final String command, final String[] args) {

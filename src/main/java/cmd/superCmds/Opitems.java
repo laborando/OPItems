@@ -10,6 +10,9 @@ import org.jspecify.annotations.NonNull;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Wrapper for opitems-cmd to brigadier-api
+ */
 public class Opitems implements BasicCommand {
     @Override
     public void execute(@NotNull CommandSourceStack commandSourceStack, @NonNull @NotNull String[] args) {

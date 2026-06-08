@@ -48,6 +48,9 @@ public class CursedSword {
 
                 LivingEntity le = (LivingEntity) e.getEntity();
 
+                if (e instanceof Player)
+                    return;
+
                 le.setHealth(0);
 
 
@@ -56,6 +59,9 @@ public class CursedSword {
     }
 
 
+    /**
+     * Releases all mobs killed by the cursed sword when entering the end
+     */
     public static void event(final PlayerChangedWorldEvent e) {
         if (e.getPlayer().getWorld().getName().equalsIgnoreCase("world_the_end")) {
             e.getPlayer().getWorld().loadChunk(0, 0);
@@ -98,15 +104,15 @@ public class CursedSword {
             if (o instanceof List<?>) {
                 CursedSword.list_entity = (List<EntityType>) o;
             } else {
-                Bukkit.getLogger().severe("Your Wand of Home Data File is Probably corrupted!");
-                Bukkit.getLogger().severe("An Error Could occur!");
+                Bukkit.getLogger().severe("Your Cursed Sword Data File probably corrupted!");
+                Bukkit.getLogger().severe("An Error could occur ...");
                 CursedSword.list_entity = (List<EntityType>) o;
             }
 
             in.close();
         } catch (ClassNotFoundException | IOException ex2) {
 
-            System.out.println("Probably first time starting... Creating new File. Do not report the following unless it is happening for more than two times");
+            System.out.println("Creating new File for cursed sword data.");
             CursedSword.list_entity = new ArrayList<>();
             File f = new File(filePath);
             try {
