@@ -46,7 +46,7 @@ public class TntBow {
             Location spawnLocation = location.clone().add(0.5, 0, 0.5);
             TNTPrimed tnt = (TNTPrimed) location.getWorld().spawnEntity(spawnLocation, EntityType.TNT);
 
-            Vector velocity = new Vector(Celutis.randomRangeDouble(-0.1, 0.1), Celutis.randomRangeDouble(0.005, 0.2), Celutis.randomRangeDouble(-0.1, 0.1));
+            Vector velocity = new Vector(Celutis.simpleRandom(-0.1, 0.1), Celutis.simpleRandom(0.005, 0.2), Celutis.simpleRandom(-0.1, 0.1));
             velocity.normalize().multiply(1);
 
 

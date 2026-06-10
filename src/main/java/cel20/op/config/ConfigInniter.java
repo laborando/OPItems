@@ -9,14 +9,13 @@ public class ConfigInniter {
         //config.options().header("This is the main configuration file for OPItems \n The server must be restarted");
 
 
-        config.addDefault("PrivatePocketDimensionPerformanceModeActivated", Boolean.FALSE);
+        config.addDefault("CustomDimensionsPerformanceMode", Boolean.FALSE);
 
         config.addDefault("OPItemsSpecificBStatsDisable", Boolean.FALSE);
         config.addDefault("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock", Integer.valueOf(50));
 
         config.addDefault("SuperSpongeClearRadius", 20);
         config.addDefault("TNTBowTNTAmount", 50);
-
 
         //AUTOITEMSREMOVE
         config.addDefault("EnableAutomaticPeriodicItemsRemove", Boolean.FALSE);
@@ -48,6 +47,10 @@ public class ConfigInniter {
 
 
         config.addDefault("DisableOPItemsCrafting", Boolean.FALSE);
+
+
+        //Messages
+        config.addDefault("CooldownMessage", "Cooldown...");
 
 
 

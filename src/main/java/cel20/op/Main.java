@@ -146,7 +146,6 @@ public class Main extends JavaPlugin {
             Bukkit.getLogger().info("OPItems crafting is disabled!");
         }
 
-        logger.sendLog("v1;r1" + GlobalVars.uuid + ";" + Bukkit.getVersion() + ";" + opitemsVersion);
     }
 
     public void onDisable() {

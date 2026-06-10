@@ -9,11 +9,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import utis.Celutis;
+import utis.uiutis.CooldownSubtitle;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class WandOfBlocks {
 
@@ -32,7 +30,7 @@ public class WandOfBlocks {
 
         if (!e.getPlayer().isSneaking()) {
 
-            for (Block b2 : Celutis.getRandomBlocks(e.getPlayer().getLocation(), 5)) {
+            for (Block b2 : Celutis.getRandomBlocksSurface(e.getPlayer().getLocation(), 10, 5)) {
 
 
                 FallingBlock fallingBlock = b2.getWorld().spawn(b2.getLocation(), FallingBlock.class);
@@ -46,7 +44,8 @@ public class WandOfBlocks {
 
                 fallingBlock.setVelocity(new Vector(0, 0.1, 0));
                 b2.setType(Material.AIR);
-                Celutis.addValueToMultiMapStringXFallingBlock(PlayersBlocks, p.getName(), fallingBlock);
+
+                PlayersBlocks.computeIfAbsent(p.getName(), k -> new ArrayList<>()).add(fallingBlock);
             }
 
         } else {
@@ -59,9 +58,9 @@ public class WandOfBlocks {
 
             Cooldown.computeIfAbsent(p.getName(), k -> (long) -20000);
 
-            if (!((System.currentTimeMillis() - Cooldown.get(p.getName().toString())) >= 5000)) {
+            if (!((System.currentTimeMillis() - Cooldown.get(p.getName())) >= 5000)) {
 
-                p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Still on cooldown...");
+                CooldownSubtitle.showCooldown(p);
 
             } else {
 
@@ -77,7 +76,7 @@ public class WandOfBlocks {
                         lt2.setY(v.getWorld().getHighestBlockYAt(lt2) + 2);
 
                         v.teleport(lt2);
-                        v.setVelocity(Celutis.getVectorBetweenLocations(v.getLocation(), bt.getLocation()));
+                        v.setVelocity(Celutis.getVectorBetweenLocations(v.getLocation(), bt.getLocation()).multiply(0.1));
 
                     }
 
@@ -120,6 +119,13 @@ public class WandOfBlocks {
     }
 
 
+    /**
+     * Creates explosions at the target location and removes the blocks <br>
+     * *Does not create explosions at the actual locations of the block-entities
+     * @param p
+     * @param blockTarget
+     * @return
+     */
     public static boolean makeBoom(Player p, Location blockTarget) {
 
         String kti = p.getName().toString();
@@ -158,7 +164,7 @@ public class WandOfBlocks {
 
             }
 
-            WandOfBlocks.PlayersBlocks.remove(p.getName().toString());
+            WandOfBlocks.PlayersBlocks.remove(p.getName());
 
         }, 5);
 

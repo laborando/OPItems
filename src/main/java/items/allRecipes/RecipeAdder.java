@@ -5,6 +5,9 @@ import org.bukkit.Material;
 
 public class RecipeAdder {
 
+    /**
+     * Adds all preconfigured OPItems
+     */
     public static void addOPItemsRecipes() {
 
         CItem.getOPBuilder(1)
@@ -286,6 +289,14 @@ public class RecipeAdder {
                 .setMaterialAt(Material.CLOCK, 6, 8)
                 .setMaterialAt(Material.ENDER_CHEST, 4)
                 .setMaterialAt(Material.GOLD_BLOCK, 1)
+                .build();
+
+        CItem.getOPBuilder(48)
+                .setMaterialAt(Material.SLIME_BALL, 3, 5, 7)
+                .setMaterialAt(Material.DIAMOND, 0, 2)
+                .setMaterialAt(Material.NETHERITE_INGOT, 6, 8)
+                .setMaterialAt(Material.NETHER_STAR, 4)
+                .setMaterialAt(Material.BLAZE_ROD, 1)
                 .build();
 
     }

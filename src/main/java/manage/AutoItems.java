@@ -11,6 +11,12 @@ import org.bukkit.scheduler.BukkitTask;
  */
 public class AutoItems {
     static BukkitTask removalTask = null;
+
+    /**
+     * Inits automated scheduled removal of dropped items
+     * @param delay
+     * @param warning_sek
+     */
     public static void innitAutoRemove(int delay, int warning_sek){
 
         removalTask = new BukkitRunnable() {

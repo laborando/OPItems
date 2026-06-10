@@ -12,6 +12,9 @@ import java.util.List;
 public class Logutis {
 
 
+    /**
+     * Generates a basic report and outputs it via CLogger
+     */
     public static void createReportAndLog(){
 
         List<String> rep = new ArrayList<>();

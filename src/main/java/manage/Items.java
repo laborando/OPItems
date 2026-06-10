@@ -15,6 +15,9 @@ import java.util.Map;
 
 public class Items
 {
+    /**
+     * Removes dropped items
+     */
     public void removeItems() {
         final Map<Player, Integer> itemCounts = new HashMap<Player, Integer>();
         for (final Player player : Bukkit.getOnlinePlayers()) {

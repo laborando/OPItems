@@ -1,5 +1,5 @@
 
-package dimensions;
+package dimensions.privateDimension;
 
 import cel20.op.Main;
 import org.bukkit.Material;
@@ -13,11 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class ChunkGen extends ChunkGenerator
+public class PrivateDimensionChunkGenerator extends ChunkGenerator
 {
     int currentHeight;
     
-    public ChunkGen() {
+    public PrivateDimensionChunkGenerator() {
         this.currentHeight = 50;
     }
 
@@ -25,7 +25,7 @@ public class ChunkGen extends ChunkGenerator
     public List<BlockPopulator> getDefaultPopulators(World world) {
 
         if(!Main.priDimPerformMode){
-            return Arrays.asList(new NormalPop());
+            return Arrays.asList(new PrivateDimensionPopulator());
         }else{
             return new ArrayList<>();
         }

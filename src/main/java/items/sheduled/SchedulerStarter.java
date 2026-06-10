@@ -21,6 +21,8 @@ public class SchedulerStarter {
         scheduleList.add(new NightHelmet());
         scheduleList.add(new SpeedLeggings());
 
+        //Should be replaced with one scheduler
+
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(),
                 () -> scheduleList.forEach(BasicSchedule::execute)
                 , 5L, 5L

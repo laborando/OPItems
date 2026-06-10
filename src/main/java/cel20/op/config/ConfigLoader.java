@@ -31,13 +31,19 @@ public class ConfigLoader {
             Bukkit.getLogger().info("[OPItems] AutoItemRemove Started!");
         }
 
-        //PrivatePocketDimensionPerformanceModeActivated
-        if (config.getBoolean("PrivatePocketDimensionPerformanceModeActivated")) {
-            Main.priDimPerformMode = true;
-        }
+
         //EnableLandminePerformanceMode
         if (config.getBoolean("EnableLandminePerformanceMode")) {
             Main.landminePerfModeEnabeled = true;
+        }
+
+        //DimensionsPerformanceMode
+        if (config.getBoolean("PrivatePocketDimensionPerformanceModeActivated")) {
+            Main.priDimPerformMode = true;
+        }else{
+            if (config.getBoolean("CustomDimensionsPerformanceMode")) {
+                Main.priDimPerformMode = true;
+            }
         }
 
 
@@ -60,6 +66,10 @@ public class ConfigLoader {
         GlobalVars.WandOfMassiveBoomsCD = config.getDouble("wandOfBoomsCDms");
         GlobalVars.WandOfMassiveBoomExploStrenght = config.getInt("WandOfMassiveBoomExplosionStrength");
         GlobalVars.WandOfBoomExploStrenght = config.getInt("WandOfBoomExplosionStrength");
+
+        //Messages
+        GlobalVars.CooldownMessage = config.getString("CooldownMessage");
+
     }
 
 }

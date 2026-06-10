@@ -3,6 +3,9 @@ package items;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 
+/**
+ * Global Namespaces regarding items
+ */
 public class NameSpaces {
 
     public static NamespacedKey opitemsMarker;
@@ -14,6 +17,7 @@ public class NameSpaces {
     public static NamespacedKey opitemsGuiFunction;
     public static NamespacedKey itemTypeIDNS;
     public static NamespacedKey itemTypeVL;
+
 
     public static void innitNameSpaces(Plugin p){
 

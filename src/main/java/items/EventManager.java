@@ -46,7 +46,6 @@ public class EventManager implements Listener {
     public static Map<String, Consumer<PlayerElytraBoostEvent>> PlayerElytraBoostEventMap = new HashMap<>();
 
 
-
     //Lists
     public static List<Consumer<EntityBlockFormEvent>> EntityBlockFormEventList = new ArrayList<>();
     public static List<Consumer<ProjectileHitEvent>> ProjectileHitEventList = new ArrayList<>();
@@ -66,8 +65,10 @@ public class EventManager implements Listener {
     public static List<Consumer<PlayerJoinEvent>> PlayerJoinEventList = new ArrayList<>();
 
 
-
-
+    /**
+     * Innits events-managing
+     * @param p
+     */
     public static void innitEventManager(Plugin p) {
 
         //MainHandPlayerInteractionEvents
@@ -85,7 +86,7 @@ public class EventManager implements Listener {
         PlayerInteractEventMap.put("opitems_22", InvisibilityStick::event);
         PlayerInteractEventMap.put("opitems_26", EnderpearlSword::handle);
         PlayerInteractEventMap.put("opitems_27", TntDetonator::event);
-        PlayerInteractEventMap.put("opitems_29", DimensionWand::event);
+        PlayerInteractEventMap.put("opitems_29", PrivateDimensionWand::event);
         PlayerInteractEventMap.put("opitems_31", WandOfHome::event);
         PlayerInteractEventMap.put("opitems_33", WandOfBlocks::event);
         PlayerInteractEventMap.put("opitems_34", Portal2go::event);
@@ -94,6 +95,7 @@ public class EventManager implements Listener {
         PlayerInteractEventMap.put("opitems_42", InfRocket::event);
         PlayerInteractEventMap.put("opitems_44", Workstation::event);
         PlayerInteractEventMap.put("opitems_47", PortableEnderChest::event);
+        PlayerInteractEventMap.put("opitems_48", SubspaceDimensionWand::event);
 
         //PlayerElytraBoostEvent
         PlayerElytraBoostEventMap.put("opitems_42", InfRocket::event);
@@ -115,9 +117,9 @@ public class EventManager implements Listener {
         PlayerFishEventMap.put("opitems_15", HookOfVelectory::onFish);
 
         //PlayerItemConsumeEvent
-        PlayerItemConsumeEventMap.put("opitems_40" , EternalSteak::event);
-        PlayerItemConsumeEventMap.put("opitems_45" , RandomBottle::event);
-        PlayerItemConsumeEventMap.put("opitems_46" , InfMilk::event);
+        PlayerItemConsumeEventMap.put("opitems_40", EternalSteak::event);
+        PlayerItemConsumeEventMap.put("opitems_45", RandomBottle::event);
+        PlayerItemConsumeEventMap.put("opitems_46", InfMilk::event);
 
         //ProjectileHitEvent
         ProjectileHitEventList.add(TntBow::onProjectileHit);
@@ -136,15 +138,18 @@ public class EventManager implements Listener {
         BlockBreakEventList.add(Landmine::event);
 
         //PlayerChangedWorldEvent
-        PlayerChangedWorldEventList.add(DimensionWand::event);
+        PlayerChangedWorldEventList.add(PrivateDimensionWand::event);
+        PlayerChangedWorldEventList.add(SubspaceDimensionWand::event);
         PlayerChangedWorldEventList.add(CursedSword::event);
 
 
         //PlayerPreLoginEvent
-        PlayerPreLoginEventList.add(DimensionWand::event);
+        PlayerPreLoginEventList.add(PrivateDimensionWand::event);
+        PlayerPreLoginEventList.add(SubspaceDimensionWand::event);
 
         //PlayerQuitEvent
-        PlayerQuitEventList.add(DimensionWand::event);
+        PlayerQuitEventList.add(PrivateDimensionWand::event);
+        PlayerQuitEventList.add(SubspaceDimensionWand::event);
 
         //EntityDamageByEntityEvent
         EntityDamageByEntityEventList.add(CursedSword::event);
@@ -174,7 +179,6 @@ public class EventManager implements Listener {
     }
 
 
-
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerInteractEvent e) {
 
@@ -190,7 +194,6 @@ public class EventManager implements Listener {
         if (item == null) return;
 
         if (e.getAction().isLeftClick()) return;
-
 
 
         String idns = getIDNSorNullIfNotOPItems(item);
@@ -283,7 +286,7 @@ public class EventManager implements Listener {
 
         Consumer<BlockPlaceEvent> eventer = BlockPlaceEventMap.get(idns);
 
-        if(eventer == null) return;
+        if (eventer == null) return;
 
         eventer.accept(e);
 
@@ -292,7 +295,7 @@ public class EventManager implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final ProjectileLaunchEvent e) {
 
-        if(!(e.getEntity().getShooter() instanceof Player shooter)) return;
+        if (!(e.getEntity().getShooter() instanceof Player shooter)) return;
 
         ItemStack item = shooter.getInventory().getItemInMainHand();
 
@@ -301,7 +304,7 @@ public class EventManager implements Listener {
 
         Consumer<ProjectileLaunchEvent> eventer = ProjectileLaunchEventMap.get(idns);
 
-        if(eventer == null) return;
+        if (eventer == null) return;
 
         eventer.accept(e);
 
@@ -317,12 +320,11 @@ public class EventManager implements Listener {
 
         Consumer<PlayerFishEvent> eventer = PlayerFishEventMap.get(idns);
 
-        if(eventer == null) return;
+        if (eventer == null) return;
 
         eventer.accept(e);
 
     }
-
 
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -424,12 +426,12 @@ public class EventManager implements Listener {
     }
 
 
-    public static String getIDNSorNullIfNotOPItems(ItemStack item){
-        if(item == null) return null;
+    public static String getIDNSorNullIfNotOPItems(ItemStack item) {
+        if (item == null) return null;
 
         PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
 
-        if(!(pdc.has(NameSpaces.opitemsMarker) || pdc.has(NameSpaces.itemTypeIDNS))) return null;
+        if (!(pdc.has(NameSpaces.opitemsMarker) || pdc.has(NameSpaces.itemTypeIDNS))) return null;
 
         if (!pdc.get(NameSpaces.opitemsMarker, PersistentDataType.STRING).equals("true")) return null;
 

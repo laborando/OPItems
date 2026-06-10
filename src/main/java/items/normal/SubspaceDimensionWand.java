@@ -2,7 +2,8 @@
 package items.normal;
 
 import cel20.op.Main;
-import dimensions.ChunkGen;
+import dimensions.privateDimension.PrivateDimensionChunkGenerator;
+import dimensions.subspaceDimension.SubspaceDimensionChunkGenerator;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -13,18 +14,21 @@ import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 import utis.Celutis;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class DimensionWand {
+public class SubspaceDimensionWand {
 
     static List<String> players_in_customw = new ArrayList<>();
     private static final Map<UUID, Integer> lastClickTick = new HashMap<>();
 
     public static void event(final PlayerChangedWorldEvent e) {
-        final String wn = "pocket-world-" + e.getPlayer().getUniqueId();
+        final String wn = "subspace";
 
         if (e.getPlayer().getWorld().getName().equals(wn)) {
             players_in_customw.add(e.getPlayer().getUniqueId().toString());
@@ -36,26 +40,19 @@ public class DimensionWand {
 
     public static void event(final PlayerPreLoginEvent e) {
 
-        final String wn = "pocket-world-" + e.getUniqueId();
-        Bukkit.getLogger().info(wn);
+        final String wn = "subspace";
+
         if (players_in_customw.contains(e.getUniqueId().toString())) {
             new WorldCreator(wn).createWorld();
-            World world = Bukkit.getWorld(wn);
-//        if (world == null) {
-//        	String message = ChatColor.RED + "" + ChatColor.BOLD + "The World is still loading!\n"
-//                    + "Try Joining in ~7 seconds\n"
-//                    + "Debug: World: " + wn + " Timestamp: " + System.currentTimeMillis();
-//        	e.disallow(PlayerPreLoginEvent.Result.KICK_OTHER,message);
 
             Bukkit.getServer().unloadWorld(wn, false);
 
-            final WorldCreator worldCreator2 = new WorldCreator(wn);
+            final WorldCreator wc = new WorldCreator(wn);
 
-            worldCreator2.generator(new ChunkGen());
+            wc.generator(new SubspaceDimensionChunkGenerator());
 
-            Objects.requireNonNull(Bukkit.createWorld(worldCreator2)).setSpawnFlags(false, false);
+            Objects.requireNonNull(Bukkit.createWorld(wc)).setSpawnFlags(false, false);
 
-//        }
         }
 
     }
@@ -63,20 +60,17 @@ public class DimensionWand {
 
     public static void event(final PlayerQuitEvent e) {
         try {
-            final String wn = "pocket-world-" + e.getPlayer().getUniqueId();
+            final String wn = "subspace";
             World world = Bukkit.getWorld(wn);
             assert world != null;
 
-            //world.setSpawnFlags(false, false);
+            if(!(world.getPlayers().isEmpty()))
+                return;
 
-
-            if (world != null) {
-                for (Chunk c : world.getLoadedChunks()) {
-                    c.unload(true);
-                }
-                Bukkit.getLogger().info("Pocket World for " + e.getPlayer().getName() + " unloaded.");
-                Bukkit.getServer().unloadWorld(wn, true);
+            for (Chunk c : world.getLoadedChunks()) {
+                c.unload(true);
             }
+            Bukkit.getServer().unloadWorld(wn, true);
 
         } catch (Exception ee) {
             Bukkit.getLogger().info("Exception:");
@@ -91,24 +85,22 @@ public class DimensionWand {
         UUID id = p.getUniqueId();
         int currentTick = Bukkit.getCurrentTick();
 
-        //Anti Doppelclick --> bei dimensionswechsel
+        //Anti double click --> automatically executed when changing dimensions
         if (lastClickTick.getOrDefault(id, 0) > currentTick - 20) {
             return;
         }
 
         lastClickTick.put(id, currentTick);
 
-        if (!Main.isprivatedimenableled) {
-            p.sendMessage(ChatColor.RED + "This Item is disabled in the Config.");
-            return;
-        }
         p.sendMessage(ChatColor.GREEN + "Teleporting...");
-        final String wn = "pocket-world-" + e.getPlayer().getUniqueId();
+        final String wn = "subspace";
+
         if (!Celutis.doesWorldExist(wn)) {
             final WorldCreator worldCreator = new WorldCreator(wn);
-            worldCreator.generator(new ChunkGen());
+            worldCreator.generator(new SubspaceDimensionChunkGenerator());
             Bukkit.createWorld(worldCreator);
         }
+
         final World playerWorld = e.getPlayer().getWorld();
         final World targetWorld = Bukkit.getWorld(wn);
         assert targetWorld != null;
@@ -123,13 +115,12 @@ public class DimensionWand {
 
             final WorldCreator worldCreator2 = new WorldCreator(wn);
 
-            worldCreator2.generator(new ChunkGen());
+            worldCreator2.generator(new PrivateDimensionChunkGenerator());
 
             Bukkit.createWorld(worldCreator2);
 
-            p.sendMessage(ChatColor.RED + "The World is still initializing...");
-            p.sendMessage(ChatColor.RED + "Debug: " + wn);
-            p.sendMessage(ChatColor.RED + "The Teleport has been canceled. Please try again in 5-10 sec");
+            p.sendMessage(ChatColor.RED + "The World " + wn + " is still initializing.");
+            p.sendMessage(ChatColor.RED + "Please try again in 5-10 sec");
             return;
         }
         Location l;
@@ -149,8 +140,8 @@ public class DimensionWand {
 
     public static void saveData(final String filePath) {
         try {
-            final BukkitObjectOutputStream out = new BukkitObjectOutputStream((OutputStream) new GZIPOutputStream(new FileOutputStream(filePath)));
-            out.writeObject((Object) DimensionWand.players_in_customw);
+            final BukkitObjectOutputStream out = new BukkitObjectOutputStream(new GZIPOutputStream(new FileOutputStream(filePath)));
+            out.writeObject((Object) SubspaceDimensionWand.players_in_customw);
             out.close();
         } catch (IOException e) {
             File f = new File(filePath);
@@ -167,12 +158,12 @@ public class DimensionWand {
 
     public static void loadData(final String filePath) {
         try {
-            final BukkitObjectInputStream in = new BukkitObjectInputStream((InputStream) new GZIPInputStream(new FileInputStream(filePath)));
-            DimensionWand.players_in_customw = (List<String>) in.readObject();
+            final BukkitObjectInputStream in = new BukkitObjectInputStream(new GZIPInputStream(new FileInputStream(filePath)));
+            SubspaceDimensionWand.players_in_customw = (List<String>) in.readObject();
             in.close();
         } catch (ClassNotFoundException | IOException ex2) {
-            System.out.println("Probably first time starting... Creating new File. Do not report the following unless it is happening for more than two times");
-            DimensionWand.players_in_customw = new ArrayList<String>();
+            System.out.println("Creating new file for dimensional player data");
+            SubspaceDimensionWand.players_in_customw = new ArrayList<>();
             File f = new File(filePath);
             try {
                 if (!f.createNewFile()) {
