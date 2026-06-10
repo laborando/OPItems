@@ -87,7 +87,7 @@ public class RawItemsGenerator {
                 itemStack = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "The Anti Damage");
-                lore.add(ChatColor.RED + " - Heavy, but protects you against pretty much anything");
+                //lore.add(ChatColor.RED + " - Heavy, but protects you against pretty much anything");
                 itemMeta.setLore(lore);
 
                 if(param1 == -5){
@@ -108,10 +108,9 @@ public class RawItemsGenerator {
                 itemStack = new ItemStack(Material.ARROW, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Bower");
-                lore.add(ChatColor.RED + " - Shoots arrows");
+                lore.add(ChatColor.RED + " - Infinitely shoots arrows");
                 itemMeta.setLore(lore);
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -123,7 +122,6 @@ public class RawItemsGenerator {
                 lore.add(ChatColor.RED + " - Shoots fireballs");
                 itemMeta.setLore(lore);
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -134,7 +132,6 @@ public class RawItemsGenerator {
                 lore.add(ChatColor.RED + " - Shoots TNT");
                 itemMeta.setLore(lore);
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -211,7 +208,7 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Crafter");
                 lore = new ArrayList<>();
-                lore.add(ChatColor.RED + " - Opens the crafting menu");
+                lore.add(ChatColor.RED + " - Opens a crafting menu");
                 itemMeta.setLore(lore);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.PIERCING, 10, true);
@@ -220,11 +217,10 @@ public class RawItemsGenerator {
             case 13:
                 itemStack = new ItemStack(Material.FEATHER, 1);
                 itemMeta = itemStack.getItemMeta();
-                itemMeta.setDisplayName(ChatColor.DARK_RED + "FlyFeather");
+                itemMeta.setDisplayName(ChatColor.DARK_RED + "Feather of Flight");
                 lore = new ArrayList<>();
                 lore.add(ChatColor.RED + " - Click to enables flying");
                 itemMeta.setLore(lore);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.PUNCH, 10, true);
                 break;
@@ -297,9 +293,8 @@ public class RawItemsGenerator {
                 itemStack = new ItemStack(Material.FEATHER, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Launcher");
-                lore.add(ChatColor.RED + " - Click to launch yourself up into the air");
+                lore.add(ChatColor.RED + " - Launches yourself up into the air");
                 itemMeta.setLore(lore);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.SOUL_SPEED, 10, true);
                 break;
@@ -308,9 +303,8 @@ public class RawItemsGenerator {
                 itemStack = new ItemStack(Material.BLAZE_ROD, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Wand of Boom");
-                lore.add(ChatColor.RED + " - A wand that makes boom");
+                lore.add(ChatColor.RED + " - A wand for making things go boom");
                 itemMeta.setLore(lore);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.CHANNELING, 10, true);
                 break;
@@ -319,9 +313,8 @@ public class RawItemsGenerator {
                 itemStack = new ItemStack(Material.BLAZE_ROD, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Wand of Massive Boom");
-                lore.add(ChatColor.RED + " - A wand that makes even more boom");
+                lore.add(ChatColor.RED + " - A wand for even more boom");
                 itemMeta.setLore(lore);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 10, true);
                 break;
@@ -332,7 +325,6 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Wand of Invisibility");
                 lore.add(ChatColor.RED + " - Grants invisibility");
                 itemMeta.setLore(lore);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.EFFICIENCY, 10, true);
                 break;
@@ -341,7 +333,7 @@ public class RawItemsGenerator {
                 itemStack = new ItemStack(Material.IRON_LEGGINGS, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Speed Leggings");
-                lore.add(ChatColor.RED + " - Grants speed");
+                lore.add(ChatColor.RED + " - Grants a speed boost");
                 itemMeta.setLore(lore);
                 itemMeta.setUnbreakable(true);
 
@@ -357,7 +349,6 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Super Sponge");
                 lore.add(ChatColor.RED + " - A bigger sponge for bigger problems");
                 itemMeta.setLore(lore);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.PUNCH, 10, true);
                 break;
@@ -368,7 +359,6 @@ public class RawItemsGenerator {
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Lava Sponge");
                 lore.add(ChatColor.RED + " - A sponge for some hot stuff");
                 itemMeta.setLore(lore);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 itemMeta.addEnchant(Enchantment.FLAME, 10, true);
                 break;
@@ -388,7 +378,6 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Tnt Detonator");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore27 = new ArrayList<>();
                 lore27.add(ChatColor.RED + " - Right-click on a TNT-Block to connect it to the detonator");
@@ -414,7 +403,6 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Private Pocket Dimension Wand");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore29 = new ArrayList<>();
                 lore29.add(ChatColor.RED + " - Right-click to change between the overworld and your private dimension");
@@ -438,7 +426,6 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Wand of Home");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore31 = new ArrayList<>();
                 lore31.add(ChatColor.RED + " - Right-click in the air to teleport to your home");
@@ -462,7 +449,6 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Wand of Blocks");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore33 = new ArrayList<>();
                 lore33.add(ChatColor.RED + " - Right-click to charge");
@@ -475,7 +461,6 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Portal2Go");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore34 = new ArrayList<>();
                 lore34.add(ChatColor.RED + " - Right-click to travel between the overworld and the nether");
@@ -487,7 +472,6 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Skull Imitator");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore35 = new ArrayList<>();
                 lore35.add(ChatColor.RED + " - Right-click in the air to change the texture");
@@ -500,7 +484,6 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Landmine");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
                 itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "landmine");
@@ -508,7 +491,6 @@ public class RawItemsGenerator {
                 List<String> lore36 = new ArrayList<>();
                 lore36.add(ChatColor.RED + " - Place on the ground to set up");
                 lore36.add(ChatColor.RED + " - Explodes when destroyed or stepped on");
-                lore36.add(ChatColor.RED + " - Can be diffused");
                 itemMeta.setLore(lore36);
                 break;
 
@@ -521,7 +503,7 @@ public class RawItemsGenerator {
 
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore37 = new ArrayList<>();
-                lore37.add(ChatColor.RED + " - Click on a landmine to diffuse");
+                lore37.add(ChatColor.RED + " - Click on a landmine to diffuse it");
                 itemMeta.setLore(lore37);
                 break;
 
@@ -529,10 +511,9 @@ public class RawItemsGenerator {
                 itemStack = new ItemStack(Material.WATER_BUCKET, 1);
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Infinite Water Bucket");
-                lore.add(ChatColor.RED + " - A bucket with no end");
+                lore.add(ChatColor.RED + " - A bucket with no bottom");
                 itemMeta.setLore(lore);
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -558,7 +539,6 @@ public class RawItemsGenerator {
                 lore40.add(ChatColor.RED + " - An eternal steak...");
                 itemMeta.setLore(lore40);
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -567,7 +547,6 @@ public class RawItemsGenerator {
                 itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.DARK_RED + "Wand of Warden");
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 List<String> lore41 = new ArrayList<>();
                 lore41.add(ChatColor.RED + " - Click a block to spawn a warden for 5 hearts");
@@ -608,7 +587,6 @@ public class RawItemsGenerator {
                 itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsAbilities, PersistentDataType.STRING, "workstation");
 
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -622,7 +600,6 @@ public class RawItemsGenerator {
                 itemMeta.setLore(lore);
 
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -635,7 +612,6 @@ public class RawItemsGenerator {
                 itemMeta.setLore(lore);
 
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -648,7 +624,18 @@ public class RawItemsGenerator {
                 itemMeta.setLore(lore);
 
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-                itemMeta.setUnbreakable(true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                break;
+
+            case 48:
+                itemStack = new ItemStack(Material.BLAZE_ROD, 1);
+                itemMeta = itemStack.getItemMeta();
+                itemMeta.setDisplayName(ChatColor.DARK_RED + "Subspace Stick");
+                lore = new ArrayList<>();
+                lore.add(ChatColor.RED + " - Used to access the subspace for faster travel");
+                itemMeta.setLore(lore);
+
+                itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
@@ -669,6 +656,22 @@ public class RawItemsGenerator {
         try {
 
             itemMeta.setRarity(ItemRarity.EPIC);
+
+            //Pig-Egg has to be usable like normal
+            if(id == 9){
+
+                List<String> cLore = itemMeta.getLore();
+
+                if(cLore == null)
+                    cLore = new ArrayList<>();
+
+                cLore.add("");
+                cLore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "OPItems");
+
+                itemMeta.setLore(cLore);
+
+            }
+
 
             if(!isGUI){
                 itemMeta.getPersistentDataContainer().set(itemTypeIDNS, PersistentDataType.STRING, "opitems_" + id);

@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import utis.ParticleUtis;
+import utis.uiutis.CooldownSubtitle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,9 @@ public class WandOfWarden {
         Cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 
         if (!((System.currentTimeMillis() - Cooldown.get(p.getName())) >= 90000)) {
-            p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Still on cooldown...");
+
+            CooldownSubtitle.showCooldown(p);
+
             return;
         }
 

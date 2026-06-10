@@ -10,6 +10,9 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
+/**
+ * CItem holds the ID, Recipe, Result, Key and more metadata of an opitems
+ */
 public class CItem {
 
     public int id;
@@ -111,6 +114,11 @@ public class CItem {
         return this;
     }
 
+    /**
+     * Sets the result to an preconfigured OPItems if defined int the class RawItemsgenerator
+     * @param id
+     * @return
+     */
     public CItem setResultFromOPItemsID(int id) {
         if (finished) {
             Main.getInstance().getLogger().warning("[OPItems] Err: Cannot set ItemResult: Item has already been created: " + id);

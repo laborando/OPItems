@@ -12,6 +12,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classs for managing all OPItems and their respective recipes
+ */
 public class TotalItems {
 
     public static List<CItem> items = new ArrayList<>();

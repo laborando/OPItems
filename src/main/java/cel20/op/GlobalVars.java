@@ -24,6 +24,7 @@ public class GlobalVars {
     public static int WandOfMassiveBoomExploStrenght = 0;
     public static double WandOfMassiveBoomsCD = 0;
 
+    public static String CooldownMessage = "cooldown...";
 
-
+    public static String SubSpaceDataFile;
 }

@@ -17,47 +17,58 @@ public class CLogger {
     static List<String> collected = new CopyOnWriteArrayList<>();
     static String loc = "";
 
-    public static void startAsync(String s, int secDelNew){
+    /**
+     * Starts the CLogger service asynchronously using an independent thread <br>
+     * @param folder
+     * @param saveInterval
+     */
+    public static void startAsync(String folder, int saveInterval){
 
-        secDel = secDelNew;
-        loc = s + "/logs/log_" + System.currentTimeMillis() + ".cel20";
-        File tf = new File(s + "/logs");
+        secDel = saveInterval;
+        loc = folder + "/logs/log_" + System.currentTimeMillis() + ".cel20";
+        File tf = new File(folder + "/logs");
         tf.mkdirs();
-        log("CLogger Started ASYNCED " + System.currentTimeMillis());
+        log("CLogger started as asynchronously" + System.currentTimeMillis());
         Thread t = new Thread(() -> {
 
             try {
                 Thread.sleep(secDel* 1000L);
             } catch (InterruptedException e) {
-                log("Automated Error Report: " + e.getMessage());
+                log("CLogger Exception: " + e.getMessage());
             }
 
             flushNow();
 
         });
+
         t.start();
 
         enabled = true;
 
     }
 
-    public static void startSynced(String s, int secDelNew){
-        secDel = secDelNew;
-        loc = s + "/logs/log_" + System.currentTimeMillis() + ".cel20";
+
+    /**
+     * Starts the CLogger service synchronously using the bukkit scheduler <br>
+     * @param folder
+     * @param saveInterval
+     */
+    public static void startSynced(String folder, int saveInterval){
+        secDel = saveInterval;
+        loc = folder + "/logs/log_" + System.currentTimeMillis() + ".cel20";
         System.out.println(loc);
-        File tf = new File(s + "/logs");
+        File tf = new File(folder + "/logs");
         tf.mkdirs();
-        log("CLogger Started SYNCED " + System.currentTimeMillis());
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), new Runnable() {
-            @Override
-            public void run() {
-                flushNow();
-            }
-        }, 0L, secDel*20L);
+        log("CLogger started synchronously " + System.currentTimeMillis());
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), CLogger::flushNow, 0L, secDel*20L);
 
         enabled = true;
     }
 
+    /**
+     * Flushes the Buffer of collected Messages to a previously set file
+     *
+     */
     public static void flushNow(){
         if(enabled) {
             try {
@@ -80,17 +91,33 @@ public class CLogger {
         }
     }
 
+    /**
+     * Logs a Message to the Buffer <br>
+     * If CLogger is not enabled, starts it synchronized
+     * @param s
+     */
     public static void log(String s){
         if(enabled){
             collected.add(s);
+        }else{
+            startAsync(Main.getInstance().getDataFolder().toString(), 20);
+            log(s);
         }
 
     }
 
+    /**
+     * Logs a Message to the Buffer and flushes it<br>
+     * If CLogger is not enabled, starts it synchronized
+     * @param s
+     */
     public static void logAndFlush(String s){
         if(enabled){
             collected.add(s);
             flushNow();
+        }else{
+            startAsync(Main.getInstance().getDataFolder().toString(), 20);
+            logAndFlush(s);
         }
 
 

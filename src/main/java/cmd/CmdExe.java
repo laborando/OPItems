@@ -16,7 +16,6 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 import utis.CLogger;
@@ -163,7 +162,7 @@ public class CmdExe {
                     sender.sendMessage(ChatColor.RED + "Usage: /opitems skull <player_name>");
                 } else {
                     Player p = (Player) sender;
-                    p.getInventory().addItem(Celutis.getSkullbyName(arg2));
+                    p.getInventory().addItem(Celutis.getSkullByName(arg2));
                     sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
                 }
 

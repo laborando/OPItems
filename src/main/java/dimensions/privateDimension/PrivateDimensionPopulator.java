@@ -1,4 +1,4 @@
-package dimensions;
+package dimensions.privateDimension;
 
 import org.bukkit.Chunk;
 import org.bukkit.Material;
@@ -8,7 +8,7 @@ import org.bukkit.generator.BlockPopulator;
 
 import java.util.Random;
 
-public class NormalPop extends BlockPopulator {
+public class PrivateDimensionPopulator extends BlockPopulator {
 
     @Override
     public void populate(World world, Random random, Chunk chunk) {

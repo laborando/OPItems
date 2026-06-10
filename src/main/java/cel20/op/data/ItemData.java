@@ -1,10 +1,8 @@
 package cel20.op.data;
 
+import cel20.op.GlobalVars;
 import cel20.op.Main;
-import items.normal.CursedSword;
-import items.normal.DimensionWand;
-import items.normal.Landmine;
-import items.normal.WandOfHome;
+import items.normal.*;
 import org.bukkit.plugin.Plugin;
 
 public class ItemData {
@@ -15,7 +13,8 @@ public class ItemData {
         Landmine.load();
         CursedSword.loadData(Main.data_save_cursed_sword = m.getDataFolder() + "/op_cursed_sword_data");
         WandOfHome.loadData(Main.data_save_homes = m.getDataFolder() + "/wand_of_home_data");
-        DimensionWand.loadData(Main.data_save_play_dim = m.getDataFolder() + "/farm_dim_play_data");
+        PrivateDimensionWand.loadData(Main.data_save_play_dim = m.getDataFolder() + "/farm_dim_play_data");
+        SubspaceDimensionWand.loadData(GlobalVars.SubSpaceDataFile = m.getDataFolder() + "/subspace_player_data");
 
     }
 
@@ -25,7 +24,8 @@ public class ItemData {
 
         WandOfHome.saveData(Main.data_save_homes);
 
-        DimensionWand.saveData(Main.data_save_play_dim);
+        PrivateDimensionWand.saveData(Main.data_save_play_dim);
+        SubspaceDimensionWand.saveData(GlobalVars.SubSpaceDataFile);
 
         Landmine.save();
 

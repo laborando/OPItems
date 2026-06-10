@@ -12,6 +12,10 @@ public class WorkerLogger {
         this.workerUrl = workerUrl;
     }
 
+    /**
+     * Sends a message to a remote worker instance
+     * @param logText
+     */
     public void sendLog(String logText) {
         try {
             URL url = new URL(workerUrl);
