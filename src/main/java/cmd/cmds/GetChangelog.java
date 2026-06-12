@@ -11,7 +11,7 @@ import java.util.Deque;
 
 public class GetChangelog {
 
-    public static void execute(CommandSender sender){
+    public static void execute(CommandSender sender) {
 
         CUpdater updater = Main.cUpdater;
 
@@ -26,7 +26,7 @@ public class GetChangelog {
             sender.sendMessage("");
             sender.sendMessage(ChatColor.RED + "v" + cVersion.version);
 
-            cVersion.changelog.lines().forEach(l -> sender.sendMessage(l.replace("###", ChatColor.BOLD + "" + ChatColor.BLUE).replace("##", ChatColor.BOLD + ""+ ChatColor.BLUE).replace("#", ChatColor.GOLD + "")));
+            cVersion.changelog.lines().forEach(l -> sender.sendMessage(l.replace("###", ChatColor.BOLD + "" + ChatColor.BLUE).replace("##", ChatColor.BOLD + "" + ChatColor.BLUE).replace("#", ChatColor.GOLD + "")));
 
 
         }

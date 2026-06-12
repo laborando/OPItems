@@ -9,12 +9,12 @@ api-version: '1.20.6'
 commands:
   opitems:
     description: OPItems's main command
-    usage: /opitems < help | gui | recipes | update | skull | upgradeItems>
+    usage: /opitems < help | gui | recipes | update | skull | upgradeItems >
   items:
-    description: Lets you remove ALL loaded Items or gets the Amount of Items from all Players. Used for Lag Prevention and detecting if a Player is generating Lag on Purpose
+    description: Lets you remove loaded Items / gets the amount of items loaded by players
     usage: /items <remove | player_heap >
 
 #Load After:
-softdepend: [Multiverse-Core]
+softdepend: [ Multiverse-Core ]
 
 load: POSTWORLD

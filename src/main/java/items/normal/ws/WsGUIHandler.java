@@ -6,8 +6,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-public class WsGUIHandler
-{
+public class WsGUIHandler {
     public static void onInventoryClick(final InventoryClickEvent event) {
         final HumanEntity player = event.getWhoClicked();
         final ItemStack item = event.getCurrentItem();
@@ -22,7 +21,7 @@ public class WsGUIHandler
             event.setCancelled(true);
 
 
-            switch (item.getType()){
+            switch (item.getType()) {
                 case BARRIER:
                     player.closeInventory();
                     break;

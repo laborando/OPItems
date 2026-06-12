@@ -1,4 +1,3 @@
-
 package items.normal;
 
 import items.EventManager;

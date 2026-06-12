@@ -8,7 +8,7 @@ import org.bukkit.plugin.Plugin;
 public class ItemData {
 
 
-    public static void loadItems(Main m){
+    public static void loadItems(Main m) {
 
         Landmine.load();
         CursedSword.loadData(Main.data_save_cursed_sword = m.getDataFolder() + "/op_cursed_sword_data");

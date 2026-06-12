@@ -40,7 +40,7 @@ public class ConfigLoader {
         //DimensionsPerformanceMode
         if (config.getBoolean("PrivatePocketDimensionPerformanceModeActivated")) {
             Main.priDimPerformMode = true;
-        }else{
+        } else {
             if (config.getBoolean("CustomDimensionsPerformanceMode")) {
                 Main.priDimPerformMode = true;
             }

@@ -14,21 +14,20 @@ public class TeleportSword {
 
     static Map<String, Long> cooldown = new HashMap<>();
 
-    public static void event(PlayerInteractEvent e){
+    public static void event(PlayerInteractEvent e) {
 
         Player p = e.getPlayer();
 
         cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 
-        if(!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.teleportSwordCD)) {
+        if (!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.teleportSwordCD)) {
             return;
         }
         cooldown.put(p.getName(), System.currentTimeMillis());
 
         Block tb = p.getTargetBlockExact(15);
 
-        if(tb != null)
-        {
+        if (tb != null) {
             p.sendMessage(ChatColor.RED + "The way is blocked");
             return;
         }

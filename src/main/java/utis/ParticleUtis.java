@@ -17,6 +17,7 @@ public class ParticleUtis {
 
     /**
      * Generates and displays a circle of particles
+     *
      * @param location
      * @param radius
      * @param amount
@@ -26,7 +27,7 @@ public class ParticleUtis {
      * @param delay
      * @param timesX
      */
-    public static void particleCircle(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX){
+    public static void particleCircle(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX) {
 
         Queue<Location> ll = Celutis.getCircleLocationsQue(location, radius, amount);
 
@@ -45,10 +46,10 @@ public class ParticleUtis {
 
                 for (int i = 0; i < 2; i++) {
                     Location loc = ll.poll();
-                    if(loc!=null) {
+                    if (loc != null) {
                         Particle.DustOptions dustOptions = new Particle.DustOptions(color, particleSize);
                         Objects.requireNonNull(loc.getWorld()).spawnParticle(particleType, loc, 20, 0.3, 0.2, 0.3, dustOptions);
-                    }else{
+                    } else {
                         this.cancel();
                     }
                 }
@@ -59,6 +60,7 @@ public class ParticleUtis {
 
     /**
      * Generates and displays a circle of particles and then spawns an emerging warden at its center
+     *
      * @param location
      * @param radius
      * @param amount
@@ -69,7 +71,7 @@ public class ParticleUtis {
      * @param timesX
      * @param player
      */
-    public static void particleCircleWithWarden(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX, Player player){
+    public static void particleCircleWithWarden(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX, Player player) {
 
         Queue<Location> ll = Celutis.getCircleLocationsQue(location, radius, amount);
         Queue<Location> copyLl = new ArrayDeque<>();
@@ -89,15 +91,13 @@ public class ParticleUtis {
                 boolean hasDone = false;
                 for (int i = 0; i < 2; i++) {
                     Location loc = ll.poll();
-                    if(loc!=null) {
+                    if (loc != null) {
                         Particle.DustOptions dustOptions = new Particle.DustOptions(color, particleSize);
                         Objects.requireNonNull(loc.getWorld()).spawnParticle(particleType, loc, 20, 0.3, 0.2, 0.3, dustOptions);
-                    }else{
+                    } else {
 
 
-
-
-                        if(!hasDone){
+                        if (!hasDone) {
 
                             Warden w = location.getWorld().spawn(location, Warden.class);
 
@@ -105,7 +105,6 @@ public class ParticleUtis {
 
                             hasDone = true;
                         }
-
 
 
                         this.cancel();

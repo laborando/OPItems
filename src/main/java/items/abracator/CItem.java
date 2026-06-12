@@ -2,8 +2,6 @@ package items.abracator;
 
 import cel20.op.Main;
 import items.managers.RawItemsGenerator;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -56,16 +54,17 @@ public class CItem {
      * @param id
      * @return
      */
-    public static CItem getBuilder(int id){
+    public static CItem getBuilder(int id) {
         return new CItem(id);
     }
 
     /**
      * Gets new builder with no recipe but preloaded OPItem from id
+     *
      * @param id
      * @return
      */
-    public static CItem getOPBuilder(int id){
+    public static CItem getOPBuilder(int id) {
         return new CItem(id).setResultFromOPItemsID(id);
     }
 
@@ -75,12 +74,12 @@ public class CItem {
      * Sets the Material at the respective Coords
      *
      * @param material Material to set to
-     * @param targets The ints which corresponds to the slots in the 3x3 crafting grids to set the material
+     * @param targets  The ints which corresponds to the slots in the 3x3 crafting grids to set the material
      */
     public CItem setMaterialAt(Material material, int... targets) {
 
         for (int target : targets) {
-            if(target > 8){
+            if (target > 8) {
                 Main.getInstance().getLogger().warning("[OPItems] Err: Cannot set Material: int target to big for grid: " + id);
             }
             materials[target] = material;
@@ -116,6 +115,7 @@ public class CItem {
 
     /**
      * Sets the result to an preconfigured OPItems if defined int the class RawItemsgenerator
+     *
      * @param id
      * @return
      */
@@ -155,23 +155,23 @@ public class CItem {
 
         recipe.shape("abc", "def", "ghi");
 
-        if(materials[0] != null)
+        if (materials[0] != null)
             recipe.setIngredient('a', materials[0]);
-        if(materials[1] != null)
+        if (materials[1] != null)
             recipe.setIngredient('b', materials[1]);
-        if(materials[2] != null)
+        if (materials[2] != null)
             recipe.setIngredient('c', materials[2]);
-        if(materials[3] != null)
+        if (materials[3] != null)
             recipe.setIngredient('d', materials[3]);
-        if(materials[4] != null)
+        if (materials[4] != null)
             recipe.setIngredient('e', materials[4]);
-        if(materials[5] != null)
+        if (materials[5] != null)
             recipe.setIngredient('f', materials[5]);
-        if(materials[6] != null)
+        if (materials[6] != null)
             recipe.setIngredient('g', materials[6]);
-        if(materials[7] != null)
+        if (materials[7] != null)
             recipe.setIngredient('h', materials[7]);
-        if(materials[8] != null)
+        if (materials[8] != null)
             recipe.setIngredient('i', materials[8]);
 
         name = PlainTextComponentSerializer.plainText().serialize(result.displayName()).replaceAll("\\[", "").replace("]", "");
@@ -188,8 +188,7 @@ public class CItem {
      * <br>
      * Build pattern
      */
-    public void build()
-    {
+    public void build() {
         finishCreation();
     }
 

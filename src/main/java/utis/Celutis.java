@@ -1,5 +1,3 @@
-
-
 package utis;
 
 import org.bukkit.*;
@@ -68,6 +66,7 @@ public class Celutis {
     /**
      * Gets random topmost blocks from the center <br>
      * Even though it is called radius the blocks are chosen from a rect
+     *
      * @param center
      * @param radius
      * @param count

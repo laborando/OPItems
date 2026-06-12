@@ -7,14 +7,14 @@ import org.bukkit.entity.Player;
 
 public class OpenConfig {
 
-    public static void execute(CommandSender sender){
+    public static void execute(CommandSender sender) {
 
-        if(!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "Only players can execute this command");
             return;
         }
 
-        if(!(sender.isOp())){
+        if (!(sender.isOp())) {
             sender.sendMessage(ChatColor.RED + "You do not have permission to execute this command");
             return;
         }

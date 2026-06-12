@@ -1,8 +1,5 @@
-
 package dimensions.subspaceDimension;
 
-import cel20.op.Main;
-import dimensions.privateDimension.PrivateDimensionPopulator;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
@@ -10,7 +7,6 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 

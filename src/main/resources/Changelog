@@ -2,8 +2,6 @@ Anmerkungen:
 
 TODO
  - Schedules unified checking for item strings
- - Store XP Bottle
- - Fast Travel Dimension
 
  Maybe:
  - Chunck Protector
@@ -15,8 +13,9 @@ IN WORK
 DONE
 
 ITEMS-ADDED
-
+ - Experience Storage
  - Portable Ender Chest
+ - Subspace Dimension Wand
 
 ITEMS-CHS
  - OVER

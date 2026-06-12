@@ -112,25 +112,16 @@ public class CmdExe {
 
             if (arg.equalsIgnoreCase("config")) {
                 OpenConfig.execute(sender);
-            }else
-
-            if (arg.equalsIgnoreCase("changelog")) {
+            } else if (arg.equalsIgnoreCase("changelog")) {
                 GetChangelog.execute(sender);
-            }else
-
-            if (arg.equalsIgnoreCase("um")) {
+            } else if (arg.equalsIgnoreCase("um")) {
                 if (sender.isOp()) {
                     UpdateNotify.toggle(sender);
                 }
-            }else
-
-            if (arg.equalsIgnoreCase("upgradeItems")) {
+            } else if (arg.equalsIgnoreCase("upgradeItems")) {
                 if (sender instanceof Player)
                     ItemUpgrader.upgradeMainItem((Player) sender);
-            } else
-
-
-            if (arg.equalsIgnoreCase("give")) {
+            } else if (arg.equalsIgnoreCase("give")) {
                 if (sender.isOp()) {
 
                     Give.execute(sender, arg2, arg3, arg4, arg5);
@@ -169,8 +160,7 @@ public class CmdExe {
 
             } else if (arg.equalsIgnoreCase("help")) {
                 Help.execute(sender);
-            }
-            else if (arg.equalsIgnoreCase("version")) {
+            } else if (arg.equalsIgnoreCase("version")) {
                 Version.execute(sender);
             } else if (arg.equalsIgnoreCase("update")) {
                 if (sender.isOp()) {

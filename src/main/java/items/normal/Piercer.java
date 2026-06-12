@@ -10,7 +10,7 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 
 import java.util.ArrayList;
 
-public class Piercer  {
+public class Piercer {
 
     private static ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
 
@@ -23,7 +23,7 @@ public class Piercer  {
                 Player shooter = (Player) arrow.getShooter();
 
 
-                    firedArrows.add(arrow);
+                firedArrows.add(arrow);
 
 
             }
@@ -38,7 +38,7 @@ public class Piercer  {
 
                 Entity e = event.getHitEntity();
 
-                if (e == null){
+                if (e == null) {
 
                     firedArrows.remove(arrow);
                     return;
@@ -46,7 +46,7 @@ public class Piercer  {
                 }
 
                 if (e instanceof LivingEntity) {
-                    ((LivingEntity)e).damage(10.0);
+                    ((LivingEntity) e).damage(10.0);
                 }
 
                 event.setCancelled(true);

@@ -1,13 +1,9 @@
-
 package cel20.op;
 
 import cel20.op.config.ConfigInniter;
 import cel20.op.config.ConfigLoader;
 import cel20.op.data.ItemData;
 import cel20.op.load.Commands;
-import io.papermc.paper.command.brigadier.PaperBrigadier;
-import io.papermc.paper.plugin.loader.library.PaperLibraryStore;
-import io.papermc.paper.text.PaperComponents;
 import items.EventManager;
 import items.NameSpaces;
 import items.abracator.TotalItems;
@@ -96,7 +92,7 @@ public class Main extends JavaPlugin {
         TotalItems.addAllRecipes();
         TotalItems.innit(this);
 
-        if(GlobalVars.craftingDisabled)
+        if (GlobalVars.craftingDisabled)
             TotalItems.disableCrafting();
 
         //Newer Content

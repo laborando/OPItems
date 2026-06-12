@@ -1,4 +1,3 @@
-
 package items.sheduled.cosmetic;
 
 import items.NameSpaces;
@@ -9,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
 public class FireShoe extends BasicSchedule {
-    public void execute(){
+    public void execute() {
 
         Bukkit.getOnlinePlayers().forEach(p -> {
 
@@ -21,7 +20,7 @@ public class FireShoe extends BasicSchedule {
             String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsCosmetic, PersistentDataType.STRING);
             if (abl != null && abl.contains("fire_norm")) {
 
-                p.getLocation().getWorld().spawnParticle(Particle.FLAME, p.getLocation(), 30,0.3, 0.8, 0.3, 0.05);
+                p.getLocation().getWorld().spawnParticle(Particle.FLAME, p.getLocation(), 30, 0.3, 0.8, 0.3, 0.05);
 
             }
         });

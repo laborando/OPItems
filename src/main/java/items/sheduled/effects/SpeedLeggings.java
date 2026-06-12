@@ -1,4 +1,3 @@
-
 package items.sheduled.effects;
 
 import items.NameSpaces;
@@ -9,9 +8,8 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class SpeedLeggings extends BasicSchedule
-{
-    public void execute(){
+public class SpeedLeggings extends BasicSchedule {
+    public void execute() {
 
         Bukkit.getOnlinePlayers().forEach(p -> {
 

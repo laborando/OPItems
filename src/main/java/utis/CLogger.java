@@ -19,10 +19,11 @@ public class CLogger {
 
     /**
      * Starts the CLogger service asynchronously using an independent thread <br>
+     *
      * @param folder
      * @param saveInterval
      */
-    public static void startAsync(String folder, int saveInterval){
+    public static void startAsync(String folder, int saveInterval) {
 
         secDel = saveInterval;
         loc = folder + "/logs/log_" + System.currentTimeMillis() + ".cel20";
@@ -32,7 +33,7 @@ public class CLogger {
         Thread t = new Thread(() -> {
 
             try {
-                Thread.sleep(secDel* 1000L);
+                Thread.sleep(secDel * 1000L);
             } catch (InterruptedException e) {
                 log("CLogger Exception: " + e.getMessage());
             }
@@ -50,17 +51,18 @@ public class CLogger {
 
     /**
      * Starts the CLogger service synchronously using the bukkit scheduler <br>
+     *
      * @param folder
      * @param saveInterval
      */
-    public static void startSynced(String folder, int saveInterval){
+    public static void startSynced(String folder, int saveInterval) {
         secDel = saveInterval;
         loc = folder + "/logs/log_" + System.currentTimeMillis() + ".cel20";
         System.out.println(loc);
         File tf = new File(folder + "/logs");
         tf.mkdirs();
         log("CLogger started synchronously " + System.currentTimeMillis());
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), CLogger::flushNow, 0L, secDel*20L);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), CLogger::flushNow, 0L, secDel * 20L);
 
         enabled = true;
     }
@@ -69,8 +71,8 @@ public class CLogger {
      * Flushes the Buffer of collected Messages to a previously set file
      *
      */
-    public static void flushNow(){
-        if(enabled) {
+    public static void flushNow() {
+        if (enabled) {
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(loc));
 
@@ -94,12 +96,13 @@ public class CLogger {
     /**
      * Logs a Message to the Buffer <br>
      * If CLogger is not enabled, starts it synchronized
+     *
      * @param s
      */
-    public static void log(String s){
-        if(enabled){
+    public static void log(String s) {
+        if (enabled) {
             collected.add(s);
-        }else{
+        } else {
             startAsync(Main.getInstance().getDataFolder().toString(), 20);
             log(s);
         }
@@ -109,13 +112,14 @@ public class CLogger {
     /**
      * Logs a Message to the Buffer and flushes it<br>
      * If CLogger is not enabled, starts it synchronized
+     *
      * @param s
      */
-    public static void logAndFlush(String s){
-        if(enabled){
+    public static void logAndFlush(String s) {
+        if (enabled) {
             collected.add(s);
             flushNow();
-        }else{
+        } else {
             startAsync(Main.getInstance().getDataFolder().toString(), 20);
             logAndFlush(s);
         }
@@ -123,7 +127,7 @@ public class CLogger {
 
     }
 
-    public static boolean isEnabled(){
+    public static boolean isEnabled() {
         return enabled;
     }
 

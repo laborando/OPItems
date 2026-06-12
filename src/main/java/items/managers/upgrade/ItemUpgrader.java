@@ -11,18 +11,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ItemUpgrader {
 
-    public static void upgradeMainItem(Player p){
+    public static void upgradeMainItem(Player p) {
 
 
         p.sendMessage(ChatColor.GREEN + "Comparing item against database...");
         ItemStack item = p.getInventory().getItemInMainHand();
 
-        if(item.getType() == Material.AIR){
+        if (item.getType() == Material.AIR) {
             p.sendMessage(ChatColor.RED + "Please only hold the item in the main hand.");
             return;
         }
 
-        if(item.getAmount() > 1){
+        if (item.getAmount() > 1) {
             p.sendMessage(ChatColor.RED + "Please hold one item at a time.");
             return;
         }
@@ -35,37 +35,35 @@ public class ItemUpgrader {
         OldItemDataset.itemList.forEach(ic -> {
 
 
-            if(!hasFound[0] && ic.doesMatch(item)){
+            if (!hasFound[0] && ic.doesMatch(item)) {
                 targetId.set(ic.id);
                 hasFound[0] = true;
             }
 
         });
 
-        if(hasFound[0]){
-            if(p.getInventory().contains(item)){
+        if (hasFound[0]) {
+            if (p.getInventory().contains(item)) {
 
                 Inventory inv = p.getInventory();
 
                 for (int i = 0; i < inv.getSize(); i++) {
-                ItemStack inow = inv.getItem(i);
-                if (inow != null && inow.equals(item)) {
-                    inv.clear(i);
+                    ItemStack inow = inv.getItem(i);
+                    if (inow != null && inow.equals(item)) {
+                        inv.clear(i);
 
-                    break;
+                        break;
+                    }
                 }
-            }
                 p.getInventory().addItem(RawItemsGenerator.getItem(targetId.get(), -5, -5));
 
                 p.sendMessage(ChatColor.GREEN + "The item was updated. Item-ID: " + targetId.get());
-            }else{
+            } else {
                 p.sendMessage(ChatColor.RED + "The item checked for was not found in the inventory anymore");
             }
 
 
-
-
-        }else{
+        } else {
             p.sendMessage(ChatColor.RED + "The item in the main-hand was not found in the database");
         }
 

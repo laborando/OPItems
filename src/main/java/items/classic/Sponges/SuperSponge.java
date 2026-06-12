@@ -1,4 +1,3 @@
-
 package items.classic.Sponges;
 
 import cel20.op.GlobalVars;
@@ -14,8 +13,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class SuperSponge
-{
+public class SuperSponge {
     public static void runSponge(final Block block) {
         final List<Block> b = new ArrayList<>();
         Queue<Block> q = new ArrayDeque<Block>();
@@ -25,9 +23,9 @@ public class SuperSponge
         recursiveSpongeRunner(0, b, q);
     }
 
-    public static void recursiveSpongeRunner(int cStep, List<Block> b, Queue<Block> q){
+    public static void recursiveSpongeRunner(int cStep, List<Block> b, Queue<Block> q) {
 
-        if(cStep == GlobalVars.spongeClearRange){
+        if (cStep == GlobalVars.spongeClearRange) {
             recursiveWaterRemoval(0, b);
             return;
         }
@@ -74,9 +72,9 @@ public class SuperSponge
 
     }
 
-    public static void recursiveWaterRemoval(int cStep, List<Block> b){
+    public static void recursiveWaterRemoval(int cStep, List<Block> b) {
 
-        if(!b.isEmpty()){
+        if (!b.isEmpty()) {
             Block block = b.get(0);
 
             if (block.getType() == Material.WATER || block.getType() == Material.KELP_PLANT || block.getType() == Material.TALL_SEAGRASS || block.getType() == Material.SEAGRASS) {
@@ -85,9 +83,9 @@ public class SuperSponge
 
             b.remove(0);
 
-            if(cStep < 50){
+            if (cStep < 50) {
                 recursiveWaterRemoval(cStep + 1, b);
-            }else{
+            } else {
                 Runnable r = () -> SuperSponge.recursiveWaterRemoval(0, b);
                 Bukkit.getScheduler().runTaskLater(Main.getPluginInstance(), r, 1L);
             }
@@ -112,7 +110,7 @@ public class SuperSponge
             }
         }
     }
-    
+
     public static List<Block> get_face_block(final List<Block> b) {
         for (final Block bb : b) {
             if (!b.contains(bb.getRelative(BlockFace.DOWN, 1))) {

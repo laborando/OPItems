@@ -1,5 +1,3 @@
-
-
 package items.classic;
 
 import cel20.op.GlobalVars;

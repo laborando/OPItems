@@ -14,6 +14,7 @@ public class WorkerLogger {
 
     /**
      * Sends a message to a remote worker instance
+     *
      * @param logText
      */
     public void sendLog(String logText) {
@@ -33,6 +34,7 @@ public class WorkerLogger {
                 //throw new RuntimeException("Fehler beim Senden des Logs: HTTP " + responseCode);
             }
             con.disconnect();
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 }

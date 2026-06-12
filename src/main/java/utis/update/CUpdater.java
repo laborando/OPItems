@@ -18,18 +18,17 @@ import java.util.Map;
 /*
 CUpdater for MC plugins via the Modrinth API
  */
-public class CUpdater
-{
+public class CUpdater {
     public CVersion[] versions;
     public CVersion highestVersion;
     public boolean shouldUpdate = false;
     private String slug = "opitems";
     private static final boolean disable = false;
 
-    public CUpdater(String cVersion, String slug){
+    public CUpdater(String cVersion, String slug) {
         this.slug = slug;
 
-        if(disable){
+        if (disable) {
             shouldUpdate = false;
             highestVersion = new CVersion();
             return;
@@ -43,7 +42,7 @@ public class CUpdater
         URL verList;
 
         try {
-             verList = new URL("https://api.modrinth.com/v2/project/" + slug + "/version");
+            verList = new URL("https://api.modrinth.com/v2/project/" + slug + "/version");
         } catch (MalformedURLException e) {
             System.out.println("There was an error checking for updates: " + e.getMessage());
             throw new RuntimeException(e);
@@ -60,27 +59,26 @@ public class CUpdater
             final BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             final String response = reader.readLine();
 
-            final JSONArray array = (JSONArray)JSONValue.parse(response);
+            final JSONArray array = (JSONArray) JSONValue.parse(response);
 
             versions = new CVersion[array.size()];
 
-            for(int current = 0; current < array.size(); current++){
-                JSONObject version = (JSONObject)array.get(current);
+            for (int current = 0; current < array.size(); current++) {
+                JSONObject version = (JSONObject) array.get(current);
                 parseVersion(version, current);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("There was an error checking for updates: " + e.getMessage());
         }
 
         //Compare Vers
 
-        VersionNumber highest = new VersionNumber(0,0,0);
+        VersionNumber highest = new VersionNumber(0, 0, 0);
         highestVersion = null;
 
         //Check for newest online Version
         for (CVersion version : versions) {
-            if(version.getVersionNumber().isHigherThan(highest)){
+            if (version.getVersionNumber().isHigherThan(highest)) {
                 highest = version.getVersionNumber();
                 highestVersion = version;
             }
@@ -90,9 +88,9 @@ public class CUpdater
 
         shouldUpdate = highest.isHigherThan(current);
 
-        if(shouldUpdate){
+        if (shouldUpdate) {
             Bukkit.getLogger().warning("An Update for OPItems has been found: " + highest + "; current version: " + cVersion);
-        }else{
+        } else {
             Bukkit.getLogger().info("OPItems seems to be up-to-date: " + cVersion + "; highest found: " + highest);
         }
 
@@ -101,42 +99,41 @@ public class CUpdater
 
         Bukkit.getLogger().info("Running MC Version: " + runningVer + "; Is compatible with " + highest + ": " + isCompatible);
 
-        if(shouldUpdate && !isCompatible)
-        {
+        if (shouldUpdate && !isCompatible) {
             Bukkit.getLogger().info("Please consider upgrading your Minecraft version");
             shouldUpdate = false;
         }
 
     }
 
-    private void parseVersion(JSONObject version, int current){
+    private void parseVersion(JSONObject version, int current) {
 
         CVersion ver = new CVersion();
 
-        ver.authorID = (String)version.get("author_id");
-        ver.id = (String)version.get("id");
-        ver.changelog = ((String)version.get("changelog"));
-        ver.verName = (String)version.get("name");
+        ver.authorID = (String) version.get("author_id");
+        ver.id = (String) version.get("id");
+        ver.changelog = ((String) version.get("changelog"));
+        ver.verName = (String) version.get("name");
 
         StringBuilder loader = new StringBuilder();
         Iterator lA = ((JSONArray) version.get("loaders")).iterator();
 
-        while(lA.hasNext()){
+        while (lA.hasNext()) {
             loader.append(lA.next());
         }
 
         ver.loaders = loader.toString();
 
-        ver.downloads = (long)version.get("downloads");
-        ver.date =  (String)version.get("date_published");
-        ver.version =  (String)version.get("version_number");
+        ver.downloads = (long) version.get("downloads");
+        ver.date = (String) version.get("date_published");
+        ver.version = (String) version.get("version_number");
         ver.type = CVersion.UpdateType.valueOf((String) version.get("version_type"));
 
-        JSONArray files =  (JSONArray)version.get("files");
-        JSONObject file = (JSONObject)files.get(0);
+        JSONArray files = (JSONArray) version.get("files");
+        JSONObject file = (JSONObject) files.get(0);
 
-        ver.fileSize = (long)file.get("size");
-        ver.fileURL = (String)file.get("url");
+        ver.fileSize = (long) file.get("size");
+        ver.fileURL = (String) file.get("url");
 
         JSONArray supVers = (JSONArray) version.get("game_versions");
 
@@ -144,7 +141,6 @@ public class CUpdater
             String vn = (String) e;
             ver.supportedVersions.add(vn);
         });
-
 
 
         //Real username:
@@ -155,10 +151,10 @@ public class CUpdater
     }
 
     static Map<String, String> MRidName = new HashMap<>();
-    public String getMRUserName(String authorID)
-    {
 
-        if(MRidName.containsKey(authorID)){
+    public String getMRUserName(String authorID) {
+
+        if (MRidName.containsKey(authorID)) {
             return MRidName.get(authorID);
         }
 
@@ -178,7 +174,7 @@ public class CUpdater
             final BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             final String response = reader.readLine();
 
-            final JSONObject user = (JSONObject)JSONValue.parse(response);
+            final JSONObject user = (JSONObject) JSONValue.parse(response);
 
             String name = (String) user.get("username");
 
@@ -186,8 +182,7 @@ public class CUpdater
 
             return name;
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("There was an error checking for updates: " + e.getMessage());
         }
 
@@ -217,7 +212,7 @@ public class CUpdater
             InputStream data = getUpdateStream(highestVersion);
 
 
-            if(data == null){
+            if (data == null) {
                 Bukkit.getLogger().warning("Null Stream");
                 Bukkit.getLogger().warning("Aborting update");
                 return false;
@@ -244,7 +239,7 @@ public class CUpdater
         return true;
     }
 
-    public InputStream  getUpdateStream(CVersion version) {
+    public InputStream getUpdateStream(CVersion version) {
         URL fileURL;
         try {
             fileURL = new URL(version.fileURL);
@@ -256,8 +251,7 @@ public class CUpdater
 
         try {
             return fileURL.openStream();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("There retrieving the update: " + e.getMessage());
             Bukkit.getLogger().warning("Aborting update");
             return null;

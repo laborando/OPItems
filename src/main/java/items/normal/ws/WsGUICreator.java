@@ -1,4 +1,3 @@
-
 package items.normal.ws;
 
 import items.NameSpaces;
@@ -11,8 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-public class WsGUICreator
-{
+public class WsGUICreator {
     public static void showWSMenu(final Player p) {
         final Inventory gui = Bukkit.createInventory(null, 9, new StringBuilder().append(ChatColor.DARK_BLUE).append("Workstation").toString());
 

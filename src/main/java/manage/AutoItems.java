@@ -14,10 +14,11 @@ public class AutoItems {
 
     /**
      * Inits automated scheduled removal of dropped items
+     *
      * @param delay
      * @param warning_sek
      */
-    public static void innitAutoRemove(int delay, int warning_sek){
+    public static void innitAutoRemove(int delay, int warning_sek) {
 
         removalTask = new BukkitRunnable() {
             @Override
@@ -36,16 +37,15 @@ public class AutoItems {
                 }.runTaskLater(Main.getPluginInstance(), 20L * warning_sek /*<-- the delay */);
 
 
-
             }
-        }.runTaskTimer(Main.getInstance(), (10+delay)*20L, 60*delay*20L);
+        }.runTaskTimer(Main.getInstance(), (10 + delay) * 20L, 60 * delay * 20L);
 
 
     }
 
-    public static void cancelAutomatedItemRemoval(){
+    public static void cancelAutomatedItemRemoval() {
 
-        if(removalTask != null){
+        if (removalTask != null) {
             removalTask.cancel();
         }
 

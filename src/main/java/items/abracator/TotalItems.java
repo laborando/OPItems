@@ -29,11 +29,11 @@ public class TotalItems {
 
             itemIds.add(new StringIDAssociator(item.id, item.name));
 
-            try{
+            try {
 
                 Bukkit.getServer().addRecipe(item.recipe);
 
-            }catch(Exception e){
+            } catch (Exception e) {
 
                 try {
                     Bukkit.removeRecipe(item.key);
@@ -62,12 +62,13 @@ public class TotalItems {
 
     /**
      * Gets cItem from ID
+     *
      * @param id
      * @return
      */
     public static CItem get(int id) {
         for (CItem item : items) {
-            if(item.id == id)
+            if (item.id == id)
                 return item;
         }
         return null;
@@ -75,9 +76,10 @@ public class TotalItems {
 
     /**
      * Enables crafting for a certain id
+     *
      * @param id
      */
-    public static void enable(int id){
+    public static void enable(int id) {
 
         CItem target = get(id);
 
@@ -95,7 +97,7 @@ public class TotalItems {
     /**
      * Disables crafting for a certain id
      */
-    public static void disable(int id){
+    public static void disable(int id) {
 
         CItem target = get(id);
 
@@ -109,7 +111,6 @@ public class TotalItems {
         }
 
 
-
     }
 
     //------------- LOAD - SAVE --- DISABLED - ITEMS -----------------------
@@ -120,6 +121,7 @@ public class TotalItems {
 
     /**
      * Inits - Must be called first
+     *
      * @param p
      */
     public static void innit(Plugin p) {
@@ -134,20 +136,19 @@ public class TotalItems {
             e.printStackTrace();
         }
 
-        if(isNew)
+        if (isNew)
             return;
 
         load();
     }
 
-    public static void save(){
+    public static void save() {
         try {
 
             disabledFile.delete();
             disabledFile.createNewFile();
 
             BufferedWriter writer = Files.newBufferedWriter(disabledFile.toPath(), StandardOpenOption.APPEND);
-
 
 
             StringBuilder toWrite = new StringBuilder();
@@ -159,7 +160,6 @@ public class TotalItems {
             }
 
 
-
             writer.write(toWrite.toString());
 
             writer.close();
@@ -169,16 +169,16 @@ public class TotalItems {
         }
     }
 
-    public static void load(){
+    public static void load() {
         try {
 
-            if(!disabledFile.exists()){
+            if (!disabledFile.exists()) {
                 System.out.println(disabledFile.getAbsolutePath() + " doesn't exist?!");
             }
 
             String blocked = Files.readString(disabledFile.toPath());
 
-            String[] itemsArray =  blocked.split(";");
+            String[] itemsArray = blocked.split(";");
 
             disabled.clear();
             disabled.addAll(List.of(itemsArray));
@@ -190,7 +190,7 @@ public class TotalItems {
                     int itemID = Integer.parseInt(itemString);
 
                     for (CItem item : items) {
-                        if(item.id == itemID){
+                        if (item.id == itemID) {
 
                             disable(item.id);
 
@@ -216,7 +216,7 @@ public class TotalItems {
 
         for (CItem item : items) {
 
-                disable(item.id);
+            disable(item.id);
 
         }
     }

@@ -36,15 +36,17 @@ public class VersionNumber {
         return false;
     }
 
-    public String toString() {return major + "." + minor + "." + patch;}
+    public String toString() {
+        return major + "." + minor + "." + patch;
+    }
 
     /**
      * Expects i.i.i
+     *
      * @param version
      * @return
      */
-    public static VersionNumber toVersionNumber(String version)
-    {
+    public static VersionNumber toVersionNumber(String version) {
         String[] parts = version.split("\\.");
 
         VersionNumber vn = new VersionNumber(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));

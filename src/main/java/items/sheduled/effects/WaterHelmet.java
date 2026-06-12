@@ -1,4 +1,3 @@
-
 package items.sheduled.effects;
 
 import items.NameSpaces;
@@ -10,7 +9,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class WaterHelmet extends BasicSchedule {
-    public void execute(){
+    public void execute() {
 
         Bukkit.getOnlinePlayers().forEach(p -> {
 

@@ -1,4 +1,3 @@
-
 package manage;
 
 import org.bukkit.Bukkit;
@@ -13,8 +12,7 @@ import org.bukkit.util.Vector;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Items
-{
+public class Items {
     /**
      * Removes dropped items
      */
@@ -31,7 +29,7 @@ public class Items
                 for (int length2 = (entities = chunk.getEntities()).length, j = 0; j < length2; ++j) {
                     final Entity entity = entities[j];
                     if (entity instanceof Item) {
-                        final Item item = (Item)entity;
+                        final Item item = (Item) entity;
                         final Player closestPlayer = getClosestPlayer(item.getLocation().toVector(), itemCounts.keySet());
                         if (closestPlayer != null) {
                             final int currentCount = itemCounts.getOrDefault(closestPlayer, 0);
@@ -85,7 +83,7 @@ public class Items
                 for (int length2 = (entities = chunk.getEntities()).length, j = 0; j < length2; ++j) {
                     final Entity entity = entities[j];
                     if (entity instanceof Item) {
-                        final Item item = (Item)entity;
+                        final Item item = (Item) entity;
                         final Player closestPlayer = getClosestPlayer(item.getLocation().toVector(), itemCounts.keySet());
                         if (closestPlayer != null) {
                             final int currentCount = itemCounts.getOrDefault(closestPlayer, 0);
@@ -101,7 +99,7 @@ public class Items
             Bukkit.broadcastMessage("Loaded Items by " + player2.getName() + ": " + itemCount);
         }
     }
-    
+
     private static Player getClosestPlayer(final Vector location, final Iterable<Player> players) {
         Player closestPlayer = null;
         double closestDistanceSquared = Double.MAX_VALUE;
@@ -116,6 +114,6 @@ public class Items
         }
         return closestPlayer;
     }
-    
-    
+
+
 }
