@@ -20,7 +20,7 @@ public class Blitzer {
 
         cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 
-        if(!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.blitzerCD)) {
+        if (!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.blitzerCD)) {
             return;
         }
 

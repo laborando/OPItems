@@ -7,9 +7,9 @@ import org.bukkit.entity.Player;
 
 public class GetRecipe {
 
-    public static void execute(CommandSender sender){
+    public static void execute(CommandSender sender) {
 
-        if(!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "Only players can execute this command");
             return;
         }

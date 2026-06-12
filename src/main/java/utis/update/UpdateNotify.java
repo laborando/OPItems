@@ -22,8 +22,6 @@ public class UpdateNotify {
     static List<String> noNotify = new ArrayList<>();
 
 
-
-
     public static void innit(Plugin p) {
 
         noNotifyFile = new File(p.getDataFolder(), "noNotify");
@@ -36,13 +34,13 @@ public class UpdateNotify {
             e.printStackTrace();
         }
 
-        if(isNew)
+        if (isNew)
             return;
 
         load();
     }
 
-    public static void save(){
+    public static void save() {
         try {
 
             BufferedWriter writer = Files.newBufferedWriter(noNotifyFile.toPath(), StandardOpenOption.APPEND);
@@ -62,16 +60,16 @@ public class UpdateNotify {
         }
     }
 
-    public static void load(){
+    public static void load() {
         try {
 
-            if(!noNotifyFile.exists()){
+            if (!noNotifyFile.exists()) {
                 System.out.println(noNotifyFile.getAbsolutePath() + " doesn't exist?!");
             }
 
             String blocked = Files.readString(noNotifyFile.toPath());
 
-            String[] players =  blocked.split(";");
+            String[] players = blocked.split(";");
 
             noNotify.clear();
             noNotify.addAll(List.of(players));
@@ -87,9 +85,9 @@ public class UpdateNotify {
 
         if (!p.isOp()) return;
 
-        if(noNotify.contains(e.getPlayer().getName())) return;
+        if (noNotify.contains(e.getPlayer().getName())) return;
 
-        if(!Main.cUpdater.shouldUpdate)
+        if (!Main.cUpdater.shouldUpdate)
             return;
 
         p.sendMessage("An update for OPItems has been found: v" + Main.opitemsVersion + " -> v" + Main.cUpdater.highestVersion.version);
@@ -98,7 +96,7 @@ public class UpdateNotify {
 
     public static void toggle(CommandSender sender) {
 
-        if(!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             sender.sendMessage(NamedTextColor.RED + "Only players can execute this command");
             return;
         }
@@ -107,7 +105,7 @@ public class UpdateNotify {
 
         String name = p.getName();
 
-        if(noNotify.contains(name)){
+        if (noNotify.contains(name)) {
 
             p.sendMessage(ChatColor.BLUE + "You will receive OPItems update messages again.");
 
@@ -116,7 +114,7 @@ public class UpdateNotify {
                 noNotify.remove(name);
             }
 
-        }else{
+        } else {
 
             p.sendMessage(ChatColor.BLUE + "You wont receive any OPItems update messages anymore.");
             noNotify.add(name);

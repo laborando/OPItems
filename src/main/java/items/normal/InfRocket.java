@@ -10,7 +10,6 @@ public class InfRocket {
     public static void event(final PlayerElytraBoostEvent e) {
 
 
-
         e.setShouldConsume(false);
 
 
@@ -18,7 +17,7 @@ public class InfRocket {
 
     public static void event(PlayerInteractEvent e) {
 
-        if(!(e.getAction() == Action.RIGHT_CLICK_AIR))
+        if (!(e.getAction() == Action.RIGHT_CLICK_AIR))
             e.setUseItemInHand(Event.Result.DENY);
 
     }

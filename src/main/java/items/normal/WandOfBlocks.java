@@ -1,7 +1,10 @@
 package items.normal;
 
 import cel20.op.Main;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.FluidCollisionMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
@@ -81,9 +84,7 @@ public class WandOfBlocks {
                     }
 
 
-
                     BukkitRunnable colChecker = new BukkitRunnable() {
-
 
 
                         int var = 5;
@@ -122,6 +123,7 @@ public class WandOfBlocks {
     /**
      * Creates explosions at the target location and removes the blocks <br>
      * *Does not create explosions at the actual locations of the block-entities
+     *
      * @param p
      * @param blockTarget
      * @return
@@ -140,14 +142,13 @@ public class WandOfBlocks {
             Random random = new Random();
 
 
-
             for (FallingBlock v : vfk) {
 
                 if (v == null)
                     break;
 
                 Location rl = blockTarget;
-                rl.setX(blockTarget.getX() + (random.nextDouble()-0.5) * 0.1 * vfk.size());
+                rl.setX(blockTarget.getX() + (random.nextDouble() - 0.5) * 0.1 * vfk.size());
                 rl.setZ(blockTarget.getZ() + (random.nextDouble() - 0.5) * 0.1 * vfk.size());
                 rl.setY(blockTarget.getY());
 

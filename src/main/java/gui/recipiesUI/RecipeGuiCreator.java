@@ -13,7 +13,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class RecipeGuiCreator {
 
-    public static void generateInventory(Player player, int page){
+    public static void generateInventory(Player player, int page) {
 
         Inventory gui = Bukkit.createInventory(null, 54, ChatColor.DARK_BLUE + "OPItems recipes - Page " + page);
 
@@ -34,7 +34,6 @@ public class RecipeGuiCreator {
         gui.setItem(50, is);
         gui.setItem(51, is);
         gui.setItem(52, is);
-
 
 
         //Items per se

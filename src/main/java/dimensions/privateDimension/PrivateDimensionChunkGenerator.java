@@ -1,4 +1,3 @@
-
 package dimensions.privateDimension;
 
 import cel20.op.Main;
@@ -13,10 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class PrivateDimensionChunkGenerator extends ChunkGenerator
-{
+public class PrivateDimensionChunkGenerator extends ChunkGenerator {
     int currentHeight;
-    
+
     public PrivateDimensionChunkGenerator() {
         this.currentHeight = 50;
     }
@@ -24,9 +22,9 @@ public class PrivateDimensionChunkGenerator extends ChunkGenerator
     @Override
     public List<BlockPopulator> getDefaultPopulators(World world) {
 
-        if(!Main.priDimPerformMode){
+        if (!Main.priDimPerformMode) {
             return Arrays.asList(new PrivateDimensionPopulator());
-        }else{
+        } else {
             return new ArrayList<>();
         }
 
@@ -39,7 +37,7 @@ public class PrivateDimensionChunkGenerator extends ChunkGenerator
         generator.setScale(0.015);
         for (int X = 0; X < 16; ++X) {
             for (int Z = 0; Z < 16; ++Z) {
-                chunk.setBlock(X, this.currentHeight = (int)(generator.noise((double)(chunkX * 16 + X), (double)(chunkZ * 16 + Z), 0.5, 0.5) * 15.0 + 50.0), Z, Material.GRASS_BLOCK);
+                chunk.setBlock(X, this.currentHeight = (int) (generator.noise((double) (chunkX * 16 + X), (double) (chunkZ * 16 + Z), 0.5, 0.5) * 15.0 + 50.0), Z, Material.GRASS_BLOCK);
 
                 //Oberster Layer
                 chunk.setBlock(X, this.currentHeight - 1, Z, Material.DIRT);
@@ -52,51 +50,45 @@ public class PrivateDimensionChunkGenerator extends ChunkGenerator
                     final int rnd = randomrange(0, Main.ore_gen_chance_private_dim);
                     if (rnd == 0) {
                         chunk.setBlock(X, i, Z, Material.DIAMOND_ORE);
-                    }
-                    else if (rnd == 1) {
+                    } else if (rnd == 1) {
                         chunk.setBlock(X, i, Z, Material.REDSTONE_ORE);
-                    }
-                    else if (rnd == 2) {
+                    } else if (rnd == 2) {
                         chunk.setBlock(X, i, Z, Material.IRON_ORE);
-                    }
-                    else if (rnd == 4) {
+                    } else if (rnd == 4) {
                         chunk.setBlock(X, i, Z, Material.COAL_ORE);
-                    }
-                    else if (rnd != 5) {
+                    } else if (rnd != 5) {
                         if (rnd == 6) {
                             chunk.setBlock(X, i, Z, Material.GOLD_ORE);
-                        }
-                        else if (rnd == 7) {
+                        } else if (rnd == 7) {
                             chunk.setBlock(X, i, Z, Material.ANCIENT_DEBRIS);
                         }
                     }
                 }
 
 
-                    for (int i = 40; i > 0; i--) {
-                        //WATER
-                        if ((chunk.getBlockData(X, i, Z).getMaterial() == Material.AIR) && i <= 40) {
-                            chunk.setBlock(X, i, Z, Material.WATER);
-                            if ((chunk.getBlockData(X, i-1, Z).getMaterial() == Material.GRASS_BLOCK)) {
-                                chunk.setBlock(X, i-1, Z, Material.DIRT);
-                            }
+                for (int i = 40; i > 0; i--) {
+                    //WATER
+                    if ((chunk.getBlockData(X, i, Z).getMaterial() == Material.AIR) && i <= 40) {
+                        chunk.setBlock(X, i, Z, Material.WATER);
+                        if ((chunk.getBlockData(X, i - 1, Z).getMaterial() == Material.GRASS_BLOCK)) {
+                            chunk.setBlock(X, i - 1, Z, Material.DIRT);
                         }
                     }
+                }
 
 
+                chunk.setBlock(X, 0, Z, Material.BEDROCK);
 
-                    chunk.setBlock(X, 0, Z, Material.BEDROCK);
+                if (randomrange(0, 100) == 100) {
 
-                    if(randomrange(0, 100) == 100){
-
-                        //world.generateTree(new Location(world, X, currentHeight, Z), TreeType.BIG_TREE);
-                    }
+                    //world.generateTree(new Location(world, X, currentHeight, Z), TreeType.BIG_TREE);
+                }
 
             }
         }
         return chunk;
     }
-    
+
     private static int randomrange(final int min, final int max) {
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min!");

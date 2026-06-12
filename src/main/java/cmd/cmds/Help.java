@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 
 public class Help {
 
-    public static void execute(CommandSender sender){
+    public static void execute(CommandSender sender) {
 
         sender.sendMessage(ChatColor.BLUE + "OPItems by Cel20");
 

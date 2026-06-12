@@ -1,4 +1,3 @@
-
 package items.normal;
 
 import items.normal.utClasses.LocationPlayerAssociator;
@@ -12,16 +11,11 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-public class TntDetonator
-{
+public class TntDetonator {
     //Not restart-save
     static List<LocationPlayerAssociator> blocks = new ArrayList<>();
-
-
-
 
 
     public static void event(final PlayerInteractEvent e) {
@@ -38,7 +32,7 @@ public class TntDetonator
 
             if (contains(bLoc)) {
                 p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("This block is already connected to an TNT Detonator").toString());
-            }else{
+            } else {
                 blocks.add(new LocationPlayerAssociator(p.getName(), bLoc));
                 p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("TNT connected").toString());
             }
@@ -66,15 +60,16 @@ public class TntDetonator
 
     /**
      * Detonates all TNT Blocks associated to the given Playername
+     *
      * @param forName
      */
-    static void detonate(String forName){
+    static void detonate(String forName) {
 
         List<LocationPlayerAssociator> toRemove = new ArrayList<>();
 
         for (LocationPlayerAssociator block : blocks) {
 
-            if(block.getName().equalsIgnoreCase(forName)){
+            if (block.getName().equalsIgnoreCase(forName)) {
 
                 toRemove.add(block);
 
@@ -82,7 +77,7 @@ public class TntDetonator
 
                 Block target = bLocation.getBlock();
 
-                if(target.getType() == Material.TNT){
+                if (target.getType() == Material.TNT) {
                     target.setType(Material.AIR);
 
                     bLocation.getWorld().spawnEntity(bLocation, EntityType.TNT);
@@ -97,21 +92,21 @@ public class TntDetonator
 
     /**
      * Returns true if location is already in the List
+     *
      * @param location
      * @return
      */
-    static boolean contains(Location location){
+    static boolean contains(Location location) {
 
         for (LocationPlayerAssociator block : blocks) {
 
             Location tLoc = block.getLocation();
 
-            if(
+            if (
                     tLoc.x() == location.x() &&
-                    tLoc.y() == location.y() &&
-                    tLoc.z() == location.z()
-            )
-            {
+                            tLoc.y() == location.y() &&
+                            tLoc.z() == location.z()
+            ) {
                 return true;
             }
 

@@ -26,7 +26,7 @@ public class CVersion {
     public String fileURL;
     public long fileSize;
 
-    public String toString(){
+    public String toString() {
         return "ID: " + id + "\n"
                 + "version: " + version + "\n"
                 + "author: " + author + "\n"
@@ -36,13 +36,11 @@ public class CVersion {
                 + "changelog: " + changelog + "\n";
     }
 
-    public VersionNumber getVersionNumber()
-    {
+    public VersionNumber getVersionNumber() {
         return VersionNumber.toVersionNumber(version);
     }
 
-    public boolean isCompatible(String mcV)
-    {
+    public boolean isCompatible(String mcV) {
 
         return supportedVersions.contains(mcV);
 

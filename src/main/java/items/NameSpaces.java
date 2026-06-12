@@ -17,9 +17,10 @@ public class NameSpaces {
     public static NamespacedKey opitemsGuiFunction;
     public static NamespacedKey itemTypeIDNS;
     public static NamespacedKey itemTypeVL;
+    public static NamespacedKey opitemsXPStorageAmount;
 
 
-    public static void innitNameSpaces(Plugin p){
+    public static void innitNameSpaces(Plugin p) {
 
         opitemsMarker = new NamespacedKey(p, "opitemsMarker");
         opitemsAbilities = new NamespacedKey(p, "opitemsAbilities");
@@ -31,6 +32,8 @@ public class NameSpaces {
 
         itemTypeIDNS = new NamespacedKey(p, "itemTypeID");
         itemTypeVL = new NamespacedKey(p, "itemVersionLevel");
+
+        opitemsXPStorageAmount = new NamespacedKey(p, "opitemsXPStorageAmount");
 
     }
 

@@ -2,10 +2,12 @@ package items.managers;
 
 import cel20.op.Main;
 import items.NameSpaces;
+import net.minecraft.world.item.ExperienceBottleItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.entity.ExpBottleEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
@@ -52,13 +54,13 @@ public class RawItemsGenerator {
                 itemMeta.setLore(lore);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
-                if(param1 == -5){
+                if (param1 == -5) {
                     param1 = 10;
                 }
-                    itemMeta.addEnchant(Enchantment.KNOCKBACK, param1, true);
+                itemMeta.addEnchant(Enchantment.KNOCKBACK, param1, true);
 
 
-                if(param1 == -1)
+                if (param1 == -1)
                     GiveErrorBackgiver.giveLatestPlayerErrorMessageEnchError();
                 break;
 
@@ -70,13 +72,13 @@ public class RawItemsGenerator {
                 itemMeta.setLore(lore);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
-                if(param1 == -5){
+                if (param1 == -5) {
                     param1 = 10;
                 }
-                    itemMeta.addEnchant(Enchantment.SHARPNESS, param1, true);
+                itemMeta.addEnchant(Enchantment.SHARPNESS, param1, true);
 
 
-                if(param1 == -1)
+                if (param1 == -1)
                     GiveErrorBackgiver.giveLatestPlayerErrorMessageEnchError();
 
                 itemMeta.setUnbreakable(true);
@@ -90,14 +92,14 @@ public class RawItemsGenerator {
                 //lore.add(ChatColor.RED + " - Heavy, but protects you against pretty much anything");
                 itemMeta.setLore(lore);
 
-                if(param1 == -5){
+                if (param1 == -5) {
                     param1 = 10;
                 }
 
 
                 itemMeta.addEnchant(Enchantment.PROTECTION, param1, true);
 
-                if(param1 == -1)
+                if (param1 == -1)
                     GiveErrorBackgiver.giveLatestPlayerErrorMessageEnchError();
 
                 itemMeta.setUnbreakable(true);
@@ -143,18 +145,18 @@ public class RawItemsGenerator {
                 itemMeta.setLore(lore);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
-                if(param1 == -5){
+                if (param1 == -5) {
                     param1 = 100;
                 }
 
-                if(param2 == -5){
-                    param2 =  6;
+                if (param2 == -5) {
+                    param2 = 6;
                 }
 
                 itemMeta.addEnchant(Enchantment.FORTUNE, param2, true); // loot
                 itemMeta.addEnchant(Enchantment.EFFICIENCY, param1, true); // speed
                 itemMeta.setUnbreakable(true);
-                if(param1 == -1)
+                if (param1 == -1)
                     GiveErrorBackgiver.giveLatestPlayerErrorMessageEnchError();
                 break;
 
@@ -639,13 +641,30 @@ public class RawItemsGenerator {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 break;
 
+            case 49:
+                itemStack = new ItemStack(Material.EXPERIENCE_BOTTLE, 1);
+                itemMeta = itemStack.getItemMeta();
+                itemMeta.setDisplayName(ChatColor.DARK_RED + "Experience Storage");
+                lore = new ArrayList<>();
+                lore.add(ChatColor.RED + " - Click to transfer experience to this bottle");
+                lore.add(ChatColor.RED + " - Shift + throw to release the exp");
+                lore.add("");
+                lore.add(ChatColor.DARK_PURPLE + "Current exp stored: 0");
+                itemMeta.setLore(lore);
+
+                itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsXPStorageAmount, PersistentDataType.INTEGER, 0);
+
+                itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                break;
+
             default:
 
-                if(isGUI){
+                if (isGUI) {
                     itemStack = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1);
                     itemMeta = itemStack.getItemMeta();
                     itemMeta.setDisplayName("This position is open for future additions");
-                }else{
+                } else {
                     itemStack = new ItemStack(Material.STICK, 1);
                     itemMeta = itemStack.getItemMeta();
                     itemMeta.setDisplayName(ChatColor.RED + "There was an error getting this item | id: " + id + "," + param1 + "," + param2);
@@ -658,11 +677,11 @@ public class RawItemsGenerator {
             itemMeta.setRarity(ItemRarity.EPIC);
 
             //Pig-Egg has to be usable like normal
-            if(id == 9){
+            if (id == 9) {
 
                 List<String> cLore = itemMeta.getLore();
 
-                if(cLore == null)
+                if (cLore == null)
                     cLore = new ArrayList<>();
 
                 cLore.add("");
@@ -673,14 +692,14 @@ public class RawItemsGenerator {
             }
 
 
-            if(!isGUI){
+            if (!isGUI) {
                 itemMeta.getPersistentDataContainer().set(itemTypeIDNS, PersistentDataType.STRING, "opitems_" + id);
                 itemMeta.getPersistentDataContainer().set(itemTypeVL, PersistentDataType.STRING, "opitems_" + Main.opitemsVersion);
 
                 itemMeta.getPersistentDataContainer().set(NameSpaces.opitemsMarker, PersistentDataType.STRING, "true");
                 List<String> cLore = itemMeta.getLore();
 
-                if(cLore == null)
+                if (cLore == null)
                     cLore = new ArrayList<>();
 
                 cLore.add("");
@@ -690,7 +709,7 @@ public class RawItemsGenerator {
 
 
                 itemStack.setItemMeta(itemMeta);
-            }else{
+            } else {
                 itemMeta.getPersistentDataContainer().set(itemTypeIDNS, PersistentDataType.STRING, "opitems_illegal");
                 itemMeta.getPersistentDataContainer().set(itemTypeVL, PersistentDataType.STRING, "opitems_" + Main.opitemsVersion);
 
@@ -698,7 +717,6 @@ public class RawItemsGenerator {
 
                 itemStack.setItemMeta(itemMeta);
             }
-
 
 
         } catch (Exception e) {

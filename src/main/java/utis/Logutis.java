@@ -15,7 +15,7 @@ public class Logutis {
     /**
      * Generates a basic report and outputs it via CLogger
      */
-    public static void createReportAndLog(){
+    public static void createReportAndLog() {
 
         List<String> rep = new ArrayList<>();
 

@@ -40,8 +40,6 @@ public class ConfigInniter {
         config.addDefault("wandOfBoomsCDms", 1000);
 
 
-
-
         config.addDefault("WandOfMassiveBoomExplosionStrength", 20);
         config.addDefault("WandOfBoomExplosionStrength", 10);
 
@@ -51,7 +49,6 @@ public class ConfigInniter {
 
         //Messages
         config.addDefault("CooldownMessage", "Cooldown...");
-
 
 
     }

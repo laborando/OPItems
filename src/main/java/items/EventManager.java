@@ -6,19 +6,18 @@ import gui.recipiesUI.RUIClickHandler;
 import items.classic.*;
 import items.classic.Sponges.SuperSpongeStarter;
 import items.managers.NoCrafting;
+import items.newer.ExpStorage;
 import items.newer.WandOfWarden;
 import items.normal.*;
 import items.normal.ws.Workstation;
 import items.normal.ws.WsGUIHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
@@ -63,10 +62,13 @@ public class EventManager implements Listener {
     public static List<Consumer<InventoryClickEvent>> InventoryClickEventList = new ArrayList<>();
     public static List<Consumer<CraftItemEvent>> CraftItemEventList = new ArrayList<>();
     public static List<Consumer<PlayerJoinEvent>> PlayerJoinEventList = new ArrayList<>();
+    public static List<Consumer<ExpBottleEvent>> ExpBottleEventList = new ArrayList<>();
+
 
 
     /**
      * Innits events-managing
+     *
      * @param p
      */
     public static void innitEventManager(Plugin p) {
@@ -96,6 +98,7 @@ public class EventManager implements Listener {
         PlayerInteractEventMap.put("opitems_44", Workstation::event);
         PlayerInteractEventMap.put("opitems_47", PortableEnderChest::event);
         PlayerInteractEventMap.put("opitems_48", SubspaceDimensionWand::event);
+        PlayerInteractEventMap.put("opitems_49", ExpStorage::event);
 
         //PlayerElytraBoostEvent
         PlayerElytraBoostEventMap.put("opitems_42", InfRocket::event);
@@ -176,6 +179,9 @@ public class EventManager implements Listener {
 
         //PlayerJoinEvent
         PlayerJoinEventList.add(UpdateNotify::event);
+
+        //ExpBottleEvent
+        ExpBottleEventList.add(ExpStorage::event);
     }
 
 
@@ -424,6 +430,14 @@ public class EventManager implements Listener {
             consumer.accept(e);
         });
     }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final ExpBottleEvent e) {
+        ExpBottleEventList.forEach(consumer -> {
+            consumer.accept(e);
+        });
+    }
+
 
 
     public static String getIDNSorNullIfNotOPItems(ItemStack item) {

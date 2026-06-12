@@ -15,7 +15,7 @@ public class OldItemDataset {
 
     public static void ensureCreatedDataset() {
 
-        if(isCreated)
+        if (isCreated)
             return;
 
         itemList = new ArrayList<>();

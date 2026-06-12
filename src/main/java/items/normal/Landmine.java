@@ -28,6 +28,7 @@ public class Landmine {
 
     /**
      * Landmine destroyed
+     *
      * @param e
      */
     public static void event(final BlockDropItemEvent e) {
@@ -47,6 +48,7 @@ public class Landmine {
 
     /**
      * Stepping on landmine
+     *
      * @param e
      */
     public static void event(final BlockPhysicsEvent e) {
@@ -67,6 +69,7 @@ public class Landmine {
 
     /**
      * Adds placed Landmines to the List
+     *
      * @param e
      */
     public static void event(final BlockPlaceEvent e) {
@@ -79,6 +82,7 @@ public class Landmine {
 
     /**
      * Physical -> Stepping on Landmine and defusing landmine
+     *
      * @param e
      */
     public static void event(PlayerInteractEvent e) {
@@ -128,6 +132,7 @@ public class Landmine {
 
     /**
      * Breaking landmine
+     *
      * @param e
      */
     public static void event(BlockBreakEvent e) {

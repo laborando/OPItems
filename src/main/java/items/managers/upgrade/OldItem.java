@@ -22,22 +22,22 @@ public class OldItem {
 
     public List<Enchantment> enchantmentList = new ArrayList<>();
 
-    public boolean doesMatch(ItemStack item){
+    public boolean doesMatch(ItemStack item) {
 
-        if(item.getType() == material)
+        if (item.getType() == material)
             return enchantmentsMatch(item);
 
         return false;
 
     }
 
-    public boolean enchantmentsMatch(ItemStack item){
+    public boolean enchantmentsMatch(ItemStack item) {
 
         AtomicBoolean matches = new AtomicBoolean(true);
 
         enchantmentList.forEach(en -> {
 
-            if (!item.containsEnchantment(en)){
+            if (!item.containsEnchantment(en)) {
                 matches.set(false);
             }
 

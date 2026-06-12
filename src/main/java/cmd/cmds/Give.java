@@ -37,7 +37,7 @@ public class Give {
             } else {
                 sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("This Command cannot be executed in the console").toString());
             }
-        }else{
+        } else {
 
             Player p = Bukkit.getPlayer(targetPlayer);
 
@@ -47,15 +47,15 @@ public class Give {
             */
 
 
-            if(p == null){
+            if (p == null) {
                 sender.sendMessage(ChatColor.RED + "The player " + targetPlayer + " was not found!");
                 return;
             }
 
-            if(!p.getName().equalsIgnoreCase(targetPlayer))
+            if (!p.getName().equalsIgnoreCase(targetPlayer))
                 p = null;
 
-            if(p == null){
+            if (p == null) {
                 sender.sendMessage(ChatColor.RED + "The player " + targetPlayer + " was not found!");
                 return;
             }
@@ -77,15 +77,14 @@ public class Give {
         }
 
 
-
-
     }
 
-    public static int recipeStringToNum(String r){
+    public static int recipeStringToNum(String r) {
 
         try {
             return Integer.parseInt(r);
-        }catch (Exception awwwNoInteger){}
+        } catch (Exception awwwNoInteger) {
+        }
 
         String casedString = r.trim().toLowerCase();
 

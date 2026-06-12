@@ -1,7 +1,5 @@
-
 package items.normal;
 
-import cel20.op.Main;
 import dimensions.privateDimension.PrivateDimensionChunkGenerator;
 import dimensions.subspaceDimension.SubspaceDimensionChunkGenerator;
 import org.bukkit.*;
@@ -64,7 +62,7 @@ public class SubspaceDimensionWand {
             World world = Bukkit.getWorld(wn);
             assert world != null;
 
-            if(!(world.getPlayers().isEmpty()))
+            if (!(world.getPlayers().isEmpty()))
                 return;
 
             for (Chunk c : world.getLoadedChunks()) {

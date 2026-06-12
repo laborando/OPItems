@@ -299,6 +299,12 @@ public class RecipeAdder {
                 .setMaterialAt(Material.BLAZE_ROD, 1)
                 .build();
 
+        CItem.getOPBuilder(49)
+                .setMaterialAt(Material.GOLD_INGOT, 3, 5, 7)
+                .setMaterialAt(Material.DIAMOND, 1)
+                .setMaterialAt(Material.EXPERIENCE_BOTTLE, 4)
+                .build();
+
     }
 
 }

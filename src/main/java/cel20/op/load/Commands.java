@@ -6,9 +6,8 @@ import cmd.superCmds.Opitems;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 
 public class Commands {
-    
-    public static void setAllexecutors(Main m){
 
+    public static void setAllexecutors(Main m) {
 
 
         m.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
@@ -17,5 +16,5 @@ public class Commands {
         });
 
     }
-    
+
 }

@@ -1,4 +1,3 @@
-
 package items.classic;
 
 import items.NameSpaces;
@@ -7,14 +6,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.persistence.PersistentDataType;
 
-public class AntiFall
-{
+public class AntiFall {
     public static void event(final EntityDamageEvent e) {
 
-        if(!(e.getEntityType() == EntityType.PLAYER))
+        if (!(e.getEntityType() == EntityType.PLAYER))
             return;
 
-        switch (e.getCause()){
+        switch (e.getCause()) {
             case FALL:
             case FLY_INTO_WALL:
 

@@ -1,6 +1,5 @@
 package items.newer;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;

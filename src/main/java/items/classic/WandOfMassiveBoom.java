@@ -1,7 +1,6 @@
 package items.classic;
 
 import cel20.op.GlobalVars;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

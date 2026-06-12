@@ -12,13 +12,13 @@ public class EnderpearlSword {
 
     static Map<String, Long> cooldown = new HashMap<>();
 
-    public static void handle(PlayerInteractEvent e){
+    public static void handle(PlayerInteractEvent e) {
 
-        Player p =  e.getPlayer();
+        Player p = e.getPlayer();
 
         cooldown.computeIfAbsent(p.getName(), k -> (long) -69);
 
-        if(!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.enderPearlSwordCD)) {
+        if (!((System.currentTimeMillis() - cooldown.get(p.getName())) >= GlobalVars.enderPearlSwordCD)) {
             return;
         }
         cooldown.put(p.getName(), System.currentTimeMillis());

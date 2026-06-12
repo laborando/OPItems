@@ -16,7 +16,7 @@ import org.bukkit.persistence.PersistentDataType;
 public class RecipeSoloGUI {
 
 
-    public static void showSoloRecipe(Player player, int id, int retPage){
+    public static void showSoloRecipe(Player player, int id, int retPage) {
 
 
         Inventory gui = Bukkit.createInventory(null, 54, ChatColor.DARK_BLUE + "OPItems recipe");
@@ -31,15 +31,12 @@ public class RecipeSoloGUI {
         is.setItemMeta(im);
 
 
-
-
         //Items per se
         for (int i = 0; i < 54; i++) {
 
             gui.setItem(i, is);
 
         }
-
 
 
         ItemStack item = RawItemsGenerator.getItem(id, -5, -5, true);
@@ -85,7 +82,7 @@ public class RecipeSoloGUI {
         CItem cItem = TotalItems.get(id);
 
 
-        if(cItem == null){
+        if (cItem == null) {
 
             item.setType(Material.BARRIER);
             im.setDisplayName("There was an error fetching this recipe");
@@ -106,7 +103,7 @@ public class RecipeSoloGUI {
 
             Material rMaterial = cItem.materials[i];
 
-            if(rMaterial == null){
+            if (rMaterial == null) {
                 gui.setItem(getIVSlot(i), empty);
                 continue;
             }
@@ -122,7 +119,7 @@ public class RecipeSoloGUI {
         }
         ItemStack enabledSign;
         ItemMeta enabledMeta;
-        if(isEnabled){
+        if (isEnabled) {
             enabledSign = new ItemStack(Material.GREEN_CONCRETE, 1);
             enabledMeta = enabledSign.getItemMeta();
 
@@ -130,7 +127,7 @@ public class RecipeSoloGUI {
             enabledMeta.getPersistentDataContainer().set(NameSpaces.opitemsGui, PersistentDataType.STRING, "r_gui_locked");
 
             enabledSign.setItemMeta(enabledMeta);
-        }else{
+        } else {
             enabledSign = new ItemStack(Material.RED_CONCRETE, 1);
             enabledMeta = enabledSign.getItemMeta();
 
@@ -148,7 +145,7 @@ public class RecipeSoloGUI {
 
     }
 
-    public static int getIVSlot(int recipeSlot){
+    public static int getIVSlot(int recipeSlot) {
 
         return switch (recipeSlot) {
             case 0 -> 12;

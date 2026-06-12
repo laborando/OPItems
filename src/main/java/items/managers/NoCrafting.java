@@ -13,24 +13,24 @@ public class NoCrafting {
 
         for (ItemStack matrix : craftItemEvent.getInventory().getMatrix()) {
 
-            if(isOPItem(matrix))
+            if (isOPItem(matrix))
                 shouldCancel = true;
 
         }
 
-        if(shouldCancel) {
+        if (shouldCancel) {
             craftItemEvent.getViewers().getFirst().sendMessage("OPItems cannot be used as crafting ingredients!");
             craftItemEvent.setCancelled(true);
         }
-        
+
     }
 
     private static boolean isOPItem(ItemStack matrix) {
 
-        if(matrix == null)
+        if (matrix == null)
             return false;
 
-        if(matrix.getType() == Material.AIR)
+        if (matrix.getType() == Material.AIR)
             return false;
 
         if (matrix.getItemMeta() == null)

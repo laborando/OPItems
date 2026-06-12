@@ -14,7 +14,7 @@ public class SchedulerStarter {
 
     static List<BasicSchedule> scheduleList = new ArrayList<>();
 
-    public static void startSchedulers(){
+    public static void startSchedulers() {
 
         scheduleList.add(new FireShoe());
         scheduleList.add(new WaterHelmet());

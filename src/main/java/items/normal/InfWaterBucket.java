@@ -9,10 +9,8 @@ public class InfWaterBucket {
     public static void event(final PlayerBucketEmptyEvent e) {
 
 
-            e.setCancelled(true);
-            e.getBlock().setType(Material.WATER);
-
-
+        e.setCancelled(true);
+        e.getBlock().setType(Material.WATER);
 
 
     }

@@ -16,39 +16,38 @@ public class PrivateDimensionPopulator extends BlockPopulator {
         world.setSpawnFlags(false, false);
 
         //TREES
-        int amount = random.nextInt(5)+1; //GRASS-AMOUNT
+        int amount = random.nextInt(5) + 1; //GRASS-AMOUNT
         for (int i = 1; i < amount; i++) {
             int X = random.nextInt(15);
             int Z = random.nextInt(15);
             int Y = 1;
-            for(Y = world.getMaxHeight()-1; Y>0 ; Y--){
-                if(chunk.getBlock(X, Y, Z).getType() == Material.GRASS_BLOCK){
-                    chunk.getBlock(X, Y+1, Z).setType(Material.SHORT_GRASS);
+            for (Y = world.getMaxHeight() - 1; Y > 0; Y--) {
+                if (chunk.getBlock(X, Y, Z).getType() == Material.GRASS_BLOCK) {
+                    chunk.getBlock(X, Y + 1, Z).setType(Material.SHORT_GRASS);
 
                     break;
                 }
             }
         }
         if (random.nextBoolean()) {
-            amount = random.nextInt(4)+1; //TREE-AMOUNT
+            amount = random.nextInt(4) + 1; //TREE-AMOUNT
             for (int i = 1; i < amount; i++) {
                 int X = random.nextInt(15);
                 int Z = random.nextInt(15);
                 int Y = 1;
-                for(Y = world.getMaxHeight()-1; Y>0 ; Y--){
-                    if(chunk.getBlock(X, Y, Z).getType() == Material.GRASS_BLOCK){
-                        world.generateTree(chunk.getBlock(X, Y+1, Z).getLocation(), TreeType.TREE);
+                for (Y = world.getMaxHeight() - 1; Y > 0; Y--) {
+                    if (chunk.getBlock(X, Y, Z).getType() == Material.GRASS_BLOCK) {
+                        world.generateTree(chunk.getBlock(X, Y + 1, Z).getLocation(), TreeType.TREE);
 
                         break;
                     }
                 }
 
 
-
             }
         }
-    //WATER-SWAMP
-        amount = random.nextInt(10)+1; //WATER-AMOUNT
+        //WATER-SWAMP
+        amount = random.nextInt(10) + 1; //WATER-AMOUNT
         for (int i = 1; i < amount; i++) {
             int X = random.nextInt(15);
             int Z = random.nextInt(15);
@@ -69,7 +68,6 @@ public class PrivateDimensionPopulator extends BlockPopulator {
             }*/
         }
         //--------------------------------
-
 
 
     }

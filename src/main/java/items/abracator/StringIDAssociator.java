@@ -4,6 +4,7 @@ public class StringIDAssociator {
 
     public int id;
     public String name;
+
     public StringIDAssociator(int id, String name) {
         this.id = id;
         this.name = name;
