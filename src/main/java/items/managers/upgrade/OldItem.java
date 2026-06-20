@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Class for matching old items with specific materials and enchantments with their respective id <br>
+ * Old versions of OPItems used enchantments instead of ids to differentiate items
+ */
 public class OldItem {
 
     public OldItem(int id, Material material, List<Enchantment> enchantmentList) {
@@ -20,18 +24,18 @@ public class OldItem {
 
     public Material material;
 
-    public List<Enchantment> enchantmentList = new ArrayList<>();
+    public List<Enchantment> enchantmentList;
 
     public boolean doesMatch(ItemStack item) {
 
         if (item.getType() == material)
-            return enchantmentsMatch(item);
+            return doEnchantmentsMatch(item);
 
         return false;
 
     }
 
-    public boolean enchantmentsMatch(ItemStack item) {
+    public boolean doEnchantmentsMatch(ItemStack item) {
 
         AtomicBoolean matches = new AtomicBoolean(true);
 

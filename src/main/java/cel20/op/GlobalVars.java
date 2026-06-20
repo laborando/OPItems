@@ -17,6 +17,7 @@ public class GlobalVars {
     public static long enderPearlSwordCD = 100L;
 
     public static boolean craftingDisabled = false;
+    public static boolean canUpgradeItems = false;
 
     public static int spongeClearRange = 1;
 

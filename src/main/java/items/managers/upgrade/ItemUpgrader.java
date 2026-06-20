@@ -1,5 +1,6 @@
 package items.managers.upgrade;
 
+import cel20.op.GlobalVars;
 import items.managers.RawItemsGenerator;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -11,21 +12,30 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ItemUpgrader {
 
-    public static void upgradeMainItem(Player p) {
+    /**
+     * Upgrades the item in p's main-hand
+     * @param p Target Player
+     */
+    public static void upgradeItem(Player p) {
 
+        if(!GlobalVars.canUpgradeItems){
+            p.sendMessage(ChatColor.RED + "Item upgrading has been disabled.");
+            return;
+        }
 
-        p.sendMessage(ChatColor.GREEN + "Comparing item against database...");
         ItemStack item = p.getInventory().getItemInMainHand();
 
         if (item.getType() == Material.AIR) {
-            p.sendMessage(ChatColor.RED + "Please only hold the item in the main hand.");
+            p.sendMessage(ChatColor.RED + "The target item has to be selected.");
             return;
         }
 
         if (item.getAmount() > 1) {
-            p.sendMessage(ChatColor.RED + "Please hold one item at a time.");
+            p.sendMessage(ChatColor.RED + "Please hold only one item at a time.");
             return;
         }
+
+        p.sendMessage(ChatColor.GREEN + "Comparing selected item against database...");
 
         OldItemDataset.ensureCreatedDataset();
 
@@ -33,7 +43,6 @@ public class ItemUpgrader {
         AtomicInteger targetId = new AtomicInteger(-1);
 
         OldItemDataset.itemList.forEach(ic -> {
-
 
             if (!hasFound[0] && ic.doesMatch(item)) {
                 targetId.set(ic.id);

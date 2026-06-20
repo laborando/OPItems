@@ -120,7 +120,7 @@ public class CmdExe {
                 }
             } else if (arg.equalsIgnoreCase("upgradeItems")) {
                 if (sender instanceof Player)
-                    ItemUpgrader.upgradeMainItem((Player) sender);
+                    ItemUpgrader.upgradeItem((Player) sender);
             } else if (arg.equalsIgnoreCase("give")) {
                 if (sender.isOp()) {
 

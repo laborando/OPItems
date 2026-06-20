@@ -102,7 +102,7 @@ public class Celutis {
         return new Vector(x, y, z);
     }
 
-    ArrayList<Color> colors = (ArrayList<Color>) Arrays.asList(
+    private static final ArrayList<Color> colors = (ArrayList<Color>) Arrays.asList(
             Color.WHITE,
             Color.LIME,
             Color.SILVER,
@@ -122,7 +122,7 @@ public class Celutis {
             Color.PURPLE
     );
 
-    public Color getRandomColor() {
+    public static Color getRandomColor() {
 
         int size = colors.size();
         Random ran = new Random();
@@ -178,7 +178,7 @@ public class Celutis {
         return (path.delete());
     }
 
-    public boolean isChunkInSpawnRadius(final int chunkX, final int chunkZ) {
+    public static boolean isChunkInSpawnRadius(final int chunkX, final int chunkZ) {
         final int spawnRadius = Bukkit.getServer().getSpawnRadius();
         return Math.abs(chunkX) <= spawnRadius && Math.abs(chunkZ) <= spawnRadius;
     }

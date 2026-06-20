@@ -45,6 +45,7 @@ ITEMS-FS:
 
 CMD
  - /opitems report now always works on first try
+ - /opitems upgradeItems is now only tab-completed if enabled
 
 MCS-CHG
  - Item cooldowns are now displayed in the actionbar
@@ -53,6 +54,7 @@ MCS-CHG
  - Removed collections of usage stats via a cloudflare worker
 
 CONFIG
+ - Added: CanUpgradeItems
  - Added config for cooldown messages
  - Replaced PrivatePocketDimensionPerformanceModeActivated with CustomDimensionsPerformanceMode
 

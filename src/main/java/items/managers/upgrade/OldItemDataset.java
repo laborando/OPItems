@@ -7,33 +7,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Old versions of OPItems used enchantments instead of ids to differentiate items <br>
+ * This class is a manual database of old items with their respective enchantments <br>
+ * Used to upgrade items
+ */
 public class OldItemDataset {
 
     public static List<OldItem> itemList;
 
     static boolean isCreated = false;
 
+    //Not always created due to minimal usage
     public static void ensureCreatedDataset() {
 
         if (isCreated)
             return;
 
         itemList = new ArrayList<>();
-
-
-        //Autocreators
-        for (int i = 0; i < 100; i++) {
-
-            /*
-            //Wont work w/ paper and hopefully not needed (pls)
-            ItemStack item = RawItemsGenerator.getItem(i, 1, 1);
-
-            if (!item.getItemMeta().displayName().().contains("error")) {
-                itemList.add(new OldItem(i, item.getType(), new ArrayList<>(item.getEnchantments().keySet())));
-            }
-             */
-
-        }
 
         itemList.add(new OldItem(14, Material.FEATHER, Arrays.asList(Enchantment.FLAME)));
         itemList.add(new OldItem(16, Material.IRON_HELMET, Arrays.asList(Enchantment.POWER)));

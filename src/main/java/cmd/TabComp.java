@@ -1,5 +1,6 @@
 package cmd;
 
+import cel20.op.GlobalVars;
 import items.abracator.StringIDAssociator;
 import items.abracator.TotalItems;
 import org.bukkit.Bukkit;
@@ -20,7 +21,9 @@ public class TabComp {
                 completions.add("help");
                 completions.add("recipes");
                 completions.add("version");
-                completions.add("upgradeItems");
+
+                if(GlobalVars.canUpgradeItems)
+                    completions.add("upgradeItems");
 
                 if (sender.isOp()) {
                     completions.add("give");

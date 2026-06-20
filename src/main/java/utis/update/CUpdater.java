@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /*
-CUpdater for MC plugins via the Modrinth API
+CUpdater for MC plugins via the Modrinth API v1.0
  */
 public class CUpdater {
     public CVersion[] versions;

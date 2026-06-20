@@ -66,9 +66,11 @@ public class ConfigLoader {
         GlobalVars.WandOfMassiveBoomsCD = config.getDouble("wandOfBoomsCDms");
         GlobalVars.WandOfMassiveBoomExploStrenght = config.getInt("WandOfMassiveBoomExplosionStrength");
         GlobalVars.WandOfBoomExploStrenght = config.getInt("WandOfBoomExplosionStrength");
+        GlobalVars.canUpgradeItems = config.getBoolean("CanUpgradeItems");
 
         //Messages
         GlobalVars.CooldownMessage = config.getString("CooldownMessage");
+
 
     }
 

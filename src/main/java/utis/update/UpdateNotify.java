@@ -94,14 +94,16 @@ public class UpdateNotify {
         p.sendMessage("Update: /opitems update | Hide this message: /opitems um");
     }
 
+    /**
+     * Toggles update notifications for sender
+     * @param sender
+     */
     public static void toggle(CommandSender sender) {
 
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player p)) {
             sender.sendMessage(NamedTextColor.RED + "Only players can execute this command");
             return;
         }
-
-        Player p = (Player) sender;
 
         String name = p.getName();
 
@@ -109,7 +111,7 @@ public class UpdateNotify {
 
             p.sendMessage(ChatColor.BLUE + "You will receive OPItems update messages again.");
 
-            //Mehrere nennungen möglich
+            //In case of multiple occurrences
             while (noNotify.contains(name)) {
                 noNotify.remove(name);
             }

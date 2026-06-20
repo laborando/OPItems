@@ -45,6 +45,7 @@ public class ConfigInniter {
 
 
         config.addDefault("DisableOPItemsCrafting", Boolean.FALSE);
+        config.addDefault("CanUpgradeItems", Boolean.TRUE);
 
 
         //Messages
