@@ -1,8 +1,8 @@
 How to add OPItems:
-    1. Define it in items.managers.RawItemsGenerator
-    2. Add a recipe in items.allRecipes.RecipeAdder
+    1. Define it in managers.items.cel20.opitems.RawItemsGenerator
+    2. Add a recipe in allRecipes.items.cel20.opitems.RecipeAdder
 
 How to make an item Functional:
     1. Get the id of the item being added
     2. Programm the functions
-    3. Register Listeners in items.EventManager
+    3. Register Listeners in items.cel20.opitems.EventManager
