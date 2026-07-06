@@ -32,6 +32,9 @@ public class CursedSword {
 
         final ItemStack item = p.getInventory().getItemInMainHand();
 
+        if (item == null) return;
+        if (item.isEmpty()) return;
+
         String inds = EventManager.getIDNSorNullIfNotOPItems(item);
         if (inds == null)
             return;

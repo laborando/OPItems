@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /***
@@ -21,8 +22,9 @@ public class TabComp {
                 completions.add("help");
                 completions.add("recipes");
                 completions.add("version");
+                completions.add("report");
 
-                if(GlobalVars.canUpgradeItems)
+                if (GlobalVars.canUpgradeItems)
                     completions.add("upgradeItems");
 
                 if (sender.isOp()) {
@@ -37,6 +39,32 @@ public class TabComp {
                 return completions;
             }
             if (args.length == 2) {
+                if (args[0].trim().equalsIgnoreCase("report")) {
+
+                    final List<String> completions = new ArrayList<>();
+
+                    completions.add("Your error report regarding OPItems here");
+                    completions.add(" ");
+
+                    return completions;
+
+                }
+
+            }
+            if (args.length == 3) {
+                if (args[0].trim().equalsIgnoreCase("give")) {
+                    final List<String> completions = new ArrayList<String>();
+
+                    Bukkit.getOnlinePlayers().forEach(e -> {
+                        completions.add(e.getName());
+                    });
+
+                    return completions;
+                }
+            }
+
+            if (args.length >= 2) {
+
                 if (args[0].trim().equalsIgnoreCase("give")) {
 
                     final List<String> completions = new ArrayList<>();
@@ -53,18 +81,10 @@ public class TabComp {
 
 
                 }
-            }
-            if (args.length == 3) {
-                if (args[0].trim().equalsIgnoreCase("give")) {
-                    final List<String> completions = new ArrayList<String>();
 
-                    Bukkit.getOnlinePlayers().forEach(e -> {
-                        completions.add(e.getName());
-                    });
-
-                    return completions;
-                }
             }
+
+            return Collections.emptyList();
         }
 
         if (command.equalsIgnoreCase("items") && args.length <= 1) {
@@ -73,7 +93,8 @@ public class TabComp {
             completions.add("player_heap");
             return completions;
         }
-        return null;
+
+        return Collections.emptyList();
     }
 
 }

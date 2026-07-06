@@ -1,5 +1,7 @@
 package cel20.op;
 
+import api.OPItemsAPI;
+import apiImplementation.OpApiImplementation;
 import cel20.op.config.ConfigInniter;
 import cel20.op.config.ConfigLoader;
 import cel20.op.data.ItemData;
@@ -17,6 +19,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import utis.CLogger;
 import utis.update.CUpdater;
@@ -101,7 +104,7 @@ public class Main extends JavaPlugin {
 
         //Cloudflare worker
         WorkerLogger logger = new WorkerLogger("https://plugins.opitems.workers.dev/");
-
+        WorkerLogger.activeLogger = logger;
 
         //bStats
         if (!config.getBoolean("OPItemsSpecificBStatsDisable")) {
@@ -122,6 +125,10 @@ public class Main extends JavaPlugin {
 
         //Schedules
         SchedulerStarter.startSchedulers();
+
+        //Make API public
+        OPItemsAPI api = new OpApiImplementation();
+        Bukkit.getServicesManager().register(OPItemsAPI.class, api, plugin, ServicePriority.Normal);
 
         //Updater
         Bukkit.getLogger().info("Retrieving version information...");

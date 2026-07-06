@@ -11,7 +11,6 @@ import items.newer.WandOfWarden;
 import items.normal.*;
 import items.normal.ws.Workstation;
 import items.normal.ws.WsGUIHandler;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -43,6 +42,7 @@ public class EventManager implements Listener {
     public static Map<String, Consumer<PlayerFishEvent>> PlayerFishEventMap = new HashMap<>();
     public static Map<String, Consumer<PlayerItemConsumeEvent>> PlayerItemConsumeEventMap = new HashMap<>();
     public static Map<String, Consumer<PlayerElytraBoostEvent>> PlayerElytraBoostEventMap = new HashMap<>();
+    public static Map<String, Consumer<PlayerInteractEntityEvent>> PlayerInteractEntityEventMap = new HashMap<>();
 
 
     //Lists
@@ -99,6 +99,9 @@ public class EventManager implements Listener {
         PlayerInteractEventMap.put("opitems_47", PortableEnderChest::event);
         PlayerInteractEventMap.put("opitems_48", SubspaceDimensionWand::event);
         PlayerInteractEventMap.put("opitems_49", ExpStorage::event);
+
+        //PlayerInteractEntityEvent
+        PlayerInteractEntityEventMap.put("opitems_50", ItemFrameHider::event);
 
         //PlayerElytraBoostEvent
         PlayerElytraBoostEventMap.put("opitems_42", InfRocket::event);
@@ -197,7 +200,9 @@ public class EventManager implements Listener {
         //Map
 
         ItemStack item = e.getItem();
+
         if (item == null) return;
+        if (item.isEmpty()) return;
 
         if (e.getAction().isLeftClick()) return;
 
@@ -209,6 +214,30 @@ public class EventManager implements Listener {
 
 
         eventer = PlayerInteractEventMap.get(idns);
+
+        if (eventer == null) return;
+
+        eventer.accept(e);
+
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void event(final PlayerInteractEntityEvent e) {
+        //Map
+
+
+        ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
+
+        if (item == null) return;
+        if (item.isEmpty()) return;
+
+        String idns = getIDNSorNullIfNotOPItems(item);
+        if (idns == null) return;
+
+        Consumer<PlayerInteractEntityEvent> eventer;
+
+
+        eventer = PlayerInteractEntityEventMap.get(idns);
 
         if (eventer == null) return;
 
@@ -442,6 +471,7 @@ public class EventManager implements Listener {
 
     public static String getIDNSorNullIfNotOPItems(ItemStack item) {
         if (item == null) return null;
+        if (item.isEmpty()) return null;
 
         PersistentDataContainer pdc = item.getItemMeta().getPersistentDataContainer();
 

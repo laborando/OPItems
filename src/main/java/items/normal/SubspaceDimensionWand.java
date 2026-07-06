@@ -83,7 +83,7 @@ public class SubspaceDimensionWand {
         UUID id = p.getUniqueId();
         int currentTick = Bukkit.getCurrentTick();
 
-        //Anti double click --> automatically executed when changing dimensions
+        //Anti double click --> automatically triggered when changing dimensions
         if (lastClickTick.getOrDefault(id, 0) > currentTick - 20) {
             return;
         }

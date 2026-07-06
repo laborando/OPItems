@@ -109,7 +109,10 @@ public class CmdExe {
                     Test.runCurrentTest((Player) sender);
                 }
             }
-
+            if (arg.equalsIgnoreCase("report")) {
+                Report.execute(label, sender, args);
+                return;
+            }
             if (arg.equalsIgnoreCase("config")) {
                 OpenConfig.execute(sender);
             } else if (arg.equalsIgnoreCase("changelog")) {
@@ -218,7 +221,7 @@ public class CmdExe {
             }
 
             //LOGGER
-            else if (arg.equalsIgnoreCase("report")) {
+            else if (arg.equalsIgnoreCase("statusReport")) {
 
                 if (!(sender.isOp())) {
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");

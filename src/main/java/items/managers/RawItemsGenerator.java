@@ -2,12 +2,10 @@ package items.managers;
 
 import cel20.op.Main;
 import items.NameSpaces;
-import net.minecraft.world.item.ExperienceBottleItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.entity.ExpBottleEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
@@ -656,6 +654,19 @@ public class RawItemsGenerator {
 
                 itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                break;
+
+            case 50:
+                itemStack = new ItemStack(Material.STICK, 1);
+                itemMeta = itemStack.getItemMeta();
+                itemMeta.setDisplayName(ChatColor.DARK_RED + "Item Frame Hider");
+                lore = new ArrayList<>();
+                lore.add(ChatColor.RED + " - Click on a item frame to make it invisible");
+                itemMeta.setLore(lore);
+
+                itemMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
                 break;
 
             default:

@@ -16,8 +16,9 @@ public class RUIClickHandler {
         final HumanEntity entity = event.getWhoClicked();
         final ItemStack item = event.getCurrentItem();
 
-        if (item == null)
-            return;
+
+        if (item == null) return;
+        if (item.isEmpty()) return;
 
         ItemMeta meta = item.getItemMeta();
 

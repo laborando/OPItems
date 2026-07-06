@@ -1,11 +1,14 @@
 package metrics;
 
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class WorkerLogger {
+    public static WorkerLogger activeLogger;
+
     private final String workerUrl;
 
     public WorkerLogger(String workerUrl) {
@@ -18,23 +21,40 @@ public class WorkerLogger {
      * @param logText
      */
     public void sendLog(String logText) {
+        HttpURLConnection con = null;
         try {
             URL url = new URL(workerUrl);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setDoOutput(true);
             con.setRequestProperty("Content-Type", "text/plain; charset=UTF-8");
 
             byte[] out = logText.getBytes(StandardCharsets.UTF_8);
-            OutputStream stream = con.getOutputStream();
-            stream.write(out);
+            con.setRequestProperty("Content-Length", String.valueOf(out.length));
+
+            try (OutputStream os = con.getOutputStream()) {
+                os.write(out);
+                os.flush();
+            }
 
             int responseCode = con.getResponseCode();
-            if (responseCode != 200) {
-                //throw new RuntimeException("Fehler beim Senden des Logs: HTTP " + responseCode);
+
+            // Response
+            try (InputStream is = con.getInputStream()) {
+                is.read(); // Increasing propability of proper closure of stream
             }
-            con.disconnect();
-        } catch (Exception ignored) {
+
+            if (responseCode != HttpURLConnection.HTTP_OK) {
+                System.err.println("Error sending  log Logs: HTTP " + responseCode);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (con != null) {
+                con.disconnect();
+            }
         }
     }
+
 }

@@ -120,6 +120,7 @@ public class CItem {
      * @return
      */
     public CItem setResultFromOPItemsID(int id) {
+
         if (finished) {
             Main.getInstance().getLogger().warning("[OPItems] Err: Cannot set ItemResult: Item has already been created: " + id);
 

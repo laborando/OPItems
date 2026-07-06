@@ -28,4 +28,6 @@ public class GlobalVars {
     public static String CooldownMessage = "cooldown...";
 
     public static String SubSpaceDataFile;
+
+    public static boolean eventsSuspended = false;
 }

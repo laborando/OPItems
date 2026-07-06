@@ -102,35 +102,6 @@ public class Celutis {
         return new Vector(x, y, z);
     }
 
-    private static final ArrayList<Color> colors = (ArrayList<Color>) Arrays.asList(
-            Color.WHITE,
-            Color.LIME,
-            Color.SILVER,
-            Color.RED,
-            Color.AQUA,
-            Color.BLUE,
-            Color.FUCHSIA,
-            Color.GRAY,
-            Color.MAROON,
-            Color.BLACK,
-            Color.YELLOW,
-            Color.TEAL,
-            Color.ORANGE,
-            Color.OLIVE,
-            Color.NAVY,
-            Color.GREEN,
-            Color.PURPLE
-    );
-
-    public static Color getRandomColor() {
-
-        int size = colors.size();
-        Random ran = new Random();
-
-        return colors.get(ran.nextInt(size));
-
-    }
-
     public static ItemStack getSkullByName(String name) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1);
         if (name == null || name.isEmpty()) {

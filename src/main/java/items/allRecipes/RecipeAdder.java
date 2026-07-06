@@ -148,7 +148,7 @@ public class RecipeAdder {
                 .build();
 
         CItem.getOPBuilder(25)
-                .setMaterialAt(Material.GOLD_INGOT, 1, 3, 5, 7)
+                .setMaterialAt(Material.MAGMA_BLOCK, 1, 3, 5, 7)
                 .setMaterialAt(Material.SPONGE, 0, 2, 6, 8)
                 .build();
 
@@ -303,6 +303,12 @@ public class RecipeAdder {
                 .setMaterialAt(Material.GOLD_INGOT, 3, 5, 7)
                 .setMaterialAt(Material.DIAMOND, 1)
                 .setMaterialAt(Material.EXPERIENCE_BOTTLE, 4)
+                .build();
+
+        CItem.getOPBuilder(50)
+                .setMaterialAt(Material.PHANTOM_MEMBRANE, 3, 5, 7)
+                .setMaterialAt(Material.DIAMOND, 1)
+                .setMaterialAt(Material.STICK, 4)
                 .build();
 
     }
