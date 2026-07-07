@@ -6,6 +6,9 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
+/**
+ * Class for stopping OPItems from being used as crafting ingredients
+ */
 public class NoCrafting {
     public static void event(CraftItemEvent craftItemEvent) {
 

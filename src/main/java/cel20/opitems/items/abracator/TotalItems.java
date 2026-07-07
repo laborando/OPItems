@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classs for managing all OPItems and their respective recipes
+ * Class for managing all OPItems and their respective recipes
  */
 public class TotalItems {
 
@@ -211,8 +211,6 @@ public class TotalItems {
      * Disables all crafting recipes registered here
      */
     public static void disableCrafting() {
-
-        Bukkit.getLogger().info("Crafting Disabled");
 
         for (CItem item : items) {
 

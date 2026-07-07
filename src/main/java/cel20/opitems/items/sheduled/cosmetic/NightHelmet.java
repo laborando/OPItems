@@ -8,6 +8,9 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+/**
+ * Night helmet particle scheduler
+ */
 public class NightHelmet extends BasicSchedule {
     public void execute() {
 

@@ -16,6 +16,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Manages the OPItems update notifications
+ */
 public class UpdateNotify {
 
     static File noNotifyFile;
@@ -60,7 +63,10 @@ public class UpdateNotify {
         }
     }
 
-    public static void load() {
+    /**
+     * Use innit()
+     */
+    private static void load() {
         try {
 
             if (!noNotifyFile.exists()) {

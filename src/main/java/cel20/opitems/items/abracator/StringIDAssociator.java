@@ -1,5 +1,8 @@
 package cel20.opitems.items.abracator;
 
+/**
+ * Class for bidirectional association of a String and an int ID
+ */
 public class StringIDAssociator {
 
     public int id;

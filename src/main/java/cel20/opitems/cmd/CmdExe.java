@@ -109,6 +109,7 @@ public class CmdExe {
             if (arg.equalsIgnoreCase("test")) {
                 if (sender.isOp()) {
                     Test.runCurrentTest((Player) sender);
+                    return;
                 }
             }
             if (arg.equalsIgnoreCase("report")) {

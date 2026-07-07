@@ -10,7 +10,8 @@ import java.util.List;
 /**
  * Old versions of OPItems used enchantments instead of ids to differentiate cel20.items <br>
  * This class is a manual database of old cel20.items with their respective enchantments <br>
- * Used to upgrade cel20.items
+ * Used to upgrade cel20.items <br>
+ * List<OldItem> itemList is static and can be modified by the API if accessed directly
  */
 public class OldItemDataset {
 

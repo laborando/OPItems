@@ -5,12 +5,17 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-
+/**
+ * Class for sending messages to remote logger as means of collecting error reports
+ */
 public class WorkerLogger {
     public static WorkerLogger activeLogger;
 
     private final String workerUrl;
 
+    /**
+     * Class for sending messages to remote logger as means of collecting error reports
+     */
     public WorkerLogger(String workerUrl) {
         this.workerUrl = workerUrl;
     }

@@ -15,6 +15,11 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Class for generating OPItems <br>
+ * Returned ItemStack is ready for usage
+ */
 public class RawItemsGenerator {
 
     public static ItemStack getItem(int id, int... lvl) {

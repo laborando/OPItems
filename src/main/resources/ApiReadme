@@ -1,6 +1,7 @@
 The OPItems API is implemented since OPItems v1.12.0
 
 Setup:
+ - Download OPItems.jar and javadoc.zip from the latest GitHub release
  - IntelIJ is being used in this how2
  - Build Project with Gradle
  - Do not use Boostrappers / Loaders in your plugin -> Delete the classes and references in the .yml if they are generated
@@ -18,7 +19,7 @@ Setup:
 As seen in the dependencies, the classpaths will be joined. Therefore there must not be overlapping names.
     --> Do Not use the packes cel20.opitems.* ; Use own super-package, like name.project.*
 
- - Copy OPItems.jar to your project. root/libs/OPItems.jar is used in the example as the location of the file. The OPItems jar should always be the same used in the server if possible
+ - Copy OPItems.jar and javadoc.zip to your project. root/libs/OPItems.jar is used in the example as the location of the file. The OPItems jar should always be the same used in the server if possible
 
  - Configure Gradle in file build.gradle.kts:
     - Add dependencies:
@@ -40,5 +41,12 @@ As seen in the dependencies, the classpaths will be joined. Therefore there must
         OPItemsAPI api = Bukkit.getServicesManager().load(OPItemsAPI.class);
         Bukkit.broadcastMessage(api.getPluginAPI().getOPItemsVersion());
 
+ - Press the cog on the top right -> Project Structure -> + -> Java -> Navigate to OPItems.jar and select
+ - Dont close yet, Press + on the right side -> Navigate to javadoc.zip -> Select JavaDoc
+ -> Documentation should now be shown
+
 Important Notes:
  - The API can only be used after onEnable() was called
+ - All OPItems code can be accessed through the API if deeper modifications are wished
+ - OPItems is an old plugin and is still mostly programmed functionally, not object orientated, so most code can be accessed directly as static methods.
+    -> Read the Javadoc for the scope of methods

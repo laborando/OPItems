@@ -4,7 +4,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 
 /**
- * Global Namespaces regarding cel20.items
+ * Global Namespaces regarding items, stored static
  */
 public class NameSpaces {
 
@@ -20,6 +20,9 @@ public class NameSpaces {
     public static NamespacedKey opitemsXPStorageAmount;
 
 
+    /**
+     * Sets up name-spaces
+     */
     public static void innitNameSpaces(Plugin p) {
 
         opitemsMarker = new NamespacedKey(p, "opitemsMarker");

@@ -13,6 +13,9 @@ import java.util.ArrayDeque;
 import java.util.Objects;
 import java.util.Queue;
 
+/**
+ * Utilities regarding Particles
+ */
 public class ParticleUtis {
 
     /**

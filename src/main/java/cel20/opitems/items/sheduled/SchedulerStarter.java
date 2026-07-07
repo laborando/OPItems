@@ -10,6 +10,9 @@ import org.bukkit.Bukkit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for managing schedules regarding OPItems
+ */
 public class SchedulerStarter {
 
     static List<BasicSchedule> scheduleList = new ArrayList<>();

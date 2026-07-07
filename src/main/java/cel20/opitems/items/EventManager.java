@@ -32,7 +32,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+/**
+ * Class for managing events regarding OPItems <br>
+ * Can be live-edited <br>
+ * Listeners can also be added through the API
+ */
 public class EventManager implements Listener {
+
+    public static boolean enabled = true;
 
     //Maps
     public static Map<String, Consumer<PlayerInteractEvent>> PlayerInteractEventMap = new HashMap<>();
@@ -191,6 +198,9 @@ public class EventManager implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerInteractEvent e) {
 
+        if(!enabled)
+            return;
+
         //List
 
         PlayerInteractEventList.forEach(consumer -> {
@@ -223,6 +233,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerInteractEntityEvent e) {
+
+        if(!enabled)
+            return;
+
         //Map
 
 
@@ -247,6 +261,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerElytraBoostEvent e) {
+
+        if(!enabled)
+            return;
+
         //Map
 
         ItemStack item = e.getFirework().getItem();
@@ -271,6 +289,9 @@ public class EventManager implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerBucketEmptyEvent e) {
 
+        if(!enabled)
+            return;
+
         ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
 
         String idns = getIDNSorNullIfNotOPItems(item);
@@ -290,6 +311,9 @@ public class EventManager implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerItemConsumeEvent e) {
 
+        if(!enabled)
+            return;
+
         ItemStack item = e.getItem();
 
         String idns = getIDNSorNullIfNotOPItems(item);
@@ -307,6 +331,9 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockPlaceEvent e) {
+
+        if(!enabled)
+            return;
 
         Player p = e.getPlayer();
 
@@ -330,6 +357,9 @@ public class EventManager implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final ProjectileLaunchEvent e) {
 
+        if(!enabled)
+            return;
+
         if (!(e.getEntity().getShooter() instanceof Player shooter)) return;
 
         ItemStack item = shooter.getInventory().getItemInMainHand();
@@ -348,6 +378,9 @@ public class EventManager implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerFishEvent e) {
 
+        if(!enabled)
+            return;
+
         ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
 
         String idns = getIDNSorNullIfNotOPItems(item);
@@ -364,6 +397,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final ProjectileHitEvent e) {
+
+        if(!enabled)
+            return;
+
         ProjectileHitEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -371,6 +408,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockDropItemEvent e) {
+
+        if(!enabled)
+            return;
+
         BlockDropItemEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -378,6 +419,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockPhysicsEvent e) {
+
+        if(!enabled)
+            return;
+
         BlockPhysicsEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -385,6 +430,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final BlockBreakEvent e) {
+
+        if(!enabled)
+            return;
+
         BlockBreakEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -392,6 +441,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerChangedWorldEvent e) {
+
+        if(!enabled)
+            return;
+
         PlayerChangedWorldEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -399,6 +452,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerPreLoginEvent e) {
+
+        if(!enabled)
+            return;
+
         PlayerPreLoginEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -406,6 +463,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerQuitEvent e) {
+
+        if(!enabled)
+            return;
+
         PlayerQuitEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -413,6 +474,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final EntityDamageByEntityEvent e) {
+
+        if(!enabled)
+            return;
+
         EntityDamageByEntityEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -420,6 +485,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final EntityDamageEvent e) {
+
+        if(!enabled)
+            return;
+
         EntityDamageEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -427,6 +496,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerDropItemEvent e) {
+
+        if(!enabled)
+            return;
+
         PlayerDropItemEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -434,6 +507,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerRespawnEvent e) {
+
+        if(!enabled)
+            return;
+
         PlayerRespawnEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -441,6 +518,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final InventoryClickEvent e) {
+
+        if(!enabled)
+            return;
+
         InventoryClickEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -448,6 +529,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final CraftItemEvent e) {
+
+        if(!enabled)
+            return;
+
         CraftItemEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -455,6 +540,10 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final PlayerJoinEvent e) {
+
+        if(!enabled)
+            return;
+
         PlayerJoinEventList.forEach(consumer -> {
             consumer.accept(e);
         });
@@ -462,13 +551,19 @@ public class EventManager implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void event(final ExpBottleEvent e) {
+
+        if(!enabled)
+            return;
+
         ExpBottleEventList.forEach(consumer -> {
             consumer.accept(e);
         });
     }
 
 
-
+    /**
+     * Gets OPItems ID or null if ItemStack is not an OPItem
+     */
     public static String getIDNSorNullIfNotOPItems(ItemStack item) {
         if (item == null) return null;
         if (item.isEmpty()) return null;

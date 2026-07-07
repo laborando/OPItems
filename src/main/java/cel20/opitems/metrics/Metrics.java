@@ -3,7 +3,7 @@ bStats Metrics Class under MIT (?)
 Version: 3.1.0 (?)
 Source:
 https://github.com/Bastian/bstats-metrics/blob/single-file/bukkit/Metrics.java
-   Start of class:
+Start of class:
  */
 
 /*

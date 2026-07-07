@@ -9,11 +9,15 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utilities regarding CLogger
+ */
 public class Logutis {
 
 
     /**
-     * Generates a basic report and outputs it via CLogger
+     * Generates a basic report and outputs it via CLogger <br>
+     * If CLogger is not enabled, starts it synchronized
      */
     public static void createReportAndLog() {
 
