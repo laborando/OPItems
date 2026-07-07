@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/*
+/**
 CUpdater for MC plugins via the Modrinth API v1.0
  */
 public class CUpdater {
@@ -25,6 +25,12 @@ public class CUpdater {
     private String slug = "opitems";
     private static final boolean disable = false;
 
+    /**
+     * If not disabled, loads Version information and sets the local vars shouldUpdate and highestVersion <br>
+     * Broadcasts messages if update is found
+     * @param cVersion
+     * @param slug
+     */
     public CUpdater(String cVersion, String slug) {
         this.slug = slug;
 
@@ -37,6 +43,11 @@ public class CUpdater {
         checkVersion(cVersion);
     }
 
+    /**
+     * Loads Version information and sets the local vars shouldUpdate and highestVersion <br>
+     * Broadcasts messages if update is found
+     * @param cVersion
+     */
     private void checkVersion(String cVersion) {
 
         URL verList;
@@ -106,6 +117,11 @@ public class CUpdater {
 
     }
 
+    /**
+     * Parses recieved JSON to CVersion and adds it to the versions[] array
+     * @param version
+     * @param current
+     */
     private void parseVersion(JSONObject version, int current) {
 
         CVersion ver = new CVersion();
@@ -189,6 +205,11 @@ public class CUpdater {
         return "unsuccessfulUsernameRequestException";
     }
 
+    /**
+     * Executes non-stoppable update process to the CVersion selected as most recent upon startup
+     * @param instance Plugin instance of the plugin being updated
+     * @return Result
+     */
     public boolean executeUpdate(Main instance) {
         Main.getInstance().getLogger().warning("Starting update");
         File toUpdate = instance.getFileNonProt();
@@ -239,7 +260,12 @@ public class CUpdater {
         return true;
     }
 
-    public InputStream getUpdateStream(CVersion version) {
+    /**
+     * Gets the open stream to the remote location of the updated OPItems.jar that the CVersion-object references
+     * @param version
+     * @return
+     */
+    private InputStream getUpdateStream(CVersion version) {
         URL fileURL;
         try {
             fileURL = new URL(version.fileURL);

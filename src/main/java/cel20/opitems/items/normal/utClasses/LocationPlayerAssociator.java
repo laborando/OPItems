@@ -3,6 +3,9 @@ package cel20.opitems.items.normal.utClasses;
 
 import org.bukkit.Location;
 
+/**
+ * Class for bidirectional association of a player and a location
+ */
 public class LocationPlayerAssociator {
 
     String name;

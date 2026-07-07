@@ -5,17 +5,23 @@ import org.bukkit.entity.Player;
 
 public class GiveItems {
 
+    /**
+     * Sends player p a missing argument messsage for /opitems give
+     */
     public static void giveItemsMessage(final Player player) {
 
         player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Missing argument: /opitems give <itemNumber> <targetPlayer>");
     }
 
-    public static void giveItems(final Player player, int itemNum, int p1, int p2) {
+    /**
+     * Gives player p an OPItem with
+     */
+    public static void giveItems(final Player player, int itemNum, int ench1, int ench2) {
 
         try {
 
             GiveErrorBackgiver.setPlayer(player);
-            player.getInventory().addItem(RawItemsGenerator.getItem(itemNum, p1, p2));
+            player.getInventory().addItem(RawItemsGenerator.getItem(itemNum, ench1, ench2));
 
 
         } catch (Exception e) {

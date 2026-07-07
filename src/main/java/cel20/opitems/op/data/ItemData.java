@@ -8,6 +8,10 @@ import org.bukkit.plugin.Plugin;
 public class ItemData {
 
 
+    /**
+     * Loads data from disk regarding OPItems
+     * @param m
+     */
     public static void loadItems(Main m) {
 
         Landmine.load();
@@ -18,6 +22,10 @@ public class ItemData {
 
     }
 
+    /**
+     * Saves data to disk regarding OPItems
+     * @param p
+     */
     public static void saveItemData(Plugin p) {
 
         CursedSword.saveData(Main.data_save_cursed_sword);

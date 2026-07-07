@@ -7,12 +7,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import cel20.opitems.utis.CLogger;
 
+/**
+ * Class for loading data from the config
+ */
 public class ConfigLoader {
 
+    /**
+     * Loads early data from the config
+     */
     public static void earlyLoadConfig(FileConfiguration config, Main plugin, Main m) {
         GlobalVars.craftingDisabled = config.getBoolean("DisableOPItemsCrafting");
     }
 
+    /**
+     * Loads data from the config
+     */
     public static void loadConfigs(FileConfiguration config, Main plugin, Main m) {
 
         //CLogger

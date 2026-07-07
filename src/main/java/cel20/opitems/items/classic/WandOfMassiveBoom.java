@@ -5,7 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
-import cel20.opitems.utis.uiutis.CooldownSubtitle;
+import cel20.opitems.utis.uiutis.SubtitleUtis;
 
 import java.util.HashMap;
 
@@ -24,7 +24,7 @@ public class WandOfMassiveBoom {
 
             if (secondsLeft > 0.0D) {
 
-                CooldownSubtitle.showCooldown(p);
+                SubtitleUtis.showCooldown(p);
 
                 return;
             }

@@ -1,5 +1,8 @@
 package cel20.opitems.op;
 
+/**
+ * Class for storing global vars as static vars
+ */
 public class GlobalVars {
 
     public static String uuid = ";";

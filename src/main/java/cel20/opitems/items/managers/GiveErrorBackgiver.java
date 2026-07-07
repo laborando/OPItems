@@ -3,6 +3,9 @@ package cel20.opitems.items.managers;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+/**
+ * Class for giving error messages for /opitems give
+ */
 public class GiveErrorBackgiver {
 
     static volatile Player player;

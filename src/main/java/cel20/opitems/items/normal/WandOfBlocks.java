@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import cel20.opitems.utis.Celutis;
-import cel20.opitems.utis.uiutis.CooldownSubtitle;
+import cel20.opitems.utis.uiutis.SubtitleUtis;
 
 import java.util.*;
 
@@ -63,7 +63,7 @@ public class WandOfBlocks {
 
             if (!((System.currentTimeMillis() - Cooldown.get(p.getName())) >= 5000)) {
 
-                CooldownSubtitle.showCooldown(p);
+                SubtitleUtis.showCooldown(p);
 
             } else {
 

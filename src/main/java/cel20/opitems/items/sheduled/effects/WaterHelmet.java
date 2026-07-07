@@ -8,6 +8,9 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+/**
+ * Water Helmet Scheduler for effect
+ */
 public class WaterHelmet extends BasicSchedule {
     public void execute() {
 

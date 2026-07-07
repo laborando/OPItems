@@ -1,5 +1,6 @@
 package cel20.opitems.items.newer;
 
+import cel20.opitems.utis.uiutis.SubtitleUtis;
 import org.bukkit.Color;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
@@ -7,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import cel20.opitems.utis.ParticleUtis;
-import cel20.opitems.utis.uiutis.CooldownSubtitle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class WandOfWarden {
 
         if (!((System.currentTimeMillis() - Cooldown.get(p.getName())) >= 90000)) {
 
-            CooldownSubtitle.showCooldown(p);
+            SubtitleUtis.showCooldown(p);
 
             return;
         }

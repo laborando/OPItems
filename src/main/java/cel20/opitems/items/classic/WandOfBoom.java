@@ -1,11 +1,11 @@
 package cel20.opitems.items.classic;
 
 import cel20.opitems.op.GlobalVars;
+import cel20.opitems.utis.uiutis.SubtitleUtis;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
-import cel20.opitems.utis.uiutis.CooldownSubtitle;
 
 import java.util.HashMap;
 
@@ -22,7 +22,7 @@ public class WandOfBoom {
             double secondsLeft = ((double) cooldown.get(p.getName()) / 1000L) + cooldownTime / 1000.0D - ((double) System.currentTimeMillis() / 1000L);
             if (secondsLeft > 0.0D) {
 
-                CooldownSubtitle.showCooldown(p);
+                SubtitleUtis.showCooldown(p);
 
                 return;
             }

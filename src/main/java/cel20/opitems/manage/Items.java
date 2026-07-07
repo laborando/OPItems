@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class Items {
     /**
-     * Removes dropped cel20.items
+     * Removes dropped items
      */
     public void removeItems() {
         final Map<Player, Integer> itemCounts = new HashMap<Player, Integer>();
@@ -100,6 +100,9 @@ public class Items {
         }
     }
 
+    /**
+     * Gets closest player from a location
+     */
     private static Player getClosestPlayer(final Vector location, final Iterable<Player> players) {
         Player closestPlayer = null;
         double closestDistanceSquared = Double.MAX_VALUE;

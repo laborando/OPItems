@@ -10,6 +10,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Class for upgrading old versions of OPItems
+ */
 public class ItemUpgrader {
 
     /**

@@ -8,6 +8,9 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+/**
+ * Speed leggings scheduler for speed effect
+ */
 public class SpeedLeggings extends BasicSchedule {
     public void execute() {
 

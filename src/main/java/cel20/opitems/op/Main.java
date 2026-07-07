@@ -27,6 +27,9 @@ import cel20.opitems.utis.update.UpdateNotify;
 
 import java.io.File;
 
+/**
+ * Main plugin class
+ */
 public class Main extends JavaPlugin {
 
     private static Main instance;
@@ -49,23 +52,28 @@ public class Main extends JavaPlugin {
     public static Metrics metrics;
     public static CUpdater cUpdater;
 
-
+    /*
+     * On class-generation setters
+     */
     static {
         Main.ore_gen_chance_private_dim = 100;
         Main.isprivatedimenableled = true;
         Main.tntBowAmount = 50;
     }
 
+    /**
+     * On class-generation setters
+     */
     public Main() {
         this.config = this.getConfig();
     }
 
     public void onEnable() {
+        Bukkit.getLogger().info("[OPItems] OPItems is loading...");
 
-        opitemsVersion = "1.11.3";
+        opitemsVersion = "1.12.0";
         Main.p = this;
         instance = this;
-        Bukkit.getLogger().info("[OPItems] OPItems is loading...");
         final Main plugin = this;
 
         NameSpaces.innitNameSpaces(this);
@@ -95,8 +103,10 @@ public class Main extends JavaPlugin {
         TotalItems.addAllRecipes();
         TotalItems.innit(this);
 
-        if (GlobalVars.craftingDisabled)
+        if (GlobalVars.craftingDisabled){
+            Bukkit.getLogger().info("OPItems crafting disabled");
             TotalItems.disableCrafting();
+        }
 
         //Newer Content
         GlobalVars.newerFeaturesEnabled = true;

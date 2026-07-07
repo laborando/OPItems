@@ -2,8 +2,14 @@ package cel20.opitems.op.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
+/**
+ * Class for setting up default config
+ */
 public class ConfigInniter {
 
+    /**
+     * Sets up default config
+     */
     public static void innitConfig(FileConfiguration config) {
 
         //config.options().header("This is the main configuration file for OPItems \n The server must be restarted");

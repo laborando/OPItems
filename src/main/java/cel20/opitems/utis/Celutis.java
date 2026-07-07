@@ -9,6 +9,9 @@ import org.bukkit.util.Vector;
 import java.io.File;
 import java.util.*;
 
+/**
+ * Miscellaneous utilities
+ */
 public class Celutis {
 
     //v0.5 MC
@@ -28,7 +31,7 @@ public class Celutis {
     }
 
     /**
-     * Simple clean method for generating an int between given max & min
+     * Simple clean method for generating an int between given max and min
      *
      * @param min
      * @param max
@@ -43,7 +46,7 @@ public class Celutis {
     }
 
     /**
-     * Simple clean method for generating a double between given max & min
+     * Simple clean method for generating a double between given max and min
      *
      * @param min
      * @param max

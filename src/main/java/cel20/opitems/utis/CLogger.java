@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * A custom logger writing directly to a file separate from the standard logging
+ */
 public class CLogger {
 
     static int secDel = 300;

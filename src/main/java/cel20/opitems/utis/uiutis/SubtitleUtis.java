@@ -4,7 +4,10 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.entity.Player;
 
-public class CooldownSubtitle {
+/**
+ * Utilities for showing action-bars
+ */
+public class SubtitleUtis {
 
     /**
      * Shows a generic cooldown subtitle
@@ -20,8 +23,23 @@ public class CooldownSubtitle {
                         .append(Component.text("Cooldown...", NamedTextColor.RED))
 
         );
-
-
     }
+
+    /**
+     * Shows a custom subtitle in <p style="color: red;">red</p>
+     *
+     * @param p Target
+     */
+    public static void showSubtitle(Player p, String message) {
+
+
+        p.sendActionBar(
+
+                Component.text()
+                        .append(Component.text(message, NamedTextColor.RED))
+
+        );
+    }
+
 
 }

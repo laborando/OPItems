@@ -7,6 +7,9 @@ import org.bukkit.Particle;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
+/**
+ * Fire shoe particle scheduler
+ */
 public class FireShoe extends BasicSchedule {
     public void execute() {
 
