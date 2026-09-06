@@ -1,7 +1,7 @@
 name: OPItems
 description: The OPItems Plugin
 authors: [ cel20 ]
-version: '1.12.0'
+version: '1.12.2'
 
 main: cel20.opitems.op.Main
 api-version: '1.20.6'

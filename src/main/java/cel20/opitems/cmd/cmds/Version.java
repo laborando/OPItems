@@ -18,7 +18,7 @@ public class Version {
         if (updater.shouldUpdate) {
             sender.sendMessage(ChatColor.GOLD + "There is an update available:");
             CVersion cversion = updater.highestVersion;
-            sender.sendMessage(ChatColor.BLUE + "v" + cversion.version + " from " + cversion.version + " by" + cversion.author);
+            sender.sendMessage(ChatColor.BLUE + "v" + cversion.version + " as " + cversion.type + " by " + cversion.author);
         }
     }
 }

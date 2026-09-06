@@ -166,6 +166,8 @@ public class CmdExe {
 
             } else if (arg.equalsIgnoreCase("help")) {
                 Help.execute(sender);
+            }else if (arg.equalsIgnoreCase("getID")) {
+                GetOPID.execute(sender);
             } else if (arg.equalsIgnoreCase("version")) {
                 Version.execute(sender);
             } else if (arg.equalsIgnoreCase("update")) {

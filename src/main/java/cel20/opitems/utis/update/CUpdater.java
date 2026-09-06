@@ -3,6 +3,8 @@ package cel20.opitems.utis.update;
 import cel20.opitems.op.Main;
 import io.papermc.paper.ServerBuildInfo;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -24,9 +26,10 @@ public class CUpdater {
     public boolean shouldUpdate = false;
     private String slug = "opitems";
     private static final boolean disable = false;
+    private static final boolean isCurseForge = false; //If published via curseforge, disable autoupdater
 
     /**
-     * If not disabled, loads Version information and sets the local vars shouldUpdate and highestVersion <br>
+     * If not disabled/setIsCurseforge, loads Version information and sets the local vars shouldUpdate and highestVersion <br>
      * Broadcasts messages if update is found
      * @param cVersion
      * @param slug
@@ -102,16 +105,16 @@ public class CUpdater {
         if (shouldUpdate) {
             Bukkit.getLogger().warning("An Update for OPItems has been found: " + highest + "; current version: " + cVersion);
         } else {
-            Bukkit.getLogger().info("OPItems seems to be up-to-date: " + cVersion + "; highest found: " + highest);
+            Bukkit.getLogger().info("[OPItems] OPItems seems to be up-to-date: " + cVersion + "; highest found: " + highest);
         }
 
         String runningVer = ServerBuildInfo.buildInfo().minecraftVersionName();
         boolean isCompatible = highestVersion.isCompatible(runningVer);
 
-        Bukkit.getLogger().info("Running MC Version: " + runningVer + "; Is compatible with " + highest + ": " + isCompatible);
+        Bukkit.getLogger().info("[OPItems] Running MC Version: " + runningVer + "; Is compatible with " + highest + ": " + isCompatible);
 
         if (shouldUpdate && !isCompatible) {
-            Bukkit.getLogger().info("Please consider upgrading your Minecraft version");
+            Bukkit.getLogger().info("[OPItems] Please consider upgrading your Minecraft version");
             shouldUpdate = false;
         }
 
@@ -206,11 +209,21 @@ public class CUpdater {
     }
 
     /**
-     * Executes non-stoppable update process to the CVersion selected as most recent upon startup
+     * Executes non-stoppable update process to the CVersion selected as most recent upon startup <br>
+     * Does not work if isCurseForge == true
+     *
      * @param instance Plugin instance of the plugin being updated
+     * @param sender
      * @return Result
      */
-    public boolean executeUpdate(Main instance) {
+    public boolean executeUpdate(Main instance, CommandSender sender) {
+
+        if(isCurseForge){
+            sender.sendMessage(ChatColor.RED + "This version of OPItems was distributed via CurseForge. CurseForge does not permit auto-updaters.");
+            sender.sendMessage("Please update manually or consider switching to a modrinth-distributed version for a working auto-updater.");
+            return false;
+        }
+
         Main.getInstance().getLogger().warning("Starting update");
         File toUpdate = instance.getFileNonProt();
 

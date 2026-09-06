@@ -2,6 +2,8 @@ package cel20.opitems.op;
 
 import cel20.opitems.api.OPItemsAPI;
 import cel20.opitems.apiImplementation.OpApiImplementation;
+import cel20.opitems.filebased.overrides.RecOverrideLoaders;
+import cel20.opitems.metrics.MetricsHandler;
 import cel20.opitems.op.config.ConfigInniter;
 import cel20.opitems.op.config.ConfigLoader;
 import cel20.opitems.op.data.ItemData;
@@ -11,7 +13,6 @@ import cel20.opitems.items.NameSpaces;
 import cel20.opitems.items.abracator.TotalItems;
 import cel20.opitems.items.allRecipes.RecipeAdder;
 import cel20.opitems.items.sheduled.SchedulerStarter;
-import cel20.opitems.metrics.Metrics;
 import cel20.opitems.metrics.WorkerLogger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -39,17 +40,15 @@ public class Main extends JavaPlugin {
     }
 
     public static boolean priDimPerformMode = false;
-    public static boolean landminePerfModeEnabeled = false;
+    public static boolean landminePerfModeEnabled = false;
     public static int ore_gen_chance_private_dim;
     public static boolean isprivatedimenableled;
     public FileConfiguration config;
-    static Plugin p;
     public static String data_save_cursed_sword;
     public static String data_save_homes;
     public static String data_save_play_dim;
     public static int tntBowAmount;
-    public static String opitemsVersion = "Not innited";
-    public static Metrics metrics;
+    public static String opitemsVersion = "Not set yet...";
     public static CUpdater cUpdater;
 
     /*
@@ -71,8 +70,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");
 
-        opitemsVersion = "1.12.0";
-        Main.p = this;
+        opitemsVersion = "1.12.2";
         instance = this;
         final Main plugin = this;
 
@@ -96,38 +94,24 @@ public class Main extends JavaPlugin {
 
 
         //CONTENT
-        //cel20.items
         ItemData.loadItems(plugin);
 
         RecipeAdder.addOPItemsRecipes();
-        TotalItems.addAllRecipes();
-        TotalItems.innit(this);
+        RecOverrideLoaders.load(this);
+        TotalItems.addAllRecipes(); //After RecipeAdder.addOPItemsRecipes() and RecOverrideLoaders.load() !
+        TotalItems.innit(this); //After TotalItems.addAllRecipes() !
 
         if (GlobalVars.craftingDisabled){
-            Bukkit.getLogger().info("OPItems crafting disabled");
             TotalItems.disableCrafting();
         }
 
-        //Newer Content
-        GlobalVars.newerFeaturesEnabled = true;
-
-
-        //Cloudflare worker
+        //Cloudflare worker - Error reporting
         WorkerLogger logger = new WorkerLogger("https://plugins.opitems.workers.dev/");
         WorkerLogger.activeLogger = logger;
 
         //bStats
         if (!config.getBoolean("OPItemsSpecificBStatsDisable")) {
-            metrics = new Metrics(this, 27611);
-
-            metrics.addCustomChart(new Metrics.SimplePie("newer_version_enabled", () -> "true"));
-
-
-            if (GlobalVars.craftingDisabled) {
-                metrics.addCustomChart(new Metrics.SimplePie("crafting_disabled", () -> "true"));
-            } else {
-                metrics.addCustomChart(new Metrics.SimplePie("crafting_disabled", () -> "false"));
-            }
+            MetricsHandler.start();
         }
 
         //Update Notifier
@@ -141,35 +125,30 @@ public class Main extends JavaPlugin {
         Bukkit.getServicesManager().register(OPItemsAPI.class, api, plugin, ServicePriority.Normal);
 
         //Updater
-        Bukkit.getLogger().info("Retrieving version information...");
+        Bukkit.getLogger().info("[OPItems] Retrieving version information...");
         cUpdater = new CUpdater(opitemsVersion, "opitems");
 
         Bukkit.getLogger().info("");
-
-
         Bukkit.getLogger().info("|-----------------------------|");
         Bukkit.getLogger().info("|        OPItems " + opitemsVersion + "       |");
-        Bukkit.getLogger().info("|             by              |");
-        Bukkit.getLogger().info("|            cel20            |");
         Bukkit.getLogger().info("|-----------------------------|");
-        //Bukkit.getLogger().info("This is a BETA Version of OPItems!");
         Bukkit.getLogger().info("");
 
         if (GlobalVars.craftingDisabled) {
-            Bukkit.getLogger().info("OPItems crafting is disabled!");
+            Bukkit.getLogger().info("[OPItems] Crafting disabled!");
         }
 
     }
 
     public void onDisable() {
-        Bukkit.getLogger().warning("[OPItems] Disabling. Saving Data...");
+        Bukkit.getLogger().warning("[OPItems] Disabling...");
 
-        UpdateNotify.save();
+        UpdateNotify.save(); //Save who will receive update notifications
 
         ItemData.saveItemData(this);
 
-        TotalItems.save();
-        TotalItems.removeAllRecipes();
+        TotalItems.save(); //Save which items are enabled
+        TotalItems.removeAllRecipes(); //Remove all recipes for error-free restart
 
 
         try {
@@ -177,15 +156,18 @@ public class Main extends JavaPlugin {
         } catch (NoClassDefFoundError ignored) {
         }
 
-        metrics.shutdown();
+        MetricsHandler.stop();
 
-        Bukkit.getLogger().warning("OPItems is now disabled");
+        Bukkit.getLogger().warning("[OPItems] Disabled!");
     }
 
-    public static Plugin getPluginInstance() {
-        return Main.p;
-    }
 
+
+    /**
+     * Central method for starting update processes <br>
+     * Must be kept in the main method for now!
+     * @param sender
+     */
     public static void executeUpdate(CommandSender sender) {
 
         if (!cUpdater.shouldUpdate) {
@@ -195,7 +177,7 @@ public class Main extends JavaPlugin {
 
         sender.sendMessage(ChatColor.GREEN + "Starting update from v" + opitemsVersion + " to v" + cUpdater.highestVersion.version);
 
-        boolean success = cUpdater.executeUpdate(Main.getInstance());
+        boolean success = cUpdater.executeUpdate(Main.getInstance(), sender);
 
         if (success) {
             sender.sendMessage(ChatColor.GREEN + "Successfully updated! Please restart the server! There could be errors in changed classes if not restarted!");
@@ -208,12 +190,17 @@ public class Main extends JavaPlugin {
         }
     }
 
+    /**
+     * @return Main instance as Main
+     */
     public static Main getInstance() {
         return instance;
     }
-
-    public boolean isOnPrivatePocketPerformMode() {
-        return priDimPerformMode;
+    /**
+     * @return Main instance as Plugin
+     */
+    public static Plugin getPluginInstance() {
+        return instance;
     }
 
 

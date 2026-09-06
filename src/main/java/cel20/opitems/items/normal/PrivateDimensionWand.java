@@ -60,7 +60,8 @@ public class PrivateDimensionWand {
         try {
             final String wn = "pocket-world-" + e.getPlayer().getUniqueId();
             World world = Bukkit.getWorld(wn);
-            assert world != null;
+
+            if(world == null) return;
 
             for (Chunk c : world.getLoadedChunks()) {
                 c.unload(true);
@@ -69,7 +70,7 @@ public class PrivateDimensionWand {
             Bukkit.getServer().unloadWorld(wn, true);
 
         } catch (Exception ee) {
-            Bukkit.getLogger().info("Exception:");
+            Bukkit.getLogger().info("[OPItems] Exception:");
             ee.printStackTrace();
         }
     }

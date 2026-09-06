@@ -172,7 +172,7 @@ public class Landmine {
                         creator.createWorld();
                     } catch (Exception e) {
                         if (!world.isEmpty())
-                            Bukkit.getLogger().info("The Landmine file for " + world + "was non existent or corrupted");
+                            Bukkit.getLogger().info("[OPItems] The Landmine file for " + world + "was non existent or corrupted");
                     }
                 }
 
@@ -222,7 +222,7 @@ public class Landmine {
 
                         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 255, 255), 0.5F);
 
-                        if (!Main.landminePerfModeEnabeled) {
+                        if (!Main.landminePerfModeEnabled) {
                             Location ltmp = new Location(loc.getWorld(), loc.getX(), loc.getY(), loc.getZ());
                             ltmp.add(0.5, 0.2, 0.5);
                             try {

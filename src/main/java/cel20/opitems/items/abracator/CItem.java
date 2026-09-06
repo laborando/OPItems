@@ -1,5 +1,6 @@
 package cel20.opitems.items.abracator;
 
+import cel20.opitems.filebased.overrides.RecipeOverride;
 import cel20.opitems.op.Main;
 import cel20.opitems.items.managers.RawItemsGenerator;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -21,6 +22,7 @@ public class CItem {
     public Material[] materials = new Material[9];
     public NamespacedKey key;
     public String name;
+    boolean shouldAddToTotalItems = true;
 
     /***
      * Creates CItem and adds itself to Total Items
@@ -36,6 +38,22 @@ public class CItem {
 
         finishCreation();
 
+    }
+
+    /**
+     * Generates dangling {@link CItem} from a source {@link RecipeOverride} object with the result being retrieved from {@link RawItemsGenerator} <br>
+     * CItems generated via this constructor will NOT be added to Total Items!
+     * @param source
+     */
+    public CItem(RecipeOverride source){
+        id = source.id;
+        setResultFromOPItemsID(id);
+
+        for (int i = 0; i < 9; i++) {
+            setMaterialAt(source.materials[i], i);
+        }
+
+        shouldAddToTotalItems = false;
     }
 
     /**
@@ -178,7 +196,9 @@ public class CItem {
         name = PlainTextComponentSerializer.plainText().serialize(result.displayName()).replaceAll("\\[", "").replace("]", "");
 
 
-        TotalItems.items.add(this);
+        if(shouldAddToTotalItems)
+            TotalItems.items.add(this);
+
         finished = true;
 
 
@@ -191,6 +211,16 @@ public class CItem {
      */
     public void build() {
         finishCreation();
+    }
+
+    /**
+     * Finishes the Build
+     * <br>
+     * Returns itself
+     */
+    public CItem finish() {
+        build();
+        return this;
     }
 
 }

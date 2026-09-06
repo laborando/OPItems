@@ -16,7 +16,7 @@ public interface OPItemsAPI {
     public EventAPI getEventAPI();
     public PluginAPI getPluginAPI();
     public ItemsAPI getItemsAPI();
-
+    public void enable();
 
     //Basic Information
     /**

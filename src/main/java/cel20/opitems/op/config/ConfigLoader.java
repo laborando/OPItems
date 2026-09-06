@@ -44,7 +44,7 @@ public class ConfigLoader {
 
         //EnableLandminePerformanceMode
         if (config.getBoolean("EnableLandminePerformanceMode")) {
-            Main.landminePerfModeEnabeled = true;
+            Main.landminePerfModeEnabled = true;
         }
 
         //DimensionsPerformanceMode

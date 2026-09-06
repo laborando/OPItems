@@ -5,10 +5,6 @@ package cel20.opitems.op;
  */
 public class GlobalVars {
 
-    public static String uuid = ";";
-
-    public static boolean newerFeaturesEnabled = false;
-
     public static long hookOfVelectoryCD = 100L;
 
     public static long blitzerCD = 100L;

@@ -9,6 +9,7 @@ import cel20.opitems.apiImplementation.subApis.CraftingApiImplementation;
 import cel20.opitems.apiImplementation.subApis.EventAPIImplementation;
 import cel20.opitems.apiImplementation.subApis.ItemsAPIImplementation;
 import cel20.opitems.apiImplementation.subApis.PluginAPIImplementation;
+import cel20.opitems.metrics.MetricsHandler;
 
 
 public class OpApiImplementation implements OPItemsAPI {
@@ -34,8 +35,13 @@ public class OpApiImplementation implements OPItemsAPI {
     }
 
     @Override
+    public void enable() {
+        MetricsHandler.updateAPIState(true);
+    }
+
+    @Override
     public int getAPILevel() {
-        return 1;
+        return 2;
     }
 
 }

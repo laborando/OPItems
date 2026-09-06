@@ -59,8 +59,10 @@ public class SubspaceDimensionWand {
     public static void event(final PlayerQuitEvent e) {
         try {
             final String wn = "subspace";
+
             World world = Bukkit.getWorld(wn);
-            assert world != null;
+
+            if(world == null) return;
 
             if (!(world.getPlayers().isEmpty()))
                 return;
@@ -71,7 +73,7 @@ public class SubspaceDimensionWand {
             Bukkit.getServer().unloadWorld(wn, true);
 
         } catch (Exception ee) {
-            Bukkit.getLogger().info("Exception:");
+            Bukkit.getLogger().info("[OPItems] Exception:");
             ee.printStackTrace();
         }
     }

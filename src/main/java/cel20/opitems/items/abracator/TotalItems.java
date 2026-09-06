@@ -1,5 +1,7 @@
 package cel20.opitems.items.abracator;
 
+import cel20.opitems.filebased.overrides.RecipeOverride;
+import cel20.opitems.filebased.overrides.RecipeOverrides;
 import cel20.opitems.op.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -23,7 +25,7 @@ public class TotalItems {
 
     public static void addAllRecipes() {
 
-        Main.getInstance().getLogger().info("Registered Recipes: " + items.size());
+        Main.getInstance().getLogger().info("[OPItems] Registered Recipes: " + items.size());
 
         for (CItem item : items) {
 
@@ -31,14 +33,14 @@ public class TotalItems {
 
             try {
 
-                Bukkit.getServer().addRecipe(item.recipe);
+                addRecipeOrOverride(item);
 
             } catch (Exception e) {
 
                 try {
                     Bukkit.removeRecipe(item.key);
 
-                    Bukkit.getServer().addRecipe(item.recipe);
+                    addRecipeOrOverride(item);
 
                     System.out.println(item.name);
 
@@ -86,8 +88,7 @@ public class TotalItems {
         target.enabled = true;
 
         try {
-            Bukkit.getServer().addRecipe(target.recipe);
-            Bukkit.getServer().updateRecipes();
+            addRecipeOrOverride(target);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -217,5 +218,40 @@ public class TotalItems {
             disable(item.id);
 
         }
+    }
+
+    /**
+     * Adds a CItems recipe or their overridden recipe
+     */
+    private static void addRecipeOrOverride(CItem item) {
+
+        boolean found = false;
+        RecipeOverride ovr = null;
+
+        //Check if is overridden
+        for (RecipeOverride ovrs : RecipeOverrides.overrides) {
+            if(ovrs.id == item.id) {
+                found = true;
+                ovr = ovrs;
+                break;
+            }
+        }
+
+        if(!found) {
+            Bukkit.getServer().addRecipe(item.recipe);
+        }else{
+            try{
+                Bukkit.getServer().addRecipe(new CItem(ovr).finish().recipe);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+
+
+
+        Bukkit.getServer().updateRecipes();
     }
 }
