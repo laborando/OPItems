@@ -1,4 +1,4 @@
-package cel20.opitems.items.abracator;
+package cel20.opitems.items.managers.abracator;
 
 /**
  * Class for bidirectional association of a String and an int ID

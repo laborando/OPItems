@@ -2,6 +2,7 @@ package cel20.opitems.items.managers.upgrade;
 
 import cel20.opitems.op.GlobalVars;
 import cel20.opitems.items.managers.RawItemsGenerator;
+import cel20.opitems.utis.OPItemAdjectiv;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -45,14 +46,36 @@ public class ItemUpgrader {
         final boolean[] hasFound = {false};
         AtomicInteger targetId = new AtomicInteger(-1);
 
+        //Comparing against old item database
+
         OldItemDataset.itemList.forEach(ic -> {
 
             if (!hasFound[0] && ic.doesMatch(item)) {
                 targetId.set(ic.id);
                 hasFound[0] = true;
+                p.sendMessage(ChatColor.GREEN + "Item found in old item database...");
             }
 
         });
+
+        //Comparing against item ID
+
+        if(!hasFound[0]){
+
+            String idns = OPItemAdjectiv.getIDNSorNullIfNotOPItems(item);
+
+            if(idns != null){
+                p.sendMessage(ChatColor.GREEN + "The item is marked as: " + idns);
+
+                String id = idns.split("_")[1]; //ex: opitems_12
+
+                targetId.set(Integer.parseInt(id));
+
+                hasFound[0] = true;
+
+            }
+
+        }
 
         if (hasFound[0]) {
             if (p.getInventory().contains(item)) {

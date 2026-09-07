@@ -19,12 +19,24 @@ IN WORK
 
 DONE
 
-Added:
- - /opitems getID
- - Override OPItems recipes
+Items
+ - Added ability to override recipes with custom ones
+ - Split lore into description and usage
+ - Updated lore
 
-Changes:
- - All messages in the console should now start with [OPItems]
+CMD:
+ - /opitems getID
+
+API
+ - Version 2
+ - Added enable()
+ - Added Methods dealing with RecipeOverrides
+ - Added Methods dealing with Recipe States
 
  Fixes:
+ - Subspace dimension sometimes using the private dimension world generator
  - Crafting disabled message is now shown only one, not twice
+
+Other:
+ - Item upgrade now also works with items only marked by OPItems that are not in the database
+ - All messages in the console should now start with [OPItems]

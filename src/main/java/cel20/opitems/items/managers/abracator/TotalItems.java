@@ -1,4 +1,4 @@
-package cel20.opitems.items.abracator;
+package cel20.opitems.items.managers.abracator;
 
 import cel20.opitems.filebased.overrides.RecipeOverride;
 import cel20.opitems.filebased.overrides.RecipeOverrides;
@@ -63,16 +63,43 @@ public class TotalItems {
     }
 
     /**
-     * Gets cItem from ID
+     * Gets cItem from ID <br>
+     * If overridden, fetches the overwritten version
      *
      * @param id
      * @return
      */
     public static CItem get(int id) {
-        for (CItem item : items) {
-            if (item.id == id)
-                return item;
+
+        boolean found = false;
+        RecipeOverride ovr = null;
+
+        //Check if is overridden
+        for (RecipeOverride ovrs : RecipeOverrides.overrides) {
+            if(ovrs.id == id) {
+                found = true;
+                ovr = ovrs;
+                break;
+            }
         }
+
+        if(!found) {
+
+            for (CItem item : items) {
+                if (item.id == id)
+                    return item;
+            }
+
+        }else{
+            try{
+                return new CItem(ovr).finish();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
         return null;
     }
 
@@ -143,6 +170,9 @@ public class TotalItems {
         load();
     }
 
+    /**
+     * Saves the List of Item-IDs that are currently disabled
+     */
     public static void save() {
         try {
 
@@ -170,6 +200,9 @@ public class TotalItems {
         }
     }
 
+    /**
+     * Loads which items are disabled from disk and disables them
+     */
     public static void load() {
         try {
 
@@ -209,7 +242,8 @@ public class TotalItems {
     }
 
     /**
-     * Disables all crafting recipes registered here
+     * Disables all crafting recipes registered <br>
+     * Adds them to the List of disabled Items!
      */
     public static void disableCrafting() {
 
@@ -247,10 +281,6 @@ public class TotalItems {
             }
 
         }
-
-
-
-
 
         Bukkit.getServer().updateRecipes();
     }

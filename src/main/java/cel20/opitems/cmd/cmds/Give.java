@@ -1,7 +1,7 @@
 package cel20.opitems.cmd.cmds;
 
-import cel20.opitems.items.abracator.StringIDAssociator;
-import cel20.opitems.items.abracator.TotalItems;
+import cel20.opitems.items.managers.abracator.StringIDAssociator;
+import cel20.opitems.items.managers.abracator.TotalItems;
 import cel20.opitems.items.managers.GiveItems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

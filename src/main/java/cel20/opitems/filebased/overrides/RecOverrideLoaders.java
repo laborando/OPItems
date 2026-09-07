@@ -99,7 +99,7 @@ public class RecOverrideLoaders {
             writer.newLine();
             writer.write("https://jd.papermc.io/paper/26.2/org/bukkit/Material.html or their reperspective newer version");
             writer.newLine();
-            writer.write("Material is case sensitive! Do not set any slot to AIR!");
+            writer.write("Material is case-sensitive! Do not set any slot to AIR!");
             writer.newLine();
             writer.newLine();
             writer.write("Example: ");

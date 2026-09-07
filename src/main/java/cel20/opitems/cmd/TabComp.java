@@ -1,8 +1,8 @@
 package cel20.opitems.cmd;
 
 import cel20.opitems.op.GlobalVars;
-import cel20.opitems.items.abracator.StringIDAssociator;
-import cel20.opitems.items.abracator.TotalItems;
+import cel20.opitems.items.managers.abracator.StringIDAssociator;
+import cel20.opitems.items.managers.abracator.TotalItems;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 

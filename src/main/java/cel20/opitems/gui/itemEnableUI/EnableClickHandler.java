@@ -1,7 +1,7 @@
 package cel20.opitems.gui.itemEnableUI;
 
 import cel20.opitems.items.NameSpaces;
-import cel20.opitems.items.abracator.TotalItems;
+import cel20.opitems.items.managers.abracator.TotalItems;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;

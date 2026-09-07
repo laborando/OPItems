@@ -1,6 +1,5 @@
 package cel20.opitems.items.normal;
 
-import cel20.opitems.dimensions.privateDimension.PrivateDimensionChunkGenerator;
 import cel20.opitems.dimensions.subspaceDimension.SubspaceDimensionChunkGenerator;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -115,7 +114,7 @@ public class SubspaceDimensionWand {
 
             final WorldCreator worldCreator2 = new WorldCreator(wn);
 
-            worldCreator2.generator(new PrivateDimensionChunkGenerator());
+            worldCreator2.generator(new SubspaceDimensionChunkGenerator());
 
             Bukkit.createWorld(worldCreator2);
 

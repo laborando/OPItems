@@ -1,4 +1,4 @@
-package cel20.opitems.items.abracator;
+package cel20.opitems.items.managers.abracator;
 
 import cel20.opitems.filebased.overrides.RecipeOverride;
 import cel20.opitems.op.Main;

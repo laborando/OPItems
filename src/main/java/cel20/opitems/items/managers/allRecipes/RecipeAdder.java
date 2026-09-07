@@ -1,6 +1,6 @@
-package cel20.opitems.items.allRecipes;
+package cel20.opitems.items.managers.allRecipes;
 
-import cel20.opitems.items.abracator.CItem;
+import cel20.opitems.items.managers.abracator.CItem;
 import org.bukkit.Material;
 
 public class RecipeAdder {
