@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.cmds;
+package cel20.opitems.cmd.subCmd;
 
 import cel20.opitems.items.managers.abracator.StringIDAssociator;
 import cel20.opitems.items.managers.abracator.TotalItems;

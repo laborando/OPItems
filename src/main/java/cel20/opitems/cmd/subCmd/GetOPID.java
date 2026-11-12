@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.cmds;
+package cel20.opitems.cmd.subCmd;
 
 import cel20.opitems.utis.OPItemAdjectiv;
 import org.bukkit.ChatColor;

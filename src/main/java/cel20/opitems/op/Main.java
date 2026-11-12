@@ -90,7 +90,7 @@ public class Main extends JavaPlugin {
         ConfigLoader.loadConfigs(config, plugin, this);
 
         //Commands
-        Commands.setAllexecutors(this);
+        Commands.setAllExecutors(this);
 
 
         //CONTENT

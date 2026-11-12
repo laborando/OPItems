@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.cmds;
+package cel20.opitems.cmd.subCmd;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

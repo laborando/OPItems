@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.cmds;
+package cel20.opitems.cmd.subCmd;
 
 import cel20.opitems.op.Main;
 import cel20.opitems.metrics.WorkerLogger;

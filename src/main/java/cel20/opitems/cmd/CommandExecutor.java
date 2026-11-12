@@ -1,6 +1,6 @@
 package cel20.opitems.cmd;
 
-import cel20.opitems.cmd.cmds.*;
+import cel20.opitems.cmd.subCmd.*;
 import cel20.opitems.op.Main;
 import cel20.opitems.op.Test;
 import cel20.opitems.manage.AutoItems;
@@ -28,7 +28,7 @@ import java.io.File;
 
 import static cel20.opitems.utis.Celutis.deleteDirectory;
 
-public class CmdExe {
+public class CommandExecutor {
 
 
     /***
@@ -37,7 +37,7 @@ public class CmdExe {
      * @param commandSourceStack
      * @param args
      */
-    public static void execute(String label, @NotNull CommandSourceStack commandSourceStack, @NonNull @NotNull String[] args) {
+    public static void execute(String label, @NotNull CommandSourceStack commandSourceStack, @NonNull String[] args) {
 
         CommandSender sender = commandSourceStack.getSender();
 
@@ -76,7 +76,7 @@ public class CmdExe {
             if (sender.isOp()) {
                 if (arg.equalsIgnoreCase("remove")) {
                     final Items items = new Items();
-                    Bukkit.broadcastMessage(new StringBuilder().append(ChatColor.BOLD).append(ChatColor.RED).append("All dropped cel20.items will be removed in 10 seconds!").toString());
+                    Bukkit.broadcastMessage(new StringBuilder().append(ChatColor.BOLD).append(ChatColor.RED).append("All dropped items will be removed in 10 seconds!").toString());
                     Bukkit.getScheduler().runTaskLater(Main.getPluginInstance(), items::removeItems, 200L);
                 }
                 if (arg.equalsIgnoreCase("player_heap")) {
@@ -85,7 +85,7 @@ public class CmdExe {
                     items.ItemsPlayerHeap();
                 }
                 if (arg.equalsIgnoreCase("remove_now")) {
-                    sender.sendMessage("Loaded cel20.items are being removed...");
+                    sender.sendMessage("Loaded items are being removed...");
                     final Items items = new Items();
                     items.removeItems();
                 }
@@ -210,8 +210,6 @@ public class CmdExe {
                     Player p = (Player) sender;
 
                     p.setGliding(true);
-
-
                 } else {
                     sender.sendMessage(ChatColor.RED + "You don't have the Permission to perform this command!");
                 }
@@ -231,11 +229,8 @@ public class CmdExe {
                     sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "You don't have the permission to execute this command!");
                 } else {
                     if (!(CLogger.isEnabled())) {
-
                         sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "CLogger is not enabled! Starting CLogger... Execute the command again to generate the report!");
                         CLogger.startSynced(Main.getPluginInstance().getDataFolder().toString(), 60);
-
-
                     } else {
                         Logutis.createReportAndLog();
                         sender.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "Report generated!");
@@ -280,13 +275,9 @@ public class CmdExe {
                     sender.sendMessage(ChatColor.GOLD + "Operation Executed!");
                 }
             }
-
-
             //RECIPIES
             else if (arg.equalsIgnoreCase("recipes")) {
-
                 GetRecipe.execute(sender);
-
             } else if (arg.equalsIgnoreCase("remove_recipes")) {
                 if (sender.isOp()) {
                     TotalItems.removeAllRecipes();
