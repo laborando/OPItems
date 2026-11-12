@@ -1,6 +1,6 @@
 package cel20.opitems.cmd.CommandCatchers;
 
-import cel20.opitems.cmd.CommandExecutor;
+import cel20.opitems.cmd.Commands;
 import cel20.opitems.cmd.TabComp;
 import io.papermc.paper.command.brigadier.BasicCommand;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -19,7 +19,7 @@ public class ItemsCmdCC implements BasicCommand {
     @Override
     public void execute(@NotNull CommandSourceStack commandSourceStack, @NonNull @NotNull String[] args) {
 
-        CommandExecutor.execute("items", commandSourceStack, args);
+        Commands.execute("items", commandSourceStack, args);
 
     }
 

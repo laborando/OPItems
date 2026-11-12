@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -12,6 +13,9 @@ import org.bukkit.util.Vector;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Executor class for /items command
+ */
 public class Items {
     /**
      * Removes dropped items
@@ -67,10 +71,10 @@ public class Items {
     }
 
     /**
-     * Publicly displays a list of cel20.items loaded per player <br>
+     * Publicly displays a list of items loaded per player <br>
      * An item is counted towards the nearest player
      */
-    public void ItemsPlayerHeap() {
+    public void ItemsPlayerHeap(CommandSender cs) {
         final Map<Player, Integer> itemCounts = new HashMap<Player, Integer>();
         for (final Player player : Bukkit.getOnlinePlayers()) {
             itemCounts.put(player, 0);
@@ -96,7 +100,7 @@ public class Items {
         for (final Map.Entry<Player, Integer> entry : itemCounts.entrySet()) {
             final Player player2 = entry.getKey();
             final int itemCount = entry.getValue();
-            Bukkit.broadcastMessage("Loaded Items by " + player2.getName() + ": " + itemCount);
+            cs.sendMessage("Loaded Items by " + player2.getName() + ": " + itemCount);
         }
     }
 

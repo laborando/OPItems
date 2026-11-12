@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.subCmd;
+package cel20.opitems.cmd.cmd.opitems.sub.routines;
 
 import cel20.opitems.utis.OPItemAdjectiv;
 import org.bukkit.ChatColor;
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class GetOPID {
-    public static void execute(CommandSender sender) {
+    public static void displayOPID(CommandSender sender) {
 
         if(sender instanceof Player p){
 

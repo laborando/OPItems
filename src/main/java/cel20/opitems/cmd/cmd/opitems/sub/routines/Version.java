@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.subCmd;
+package cel20.opitems.cmd.cmd.opitems.sub.routines;
 
 import cel20.opitems.op.Main;
 import org.bukkit.ChatColor;
@@ -8,7 +8,7 @@ import cel20.opitems.utis.update.CVersion;
 
 public class Version {
 
-    public static void execute(CommandSender sender) {
+    public static void displayVersion(CommandSender sender) {
 
         sender.sendMessage(ChatColor.GOLD + "Current Version: " + Main.opitemsVersion);
         sender.sendMessage(ChatColor.BLUE + "Changelog: https://modrinth.com/plugin/opitems/changelog");

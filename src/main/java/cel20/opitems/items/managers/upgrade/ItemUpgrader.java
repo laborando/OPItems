@@ -30,7 +30,7 @@ public class ItemUpgrader {
         ItemStack item = p.getInventory().getItemInMainHand();
 
         if (item.getType() == Material.AIR) {
-            p.sendMessage(ChatColor.RED + "The target item has to be selected.");
+            p.sendMessage(ChatColor.RED + "The target item has to be selected in the main hand.");
             return;
         }
 

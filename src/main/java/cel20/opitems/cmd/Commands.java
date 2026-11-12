@@ -1,6 +1,6 @@
 package cel20.opitems.cmd;
 
-import net.minecraft.commands.CommandSourceStack;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Commands {
 
-    public static HashMap<String, Command> commands;
+    public static HashMap<String, CCommand> commands;
 
     /**
      * Executes the command if registered
@@ -17,14 +17,15 @@ public class Commands {
      * @param args
      */
     public static void execute(String cmd, CommandSourceStack CSStack, String[] args) {
-        Command toExecute = commands.get(cmd.toLowerCase());
+
+        CCommand toExecute = commands.get(cmd.toLowerCase());
 
         if (toExecute == null) {
-            CSStack.getSender().sendMessage(ChatColor.RED + "There was an error finding that command at level 0.");
+            CSStack.getSender().sendMessage(ChatColor.RED + "[OPItems] There was an error finding that command at level 0.");
             return;
         }
 
-        toExecute.execute(CSStack.getSender(), args, CSStack);
+        toExecute.execute(CSStack.getSender(), args, CSStack, toExecute);
     }
 
     /**
@@ -32,7 +33,7 @@ public class Commands {
      * <br>
      * This registers a general, high level, command for subcommands, register at their respective class
      */
-    public static void register(Command command) {
+    public static void register(CCommand command) {
 
         String key = command.command;
 
@@ -48,9 +49,13 @@ public class Commands {
      * @return True if the command was registered before
      */
     public static boolean unregister(String key){
-        Command r = commands.remove(key);
+        CCommand r = commands.remove(key);
 
         return r != null;
+    }
+
+    public static void innit(){
+        commands = new HashMap<>();
     }
 
 

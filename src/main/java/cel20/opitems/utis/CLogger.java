@@ -32,6 +32,7 @@ public class CLogger {
         loc = folder + "/logs/log_" + System.currentTimeMillis() + ".cel20";
         File tf = new File(folder + "/logs");
         tf.mkdirs();
+        enabled = true;
         log("CLogger started as asynchronously" + System.currentTimeMillis());
         Thread t = new Thread(() -> {
 
@@ -47,7 +48,6 @@ public class CLogger {
 
         t.start();
 
-        enabled = true;
 
     }
 
@@ -59,6 +59,7 @@ public class CLogger {
      * @param saveInterval
      */
     public static void startSynced(String folder, int saveInterval) {
+        enabled = true;
         secDel = saveInterval;
         loc = folder + "/logs/log_" + System.currentTimeMillis() + ".cel20";
         System.out.println(loc);
@@ -67,7 +68,6 @@ public class CLogger {
         log("CLogger started synchronously " + System.currentTimeMillis());
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), CLogger::flushNow, 0L, secDel * 20L);
 
-        enabled = true;
     }
 
     /**

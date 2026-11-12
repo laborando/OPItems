@@ -2,6 +2,7 @@ package cel20.opitems.op;
 
 import cel20.opitems.api.OPItemsAPI;
 import cel20.opitems.apiImplementation.OpApiImplementation;
+import cel20.opitems.cmd.CRegister;
 import cel20.opitems.filebased.overrides.RecOverrideLoaders;
 import cel20.opitems.metrics.MetricsHandler;
 import cel20.opitems.op.config.ConfigInniter;
@@ -13,7 +14,6 @@ import cel20.opitems.items.NameSpaces;
 import cel20.opitems.items.managers.abracator.TotalItems;
 import cel20.opitems.items.managers.allRecipes.RecipeAdder;
 import cel20.opitems.items.sheduled.SchedulerStarter;
-import cel20.opitems.metrics.WorkerLogger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -70,12 +70,14 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         Bukkit.getLogger().info("[OPItems] OPItems is loading...");
 
-        opitemsVersion = "1.12.2";
+        //Setting instanceVarabs
+        opitemsVersion = "1.12.3";
         instance = this;
         final Main plugin = this;
 
+        //Must be first!
+        //Namespaces
         NameSpaces.innitNameSpaces(this);
-
 
         //EVENTS
         EventManager.innitEventManager(this);
@@ -90,6 +92,7 @@ public class Main extends JavaPlugin {
         ConfigLoader.loadConfigs(config, plugin, this);
 
         //Commands
+        CRegister.registerCommands();
         Commands.setAllExecutors(this);
 
 
@@ -105,14 +108,7 @@ public class Main extends JavaPlugin {
             TotalItems.disableCrafting();
         }
 
-        //Cloudflare worker - Error reporting
-        WorkerLogger logger = new WorkerLogger("https://plugins.opitems.workers.dev/");
-        WorkerLogger.activeLogger = logger;
 
-        //bStats
-        if (!config.getBoolean("OPItemsSpecificBStatsDisable")) {
-            MetricsHandler.start();
-        }
 
         //Update Notifier
         UpdateNotify.innit(this);
@@ -136,6 +132,11 @@ public class Main extends JavaPlugin {
 
         if (GlobalVars.craftingDisabled) {
             Bukkit.getLogger().info("[OPItems] Crafting disabled!");
+        }
+
+        //Should be last as it has to be set first
+        if (!config.getBoolean("OPItemsSpecificBStatsDisable")) {
+            MetricsHandler.start();
         }
 
     }

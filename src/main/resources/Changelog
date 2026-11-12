@@ -1,6 +1,7 @@
 Must
 
 Should
+ - Remove every remaing code for the cf worker
  - Schedules unified checking for item strings
 
 Won’t
@@ -15,28 +16,27 @@ Planned Features
 PRETHOUGHT
 
 IN WORK
+ - CMD new modular system
  - Cleanup
 
 DONE
 
 Items
- - Added ability to override recipes with custom ones
- - Split lore into description and usage
- - Updated lore
 
 CMD:
- - /opitems getID
+ - Removed /opitems report,super_sponge,delete_all_pocket_worlds
+ - Removed old deprecated commands
+ - /items player_heap now only sends a message to the executor
+ - /items remove_now now sends the success message after the success not before
 
 API
- - Version 2
- - Added enable()
- - Added Methods dealing with RecipeOverrides
- - Added Methods dealing with Recipe States
+ - Added Commands API
 
  Fixes:
- - Subspace dimension sometimes using the private dimension world generator
- - Crafting disabled message is now shown only one, not twice
+ - /opitems report crashing the server
+ - Removed botched refactoring renaming every "items" to "cel20.items"
+ - /opitems give failing to fall back when not all args are given
+ - /opitems unload_world giving false results back
+ - /opitems reset_cursed_sword_list lacking a response
 
 Other:
- - Item upgrade now also works with items only marked by OPItems that are not in the database
- - All messages in the console should now start with [OPItems]

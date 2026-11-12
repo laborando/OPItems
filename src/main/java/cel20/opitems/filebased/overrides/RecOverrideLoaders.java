@@ -1,5 +1,6 @@
 package cel20.opitems.filebased.overrides;
 
+import cel20.opitems.metrics.MetricsHandler;
 import cel20.opitems.op.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -15,6 +16,8 @@ public class RecOverrideLoaders {
      * Loads recipe-overrides from 'Datafolder'/overrides/recipes/ and stores them to RecipeOverrides
      */
     public static void load(Plugin plugin) {
+        //Default value:
+        MetricsHandler.updateRecipeState(false);
 
         File dir = new File(plugin.getDataFolder().getPath() + "/overrides/recipes");
         dir.mkdirs();

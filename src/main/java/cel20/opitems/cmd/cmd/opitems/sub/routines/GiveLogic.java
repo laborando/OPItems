@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.subCmd;
+package cel20.opitems.cmd.cmd.opitems.sub.routines;
 
 import cel20.opitems.items.managers.abracator.StringIDAssociator;
 import cel20.opitems.items.managers.abracator.TotalItems;
@@ -8,15 +8,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Give {
+public class GiveLogic {
 
-    public static void execute(CommandSender sender, String arg, String targetPlayer, String p1, String p2) {
+    public static void executeGive(CommandSender sender, String arg, String targetPlayer, String p1, String p2) {
 
         int n1 = -1;
         int n2 = -1;
 
-        n1 = ((p1 == null) || !p1.isEmpty()) ? Integer.parseInt(p1) : -1;
-        n2 = ((p2 == null) || !p2.isEmpty()) ? Integer.parseInt(p2) : -1;
+        n1 = ((p1 == null) || !p1.isEmpty()) ? -1 : Integer.parseInt(p1);
+        n2 = ((p2 == null) || !p2.isEmpty()) ? -1 : Integer.parseInt(p2);
 
 
         if (targetPlayer == null || targetPlayer.equalsIgnoreCase("")) {

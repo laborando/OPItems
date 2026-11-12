@@ -9,6 +9,7 @@ public class MetricsHandler {
 
     public static Metrics metrics;
     public static boolean apiOn = false; //api_used
+    public static boolean recipeOverridesUsed = false; //api_used
     public static boolean statsEnabled = false;
 
     /**
@@ -18,6 +19,14 @@ public class MetricsHandler {
     public static void updateAPIState(boolean state){
         apiOn = state;
         updateMetrics();
+    }
+
+    /**
+     * Update var: recipeOverridesUsed
+     * @param recipeOverridesState recipeOverridesUsed?
+     */
+    public static void updateRecipeState(boolean recipeOverridesState){
+        recipeOverridesUsed = recipeOverridesState;
     }
 
     /**
@@ -33,6 +42,11 @@ public class MetricsHandler {
      * Data will be published directly after this method is executed
      */
     public static void start() {
+
+        if(metrics != null){
+            stop();
+        }
+
         statsEnabled = true;
         metrics = new Metrics(Main.getInstance(), 27611);
 
@@ -51,6 +65,13 @@ public class MetricsHandler {
             metrics.addCustomChart(new Metrics.SimplePie("api_used", () -> "false"));
         }
 
+        if (recipeOverridesUsed) {
+            metrics.addCustomChart(new Metrics.SimplePie("recipes_overridden", () -> "true"));
+        } else {
+            metrics.addCustomChart(new Metrics.SimplePie("recipes_overridden", () -> "false"));
+        }
+
+
 
     }
 
@@ -59,6 +80,7 @@ public class MetricsHandler {
      */
     public static void stop(){
         metrics.shutdown();
+        metrics = null;
     }
 
 

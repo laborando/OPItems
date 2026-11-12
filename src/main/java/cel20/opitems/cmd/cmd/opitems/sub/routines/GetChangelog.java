@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.subCmd;
+package cel20.opitems.cmd.cmd.opitems.sub.routines;
 
 import cel20.opitems.op.Main;
 import org.bukkit.ChatColor;
@@ -11,7 +11,7 @@ import java.util.Deque;
 
 public class GetChangelog {
 
-    public static void execute(CommandSender sender) {
+    public static void displayChangelog(CommandSender sender) {
 
         CUpdater updater = Main.cUpdater;
 

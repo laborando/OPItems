@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.subCmd;
+package cel20.opitems.cmd.cmd.opitems.sub.routines;
 
 import cel20.opitems.gui.itemEnableUI.EnableGuiCreator;
 import org.bukkit.ChatColor;
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 public class OpenConfig {
 
-    public static void execute(CommandSender sender) {
+    public static void openConfig(CommandSender sender) {
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "Only players can execute this command");
