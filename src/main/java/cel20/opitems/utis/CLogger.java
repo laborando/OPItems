@@ -28,16 +28,16 @@ public class CLogger {
      */
     public static void startAsync(String folder, int saveInterval) {
 
-        secDel = saveInterval;
-        loc = folder + "/logs/log_" + System.currentTimeMillis() + ".cel20";
+        loc = folder + "/logs/log_" + System.currentTimeMillis() + ".txt";
         File tf = new File(folder + "/logs");
         tf.mkdirs();
         enabled = true;
         log("CLogger started as asynchronously" + System.currentTimeMillis());
+
         Thread t = new Thread(() -> {
 
             try {
-                Thread.sleep(secDel * 1000L);
+                Thread.sleep(saveInterval * 20L);
             } catch (InterruptedException e) {
                 log("CLogger Exception: " + e.getMessage());
             }
@@ -47,8 +47,6 @@ public class CLogger {
         });
 
         t.start();
-
-
     }
 
 
@@ -59,14 +57,14 @@ public class CLogger {
      * @param saveInterval
      */
     public static void startSynced(String folder, int saveInterval) {
-        enabled = true;
         secDel = saveInterval;
-        loc = folder + "/logs/log_" + System.currentTimeMillis() + ".cel20";
+        loc = folder + "/logs/log_" + System.currentTimeMillis() + ".txt";
         System.out.println(loc);
         File tf = new File(folder + "/logs");
         tf.mkdirs();
         log("CLogger started synchronously " + System.currentTimeMillis());
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), CLogger::flushNow, 0L, secDel * 20L);
+        enabled = true;
 
     }
 
@@ -77,7 +75,10 @@ public class CLogger {
     public static void flushNow() {
         if (enabled) {
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(loc));
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(loc, true));
+
+                writer.newLine();
 
                 collected.forEach(s -> {
                     try {
@@ -93,6 +94,9 @@ public class CLogger {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            startAsync(Main.getInstance().getDataFolder().toString(), 20);
+            flushNow();
         }
     }
 
@@ -106,6 +110,7 @@ public class CLogger {
         if (enabled) {
             collected.add(s);
         } else {
+            Bukkit.getLogger().info("CLogger started automatically by log()");
             startAsync(Main.getInstance().getDataFolder().toString(), 20);
             log(s);
         }
@@ -123,6 +128,7 @@ public class CLogger {
             collected.add(s);
             flushNow();
         } else {
+            Bukkit.getLogger().info("CLogger started automatically by logAndFlush()");
             startAsync(Main.getInstance().getDataFolder().toString(), 20);
             logAndFlush(s);
         }

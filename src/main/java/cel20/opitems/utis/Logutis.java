@@ -1,12 +1,19 @@
 package cel20.opitems.utis;
 
+import cel20.opitems.op.Main;
+import com.destroystokyo.paper.PaperVersionFetcher;
+import com.destroystokyo.paper.util.VersionFetcher;
+import net.kyori.adventure.Adventure;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.awt.print.Paper;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,8 +30,10 @@ public class Logutis {
 
         List<String> rep = new ArrayList<>();
 
+        rep.add("OPItems Version: " + Main.opitemsVersion);
         rep.add("Version: " + Bukkit.getVersion());
         rep.add("BukkitVersion: " + Bukkit.getBukkitVersion());
+        rep.add("Version Message: " + Bukkit.getVersionMessage());
         rep.add("Scheduler: " + Bukkit.getScheduler());
         rep.add("WorldType: " + Bukkit.getWorldType());
         rep.add("ItemFactory: " + Bukkit.getItemFactory());
@@ -33,6 +42,7 @@ public class Logutis {
         rep.add("Players Connected: " + Bukkit.getOnlinePlayers().size());
         rep.add("Idle Timeout: " + Bukkit.getIdleTimeout());
         rep.add("View Distance: " + Bukkit.getViewDistance());
+        rep.add("TPS: " + Arrays.toString(Bukkit.getTPS()));
         rep.add("Worlds:");
         for (World world : Bukkit.getWorlds()) {
             rep.add("   - " + world.getName());
@@ -58,13 +68,14 @@ public class Logutis {
             rep.add("   - " + plugin.getName());
             rep.add("      -> Enabled: " + plugin.isEnabled());
             rep.add("      -> Naggable: " + plugin.isNaggable());
-            rep.add("      -> Desc: " + plugin.getDescription());
+            rep.add("      -> Desc: " + plugin.getDescription().getDescription());
         }
 
 
         for (String s : rep) {
             CLogger.log(s);
         }
+
         CLogger.flushNow();
 
     }

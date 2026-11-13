@@ -10,34 +10,15 @@ import java.io.File;
 import java.util.*;
 
 /**
- * Miscellaneous utilities
+ * Utilities
  */
 public class Celutis {
-
-    //v0.5 MC
-
-    public static boolean isPaper() {
-        try {
-            Class.forName("com.destroystokyo.paper.PaperConfig");
-            return true;
-        } catch (ClassNotFoundException e) {
-            try {
-                Class.forName("io.papermc.paper.configuration.Configuration");
-                return true;
-            } catch (ClassNotFoundException ex) {
-                return false;
-            }
-        }
-    }
 
     /**
      * Simple clean method for generating an int between given max and min
      *
-     * @param min
-     * @param max
-     * @return
      */
-    public static int simpleRandom(final int min, final int max) {
+    public static int smallRandom(final int min, final int max) {
         if (min >= max) {
             throw new IllegalArgumentException("Max is not greater than Min.");
         }
@@ -52,7 +33,7 @@ public class Celutis {
      * @param max
      * @return
      */
-    public static double simpleRandom(final double min, final double max) {
+    public static double smallRandom(final double min, final double max) {
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min!");
         }
@@ -67,21 +48,18 @@ public class Celutis {
 
 
     /**
+     *
      * Gets random topmost blocks from the center <br>
      * Even though it is called radius the blocks are chosen from a rect
      *
-     * @param center
-     * @param radius
-     * @param count
-     * @return
      */
     public static List<Block> getRandomBlocksSurface(Location center, int radius, int count) {
         List<Block> randomBlocks = new ArrayList<>();
         World world = center.getWorld();
 
         for (int i = 0; i < count; i++) {
-            int xOffset = simpleRandom(-radius, radius);
-            int zOffset = simpleRandom(-radius, radius);
+            int xOffset = smallRandom(-radius, radius);
+            int zOffset = smallRandom(-radius, radius);
 
 
             Location randomLocation = center.clone().add(xOffset, 0, zOffset);
@@ -105,6 +83,9 @@ public class Celutis {
         return new Vector(x, y, z);
     }
 
+    /**
+     * Named as: "Imitation of " + name + "'s Skull"
+     */
     public static ItemStack getSkullByName(String name) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1);
         if (name == null || name.isEmpty()) {
@@ -118,12 +99,7 @@ public class Celutis {
     }
 
     /**
-     * Gets locations in a Query representing a circle
-     *
-     * @param center
-     * @param radius
-     * @param amount
-     * @return
+     * Returns non-random locations in a query representing a circle
      */
     public static Queue<Location> getCircleLocationsQue(Location center, double radius, int amount) {
         World world = center.getWorld();
@@ -136,20 +112,6 @@ public class Celutis {
             locations.add(new Location(world, x, center.getY(), z));
         }
         return locations;
-    }
-
-    public static boolean deleteDirectory(File path) {
-        if (path.exists()) {
-            File[] files = path.listFiles();
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    deleteDirectory(file);
-                } else {
-                    file.delete();
-                }
-            }
-        }
-        return (path.delete());
     }
 
     public static boolean isChunkInSpawnRadius(final int chunkX, final int chunkZ) {
