@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 public class DisplayListCursedSwordCommand extends CCommand {
 
     public DisplayListCursedSwordCommand() {
+        context = "Displays the list regarding the cursed sword.";
         command = "display_cursed_sword_list";
     }
 

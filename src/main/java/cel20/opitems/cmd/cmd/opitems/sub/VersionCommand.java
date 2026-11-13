@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 public class VersionCommand extends CCommand {
 
     public VersionCommand() {
+        context = "Displays the current version information of OPItems.";
         command = "version";
         isAdmin = false;
     }

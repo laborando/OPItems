@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 public class GetIDCommand extends CCommand {
 
     public GetIDCommand() {
+        context = "Displays the OPItems Item Id of the currently held item.";
         command = "get_id";
     }
 

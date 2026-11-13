@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 public class RemoveRecipesCommand extends CCommand {
 
     public RemoveRecipesCommand() {
+        context = "Removes all loaded recipes for OPItems.";
         command = "remove_recipes";
     }
 

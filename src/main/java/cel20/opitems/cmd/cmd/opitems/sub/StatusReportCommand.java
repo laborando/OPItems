@@ -12,6 +12,7 @@ import org.bukkit.command.CommandSender;
 public class StatusReportCommand extends CCommand {
 
     public StatusReportCommand() {
+        context = "Generates a debug status report and saves it to a file.";
         command = "status";
     }
 

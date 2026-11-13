@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 public class RecipeCommand extends CCommand {
 
     public RecipeCommand() {
+        context = "Opens a recipe viewer for OPItems.";
         command = "recipes";
         isAdmin = false;
     }

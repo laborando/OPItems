@@ -25,6 +25,10 @@ public class Help {
 
             sender.sendMessage(ChatColor.GOLD + "This Plugins config can be edited in the /plugins/opitems/plugin.yml file");
         }
+        sender.sendMessage("");
+        sender.sendMessage(ChatColor.GOLD + "Run </command ?> or </command ? subcommand> for more information on individual commands");
+
+
 
     }
 

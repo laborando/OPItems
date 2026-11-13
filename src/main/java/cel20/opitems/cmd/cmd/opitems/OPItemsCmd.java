@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class OPItemsCmd extends CCommand {
 
     public OPItemsCmd(){
+        context = "The main command of OPItems. Required additional subcommands. For more info, execute /opitems ?.";
         isAdmin = false;
         this.command = "opitems";
 

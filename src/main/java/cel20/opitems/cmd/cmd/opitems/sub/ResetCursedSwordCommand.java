@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 public class ResetCursedSwordCommand extends CCommand {
 
     public ResetCursedSwordCommand() {
+        context = "Clears the cursed sword list.";
         command = "reset_cursed_sword_list";
     }
 

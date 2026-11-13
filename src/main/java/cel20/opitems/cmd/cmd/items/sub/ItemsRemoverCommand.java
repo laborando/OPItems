@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 public class ItemsRemoverCommand extends CCommand {
 
     public ItemsRemoverCommand(){
+        context = "Removes all loaded item entities after a warning and a delay of 30 seconds.";
         command = "remove";
     }
 

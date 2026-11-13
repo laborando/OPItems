@@ -10,6 +10,7 @@ public abstract class CCommand {
 
     public HashMap<String, CCommand> subCommands;
 
+    public String context = "This command has no set context";
     public boolean isAdmin = true;
     public String command;
     public abstract int execute(CommandSender cs, String[] args, CommandSourceStack CSStack, CCommand top);
@@ -22,7 +23,7 @@ public abstract class CCommand {
         }
 
         if (subCommands == null) {
-            cs.sendMessage("Subcommand not found! There are no subcommands at: " + subCommand);
+            cs.sendMessage("Subcommand not found! There are no further subcommands at: " + subCommand);
             return -2;
         }
 

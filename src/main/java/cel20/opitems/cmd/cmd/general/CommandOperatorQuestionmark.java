@@ -6,6 +6,8 @@ import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
+import java.util.HashMap;
+
 public class CommandOperatorQuestionmark extends CCommand {
 
     public CommandOperatorQuestionmark(){
@@ -14,6 +16,29 @@ public class CommandOperatorQuestionmark extends CCommand {
 
     @Override
     public int execute(CommandSender cs, String[] args, CommandSourceStack CSStack, CCommand top) {
+
+        if(args.length > 1){
+
+            for (int i = 1; i < args.length; i++) {
+
+                String target = args[i];
+                HashMap<String, CCommand> subs = top.subCommands;
+
+                if(subs == null){
+                    cs.sendMessage(top.command + " has no subcommands!");
+                    return -5;
+                }
+
+                CCommand cCommand = subs.get(target);
+
+                if(cCommand == null)
+                    cs.sendMessage(target  + " was not found.");
+                else
+                    top = cCommand;
+            }
+
+
+        }
 
         cs.sendMessage("Command structure of " + top.command + ":");
 
@@ -27,6 +52,12 @@ public class CommandOperatorQuestionmark extends CCommand {
 
 
         cs.sendMessage("X");
+        cs.sendMessage("");
+        cs.sendMessage("Context information of the command: ");
+        cs.sendMessage(top.context);
+        cs.sendMessage("");
+        cs.sendMessage("Run </command ? subcommand ... > to view help for subcommands");
+
         return 0;
     }
 

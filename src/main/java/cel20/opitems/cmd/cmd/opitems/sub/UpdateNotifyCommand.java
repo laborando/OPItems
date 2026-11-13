@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 public class UpdateNotifyCommand extends CCommand {
 
     public UpdateNotifyCommand() {
+        context = "Toggles the personal notifications for OPItems updates.";
         command = "um";
     }
 

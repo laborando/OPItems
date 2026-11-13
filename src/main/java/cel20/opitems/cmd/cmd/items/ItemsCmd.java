@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class ItemsCmd extends CCommand {
 
     public ItemsCmd() {
+        context = "A command for managing dropped items. For more info, execute /items ?";
         this.command = "items";
 
         this.subCommands = new HashMap<>();

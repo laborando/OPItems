@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 public class ItemsPlayerHeapCommand extends CCommand {
 
     public ItemsPlayerHeapCommand(){
+        context = "Displays the amount of items loaded by each player.";
         command = "player_heap";
     }
 

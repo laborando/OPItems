@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 public class UnloadWorldCommand extends CCommand {
 
     public UnloadWorldCommand() {
+        context = "Unloads a world \n Usage: /opitems unload_world <target_world>";
         command = "unload_world";
     }
 

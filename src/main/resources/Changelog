@@ -1,7 +1,6 @@
 Must
 
 Should
- - Remove every remaing code for the cf worker
  - Schedules unified checking for item strings
 
 Won’t
@@ -24,6 +23,7 @@ DONE
 Items
 
 CMD:
+ - Added an fully fledged ? operator for better help for commands
  - Removed /opitems report,super_sponge,delete_all_pocket_worlds
  - Removed old deprecated commands
  - /items player_heap now only sends a message to the executor
@@ -40,3 +40,4 @@ API
  - /opitems reset_cursed_sword_list lacking a response
 
 Other:
+ - Removed the code for the worker interfaces

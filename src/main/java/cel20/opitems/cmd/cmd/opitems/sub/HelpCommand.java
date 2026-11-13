@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 public class HelpCommand extends CCommand {
 
     public HelpCommand() {
+        context = "Displays a help message for /opitems.";
         command = "help";
         isAdmin = false;
     }

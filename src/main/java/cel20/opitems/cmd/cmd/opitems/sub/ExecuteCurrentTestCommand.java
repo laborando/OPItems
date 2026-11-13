@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 public class ExecuteCurrentTestCommand extends CCommand {
 
     public ExecuteCurrentTestCommand(){
+        context = "This is just a debug command for running a test for easier development.";
         command = "run_test";
     }
 

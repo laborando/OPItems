@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 public class CancelAutoItemRemoval extends CCommand {
 
     public CancelAutoItemRemoval() {
+        context = "Cancel the automated periodical removal of dropped items if activated in the config.";
         command = "cancel_automated_item_removal";
     }
 

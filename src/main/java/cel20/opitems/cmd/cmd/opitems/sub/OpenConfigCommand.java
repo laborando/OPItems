@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 public class OpenConfigCommand extends CCommand {
 
     public OpenConfigCommand() {
+        context = "Opens the config window for OPItems.";
         command = "config";
     }
 

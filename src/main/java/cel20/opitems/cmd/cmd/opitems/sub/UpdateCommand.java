@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 public class UpdateCommand extends CCommand {
 
     public UpdateCommand() {
+        context = "Tries to update OPItems. \n Please restart the server after an update is applied.";
         command = "update";
     }
 

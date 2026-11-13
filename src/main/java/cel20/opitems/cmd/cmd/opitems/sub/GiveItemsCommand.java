@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 public class GiveItemsCommand extends CCommand {
 
     public GiveItemsCommand() {
+        context = "Command for generating OPItems. \n Usage: /opitems give <item_name or item_id> <player_name> (<enchantment_strenght> <enchantment_strenght>).";
         command = "give";
     }
 

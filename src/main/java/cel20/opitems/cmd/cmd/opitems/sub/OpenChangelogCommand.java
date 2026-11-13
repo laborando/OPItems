@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 public class OpenChangelogCommand extends CCommand {
 
     public OpenChangelogCommand() {
+        context = "Opens the changelog for OPItems.";
         command = "changelog";
         isAdmin = false;
     }

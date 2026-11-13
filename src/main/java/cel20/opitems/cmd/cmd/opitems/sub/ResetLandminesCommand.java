@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 public class ResetLandminesCommand extends CCommand {
 
     public ResetLandminesCommand() {
+        context = "Clears all landmines.";
         command = "reset_landmines";
     }
 

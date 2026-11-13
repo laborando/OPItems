@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 public class SkullCommand extends CCommand {
 
     public SkullCommand() {
+        context = "Generates a skull of a player. \n Usage: /opitems skull <player_name>";
         command = "skull";
     }
 

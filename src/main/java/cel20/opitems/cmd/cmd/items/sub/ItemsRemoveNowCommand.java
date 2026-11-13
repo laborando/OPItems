@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 public class ItemsRemoveNowCommand extends CCommand {
 
     public ItemsRemoveNowCommand(){
+        context = "Removes all loaded item entities now.";
         command = "remove_now";
     }
 

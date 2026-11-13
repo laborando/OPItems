@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 public class UpgradeItemCommand extends CCommand {
 
     public UpgradeItemCommand() {
+        context = "Tries to upgrade the OPItems currently held in the main-hand to a more recent version.";
         command = "upgrade_item";
         isAdmin = false;
     }
