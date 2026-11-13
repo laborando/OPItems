@@ -1,17 +1,17 @@
 package cel20.opitems.items.classic;
 
 import cel20.opitems.op.GlobalVars;
+import cel20.opitems.utis.uiutis.SubtitleUtis;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
-import cel20.opitems.utis.uiutis.SubtitleUtis;
 
 import java.util.HashMap;
 
 public class WandOfMassiveBoom {
 
-    static HashMap<String, Long> cooldown = new HashMap<>();
+    static final HashMap<String, Long> cooldown = new HashMap<>();
 
     public static void event(final PlayerInteractEvent e) {
 

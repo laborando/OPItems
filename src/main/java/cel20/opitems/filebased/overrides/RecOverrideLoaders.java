@@ -8,7 +8,6 @@ import org.bukkit.plugin.Plugin;
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class RecOverrideLoaders {
 
@@ -54,7 +53,7 @@ public class RecOverrideLoaders {
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                Main.logger.warning(e.getMessage());
                 Bukkit.getLogger().warning("[OPItems] IOException while handling recipe overrides: " + file.getAbsolutePath());
             }
 
@@ -67,7 +66,6 @@ public class RecOverrideLoaders {
 
     /**
      * Creates a readme file at the location of dir
-     * @param dir
      */
     private static void createReadme(File dir) {
         File file = new File(dir + "/readme.txt");
@@ -120,8 +118,8 @@ public class RecOverrideLoaders {
             writer.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
-            Bukkit.getLogger().warning("[OPItems] Could not write recipe override readme!");
+            Main.logger.warning(e.getMessage());
+            Main.logger.warning("[OPItems] Could not write recipe override readme!");
         }
     }
 }

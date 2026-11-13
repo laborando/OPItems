@@ -10,7 +10,7 @@ public class RecipeOverride {
     public int id;
 
     //Air is needed instead of null!
-    public Material[] materials = new Material[9];
+    public final Material[] materials = new Material[9];
 
     /**
      * Sets the material at slot to m <br> <br>

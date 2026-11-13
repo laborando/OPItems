@@ -2,9 +2,7 @@ package cel20.opitems.cmd.cmd.items.sub;
 
 import cel20.opitems.cmd.CCommand;
 import cel20.opitems.manage.Items;
-import cel20.opitems.op.Main;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 

@@ -2,7 +2,6 @@ package cel20.opitems.cmd.cmd.opitems.sub;
 
 import cel20.opitems.cmd.CCommand;
 import cel20.opitems.items.normal.CursedSword;
-import cel20.opitems.op.Main;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

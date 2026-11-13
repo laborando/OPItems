@@ -41,9 +41,6 @@ public class NoCrafting {
 
 
         String abl = matrix.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsMarker, PersistentDataType.STRING);
-        if (abl != null && abl.contains("true"))
-            return true;
-
-        return false;
+        return abl != null && abl.contains("true");
     }
 }

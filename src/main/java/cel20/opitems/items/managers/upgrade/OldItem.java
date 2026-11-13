@@ -11,19 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Class for matching old cel20.items with specific materials and enchantments with their respective id <br>
  * Old versions of OPItems used enchantments instead of ids to differentiate cel20.items
  */
-public class OldItem {
-
-    public OldItem(int id, Material material, List<Enchantment> enchantmentList) {
-        this.id = id;
-        this.material = material;
-        this.enchantmentList = enchantmentList;
-    }
-
-    public int id;
-
-    public Material material;
-
-    public List<Enchantment> enchantmentList;
+public record OldItem(int id, Material material, List<Enchantment> enchantmentList) {
 
     public boolean doesMatch(ItemStack item) {
 

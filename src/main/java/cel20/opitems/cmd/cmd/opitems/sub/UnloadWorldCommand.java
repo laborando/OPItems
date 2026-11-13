@@ -1,7 +1,6 @@
 package cel20.opitems.cmd.cmd.opitems.sub;
 
 import cel20.opitems.cmd.CCommand;
-import cel20.opitems.items.normal.Landmine;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,7 +17,7 @@ public class UnloadWorldCommand extends CCommand {
     public int execute(CommandSender cs, String[] args, CommandSourceStack CSStack, CCommand top) {
         if (cs.isOp()) {
 
-            String target = null;
+            String target;
             try {
                 target = args[1];
             } catch (ArrayIndexOutOfBoundsException e) {

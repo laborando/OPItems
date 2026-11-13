@@ -4,16 +4,16 @@ public interface EventAPI {
     /**
      * Disables <b>ALL</b> events managed by OPItems
      */
-    public void disableEvents();
+    void disableEvents();
 
     /**
      * Re-enables events  managed by OPItems
      */
-    public void enableEvent();
+    void enableEvent();
 
     /**
      * @return true if events are disabled
      */
-    public boolean eventsEnabled();
+    boolean eventsEnabled();
 
 }

@@ -4,16 +4,19 @@ import cel20.opitems.api.OPItemsAPI;
 import cel20.opitems.apiImplementation.OpApiImplementation;
 import cel20.opitems.cmd.CRegister;
 import cel20.opitems.filebased.overrides.RecOverrideLoaders;
-import cel20.opitems.metrics.MetricsHandler;
-import cel20.opitems.op.config.ConfigInniter;
-import cel20.opitems.op.config.ConfigLoader;
-import cel20.opitems.op.data.ItemData;
-import cel20.opitems.op.load.Commands;
 import cel20.opitems.items.EventManager;
 import cel20.opitems.items.NameSpaces;
 import cel20.opitems.items.managers.abracator.TotalItems;
 import cel20.opitems.items.managers.allRecipes.RecipeAdder;
 import cel20.opitems.items.sheduled.SchedulerStarter;
+import cel20.opitems.metrics.MetricsHandler;
+import cel20.opitems.op.config.ConfigInniter;
+import cel20.opitems.op.config.ConfigLoader;
+import cel20.opitems.op.data.ItemData;
+import cel20.opitems.op.load.Commands;
+import cel20.opitems.utis.CLogger;
+import cel20.opitems.utis.update.CUpdater;
+import cel20.opitems.utis.update.UpdateNotify;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -22,11 +25,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
-import cel20.opitems.utis.CLogger;
-import cel20.opitems.utis.update.CUpdater;
-import cel20.opitems.utis.update.UpdateNotify;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 /**
  * Main plugin class
@@ -39,6 +40,7 @@ public class Main extends JavaPlugin {
         return super.getFile();
     }
 
+    public static Logger logger;
     public static boolean priDimPerformMode = false;
     public static boolean landminePerfModeEnabled = false;
     public static int ore_gen_chance_private_dim;
@@ -68,13 +70,14 @@ public class Main extends JavaPlugin {
     }
 
     public void onEnable() {
-        Bukkit.getLogger().info("[OPItems] OPItems is loading...");
 
         //Setting instanceVarabs
         opitemsVersion = "1.12.3";
         instance = this;
         final Main plugin = this;
+        logger = this.getLogger();
 
+        logger.info("OPItems is loading...");
         //Must be first!
         //Namespaces
         NameSpaces.innitNameSpaces(this);
@@ -121,17 +124,17 @@ public class Main extends JavaPlugin {
         Bukkit.getServicesManager().register(OPItemsAPI.class, api, plugin, ServicePriority.Normal);
 
         //Updater
-        Bukkit.getLogger().info("[OPItems] Retrieving version information...");
+        Main.logger.info(" Retrieving version information...");
         cUpdater = new CUpdater(opitemsVersion, "opitems");
 
-        Bukkit.getLogger().info("");
-        Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("|        OPItems " + opitemsVersion + "       |");
-        Bukkit.getLogger().info("|-----------------------------|");
-        Bukkit.getLogger().info("");
+        Main.logger.info("");
+        Main.logger.info("|-----------------------------|");
+        Main.logger.info("|        OPItems " + opitemsVersion + "       |");
+        Main.logger.info("|-----------------------------|");
+        Main.logger.info("");
 
         if (GlobalVars.craftingDisabled) {
-            Bukkit.getLogger().info("[OPItems] Crafting disabled!");
+            Main.logger.info(" Crafting disabled!");
         }
 
         //Should be last as it has to be set first
@@ -142,9 +145,9 @@ public class Main extends JavaPlugin {
     }
 
     public void onDisable() {
-        Bukkit.getLogger().warning("[OPItems] Disabling...");
+        Main.logger.warning(" Disabling...");
 
-        UpdateNotify.save(); //Save who will receive update notifications
+        UpdateNotify.save(); //Save whom will receive update notifications
 
         ItemData.saveItemData(this);
 
@@ -159,7 +162,7 @@ public class Main extends JavaPlugin {
 
         MetricsHandler.stop();
 
-        Bukkit.getLogger().warning("[OPItems] Disabled!");
+        Main.logger.warning(" Disabled!");
     }
 
 
@@ -167,7 +170,6 @@ public class Main extends JavaPlugin {
     /**
      * Central method for starting update processes <br>
      * Must be kept in the main method for now!
-     * @param sender
      */
     public static void executeUpdate(CommandSender sender) {
 

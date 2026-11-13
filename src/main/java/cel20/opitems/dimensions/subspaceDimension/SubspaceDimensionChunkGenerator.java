@@ -5,6 +5,7 @@ import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,13 @@ public class SubspaceDimensionChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public List<BlockPopulator> getDefaultPopulators(World world) {
+    public @NonNull List<BlockPopulator> getDefaultPopulators(@NonNull World world) {
 
         return new ArrayList<>();
 
     }
 
-    public ChunkData generateChunkData(final World world, final Random random, final int chunkX, final int chunkZ, final BiomeGrid biome) {
+    public @NonNull ChunkData generateChunkData(final World world, final @NonNull Random random, final int chunkX, final int chunkZ, final @NonNull BiomeGrid biome) {
 
         final SimplexOctaveGenerator generator = new SimplexOctaveGenerator(new Random(world.getSeed()), 8);
 

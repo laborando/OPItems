@@ -1,4 +1,4 @@
-package cel20.opitems.items.classic.Sponges;
+package cel20.opitems.items.classic.sponges;
 
 import cel20.opitems.op.GlobalVars;
 import cel20.opitems.op.Main;
@@ -16,7 +16,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SuperSponge {
     public static void runSponge(final Block block) {
         final List<Block> b = new ArrayList<>();
-        Queue<Block> q = new ArrayDeque<Block>();
+        Queue<Block> q = new ArrayDeque<>();
         b.add(block);
         q.add(block);
 
@@ -75,13 +75,13 @@ public class SuperSponge {
     public static void recursiveWaterRemoval(int cStep, List<Block> b) {
 
         if (!b.isEmpty()) {
-            Block block = b.get(0);
+            Block block = b.getFirst();
 
             if (block.getType() == Material.WATER || block.getType() == Material.KELP_PLANT || block.getType() == Material.TALL_SEAGRASS || block.getType() == Material.SEAGRASS) {
                 block.setType(Material.AIR, false);
             }
 
-            b.remove(0);
+            b.removeFirst();
 
             if (cStep < 50) {
                 recursiveWaterRemoval(cStep + 1, b);
@@ -96,7 +96,7 @@ public class SuperSponge {
 
 
     public static void runSpongeLava(final Block block) {
-        final List<Block> b = new CopyOnWriteArrayList<Block>();
+        final List<Block> b = new CopyOnWriteArrayList<>();
         b.add(block);
 
         get_face_block(b);

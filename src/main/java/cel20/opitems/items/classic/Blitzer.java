@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Blitzer {
 
-    static Map<String, Long> cooldown = new HashMap<>();
+    static final Map<String, Long> cooldown = new HashMap<>();
 
     public static void handle(PlayerInteractEvent e) {
 
@@ -27,9 +27,9 @@ public class Blitzer {
 
         cooldown.put(p.getName(), System.currentTimeMillis());
 
-        Block prel = p.getTargetBlockExact(150);
-        if (prel != null) {
-            Location l = prel.getLocation();
+        Block target = p.getTargetBlockExact(150);
+        if (target != null) {
+            Location l = target.getLocation();
             p.getWorld().strikeLightning(l);
             p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_IMPACT, 1.0F, 1.0F);
         }

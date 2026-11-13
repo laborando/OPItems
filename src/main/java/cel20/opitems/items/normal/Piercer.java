@@ -4,7 +4,6 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 
@@ -12,15 +11,12 @@ import java.util.ArrayList;
 
 public class Piercer {
 
-    private static ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
+    private static final ArrayList<Arrow> firedArrows = new ArrayList<>();
 
-    @EventHandler
     public static void onProjectileLaunch(ProjectileLaunchEvent event) {
 
-        if (event.getEntity() instanceof Arrow) {
-            Arrow arrow = (Arrow) event.getEntity();
-            if (arrow.getShooter() instanceof Player) {
-                Player shooter = (Player) arrow.getShooter();
+        if (event.getEntity() instanceof Arrow arrow) {
+            if (arrow.getShooter() instanceof Player shooter) {
 
 
                 firedArrows.add(arrow);
@@ -30,10 +26,8 @@ public class Piercer {
         }
     }
 
-    @EventHandler
     public static void onProjectileHit(ProjectileHitEvent event) {
-        if (event.getEntity() instanceof Arrow) {
-            Arrow arrow = (Arrow) event.getEntity();
+        if (event.getEntity() instanceof Arrow arrow) {
             if (firedArrows.contains(arrow)) {
 
                 Entity e = event.getHitEntity();

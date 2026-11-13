@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class WandOfBoom {
 
-    static HashMap<String, Long> cooldown = new HashMap<>();
+    static final HashMap<String, Long> cooldown = new HashMap<>();
 
     public static void event(final PlayerInteractEvent e) {
 

@@ -21,14 +21,6 @@ public class ParticleUtis {
     /**
      * Generates and displays a circle of particles
      *
-     * @param location
-     * @param radius
-     * @param amount
-     * @param particleType
-     * @param color
-     * @param particleSize
-     * @param delay
-     * @param timesX
      */
     public static void particleCircle(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX) {
 
@@ -64,22 +56,12 @@ public class ParticleUtis {
     /**
      * Generates and displays a circle of particles and then spawns an emerging warden at its center
      *
-     * @param location
-     * @param radius
-     * @param amount
-     * @param particleType
-     * @param color
-     * @param particleSize
-     * @param delay
-     * @param timesX
-     * @param player
      */
     public static void particleCircleWithWarden(Location location, int radius, int amount, Particle particleType, Color color, float particleSize, int delay, int timesX, Player player) {
 
         Queue<Location> ll = Celutis.getCircleLocationsQue(location, radius, amount);
-        Queue<Location> copyLl = new ArrayDeque<>();
 
-        copyLl.addAll(ll);
+        Queue<Location> copyLl = new ArrayDeque<>(ll);
 
         for (int i = 0; i < timesX; i++) {
 

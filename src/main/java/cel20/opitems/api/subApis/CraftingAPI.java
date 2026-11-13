@@ -14,49 +14,46 @@ public interface CraftingAPI {
     /**
      * Re-enables crafting as configured
      */
-    public void enableCrafting();
+    void enableCrafting();
 
     /**
      * Disables Crafting
      */
-    public void disableCrafting();
+    void disableCrafting();
 
     /**
      * Disables specific OPItem <br>
      * Does not override config
-     * @param id
      */
-    public void disableItem(int id);
+    void disableItem(int id);
 
     /**
      * Enables specific OPItems <br>
      * Does not override config
-     * @param id
      */
-    public void enableItem(int id);
+    void enableItem(int id);
 
     /**
      * Gets the list storing the parsed recipe overrides
-     * @return
      */
-    public List<RecipeOverride> getRecipeOverrides();
+    List<RecipeOverride> getRecipeOverrides();
 
     /**
      * Adds a recipe override - execute reloadRecipes() after!
      */
-    public void addRecipeOverride(RecipeOverride recipe);
+    void addRecipeOverride(RecipeOverride recipe);
 
     /**
      * Removes a recipe override - execute reloadRecipes() after!
      * @return true if this list contained the specified element
      */
-    public boolean removeRecipeOverride(RecipeOverride recipe);
+    boolean removeRecipeOverride(RecipeOverride recipe);
 
     /**
      * Reloads recipes from disk! Disabled items will be reset as at server start or when saveRecipeState() was last called <br>
      * Overrides will be not reloaded from disk
      */
-    public void reloadRecipes();
+    void reloadRecipes();
 
-    public void saveRecipeState();
+    void saveRecipeState();
 }

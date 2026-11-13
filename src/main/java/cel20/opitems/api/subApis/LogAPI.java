@@ -4,13 +4,12 @@ public interface LogAPI {
 
     /**
      * Logs a message through CLogger
-     * @param message
      */
-    public void CLog(String message);
+    void CLog(String message);
 
     /**
      * Triggers the debug Log through CLogger and writes it to the file
      */
-    public void triggerDebugLog();
+    void triggerDebugLog();
 
 }

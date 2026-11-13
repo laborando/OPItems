@@ -1,8 +1,7 @@
 package cel20.opitems.items.managers;
 
-import ca.spottedleaf.starlight.common.light.StarLightInterface;
-import cel20.opitems.op.Main;
 import cel20.opitems.items.NameSpaces;
+import cel20.opitems.op.Main;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.ChatColor;
@@ -650,7 +649,7 @@ public class RawItemsGenerator {
         }
 
         if(!itemMeta.hasLore()){
-            List<Component> re = new ArrayList<Component>();
+            List<Component> re = new ArrayList<>();
 
             for (String i : description){
                 re.add(Component.text(i, TextColor.color(84, 84, 84)));

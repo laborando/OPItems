@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TntDetonator {
     //Not restart-save
-    static List<LocationPlayerAssociator> blocks = new ArrayList<>();
+    static final List<LocationPlayerAssociator> blocks = new ArrayList<>();
 
 
     public static void event(final PlayerInteractEvent e) {
@@ -31,24 +31,24 @@ public class TntDetonator {
             Location bLoc = b.getLocation();
 
             if (contains(bLoc)) {
-                p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("This block is already connected to an TNT Detonator").toString());
+                p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "This block is already connected to an TNT Detonator");
             } else {
                 blocks.add(new LocationPlayerAssociator(p.getName(), bLoc));
-                p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("TNT connected").toString());
+                p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "TNT connected");
             }
         }
         if (e.getAction() == Action.RIGHT_CLICK_AIR) {
 
             //Require Confirmation
             if (!e.getPlayer().isSneaking()) {
-                p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("Sneak + Right-click to confirm activation").toString());
+                p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Sneak + Right-click to confirm activation");
             }
 
             //Detonate
             else {
 
 
-                p.sendMessage(new StringBuilder().append(ChatColor.GRAY).append(ChatColor.ITALIC).append("Activating TNT-Blocks!").toString());
+                p.sendMessage(String.valueOf(ChatColor.GRAY) + ChatColor.ITALIC + "Activating TNT-Blocks!");
 
                 detonate(p.getName());
 
@@ -61,7 +61,6 @@ public class TntDetonator {
     /**
      * Detonates all TNT Blocks associated to the given Playername
      *
-     * @param forName
      */
     static void detonate(String forName) {
 
@@ -93,8 +92,6 @@ public class TntDetonator {
     /**
      * Returns true if location is already in the List
      *
-     * @param location
-     * @return
      */
     static boolean contains(Location location) {
 

@@ -22,7 +22,7 @@ import java.util.List;
 public class UpdateNotify {
 
     static File noNotifyFile;
-    static List<String> noNotify = new ArrayList<>();
+    static final List<String> noNotify = new ArrayList<>();
 
 
     public static void innit(Plugin p) {
@@ -34,7 +34,7 @@ public class UpdateNotify {
         try {
             isNew = noNotifyFile.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            Main.logger.warning(e.getLocalizedMessage());
         }
 
         if (isNew)
@@ -54,12 +54,12 @@ public class UpdateNotify {
                 toWrite.append(player).append(";");
             }
 
-            writer.write(toWrite.toString());
+            writer.write(toWrite + "");
 
             writer.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Main.logger.warning(e.getLocalizedMessage());
         }
     }
 
@@ -82,7 +82,7 @@ public class UpdateNotify {
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Main.logger.warning(e.getLocalizedMessage());
         }
     }
 
@@ -102,7 +102,6 @@ public class UpdateNotify {
 
     /**
      * Toggles update notifications for sender
-     * @param sender
      */
     public static void toggle(CommandSender sender) {
 

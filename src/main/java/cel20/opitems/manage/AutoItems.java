@@ -13,10 +13,8 @@ public class AutoItems {
     static BukkitTask removalTask = null;
 
     /**
-     * Inits automated scheduled removal of dropped cel20.items
+     * Innits automated scheduled removal of dropped cel20.items
      *
-     * @param delay
-     * @param warning_sek
      */
     public static void innitAutoRemove(int delay, int warning_sek) {
 

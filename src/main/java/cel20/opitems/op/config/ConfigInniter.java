@@ -18,22 +18,22 @@ public class ConfigInniter {
         config.addDefault("CustomDimensionsPerformanceMode", Boolean.FALSE);
 
         config.addDefault("OPItemsSpecificBStatsDisable", Boolean.FALSE);
-        config.addDefault("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock", Integer.valueOf(50));
+        config.addDefault("PrivatePocketDimensionOreSpawnChancePerGeneratedStoneBlock", 50);
 
         config.addDefault("SuperSpongeClearRadius", 20);
         config.addDefault("TNTBowTNTAmount", 50);
 
         //AUTOITEMSREMOVE
         config.addDefault("EnableAutomaticPeriodicItemsRemove", Boolean.FALSE);
-        config.addDefault("AutomaticPeriodicItemsRemoveWarningDurationSecs", Integer.valueOf(60));
-        config.addDefault("AutomaticPeriodicItemsRemovePeriodeInMinutes", Integer.valueOf(30));
+        config.addDefault("AutomaticPeriodicItemsRemoveWarningDurationSecs", 60);
+        config.addDefault("AutomaticPeriodicItemsRemovePeriodeInMinutes", 30);
         config.addDefault("EnableLandminePerformanceMode", Boolean.FALSE);
         config.addDefault("PrivatePocketDimensionEnabled", Boolean.TRUE);
 
 
         //LOGGER
-        config.addDefault("CLoggerMode", Integer.valueOf(0));
-        config.addDefault("CLoggerFlushIntervallSec", Integer.valueOf(300));
+        config.addDefault("CLoggerMode", 0);
+        config.addDefault("CLoggerFlushIntervallSec", 300);
 
         //ITEMS
 

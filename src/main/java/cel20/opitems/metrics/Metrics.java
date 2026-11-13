@@ -92,8 +92,9 @@ public class Metrics {
         boolean logResponseStatusText = config.getBoolean("logResponseStatusText", false);
         boolean isFolia = false;
         try {
-            isFolia = Class.forName("io.papermc.paper.threadedregions.RegionizedServer") != null;
-        } catch (Exception e) {
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
+            isFolia = true;
+        } catch (Exception ignored) {
         }
         metricsBase =
                 new // See https://github.com/Bastian/bstats-metrics/pull/126
@@ -225,10 +226,10 @@ public class Metrics {
          * @param checkServiceEnabledSupplier A supplier to check if the service is still enabled.
          * @param errorLogger                 A consumer that accepts log message and an error.
          * @param infoLogger                  A consumer that accepts info log messages.
-         * @param logErrors                   Whether or not errors should be logged.
-         * @param logSentData                 Whether or not the sent data should be logged.
-         * @param logResponseStatusText       Whether or not the response status text should be logged.
-         * @param skipRelocateCheck           Whether or not the relocate check should be skipped.
+         * @param logErrors                   Whether errors should be logged.
+         * @param logSentData                 Whether the sent data should be logged.
+         * @param logResponseStatusText       Whether the response status text should be logged.
+         * @param skipRelocateCheck           Whether the relocate check should be skipped.
          */
         public MetricsBase(
                 String platform,

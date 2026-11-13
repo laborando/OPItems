@@ -1,16 +1,17 @@
 package cel20.opitems.items;
 
-import cel20.opitems.items.classic.*;
-import cel20.opitems.items.normal.*;
-import com.destroystokyo.paper.event.player.PlayerElytraBoostEvent;
 import cel20.opitems.gui.itemEnableUI.EnableClickHandler;
 import cel20.opitems.gui.recipiesUI.RUIClickHandler;
-import cel20.opitems.items.classic.Sponges.SuperSpongeStarter;
+import cel20.opitems.items.classic.*;
+import cel20.opitems.items.classic.sponges.SuperSpongeStarter;
 import cel20.opitems.items.managers.NoCrafting;
 import cel20.opitems.items.newer.ExpStorage;
 import cel20.opitems.items.newer.WandOfWarden;
+import cel20.opitems.items.normal.*;
 import cel20.opitems.items.normal.ws.Workstation;
 import cel20.opitems.items.normal.ws.WsGUIHandler;
+import cel20.opitems.utis.update.UpdateNotify;
+import com.destroystokyo.paper.event.player.PlayerElytraBoostEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -24,7 +25,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
-import cel20.opitems.utis.update.UpdateNotify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,41 +42,40 @@ public class EventManager implements Listener {
     public static boolean enabled = true;
 
     //Maps
-    public static Map<String, Consumer<PlayerInteractEvent>> PlayerInteractEventMap = new HashMap<>();
-    public static Map<String, Consumer<ProjectileLaunchEvent>> ProjectileLaunchEventMap = new HashMap<>();
-    public static Map<String, Consumer<BlockPlaceEvent>> BlockPlaceEventMap = new HashMap<>();
-    public static Map<String, Consumer<PlayerBucketEmptyEvent>> PlayerBucketEmptyEventMap = new HashMap<>();
-    public static Map<String, Consumer<PlayerFishEvent>> PlayerFishEventMap = new HashMap<>();
-    public static Map<String, Consumer<PlayerItemConsumeEvent>> PlayerItemConsumeEventMap = new HashMap<>();
-    public static Map<String, Consumer<PlayerElytraBoostEvent>> PlayerElytraBoostEventMap = new HashMap<>();
-    public static Map<String, Consumer<PlayerInteractEntityEvent>> PlayerInteractEntityEventMap = new HashMap<>();
+    public static final Map<String, Consumer<PlayerInteractEvent>> PlayerInteractEventMap = new HashMap<>();
+    public static final Map<String, Consumer<ProjectileLaunchEvent>> ProjectileLaunchEventMap = new HashMap<>();
+    public static final Map<String, Consumer<BlockPlaceEvent>> BlockPlaceEventMap = new HashMap<>();
+    public static final Map<String, Consumer<PlayerBucketEmptyEvent>> PlayerBucketEmptyEventMap = new HashMap<>();
+    public static final Map<String, Consumer<PlayerFishEvent>> PlayerFishEventMap = new HashMap<>();
+    public static final Map<String, Consumer<PlayerItemConsumeEvent>> PlayerItemConsumeEventMap = new HashMap<>();
+    public static final Map<String, Consumer<PlayerElytraBoostEvent>> PlayerElytraBoostEventMap = new HashMap<>();
+    public static final Map<String, Consumer<PlayerInteractEntityEvent>> PlayerInteractEntityEventMap = new HashMap<>();
 
 
     //Lists
     public static List<Consumer<EntityBlockFormEvent>> EntityBlockFormEventList = new ArrayList<>();
-    public static List<Consumer<ProjectileHitEvent>> ProjectileHitEventList = new ArrayList<>();
-    public static List<Consumer<BlockDropItemEvent>> BlockDropItemEventList = new ArrayList<>();
-    public static List<Consumer<BlockPhysicsEvent>> BlockPhysicsEventList = new ArrayList<>();
-    public static List<Consumer<PlayerInteractEvent>> PlayerInteractEventList = new ArrayList<>();
-    public static List<Consumer<BlockBreakEvent>> BlockBreakEventList = new ArrayList<>();
-    public static List<Consumer<PlayerChangedWorldEvent>> PlayerChangedWorldEventList = new ArrayList<>();
-    public static List<Consumer<PlayerPreLoginEvent>> PlayerPreLoginEventList = new ArrayList<>();
-    public static List<Consumer<PlayerQuitEvent>> PlayerQuitEventList = new ArrayList<>();
-    public static List<Consumer<EntityDamageByEntityEvent>> EntityDamageByEntityEventList = new ArrayList<>();
-    public static List<Consumer<EntityDamageEvent>> EntityDamageEventList = new ArrayList<>();
-    public static List<Consumer<PlayerDropItemEvent>> PlayerDropItemEventList = new ArrayList<>();
-    public static List<Consumer<PlayerRespawnEvent>> PlayerRespawnEventList = new ArrayList<>();
-    public static List<Consumer<InventoryClickEvent>> InventoryClickEventList = new ArrayList<>();
-    public static List<Consumer<CraftItemEvent>> CraftItemEventList = new ArrayList<>();
-    public static List<Consumer<PlayerJoinEvent>> PlayerJoinEventList = new ArrayList<>();
-    public static List<Consumer<ExpBottleEvent>> ExpBottleEventList = new ArrayList<>();
+    public static final List<Consumer<ProjectileHitEvent>> ProjectileHitEventList = new ArrayList<>();
+    public static final List<Consumer<BlockDropItemEvent>> BlockDropItemEventList = new ArrayList<>();
+    public static final List<Consumer<BlockPhysicsEvent>> BlockPhysicsEventList = new ArrayList<>();
+    public static final List<Consumer<PlayerInteractEvent>> PlayerInteractEventList = new ArrayList<>();
+    public static final List<Consumer<BlockBreakEvent>> BlockBreakEventList = new ArrayList<>();
+    public static final List<Consumer<PlayerChangedWorldEvent>> PlayerChangedWorldEventList = new ArrayList<>();
+    public static final List<Consumer<PlayerPreLoginEvent>> PlayerPreLoginEventList = new ArrayList<>();
+    public static final List<Consumer<PlayerQuitEvent>> PlayerQuitEventList = new ArrayList<>();
+    public static final List<Consumer<EntityDamageByEntityEvent>> EntityDamageByEntityEventList = new ArrayList<>();
+    public static final List<Consumer<EntityDamageEvent>> EntityDamageEventList = new ArrayList<>();
+    public static final List<Consumer<PlayerDropItemEvent>> PlayerDropItemEventList = new ArrayList<>();
+    public static final List<Consumer<PlayerRespawnEvent>> PlayerRespawnEventList = new ArrayList<>();
+    public static final List<Consumer<InventoryClickEvent>> InventoryClickEventList = new ArrayList<>();
+    public static final List<Consumer<CraftItemEvent>> CraftItemEventList = new ArrayList<>();
+    public static final List<Consumer<PlayerJoinEvent>> PlayerJoinEventList = new ArrayList<>();
+    public static final List<Consumer<ExpBottleEvent>> ExpBottleEventList = new ArrayList<>();
 
 
 
     /**
      * Innits events-managing
      *
-     * @param p
      */
     public static void innitEventManager(Plugin p) {
 
@@ -203,9 +202,7 @@ public class EventManager implements Listener {
 
         //List
 
-        PlayerInteractEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        PlayerInteractEventList.forEach(consumer -> consumer.accept(e));
 
         //Map
 
@@ -242,7 +239,6 @@ public class EventManager implements Listener {
 
         ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
 
-        if (item == null) return;
         if (item.isEmpty()) return;
 
         String idns = getIDNSorNullIfNotOPItems(item);
@@ -268,8 +264,6 @@ public class EventManager implements Listener {
         //Map
 
         ItemStack item = e.getFirework().getItem();
-
-        if (item == null) return;
 
         String idns = getIDNSorNullIfNotOPItems(item);
         if (idns == null) return;
@@ -401,9 +395,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        ProjectileHitEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        ProjectileHitEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -412,9 +404,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        BlockDropItemEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        BlockDropItemEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -423,9 +413,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        BlockPhysicsEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        BlockPhysicsEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -434,9 +422,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        BlockBreakEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        BlockBreakEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -445,9 +431,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        PlayerChangedWorldEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        PlayerChangedWorldEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -456,9 +440,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        PlayerPreLoginEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        PlayerPreLoginEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -467,9 +449,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        PlayerQuitEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        PlayerQuitEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -478,9 +458,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        EntityDamageByEntityEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        EntityDamageByEntityEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -489,9 +467,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        EntityDamageEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        EntityDamageEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -500,9 +476,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        PlayerDropItemEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        PlayerDropItemEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -511,9 +485,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        PlayerRespawnEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        PlayerRespawnEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -522,9 +494,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        InventoryClickEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        InventoryClickEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -533,9 +503,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        CraftItemEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        CraftItemEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -544,9 +512,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        PlayerJoinEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        PlayerJoinEventList.forEach(consumer -> consumer.accept(e));
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -555,9 +521,7 @@ public class EventManager implements Listener {
         if(!enabled)
             return;
 
-        ExpBottleEventList.forEach(consumer -> {
-            consumer.accept(e);
-        });
+        ExpBottleEventList.forEach(consumer -> consumer.accept(e));
     }
 
 

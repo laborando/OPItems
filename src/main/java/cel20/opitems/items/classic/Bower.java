@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Bower {
 
-    static Map<String, Long> cooldown = new HashMap<>();
+    static final Map<String, Long> cooldown = new HashMap<>();
 
     public static void handle(PlayerInteractEvent e) {
 

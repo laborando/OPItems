@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Launcher {
 
 
-    public static HashMap<String, Long> Cooldown = new HashMap<>();
+    public static final HashMap<String, Long> Cooldown = new HashMap<>();
 
     public static void event(final PlayerInteractEvent e) {
 

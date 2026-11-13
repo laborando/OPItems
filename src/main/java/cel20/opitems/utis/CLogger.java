@@ -13,18 +13,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * A custom logger writing directly to a file separate from the standard logging
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class CLogger {
 
     static int secDel = 300;
     static boolean enabled = false;
-    static List<String> collected = new CopyOnWriteArrayList<>();
+    static final List<String> collected = new CopyOnWriteArrayList<>();
     static String loc = "";
 
     /**
      * Starts the CLogger service asynchronously using an independent thread <br>
      *
-     * @param folder
-     * @param saveInterval
      */
     public static void startAsync(String folder, int saveInterval) {
 
@@ -53,8 +52,6 @@ public class CLogger {
     /**
      * Starts the CLogger service synchronously using the bukkit scheduler <br>
      *
-     * @param folder
-     * @param saveInterval
      */
     public static void startSynced(String folder, int saveInterval) {
         secDel = saveInterval;
@@ -92,7 +89,7 @@ public class CLogger {
                 writer.close();
                 collected.clear();
             } catch (IOException e) {
-                e.printStackTrace();
+                Main.logger.warning(e.getMessage());
             }
         } else {
             startAsync(Main.getInstance().getDataFolder().toString(), 20);
@@ -104,7 +101,6 @@ public class CLogger {
      * Logs a Message to the Buffer <br>
      * If CLogger is not enabled, starts it synchronized
      *
-     * @param s
      */
     public static void log(String s) {
         if (enabled) {
@@ -121,7 +117,6 @@ public class CLogger {
      * Logs a Message to the Buffer and flushes it<br>
      * If CLogger is not enabled, starts it synchronized
      *
-     * @param s
      */
     public static void logAndFlush(String s) {
         if (enabled) {

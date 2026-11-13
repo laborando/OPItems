@@ -11,11 +11,7 @@ public class ItemFrameHider {
         Entity rightClicked = e.getRightClicked();
         if(rightClicked.getType() == EntityType.ITEM_FRAME || rightClicked.getType() == EntityType.GLOW_ITEM_FRAME){
 
-           if(rightClicked.isInvisible()){
-               rightClicked.setInvisible(false);
-           }else{
-               rightClicked.setInvisible(true);
-           }
+            rightClicked.setInvisible(!rightClicked.isInvisible());
 
            e.setCancelled(true);
 

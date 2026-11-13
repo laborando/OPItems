@@ -1,11 +1,11 @@
 package cel20.opitems.op.config;
 
+import cel20.opitems.manage.AutoItems;
 import cel20.opitems.op.GlobalVars;
 import cel20.opitems.op.Main;
-import cel20.opitems.manage.AutoItems;
+import cel20.opitems.utis.CLogger;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import cel20.opitems.utis.CLogger;
 
 /**
  * Class for loading data from the config

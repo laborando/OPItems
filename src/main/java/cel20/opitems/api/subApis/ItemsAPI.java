@@ -6,16 +6,12 @@ public interface ItemsAPI {
 
     /**
      * Gets OPItems with default enchantments
-     * @param id
-     * @return
      */
-    public ItemStack getOPItem(int id);
+    ItemStack getOPItem(int id);
 
     /**
      * Gets OPItems with custom enchantments
-     * @param id
-     * @return
      */
-    public ItemStack getOPItem(int id, int... lvl);
+    ItemStack getOPItem(int id, int... lvl);
 
 }

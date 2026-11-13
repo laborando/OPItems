@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,10 +27,10 @@ public class OldItemDataset {
 
         itemList = new ArrayList<>();
 
-        itemList.add(new OldItem(14, Material.FEATHER, Arrays.asList(Enchantment.FLAME)));
-        itemList.add(new OldItem(16, Material.IRON_HELMET, Arrays.asList(Enchantment.POWER)));
-        itemList.add(new OldItem(17, Material.IRON_HELMET, Arrays.asList(Enchantment.FLAME)));
-        itemList.add(new OldItem(37, Material.BLAZE_ROD, Arrays.asList(Enchantment.SWEEPING_EDGE)));
+        itemList.add(new OldItem(14, Material.FEATHER, Collections.singletonList(Enchantment.FLAME)));
+        itemList.add(new OldItem(16, Material.IRON_HELMET, Collections.singletonList(Enchantment.POWER)));
+        itemList.add(new OldItem(17, Material.IRON_HELMET, Collections.singletonList(Enchantment.FLAME)));
+        itemList.add(new OldItem(37, Material.BLAZE_ROD, Collections.singletonList(Enchantment.SWEEPING_EDGE)));
 
         isCreated = true;
     }

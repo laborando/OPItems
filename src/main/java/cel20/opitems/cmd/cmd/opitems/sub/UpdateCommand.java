@@ -1,8 +1,6 @@
 package cel20.opitems.cmd.cmd.opitems.sub;
 
 import cel20.opitems.cmd.CCommand;
-import cel20.opitems.cmd.cmd.opitems.sub.routines.Version;
-import cel20.opitems.manage.AutoItems;
 import cel20.opitems.op.Main;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.ChatColor;

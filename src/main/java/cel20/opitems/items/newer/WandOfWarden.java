@@ -1,5 +1,6 @@
 package cel20.opitems.items.newer;
 
+import cel20.opitems.utis.ParticleUtis;
 import cel20.opitems.utis.uiutis.SubtitleUtis;
 import org.bukkit.Color;
 import org.bukkit.Particle;
@@ -7,14 +8,13 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import cel20.opitems.utis.ParticleUtis;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class WandOfWarden {
 
-    static Map<String, Long> Cooldown = new HashMap<>();
+    static final Map<String, Long> Cooldown = new HashMap<>();
 
     public static void event(final PlayerInteractEvent e) {
 

@@ -7,20 +7,20 @@ import cel20.opitems.api.subApis.PluginAPI;
 
 /**
  * Simple API for OPItems <br>
- * If more control is needed, access internal code directly or write issue on github as a feature request
+ * If more control is needed, access internal code directly or write issue on GitHub as a feature request
  */
 public interface OPItemsAPI {
 
     //SubAPIs
-    public CraftingAPI getCraftingAPI();
-    public EventAPI getEventAPI();
-    public PluginAPI getPluginAPI();
-    public ItemsAPI getItemsAPI();
-    public void enable();
+    CraftingAPI getCraftingAPI();
+    EventAPI getEventAPI();
+    PluginAPI getPluginAPI();
+    ItemsAPI getItemsAPI();
+    void enable();
 
     //Basic Information
     /**
      * @return Integer-Level of API implementation
      */
-    public int getAPILevel();
+    int getAPILevel();
 }

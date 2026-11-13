@@ -1,6 +1,7 @@
 package cel20.opitems.items.normal;
 
 import cel20.opitems.op.Main;
+import cel20.opitems.utis.Celutis;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
@@ -8,20 +9,18 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.util.Vector;
-import cel20.opitems.utis.Celutis;
 
 import java.util.ArrayList;
 
 public class TntBow {
 
-    private static ArrayList<Arrow> firedArrows = new ArrayList<Arrow>();
+    private static final ArrayList<Arrow> firedArrows = new ArrayList<>();
 
 
     public static void onProjectileLaunch(ProjectileLaunchEvent event) {
 
-        if (event.getEntity() instanceof Arrow) {
+        if (event.getEntity() instanceof Arrow arrow) {
 
-            Arrow arrow = (Arrow) event.getEntity();
             firedArrows.add(arrow);
 
         }

@@ -1,8 +1,8 @@
 package cel20.opitems.items.managers.abracator;
 
 import cel20.opitems.filebased.overrides.RecipeOverride;
-import cel20.opitems.op.Main;
 import cel20.opitems.items.managers.RawItemsGenerator;
+import cel20.opitems.op.Main;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -19,16 +19,13 @@ public class CItem {
     public ItemStack result;
     public boolean finished;
     public boolean enabled = true;
-    public Material[] materials = new Material[9];
+    public final Material[] materials = new Material[9];
     public NamespacedKey key;
     public String name;
     boolean shouldAddToTotalItems = true;
 
     /***
      * Creates CItem and adds itself to Total Items
-     * @param id
-     * @param recipe
-     * @param result
      */
     public CItem(int id, ShapedRecipe recipe, ItemStack result) {
 
@@ -43,7 +40,6 @@ public class CItem {
     /**
      * Generates dangling {@link CItem} from a source {@link RecipeOverride} object with the result being retrieved from {@link RawItemsGenerator} <br>
      * CItems generated via this constructor will NOT be added to Total Items!
-     * @param source
      */
     public CItem(RecipeOverride source){
         id = source.id;
@@ -61,16 +57,13 @@ public class CItem {
      * <br>
      * Then finishCreation must be called to add to the recipes
      *
-     * @param id
      */
     public CItem(int id) {
         this.id = id;
     }
 
     /***
-     * Gets new, empty buidler
-     * @param id
-     * @return
+     * Gets new, empty builder
      */
     public static CItem getBuilder(int id) {
         return new CItem(id);
@@ -79,8 +72,6 @@ public class CItem {
     /**
      * Gets new builder with no recipe but preloaded OPItem from id
      *
-     * @param id
-     * @return
      */
     public static CItem getOPBuilder(int id) {
         return new CItem(id).setResultFromOPItemsID(id);
@@ -89,7 +80,7 @@ public class CItem {
     //------------------------------------
 
     /**
-     * Sets the Material at the respective Coords
+     * Sets the Material at the respective Cords
      *
      * @param material Material to set to
      * @param targets  The ints which corresponds to the slots in the 3x3 crafting grids to set the material
@@ -132,10 +123,8 @@ public class CItem {
     }
 
     /**
-     * Sets the result to an preconfigured OPItems if defined int the class RawItemsgenerator
+     * Sets the result to a preconfigured OPItems if defined int the class RawItems-generator
      *
-     * @param id
-     * @return
      */
     public CItem setResultFromOPItemsID(int id) {
 
@@ -168,6 +157,7 @@ public class CItem {
         }
 
 
+        //noinspection SpellCheckingInspection
         key = new NamespacedKey(Main.getInstance(), "opitems_" + id);
 
         recipe = new ShapedRecipe(key, result);

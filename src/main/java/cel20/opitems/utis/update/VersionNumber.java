@@ -1,16 +1,6 @@
 package cel20.opitems.utis.update;
 
-public class VersionNumber {
-
-    public int major;
-    public int minor;
-    public int patch;
-
-    public VersionNumber(int major, int minor, int patch) {
-        this.major = major;
-        this.minor = minor;
-        this.patch = patch;
-    }
+public record VersionNumber(int major, int minor, int patch) {
 
     public boolean isHigherThan(VersionNumber other) {
 
@@ -43,8 +33,6 @@ public class VersionNumber {
     /**
      * Expects i.i.i
      *
-     * @param version
-     * @return
      */
     public static VersionNumber toVersionNumber(String version) {
         String[] parts = version.split("\\.");

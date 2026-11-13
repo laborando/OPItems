@@ -1,17 +1,12 @@
 package cel20.opitems.utis;
 
 import cel20.opitems.op.Main;
-import com.destroystokyo.paper.PaperVersionFetcher;
-import com.destroystokyo.paper.util.VersionFetcher;
-import net.kyori.adventure.Adventure;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
-import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import java.awt.print.Paper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

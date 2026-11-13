@@ -1,8 +1,8 @@
 package cel20.opitems.cmd.cmd.opitems.sub.routines;
 
+import cel20.opitems.items.managers.GiveItems;
 import cel20.opitems.items.managers.abracator.StringIDAssociator;
 import cel20.opitems.items.managers.abracator.TotalItems;
-import cel20.opitems.items.managers.GiveItems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -12,17 +12,16 @@ public class GiveLogic {
 
     public static void executeGive(CommandSender sender, String arg, String targetPlayer, String p1, String p2) {
 
-        int n1 = -1;
-        int n2 = -1;
+        int n1;
+        int n2;
 
         n1 = ((p1 == null) || !p1.isEmpty()) ? -1 : Integer.parseInt(p1);
         n2 = ((p2 == null) || !p2.isEmpty()) ? -1 : Integer.parseInt(p2);
 
 
         if (targetPlayer == null || targetPlayer.equalsIgnoreCase("")) {
-            if (sender instanceof Player) {
+            if (sender instanceof Player p) {
 
-                final Player p = (Player) sender;
                 if (arg.equalsIgnoreCase("old")) {
 
                     sender.sendMessage("This feature has been deprecated.");
@@ -35,16 +34,11 @@ public class GiveLogic {
                     }
                 }
             } else {
-                sender.sendMessage(new StringBuilder().append(ChatColor.DARK_RED).append(ChatColor.DARK_RED).append("This Command cannot be executed in the console").toString());
+                sender.sendMessage(String.valueOf(ChatColor.DARK_RED) + ChatColor.DARK_RED + "This Command cannot be executed in the console");
             }
         } else {
 
             Player p = Bukkit.getPlayer(targetPlayer);
-
-            /*
-            if(sender.getName().equalsIgnoreCase(targetPlayer))
-                sender.sendMessage("Info: You can give cel20.items to yourself by executing /opitems give <itemNumber>, <player> is only required when giving to other players");
-            */
 
 
             if (p == null) {
@@ -83,16 +77,16 @@ public class GiveLogic {
 
         try {
             return Integer.parseInt(r);
-        } catch (Exception awwwNoInteger) {
+        } catch (Exception ignored) {
         }
 
         String casedString = r.trim().toLowerCase();
 
         for (StringIDAssociator itemId : TotalItems.itemIds) {
 
-            if (casedString.equalsIgnoreCase(itemId.name.replace(" ", ""))) {
+            if (casedString.equalsIgnoreCase(itemId.name().replace(" ", ""))) {
 
-                return itemId.id;
+                return itemId.id();
 
             }
 

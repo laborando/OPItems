@@ -1,7 +1,7 @@
 package cel20.opitems.items.managers.upgrade;
 
-import cel20.opitems.op.GlobalVars;
 import cel20.opitems.items.managers.RawItemsGenerator;
+import cel20.opitems.op.GlobalVars;
 import cel20.opitems.utis.OPItemAdjectiv;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -51,7 +51,7 @@ public class ItemUpgrader {
         OldItemDataset.itemList.forEach(ic -> {
 
             if (!hasFound[0] && ic.doesMatch(item)) {
-                targetId.set(ic.id);
+                targetId.set(ic.id());
                 hasFound[0] = true;
                 p.sendMessage(ChatColor.GREEN + "Item found in old item database...");
             }

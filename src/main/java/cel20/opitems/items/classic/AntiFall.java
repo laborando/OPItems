@@ -25,6 +25,7 @@ public class AntiFall {
                     }
 
                     String abl = item.getItemMeta().getPersistentDataContainer().get(NameSpaces.opitemsAbilities, PersistentDataType.STRING);
+                    //noinspection SpellCheckingInspection
                     if (abl != null && abl.contains("nofall")) {
 
                         e.setCancelled(true);

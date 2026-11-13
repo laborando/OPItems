@@ -1,8 +1,8 @@
 package cel20.opitems.items.normal;
 
 
-import cel20.opitems.op.Main;
 import cel20.opitems.items.NameSpaces;
+import cel20.opitems.op.Main;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -29,7 +29,6 @@ public class Landmine {
     /**
      * Landmine destroyed
      *
-     * @param e
      */
     public static void event(final BlockDropItemEvent e) {
         if (e.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
@@ -49,7 +48,6 @@ public class Landmine {
     /**
      * Stepping on landmine
      *
-     * @param e
      */
     public static void event(final BlockPhysicsEvent e) {
         if (e.getChangedType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
@@ -70,7 +68,6 @@ public class Landmine {
     /**
      * Adds placed Landmines to the List
      *
-     * @param e
      */
     public static void event(final BlockPlaceEvent e) {
 
@@ -83,7 +80,6 @@ public class Landmine {
     /**
      * Physical -> Stepping on Landmine and defusing landmine
      *
-     * @param e
      */
     public static void event(PlayerInteractEvent e) {
         Player p = e.getPlayer();
@@ -133,7 +129,6 @@ public class Landmine {
     /**
      * Breaking landmine
      *
-     * @param e
      */
     public static void event(BlockBreakEvent e) {
         if (e.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
@@ -211,28 +206,25 @@ public class Landmine {
 
         //Landmine particle effects
 
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    for (Location loc : lml) {
-                        if (!(loc.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE)) {
-                            lml.remove(loc);
-                        }
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPluginInstance(), () -> {
+            try {
+                for (Location loc : lml) {
+                    if (!(loc.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE)) {
+                        lml.remove(loc);
+                    }
 
-                        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 255, 255), 0.5F);
+                    Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 255, 255), 0.5F);
 
-                        if (!Main.landminePerfModeEnabled) {
-                            Location ltmp = new Location(loc.getWorld(), loc.getX(), loc.getY(), loc.getZ());
-                            ltmp.add(0.5, 0.2, 0.5);
-                            try {
-                                loc.getWorld().spawnParticle(Particle.DUST, ltmp, 20, 0.3, 0.2, 0.3, dustOptions);
-                            } catch (Exception exception) {
-                            }
+                    if (!Main.landminePerfModeEnabled) {
+                        Location ltmp = new Location(loc.getWorld(), loc.getX(), loc.getY(), loc.getZ());
+                        ltmp.add(0.5, 0.2, 0.5);
+                        try {
+                            loc.getWorld().spawnParticle(Particle.DUST, ltmp, 20, 0.3, 0.2, 0.3, dustOptions);
+                        } catch (Exception ignored) {
                         }
                     }
-                } catch (ConcurrentModificationException ignored) {
                 }
+            } catch (ConcurrentModificationException ignored) {
             }
         }, 0L, 20L);
 
@@ -248,7 +240,7 @@ public class Landmine {
         try {
             f.createNewFile();
         } catch (IOException important) {
-            important.printStackTrace();
+            Main.logger.warning(important.getMessage());
         }
         try {
             final BukkitObjectOutputStream out = new BukkitObjectOutputStream(new GZIPOutputStream(new FileOutputStream(fn)));
@@ -259,14 +251,12 @@ public class Landmine {
 
             final String[] wstr = {""};
 
-            worlds.forEach(e -> {
-                wstr[0] = wstr[0] + e + ";";
-            });
+            worlds.forEach(e -> wstr[0] = wstr[0] + e + ";");
 
             out.writeObject(wstr[0]);
             out.close();
         } catch (IOException important) {
-            important.printStackTrace();
+            Main.logger.warning(important.getMessage());
         }
 
         fn = Main.getPluginInstance().getDataFolder() + "/landmine.cel20";
@@ -274,14 +264,14 @@ public class Landmine {
         try {
             f.createNewFile();
         } catch (IOException important) {
-            important.printStackTrace();
+            Main.logger.warning(important.getMessage());
         }
         try {
             final BukkitObjectOutputStream out = new BukkitObjectOutputStream(new GZIPOutputStream(new FileOutputStream(fn)));
             out.writeObject(lml);
             out.close();
         } catch (IOException important) {
-            important.printStackTrace();
+            Main.logger.warning(important.getMessage());
         }
 
     }

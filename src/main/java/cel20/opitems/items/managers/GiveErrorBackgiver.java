@@ -24,7 +24,7 @@ public class GiveErrorBackgiver {
             player.sendMessage(ChatColor.RED + "Usage: /opitems give 'item' 'player' 'ench_lvl_primary' 'ech_lvl_secondary'");
             player.sendMessage(ChatColor.RED + "'ench_lvl_primary' 'ech_lvl_secondary' is only needed if the enchantment level is existent and variable.");
             player.sendMessage(ChatColor.RED + "They can be replaced with the value -5 to create an item with the default enactment levels.");
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 

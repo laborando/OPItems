@@ -1,7 +1,5 @@
 package cel20.opitems.cmd;
 
-import cel20.opitems.cmd.cmd.opitems.OPItemsCmd;
-import cel20.opitems.op.GlobalVars;
 import cel20.opitems.items.managers.abracator.StringIDAssociator;
 import cel20.opitems.items.managers.abracator.TotalItems;
 import org.bukkit.Bukkit;
@@ -56,7 +54,7 @@ public class TabComp {
                     final List<String> completions = new ArrayList<>();
 
                     for (StringIDAssociator itemId : TotalItems.itemIds) {
-                        completions.add(itemId.getName().replace(" ", ""));
+                        completions.add(itemId.name().replace(" ", ""));
                     }
 
                     completions.removeIf(completion -> !(completion.toLowerCase().startsWith(args[1].trim().toLowerCase())));
@@ -67,11 +65,9 @@ public class TabComp {
 
             if (args.length == 3) {
                 if (args[0].trim().equalsIgnoreCase("give")) {
-                    final List<String> completions = new ArrayList<String>();
+                    final List<String> completions = new ArrayList<>();
 
-                    Bukkit.getOnlinePlayers().forEach(e -> {
-                        completions.add(e.getName());
-                    });
+                    Bukkit.getOnlinePlayers().forEach(e -> completions.add(e.getName()));
 
                     return completions;
                 }
@@ -81,7 +77,7 @@ public class TabComp {
         }
 
         if (command.equalsIgnoreCase("items") && args.length <= 1) {
-            final List<String> completions = new ArrayList<String>();
+            final List<String> completions = new ArrayList<>();
 
             //Not enought commands to consider dynamic completion generation
             completions.add("remove");

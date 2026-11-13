@@ -21,7 +21,7 @@ public class Portal2go {
         UUID id = p.getUniqueId();
         int currentTick = Bukkit.getCurrentTick();
 
-        //Anti Doppelclick --> bei dimensionswechsel
+        //Anti Doppelclick → bei dimensionswechsel
         if (lastClickTick.getOrDefault(id, -1) == currentTick) {
             return;
         }

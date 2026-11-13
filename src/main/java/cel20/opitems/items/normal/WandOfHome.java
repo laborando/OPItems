@@ -83,11 +83,10 @@ public class WandOfHome {
             File f = new File(filePath);
             try {
                 if (!f.createNewFile()) {
-                    e.printStackTrace();
+                    Main.logger.warning(e.getLocalizedMessage());
                 }
             } catch (IOException e2) {
-
-                e2.printStackTrace();
+                Main.logger.warning(e2.getLocalizedMessage());
             }
         }
     }
@@ -111,12 +110,10 @@ public class WandOfHome {
             File f = new File(filePath);
             try {
                 if (!f.createNewFile()) {
-                    ex2.printStackTrace();
+                    Main.logger.warning(ex2.getLocalizedMessage());
                 }
             } catch (IOException e) {
-
-                e.printStackTrace();
-
+                Main.logger.warning(e.getLocalizedMessage());
             }
         }
     }

@@ -1,6 +1,8 @@
 package cel20.opitems.items.normal;
 
 import cel20.opitems.op.Main;
+import cel20.opitems.utis.Celutis;
+import cel20.opitems.utis.uiutis.SubtitleUtis;
 import org.bukkit.Bukkit;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
@@ -11,8 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-import cel20.opitems.utis.Celutis;
-import cel20.opitems.utis.uiutis.SubtitleUtis;
 
 import java.util.*;
 
@@ -124,13 +124,10 @@ public class WandOfBlocks {
      * Creates explosions at the target location and removes the blocks <br>
      * *Does not create explosions at the actual locations of the block-entities
      *
-     * @param p
-     * @param blockTarget
-     * @return
      */
     public static boolean makeBoom(Player p, Location blockTarget) {
 
-        String kti = p.getName().toString();
+        String kti = p.getName();
         List<FallingBlock> vfk = WandOfBlocks.PlayersBlocks.get(kti);
 
         if (vfk == null) {

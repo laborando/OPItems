@@ -1,4 +1,4 @@
-package cel20.opitems.cmd.CommandCatchers;
+package cel20.opitems.cmd.commandCatchers;
 
 import cel20.opitems.cmd.Commands;
 import cel20.opitems.cmd.TabComp;
@@ -29,7 +29,6 @@ public class OpitemsCC implements BasicCommand {
 
         List<String> comps = TabComp.onTabComplete(commandSourceStack.getSender(), "opitems", args);
 
-        assert comps != null;
         return comps;
 
     }

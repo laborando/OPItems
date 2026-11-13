@@ -1,6 +1,7 @@
 package cel20.opitems.items.normal;
 
 import cel20.opitems.items.EventManager;
+import cel20.opitems.op.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -32,7 +33,6 @@ public class CursedSword {
 
         final ItemStack item = p.getInventory().getItemInMainHand();
 
-        if (item == null) return;
         if (item.isEmpty()) return;
 
         String inds = EventManager.getIDNSorNullIfNotOPItems(item);
@@ -46,9 +46,7 @@ public class CursedSword {
 
 
             CursedSword.list_entity.add(e.getEntity().getType());
-            if (e.getEntity() instanceof LivingEntity) {
-
-                LivingEntity le = (LivingEntity) e.getEntity();
+            if (e.getEntity() instanceof LivingEntity le) {
 
                 if (e instanceof Player)
                     return;
@@ -91,8 +89,8 @@ public class CursedSword {
             final BukkitObjectOutputStream out = new BukkitObjectOutputStream(new GZIPOutputStream(new FileOutputStream(filePath)));
             out.writeObject((Object) CursedSword.list_entity);
             out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e){
+            Main.logger.warning(e.getMessage());
             Bukkit.getLogger().warning("This could be resolved after a restart! Please try again!");
         }
     }
@@ -119,11 +117,10 @@ public class CursedSword {
             File f = new File(filePath);
             try {
                 if (!f.createNewFile()) {
-                    ex2.printStackTrace();
+                    Main.logger.warning(ex2.getMessage());
                 }
             } catch (IOException e) {
-
-                e.printStackTrace();
+                Main.logger.warning(e.getMessage());
             }
         }
     }

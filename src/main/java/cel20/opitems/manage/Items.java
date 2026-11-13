@@ -21,7 +21,7 @@ public class Items {
      * Removes dropped items
      */
     public void removeItems() {
-        final Map<Player, Integer> itemCounts = new HashMap<Player, Integer>();
+        final Map<Player, Integer> itemCounts = new HashMap<>();
         for (final Player player : Bukkit.getOnlinePlayers()) {
             itemCounts.put(player, 0);
         }
@@ -32,8 +32,7 @@ public class Items {
                 Entity[] entities;
                 for (int length2 = (entities = chunk.getEntities()).length, j = 0; j < length2; ++j) {
                     final Entity entity = entities[j];
-                    if (entity instanceof Item) {
-                        final Item item = (Item) entity;
+                    if (entity instanceof Item item) {
                         final Player closestPlayer = getClosestPlayer(item.getLocation().toVector(), itemCounts.keySet());
                         if (closestPlayer != null) {
                             final int currentCount = itemCounts.getOrDefault(closestPlayer, 0);
@@ -75,7 +74,7 @@ public class Items {
      * An item is counted towards the nearest player
      */
     public void ItemsPlayerHeap(CommandSender cs) {
-        final Map<Player, Integer> itemCounts = new HashMap<Player, Integer>();
+        final Map<Player, Integer> itemCounts = new HashMap<>();
         for (final Player player : Bukkit.getOnlinePlayers()) {
             itemCounts.put(player, 0);
         }
@@ -86,8 +85,7 @@ public class Items {
                 Entity[] entities;
                 for (int length2 = (entities = chunk.getEntities()).length, j = 0; j < length2; ++j) {
                     final Entity entity = entities[j];
-                    if (entity instanceof Item) {
-                        final Item item = (Item) entity;
+                    if (entity instanceof Item item) {
                         final Player closestPlayer = getClosestPlayer(item.getLocation().toVector(), itemCounts.keySet());
                         if (closestPlayer != null) {
                             final int currentCount = itemCounts.getOrDefault(closestPlayer, 0);

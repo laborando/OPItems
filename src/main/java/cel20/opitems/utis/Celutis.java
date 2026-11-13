@@ -29,9 +29,6 @@ public class Celutis {
     /**
      * Simple clean method for generating a double between given max and min
      *
-     * @param min
-     * @param max
-     * @return
      */
     public static double smallRandom(final double min, final double max) {
         if (min >= max) {

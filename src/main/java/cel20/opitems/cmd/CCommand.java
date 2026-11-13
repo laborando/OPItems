@@ -38,7 +38,7 @@ public abstract class CCommand {
 
     }
 
-    //SubCmd registeries;
+    //SubCmd registries;
     /**
      * Registers a Subcommand to the list of commands registered
      * <br>
@@ -56,7 +56,6 @@ public abstract class CCommand {
 
     /**
      * Unregisters a Subcommand
-     * @param key
      * @return True if the command was registered before
      */
     public boolean unregister(String key){

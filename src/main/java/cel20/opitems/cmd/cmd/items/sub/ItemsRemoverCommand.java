@@ -21,7 +21,7 @@ public class ItemsRemoverCommand extends CCommand {
         if(cs.isOp()){
 
             final Items items = new Items();
-            Bukkit.broadcastMessage(new StringBuilder().append(ChatColor.RED).append("All dropped items will be removed in 30 seconds!").toString());
+            Bukkit.broadcastMessage(ChatColor.RED + "All dropped items will be removed in 30 seconds!");
             Bukkit.getScheduler().runTaskLater(Main.getPluginInstance(), items::removeItems, 600L);
 
         }else{

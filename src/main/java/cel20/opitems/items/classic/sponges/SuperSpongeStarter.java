@@ -1,4 +1,4 @@
-package cel20.opitems.items.classic.Sponges;
+package cel20.opitems.items.classic.sponges;
 
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockPlaceEvent;

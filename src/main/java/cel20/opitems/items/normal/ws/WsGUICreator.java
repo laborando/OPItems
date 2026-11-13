@@ -12,7 +12,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class WsGUICreator {
     public static void showWSMenu(final Player p) {
-        final Inventory gui = Bukkit.createInventory(null, 9, new StringBuilder().append(ChatColor.DARK_BLUE).append("Workstation").toString());
+        final Inventory gui = Bukkit.createInventory(null, 9, ChatColor.DARK_BLUE + "Workstation");
 
         ItemStack is = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
         ItemMeta im = is.getItemMeta();

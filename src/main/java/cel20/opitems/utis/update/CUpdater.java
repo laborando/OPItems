@@ -23,16 +23,14 @@ CUpdater for MC plugins via the Modrinth API v1.0
 public class CUpdater {
     public CVersion[] versions;
     public CVersion highestVersion;
+    public String slug;
     public boolean shouldUpdate = false;
-    private String slug = "opitems";
     private static final boolean disable = false;
     private static final boolean isCurseForge = false; //If published via curseforge, disable autoupdater
 
     /**
      * If not disabled/setIsCurseforge, loads Version information and sets the local vars shouldUpdate and highestVersion <br>
      * Broadcasts messages if update is found
-     * @param cVersion
-     * @param slug
      */
     public CUpdater(String cVersion, String slug) {
         this.slug = slug;
@@ -49,7 +47,6 @@ public class CUpdater {
     /**
      * Loads Version information and sets the local vars shouldUpdate and highestVersion <br>
      * Broadcasts messages if update is found
-     * @param cVersion
      */
     private void checkVersion(String cVersion) {
 
@@ -122,8 +119,6 @@ public class CUpdater {
 
     /**
      * Parses recieved JSON to CVersion and adds it to the versions[] array
-     * @param version
-     * @param current
      */
     private void parseVersion(JSONObject version, int current) {
 
@@ -135,10 +130,9 @@ public class CUpdater {
         ver.verName = (String) version.get("name");
 
         StringBuilder loader = new StringBuilder();
-        Iterator lA = ((JSONArray) version.get("loaders")).iterator();
 
-        while (lA.hasNext()) {
-            loader.append(lA.next());
+        for (Object o : (JSONArray) version.get("loaders")) {
+            loader.append(o);
         }
 
         ver.loaders = loader.toString();
@@ -149,7 +143,7 @@ public class CUpdater {
         ver.type = CVersion.UpdateType.valueOf((String) version.get("version_type"));
 
         JSONArray files = (JSONArray) version.get("files");
-        JSONObject file = (JSONObject) files.get(0);
+        JSONObject file = (JSONObject) files.getFirst();
 
         ver.fileSize = (long) file.get("size");
         ver.fileURL = (String) file.get("url");
@@ -169,7 +163,7 @@ public class CUpdater {
         versions[current] = ver;
     }
 
-    static Map<String, String> MRidName = new HashMap<>();
+    static final Map<String, String> MRidName = new HashMap<>();
 
     public String getMRUserName(String authorID) {
 
@@ -213,7 +207,6 @@ public class CUpdater {
      * Does not work if isCurseForge == true
      *
      * @param instance Plugin instance of the plugin being updated
-     * @param sender
      * @return Result
      */
     public boolean executeUpdate(Main instance, CommandSender sender) {
@@ -238,9 +231,9 @@ public class CUpdater {
 
         //Retrieving Data and writing to file
 
-        try {
+        try (FileOutputStream fos = new FileOutputStream(toUpdate)){
 
-            FileOutputStream fos = new FileOutputStream(toUpdate);
+
 
 
             InputStream data = getUpdateStream(highestVersion);
@@ -275,8 +268,6 @@ public class CUpdater {
 
     /**
      * Gets the open stream to the remote location of the updated OPItems.jar that the CVersion-object references
-     * @param version
-     * @return
      */
     private InputStream getUpdateStream(CVersion version) {
         URL fileURL;

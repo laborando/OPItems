@@ -19,9 +19,9 @@ import java.util.List;
  */
 public class TotalItems {
 
-    public static List<CItem> items = new ArrayList<>();
+    public static final List<CItem> items = new ArrayList<>();
 
-    public static List<StringIDAssociator> itemIds = new ArrayList<>();
+    public static final List<StringIDAssociator> itemIds = new ArrayList<>();
 
     public static void addAllRecipes() {
 
@@ -66,8 +66,6 @@ public class TotalItems {
      * Gets cItem from ID <br>
      * If overridden, fetches the overwritten version
      *
-     * @param id
-     * @return
      */
     public static CItem get(int id) {
 
@@ -94,7 +92,7 @@ public class TotalItems {
             try{
                 return new CItem(ovr).finish();
             }catch (Exception e){
-                e.printStackTrace();
+                Main.logger.warning(e.getLocalizedMessage());
             }
 
         }
@@ -106,7 +104,6 @@ public class TotalItems {
     /**
      * Enables crafting for a certain id
      *
-     * @param id
      */
     public static void enable(int id) {
 
@@ -144,13 +141,12 @@ public class TotalItems {
     //------------- LOAD - SAVE --- DISABLED - ITEMS -----------------------
 
     static File disabledFile;
-    static List<String> disabled = new ArrayList<>();
+    static final List<String> disabled = new ArrayList<>();
 
 
     /**
      * Inits - Must be called first
      *
-     * @param p
      */
     public static void innit(Plugin p) {
 
@@ -161,7 +157,7 @@ public class TotalItems {
         try {
             isNew = disabledFile.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            Main.logger.warning(e.getLocalizedMessage());
         }
 
         if (isNew)
@@ -191,12 +187,12 @@ public class TotalItems {
             }
 
 
-            writer.write(toWrite.toString());
+            writer.write(toWrite + "");
 
             writer.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Main.logger.warning(e.getMessage());
         }
     }
 
@@ -237,7 +233,7 @@ public class TotalItems {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Main.logger.warning(e.getLocalizedMessage());
         }
     }
 
@@ -277,7 +273,7 @@ public class TotalItems {
             try{
                 Bukkit.getServer().addRecipe(new CItem(ovr).finish().recipe);
             }catch (Exception e){
-                e.printStackTrace();
+                Main.logger.warning(e.getLocalizedMessage());
             }
 
         }

@@ -12,9 +12,6 @@ public class Commands {
 
     /**
      * Executes the command if registered
-     * @param cmd
-     * @param CSStack
-     * @param args
      */
     public static void execute(String cmd, CommandSourceStack CSStack, String[] args) {
 
@@ -45,7 +42,6 @@ public class Commands {
 
     /**
      * Unregisters a command
-     * @param key
      * @return True if the command was registered before
      */
     public static boolean unregister(String key){

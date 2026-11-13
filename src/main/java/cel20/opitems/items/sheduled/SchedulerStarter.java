@@ -1,10 +1,10 @@
 package cel20.opitems.items.sheduled;
 
-import cel20.opitems.op.Main;
 import cel20.opitems.items.sheduled.cosmetic.FireShoe;
 import cel20.opitems.items.sheduled.cosmetic.NightHelmet;
 import cel20.opitems.items.sheduled.effects.SpeedLeggings;
 import cel20.opitems.items.sheduled.effects.WaterHelmet;
+import cel20.opitems.op.Main;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class SchedulerStarter {
 
-    static List<BasicSchedule> scheduleList = new ArrayList<>();
+    static final List<BasicSchedule> scheduleList = new ArrayList<>();
 
     public static void startSchedulers() {
 

@@ -10,7 +10,6 @@ public class ItemData {
 
     /**
      * Loads data from disk regarding OPItems
-     * @param m
      */
     public static void loadItems(Main m) {
 
@@ -24,7 +23,6 @@ public class ItemData {
 
     /**
      * Saves data to disk regarding OPItems
-     * @param p
      */
     public static void saveItemData(Plugin p) {
 

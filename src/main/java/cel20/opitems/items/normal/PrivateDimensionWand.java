@@ -1,7 +1,8 @@
 package cel20.opitems.items.normal;
 
-import cel20.opitems.op.Main;
 import cel20.opitems.dimensions.privateDimension.PrivateDimensionChunkGenerator;
+import cel20.opitems.op.Main;
+import cel20.opitems.utis.Celutis;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -10,7 +11,6 @@ import org.bukkit.event.player.PlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
-import cel20.opitems.utis.Celutis;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -71,7 +71,7 @@ public class PrivateDimensionWand {
 
         } catch (Exception ee) {
             Bukkit.getLogger().info("[OPItems] Exception:");
-            ee.printStackTrace();
+            Main.logger.warning(ee.getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ public class PrivateDimensionWand {
         UUID id = p.getUniqueId();
         int currentTick = Bukkit.getCurrentTick();
 
-        //Anti double click --> automatically executed when changing cel20.dimensions
+        //Anti-double-click --> automatically executed when changing cel20.dimensions
         if (lastClickTick.getOrDefault(id, 0) > currentTick - 20) {
             return;
         }
@@ -110,18 +110,6 @@ public class PrivateDimensionWand {
 
         }
 
-        if (targetWorld == null) {
-
-            final WorldCreator worldCreator2 = new WorldCreator(wn);
-
-            worldCreator2.generator(new PrivateDimensionChunkGenerator());
-
-            Bukkit.createWorld(worldCreator2);
-
-            p.sendMessage(ChatColor.RED + "The World " + wn + " is still initializing.");
-            p.sendMessage(ChatColor.RED + "Please try again in 5-10 sec");
-            return;
-        }
         Location l;
         if (playerWorld != targetWorld) {
             l = new Location(targetWorld, e.getPlayer().getLocation().getX(), targetWorld.getHighestBlockYAt(e.getPlayer().getLocation()) + 1, e.getPlayer().getLocation().getZ());
@@ -146,11 +134,10 @@ public class PrivateDimensionWand {
             File f = new File(filePath);
             try {
                 if (!f.createNewFile()) {
-                    e.printStackTrace();
+                    Main.logger.warning(e.getMessage());
                 }
             } catch (IOException e2) {
-
-                e2.printStackTrace();
+                Main.logger.warning(e2.getMessage());
             }
         }
     }
@@ -166,11 +153,10 @@ public class PrivateDimensionWand {
             File f = new File(filePath);
             try {
                 if (!f.createNewFile()) {
-                    ex2.printStackTrace();
+                    Main.logger.warning(ex2.getMessage());
                 }
             } catch (IOException e) {
-
-                e.printStackTrace();
+                Main.logger.warning(e.getMessage());
             }
         }
     }

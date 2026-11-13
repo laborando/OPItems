@@ -6,9 +6,9 @@ import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -20,10 +20,10 @@ public class PrivateDimensionChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public List<BlockPopulator> getDefaultPopulators(World world) {
+    public @NonNull List<BlockPopulator> getDefaultPopulators(@NonNull World world) {
 
         if (!Main.priDimPerformMode) {
-            return Arrays.asList(new PrivateDimensionPopulator());
+            return List.of(new PrivateDimensionPopulator());
         } else {
             return new ArrayList<>();
         }
@@ -31,13 +31,13 @@ public class PrivateDimensionChunkGenerator extends ChunkGenerator {
 
     }
 
-    public ChunkData generateChunkData(final World world, final Random random, final int chunkX, final int chunkZ, final BiomeGrid biome) {
+    public @NonNull ChunkData generateChunkData(final World world, final @NonNull Random random, final int chunkX, final int chunkZ, final @NonNull BiomeGrid biome) {
         final SimplexOctaveGenerator generator = new SimplexOctaveGenerator(new Random(world.getSeed()), 8);
         final ChunkData chunk = this.createChunkData(world);
         generator.setScale(0.015);
         for (int X = 0; X < 16; ++X) {
             for (int Z = 0; Z < 16; ++Z) {
-                chunk.setBlock(X, this.currentHeight = (int) (generator.noise((double) (chunkX * 16 + X), (double) (chunkZ * 16 + Z), 0.5, 0.5) * 15.0 + 50.0), Z, Material.GRASS_BLOCK);
+                chunk.setBlock(X, this.currentHeight = (int) (generator.noise(chunkX * 16 + X, chunkZ * 16 + Z, 0.5, 0.5) * 15.0 + 50.0), Z, Material.GRASS_BLOCK);
 
                 //Oberster Layer
                 chunk.setBlock(X, this.currentHeight - 1, Z, Material.DIRT);
